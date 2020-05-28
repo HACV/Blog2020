@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="素数暴力到欧拉筛法, HACV">
+    <meta name="keywords" content="测试文章, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>素数暴力到欧拉筛法 | HACV</title>
+    <title>测试文章 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.28/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.28/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">素数暴力到欧拉筛法</h1>
+                    <h1 class="description center-align post-title">测试文章</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%B4%A0%E6%95%B0/">
-                                <span class="chip bg-color">素数</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%9A%B4%E5%8A%9B/">
-                                <span class="chip bg-color">暴力</span>
+                            <a href="/tags/%E6%B5%8B%E8%AF%95/">
+                                <span class="chip bg-color">测试</span>
                             </a>
                         
                     </div>
@@ -475,252 +471,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>前叙：<br>从素数的暴力算法一路优化到了欧拉筛法Welcome to Hexo! This is your very first post. Check documentation for more info.</p>
-<p>本文讲解了<strong>素数</strong> 的定义</p>
-<p>这是我用hexo的markdown测试的<br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></p>
-<h1 id="素数相关算法详解"><a href="#素数相关算法详解" class="headerlink" title="素数相关算法详解"></a>素数相关算法详解</h1><p>本文讲解了<strong>素数</strong> 的定义<br>并且从素数的暴力算法一路优化到了欧拉筛法</p>
-<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><blockquote>
-<ul>
-<li>1.<a href="#jump010">素数的定义</a></li>
-<li>2.<strong>素数相关算法</strong><blockquote>
-<ul>
-<li><a href="#jump021">判别素数的朴素法（暴力法）</a><blockquote>
-<ul>
-<li>算法原理</li>
-<li>实现(轻微优化)</li>
-</ul>
-</blockquote>
-</li>
-<li><a href="#jump022">埃塞托尼亚筛</a><blockquote>
-<ul>
-<li>算法原理</li>
-<li>实现1</li>
-<li>实现2：对实现1的优化</li>
-</ul>
-</blockquote>
-</li>
-<li><a href="#jump023">欧拉筛</a><blockquote>
-<ul>
-<li>算法原理</li>
-<li>实现 </li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-</li>
-<li>3.==总结==</li>
-</ul>
-</blockquote>
-<span id="jump010">
-##1.素数的定义
-</span>
-
-<p>维基百科定义：<br><strong>质数</strong>（Prime number），又称<strong>素数</strong><br><strong>指在大于1的自然数中</strong>，除了1和该数自身外，无法被其他自然数整除的数（也可定义为只有1与该数本身两个正因数的数）。大于1的自然数若不是素数，则称之为<strong>合数</strong>（也称为<strong>合成数</strong>）。<br> <strong>Tips：</strong><br>1.有的教材上：（指在大于1的自然数中）这一点没有强调，导致容易误解！！！<br>也是经常弄晕一些人对素数的理解的原因。<br>2.所以：<table><tr><td bgcolor=#FFFF FF>1既不是素数也不是合数！！！</td></tr></table></p>
-<p>###2.素数相关算法<br><span id="jump021"><br>##判别素数的朴素法（暴力法）<br></span></p>
-<h5 id="1）算法原理："><a href="#1）算法原理：" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>不管三七二十一<br>根据素数定义就是一顿暴力。</p>
-<h5 id="2）实现-轻微优化"><a href="#2）实现-轻微优化" class="headerlink" title="2）实现(轻微优化)"></a>2）实现(轻微优化)</h5><h6 id="代码段："><a href="#代码段：" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">isPrime</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//0表示不是素数，1表示是素数 </span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">&lt;=</span><span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
-    <span class="token comment" spellcheck="true">//表示根号n向下取整 </span>
-    <span class="token keyword">int</span> sqrt_num<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token operator">*</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>sqrt_num<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-     <span class="token punctuation">}</span> 
-
-    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//是素数 </span>
-<span class="token punctuation">}</span>
-
-</code></pre>
-<span id="jump022">
-##埃塞托尼亚筛
-</span>
-
-<h5 id="1）算法原理：-1"><a href="#1）算法原理：-1" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>1&gt;假设从2-N全是素数<br>2&gt;从2开始枚举，对于每个素数，我们筛去它的所有倍数，最后我们剩下来的就都是素数<br><strong>关键点</strong>：<br>从2开始枚举到某个数字A，如果a没有被前面步骤的数筛去，那么a一定是素数。<br>原因：<br><strong>如果A(A&gt;2)是合数</strong>，则<strong>A=素数×另一个数</strong><br><strong>PS：这个素数必定小于A，所以会被我妈前面筛出来的素数筛掉</strong></p>
-<h5 id="2）实现"><a href="#2）实现" class="headerlink" title="2）实现"></a>2）实现</h5><p>用一个标记数组实现<br>枚举的过程中，筛的过程就是依次改变这个标记数组的过程</p>
-<h5 id="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"><a href="#实现1：按照思路直接筛，筛的过程如下图红色箭头所示" class="headerlink" title="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"></a>实现1：按照思路直接筛，筛的过程如下图红色箭头所示</h5><img src="https://github.com/HACV/Blog_HACV/blob/master/1%EF%BC%89%F0%9F%90%B2(%E7%AE%97%E6%B3%95)Algorithm/Picture_of_markdown/2020_5.26/2020_5.26_1.png" width="80%">
-
-<h6 id="代码段：-1"><a href="#代码段：-1" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//Eratosthenes_one.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxn<span class="token operator">=</span><span class="token number">100000</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//除了0,1之外(因为0和1既不是合数，也不是素数)</span>
-<span class="token comment" spellcheck="true">//TagArray数组中，0表示i是素数，1表示是合数</span>
-<span class="token keyword">int</span> TagArray<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//Prime数组中存放素数(从0号位开始放)</span>
-<span class="token comment" spellcheck="true">//Num表示Prime数组中素数的个数 </span>
-<span class="token keyword">int</span> Prime<span class="token punctuation">[</span><span class="token number">10000</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> Num<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-
-<span class="token keyword">void</span> <span class="token function">FindPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>maxn<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>TagArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//如果标记数组说i这个数是素数 </span>
-        <span class="token punctuation">{</span>
-            Prime<span class="token punctuation">[</span>Num<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//存素数i，并且Num+1</span>
-
-            <span class="token comment" spellcheck="true">//注意这种写法，本来应该用i*j&lt;=(maxn-1)判断就好了</span>
-            <span class="token comment" spellcheck="true">//但是要避免i*j的结果溢出int,所以改为j&lt;=((maxn-1)/i)</span>
-            <span class="token comment" spellcheck="true">//maxn-1是因为标记数组范围本来就只有0-100004 </span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span> j<span class="token operator">&lt;=</span><span class="token punctuation">(</span><span class="token punctuation">(</span>maxn<span class="token number">-1</span><span class="token punctuation">)</span><span class="token operator">/</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                TagArray<span class="token punctuation">[</span>j<span class="token operator">*</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//筛去素数i的倍数 </span>
-            <span class="token punctuation">}</span>
-
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span> 
-
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//求1-100000+4中哪些是素数</span>
-    <span class="token function">FindPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"正整数100004内素数的个数:%d\n"</span><span class="token punctuation">,</span>Num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>Num<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>Prime<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h5 id="实现2："><a href="#实现2：" class="headerlink" title="实现2："></a>实现2：</h5><p>在实现1的基础上，我们发现，如图中蓝色部分的，被重复筛了。我们容易观察出，如果要减少筛的次数，我们可以从质数的平方往后筛（优化）<br><img src="C:\Users\胡\Desktop\test\2.png" width="80%"></p>
-<h6 id="代码段：-2"><a href="#代码段：-2" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-diff"><code class="language-diff"><span class="token deleted">- //Eratosthenes_two.cpp</span>
-<span class="token deleted">- #include&lt;cstdio></span>
-<span class="token inserted">+ const int maxn=100000+5;</span>
-
-//除了0,1之外(因为0和1既不是合数，也不是素数)
-//TagArray数组中，0表示i是素数，1表示是合数
-int TagArray[maxn]={0};
-
-//Prime数组中存放素数(从0号位开始放)
-//Num表示Prime数组中素数的个数 
-int Prime[10000+5]={0};
-int Num=0;
-
-void FindPrime()
-{
-    for(int i=2;i&lt;maxn;i++)
-    {
-        if(TagArray[i]==0)//如果标记数组说i这个数是素数 
-        {
-            Prime[Num++]=i;//存素数i，并且Num+1
-
-            //注意这种写法，本来应该用i*j&lt;=(maxn-1)判断就好了
-            //但是要避免i*j的结果溢出int,所以改为j&lt;=((maxn-1)/i)
-            //maxn-1是因为标记数组范围本来就只有0-100004 
-            //(修改处)将j=2改为了j=i，这样就能少筛掉表格中那些蓝色部分了 
-            for(int j=i; j&lt;=((maxn-1)/i); ++j) 
-            {
-                TagArray[j*i]=1;//筛去素数i的倍数 
-            }
-
-        }
-    }
-
-} 
-
-
-int main()
-{
-    //求1-100000+4中哪些是素数
-    FindPrime();
-    printf("正整数100004内素数的个数:%d\n",Num);
-
-    for(int i=0;i&lt;Num;i++) 
-    {
-        printf("%d\n",Prime[i]);
-    }
-
-
-    return 0;
-}
-</code></pre>
-<span id="jump023">
-##欧拉筛
-</span>
-**由来**：
-由于埃塞托尼亚筛筛的时候重复筛（比如下面的）了，使得算法效率还不够好，所以，我们改进一下，我们继续观察先前的图，发现埃塞托尼亚筛是**竖着筛**，我们似乎也难以优化这种筛法了，我们转换一下思路——**横着筛**
-
-<h5 id="1）算法原理：-2"><a href="#1）算法原理：-2" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>思路：在埃氏筛的一种优化<br>任何合数都能写成一个素数乘一个数（显然这个素数不一定是唯一的）<br>//举个例子：12=2<em>6=3</em>4（2和3都是素数）<br>所以，任何合数都有一个<strong>最小的质因数</strong></p>
-<table><tr><td bgcolor=#FFFF FF>用这个**最小质因数**来判断什么时候不用继续筛下去
-</td></tr></table>
-
-
-<p>那么如何实现呢？<br>欧拉研究发现，我要是<strong>横着筛</strong>就会比前面那种只优化掉蓝色部分的埃氏筛还快</p>
-<img src="C:\Users\胡\Desktop\test\3.png" width="80%">
-
-<p><strong>注意</strong>：这里是横着筛，此外图中箭头从<strong>橙色出发（包括该点）</strong>往右的所有我都不筛<br>具体实现方法是用的一个<strong>break</strong>实现的。</p>
-<h5 id="2）实现-1"><a href="#2）实现-1" class="headerlink" title="2）实现"></a>2）实现</h5><h6 id="代码段：-3"><a href="#代码段：-3" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//Euler.cpp</span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxn<span class="token operator">=</span><span class="token number">100000</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//除了0,1之外(因为0和1既不是合数，也不是素数)</span>
-<span class="token comment" spellcheck="true">//TagArray数组中，0表示i是素数，1表示是合数</span>
-<span class="token keyword">int</span> TagArray<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//Prime数组中存放素数(从0号位开始放)</span>
-<span class="token comment" spellcheck="true">//Num表示Prime数组中素数的个数 </span>
-<span class="token keyword">int</span> Prime<span class="token punctuation">[</span><span class="token number">10000</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> Num<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-
-<span class="token keyword">void</span> <span class="token function">FindPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>maxn<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>TagArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//如果标记数组说i这个数是素数 </span>
-        <span class="token punctuation">{</span>
-            Prime<span class="token punctuation">[</span>Num<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//存素数，并且Num+1    </span>
-        <span class="token punctuation">}</span>
-
-
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">(</span>j<span class="token operator">&lt;</span>Num<span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span><span class="token punctuation">(</span>i<span class="token operator">&lt;=</span><span class="token punctuation">(</span><span class="token punctuation">(</span>maxn<span class="token number">-1</span><span class="token punctuation">)</span><span class="token operator">/</span>Prime<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">++</span>j<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//一进来,不管三七二十一，先筛掉一个先</span>
-            TagArray<span class="token punctuation">[</span>i<span class="token operator">*</span>Prime<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span>Prime<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">//判别i是Prime数组中某个的倍数，则跳出，</span>
-                <span class="token comment" spellcheck="true">//这行后面的也不用筛     </span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-             <span class="token punctuation">}</span>     
-
-         <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span> 
-
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//求1-100000+5-1中哪些是素数</span>
-    <span class="token function">FindPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"正整数100004内素数的个数:%d\n"</span><span class="token punctuation">,</span>Num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>Num<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> 
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>Prime<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h2 id="测试文件"><a href="#测试文件" class="headerlink" title="测试文件"></a>测试文件</h2><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
+                <p>#温热后积分卡</p>
 
             </div>
             <hr/>
@@ -746,7 +497,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/28/hello-world/">https://github.com/HACV/HACV.github.io/2020/05/28/hello-world/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/05/28/test/">https://github.com/HACV/HACV.github.io/2020/05/28/test/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -784,12 +535,8 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%B4%A0%E6%95%B0/">
-                                    <span class="chip bg-color">素数</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%9A%B4%E5%8A%9B/">
-                                    <span class="chip bg-color">暴力</span>
+                                <a href="/tags/%E6%B5%8B%E8%AF%95/">
+                                    <span class="chip bg-color">测试</span>
                                 </a>
                             
                         </div>
@@ -957,9 +704,10 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/05/28/test/">
                     <div class="card-image">
@@ -977,9 +725,9 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -992,6 +740,7 @@ int main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1007,7 +756,7 @@ int main()
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/05/28/hello-world/">
@@ -1042,7 +791,6 @@ int main()
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
