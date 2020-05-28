@@ -475,9 +475,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>前叙：<br>从素数的暴力算法一路优化到了欧拉筛法Welcome to Hexo! This is your very first post. Check documentation for more info.</p>
-<p>本文讲解了<strong>素数</strong> 的定义</p>
-<p>这是我用hexo的markdown测试的<br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></p>
+                <p>综叙：<br>本文从素数的暴力算法一路优化到了欧拉筛法<br>讲解了：朴素暴力，埃塞托尼亚筛，欧拉筛</p>
 <h1 id="素数相关算法详解"><a href="#素数相关算法详解" class="headerlink" title="素数相关算法详解"></a>素数相关算法详解</h1><p>本文讲解了<strong>素数</strong> 的定义<br>并且从素数的暴力算法一路优化到了欧拉筛法</p>
 <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><blockquote>
 <ul>
@@ -512,12 +510,10 @@
 <li>3.==总结==</li>
 </ul>
 </blockquote>
-<span id="jump010">
-##1.素数的定义
+<h2 id="1-素数的定义"><a href="#1-素数的定义" class="headerlink" title="1.素数的定义"></a>1.素数的定义</h2><p>维基百科定义：<br><strong>质数</strong>（Prime number），又称<strong>素数</strong><br><strong>指在大于1的自然数中</strong>，除了1和该数自身外，无法被其他自然数整除的数（也可定义为只有1与该数本身两个正因数的数）。大于1的自然数若不是素数，则称之为<strong>合数</strong>（也称为<strong>合成数</strong>）。<br> <strong>Tips：</strong><br>1.有的教材上：（指在大于1的自然数中）这一点没有强调，导致容易误解！！！<br>也是经常弄晕一些人对素数的理解的原因。<br>2.所以：<table><tr><td bgcolor=#FFFF FF>1既不是素数也不是合数！！！</td></tr></table></p>
+<h2 id="2-素数相关算法"><a href="#2-素数相关算法" class="headerlink" title="2.素数相关算法"></a>2.素数相关算法</h2><h3 id="判别素数的朴素法（暴力法）"><a href="#判别素数的朴素法（暴力法）" class="headerlink" title="判别素数的朴素法（暴力法）"></a>判别素数的朴素法（暴力法）</h3><span id="jump021">
 </span>
 
-<p>维基百科定义：<br><strong>质数</strong>（Prime number），又称<strong>素数</strong><br><strong>指在大于1的自然数中</strong>，除了1和该数自身外，无法被其他自然数整除的数（也可定义为只有1与该数本身两个正因数的数）。大于1的自然数若不是素数，则称之为<strong>合数</strong>（也称为<strong>合成数</strong>）。<br> <strong>Tips：</strong><br>1.有的教材上：（指在大于1的自然数中）这一点没有强调，导致容易误解！！！<br>也是经常弄晕一些人对素数的理解的原因。<br>2.所以：<table><tr><td bgcolor=#FFFF FF>1既不是素数也不是合数！！！</td></tr></table></p>
-<p>###2.素数相关算法<br><span id="jump021"><br>##判别素数的朴素法（暴力法）<br></span></p>
 <h5 id="1）算法原理："><a href="#1）算法原理：" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>不管三七二十一<br>根据素数定义就是一顿暴力。</p>
 <h5 id="2）实现-轻微优化"><a href="#2）实现-轻微优化" class="headerlink" title="2）实现(轻微优化)"></a>2）实现(轻微优化)</h5><h6 id="代码段："><a href="#代码段：" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">isPrime</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -539,13 +535,12 @@
 <span class="token punctuation">}</span>
 
 </code></pre>
-<span id="jump022">
-##埃塞托尼亚筛
+<h3 id="埃塞托尼亚筛"><a href="#埃塞托尼亚筛" class="headerlink" title="埃塞托尼亚筛"></a>埃塞托尼亚筛</h3><span id="jump022">
 </span>
 
 <h5 id="1）算法原理：-1"><a href="#1）算法原理：-1" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>1&gt;假设从2-N全是素数<br>2&gt;从2开始枚举，对于每个素数，我们筛去它的所有倍数，最后我们剩下来的就都是素数<br><strong>关键点</strong>：<br>从2开始枚举到某个数字A，如果a没有被前面步骤的数筛去，那么a一定是素数。<br>原因：<br><strong>如果A(A&gt;2)是合数</strong>，则<strong>A=素数×另一个数</strong><br><strong>PS：这个素数必定小于A，所以会被我妈前面筛出来的素数筛掉</strong></p>
 <h5 id="2）实现"><a href="#2）实现" class="headerlink" title="2）实现"></a>2）实现</h5><p>用一个标记数组实现<br>枚举的过程中，筛的过程就是依次改变这个标记数组的过程</p>
-<h5 id="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"><a href="#实现1：按照思路直接筛，筛的过程如下图红色箭头所示" class="headerlink" title="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"></a>实现1：按照思路直接筛，筛的过程如下图红色箭头所示</h5><img src="https://github.com/HACV/Blog_HACV/blob/master/1%EF%BC%89%F0%9F%90%B2(%E7%AE%97%E6%B3%95)Algorithm/Picture_of_markdown/2020_5.26/2020_5.26_1.png" width="80%">
+<h5 id="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"><a href="#实现1：按照思路直接筛，筛的过程如下图红色箭头所示" class="headerlink" title="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"></a>实现1：按照思路直接筛，筛的过程如下图红色箭头所示</h5><img src="/photos/2020.5.28/2020_5.26_1.png" width="80%">
 
 <h6 id="代码段：-1"><a href="#代码段：-1" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//Eratosthenes_one.cpp </span>
 <span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
@@ -597,7 +592,7 @@
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h5 id="实现2："><a href="#实现2：" class="headerlink" title="实现2："></a>实现2：</h5><p>在实现1的基础上，我们发现，如图中蓝色部分的，被重复筛了。我们容易观察出，如果要减少筛的次数，我们可以从质数的平方往后筛（优化）<br><img src="C:\Users\胡\Desktop\test\2.png" width="80%"></p>
+<h5 id="实现2："><a href="#实现2：" class="headerlink" title="实现2："></a>实现2：</h5><p>在实现1的基础上，我们发现，如图中蓝色部分的，被重复筛了。我们容易观察出，如果要减少筛的次数，我们可以从质数的平方往后筛（优化）<br><img src="/photos/2020.5.28/2020_5.26_2.png" width="80%"></p>
 <h6 id="代码段：-2"><a href="#代码段：-2" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-diff"><code class="language-diff"><span class="token deleted">- //Eratosthenes_two.cpp</span>
 <span class="token deleted">- #include&lt;cstdio></span>
 <span class="token inserted">+ const int maxn=100000+5;</span>
@@ -649,8 +644,7 @@ int main()
     return 0;
 }
 </code></pre>
-<span id="jump023">
-##欧拉筛
+<h3 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h3><span id="jump023">
 </span>
 **由来**：
 由于埃塞托尼亚筛筛的时候重复筛（比如下面的）了，使得算法效率还不够好，所以，我们改进一下，我们继续观察先前的图，发现埃塞托尼亚筛是**竖着筛**，我们似乎也难以优化这种筛法了，我们转换一下思路——**横着筛**
@@ -661,7 +655,7 @@ int main()
 
 
 <p>那么如何实现呢？<br>欧拉研究发现，我要是<strong>横着筛</strong>就会比前面那种只优化掉蓝色部分的埃氏筛还快</p>
-<img src="C:\Users\胡\Desktop\test\3.png" width="80%">
+<img src="/photos/2020.5.28/2020_5.26_3.png" width="80%">
 
 <p><strong>注意</strong>：这里是横着筛，此外图中箭头从<strong>橙色出发（包括该点）</strong>往右的所有我都不筛<br>具体实现方法是用的一个<strong>break</strong>实现的。</p>
 <h5 id="2）实现-1"><a href="#2）实现-1" class="headerlink" title="2）实现"></a>2）实现</h5><h6 id="代码段：-3"><a href="#代码段：-3" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//Euler.cpp</span>
@@ -719,8 +713,6 @@ int main()
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="测试文件"><a href="#测试文件" class="headerlink" title="测试文件"></a>测试文件</h2><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
 
             </div>
             <hr/>
@@ -964,16 +956,16 @@ int main()
                 <a href="/2020/05/28/test/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.28/1.jpg" class="responsive-img" alt="测试文章">
+                        <img src="/photos/2020.5.28/1.jpg" class="responsive-img" alt="C语言优先级和结合性记忆">
                         
-                        <span class="card-title">测试文章</span>
+                        <span class="card-title">C语言优先级和结合性记忆</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            #温热后积分卡
-
+                            前言：记忆C语言的优先级和结合性真的像孔乙己记忆“回”字的四种写法一样没必要吗？？系列主题：C语言碎碎念
+C语言优先级和结合性记忆前述：以前以为，记忆C语言的优先级和结合性就像孔乙己记忆“回”字的四种写法一样有些没必要，对于技术，简洁即美。
                         
                     </div>
                     <div class="publish-info">
@@ -984,8 +976,8 @@ int main()
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%A0%87%E7%AD%BE/" class="post-category">
+                                    记忆标签
                                 </a>
                             
                             
@@ -995,8 +987,8 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                        <span class="chip bg-color">测试</span>
+                    <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
                     </a>
                     
                 </div>
@@ -1021,9 +1013,16 @@ int main()
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前叙：从素数的暴力算法一路优化到了欧拉筛法Welcome to Hexo! This is your very first post. Check documentation for more info.
-本文讲解了素数 的定义
-这是我用h
+                            综叙：本文从素数的暴力算法一路优化到了欧拉筛法讲解了：朴素暴力，埃塞托尼亚筛，欧拉筛
+素数相关算法详解本文讲解了素数 的定义并且从素数的暴力算法一路优化到了欧拉筛法
+目录
+
+1.素数的定义
+2.素数相关算法
+
+判别素数的朴素法（暴力法）
+
+
                         
                     </div>
                     <div class="publish-info">

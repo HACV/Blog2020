@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="测试文章, HACV">
+    <meta name="keywords" content="C语言优先级和结合性记忆, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>测试文章 | HACV</title>
+    <title>C语言优先级和结合性记忆 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,7 +313,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">测试文章</h1>
+                    <h1 class="description center-align post-title">C语言优先级和结合性记忆</h1>
                 </div>
             </div>
         </div>
@@ -430,8 +430,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                <span class="chip bg-color">测试</span>
+                            <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">C语言</span>
                             </a>
                         
                     </div>
@@ -442,8 +442,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
+                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%A0%87%E7%AD%BE/" class="post-category">
+                                记忆标签
                             </a>
                         
                     </div>
@@ -471,7 +471,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>#温热后积分卡</p>
+                <p>前言：<br>记忆C语言的优先级和结合性真的像孔乙己记忆“回”字的四种写法一样没必要吗？？<br>系列主题：<strong>C语言碎碎念</strong></p>
+<h1 id="C语言优先级和结合性记忆"><a href="#C语言优先级和结合性记忆" class="headerlink" title="C语言优先级和结合性记忆"></a>C语言优先级和结合性记忆</h1><p>前述：以前以为，记忆C语言的优先级和结合性就像孔乙己记忆“回”字的四种写法一样有些没必要，对于技术，简洁即美。</p>
+<p>但以下场景，发现记忆C语言的优先级结合性还是有一定好处的<br><strong>场景</strong>：<br>1）记忆一些特定的优先级和结合性，能够帮助从编译器角度来快速识别多级指针和数组指针和函数指针判定指针类型。<br>2）某些项目的遗留代码中有一些编程风格不好的片段，总是不写括号，遇到就需要查书，对研究别人代码，有一定影响。记忆优先级和结合性，能够降低开发中重构已有代码的难度。<br>3）有的相关试题中，有考优先级的题目的存在。(考优先级不是目的，而是为了解决那些风格不好的遗留代码)<br>4）由于编译器语法分析阶段的设计原理，其他语言的优先级也可以在此基础上记忆。<br>C语言的优先级，再添加上一些，则很容易转换到记忆C++的优先级。<br>Java的运算符的优先级和C语言很像。</p>
+<p>优先级从高到低，分为15级<br><img src="/photos/2020.5.28/2020_5.28_1.jpg" width="80%"><br><img src="/photos/2020.5.28/2020_5.28_2.jpg" width="80%"></p>
+<h1 id="优先级记忆："><a href="#优先级记忆：" class="headerlink" title="优先级记忆："></a>优先级记忆：</h1><table><td bgcolor=#FFFF FF>
+初-单-算-移-关        （出箪蒜一罐）</td></table>  
+<table><td bgcolor=#FFFF FF>
+位-逻-三-赋-逗        （味落三伏豆）</td></table> 
+
+<p>//箪—意指古代盛饭用的圆形竹器</p>
+<p>解释：<br>初：初级运算符<br>单：单目运算符<br>算：算数运算符（包含2个优先级）<br>移：移位运算符<br>关：关系运算符（包含2个优先级）</p>
+<p>位：位运算（除去，位运算中的单目运算符~ 包含3个优先级）<br>逻：逻辑运算符（包含2个优先级）<br>三：三目运算符<br>赋：赋值运算符<br>逗：逗号运算符</p>
+<h1 id="结合性记忆："><a href="#结合性记忆：" class="headerlink" title="结合性记忆："></a>结合性记忆：</h1><table><td bgcolor=#FFFF FF>
+单三赋    从右左</td></table> 
+
+
+<p>除以上规则以外,还有一点。<br>标准的C语言编译器对运算符的解析遵循“最大贪婪”规则。<br><strong>“最大贪婪”规则</strong>：当C语言编译器对源程序进行词法分析时，如果运算符的下一个符号还是运算符，并且能和前一个运算符构成一个新的合法运算符时，编译器的词法分析器必须将其解析为两个运算符符号构成的新的运算符。</p>
+<p>举一个没太大实际意义的例子来辅证，例如: x=z+++y;<br>是按照x=z+(++y);来计算，还是按照x=(z++)+y;来计算呢?<br>根据C编译器的“最大贪婪”规则,是按照x=(z++)+y;来计算，而不是按照x=z+(++y)来计算<br>可以反汇编验证</p>
+<p>具体的用法举例：<br>记忆第一优先级中的和第二优先级<br>int (<em>p)[3];    //这是一个数组指针，指向的类型是int (</em>)[3]<br>int <em>p[3];    //这是一个指针数组，里面的是int <em>类型的指针<br>int *</em>p;    //这是一个二级指针，指向的类型是int *<br>int (*p)(int ,int);  //这是一个函数指针，指向的类型是int (</em>)(int,int)<br>int *p(int ,int);    //这是一个返回值为指针的函数</p>
 
             </div>
             <hr/>
@@ -535,8 +553,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                    <span class="chip bg-color">测试</span>
+                                <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">C语言</span>
                                 </a>
                             
                         </div>
@@ -712,16 +730,16 @@
                 <a href="/2020/05/28/test/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.28/1.jpg" class="responsive-img" alt="测试文章">
+                        <img src="/photos/2020.5.28/1.jpg" class="responsive-img" alt="C语言优先级和结合性记忆">
                         
-                        <span class="card-title">测试文章</span>
+                        <span class="card-title">C语言优先级和结合性记忆</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            #温热后积分卡
-
+                            前言：记忆C语言的优先级和结合性真的像孔乙己记忆“回”字的四种写法一样没必要吗？？系列主题：C语言碎碎念
+C语言优先级和结合性记忆前述：以前以为，记忆C语言的优先级和结合性就像孔乙己记忆“回”字的四种写法一样有些没必要，对于技术，简洁即美。
                         
                     </div>
                     <div class="publish-info">
@@ -732,8 +750,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%A0%87%E7%AD%BE/" class="post-category">
+                                    记忆标签
                                 </a>
                             
                             
@@ -744,8 +762,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                        <span class="chip bg-color">测试</span>
+                    <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
                     </a>
                     
                 </div>
@@ -770,9 +788,16 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前叙：从素数的暴力算法一路优化到了欧拉筛法Welcome to Hexo! This is your very first post. Check documentation for more info.
-本文讲解了素数 的定义
-这是我用h
+                            综叙：本文从素数的暴力算法一路优化到了欧拉筛法讲解了：朴素暴力，埃塞托尼亚筛，欧拉筛
+素数相关算法详解本文讲解了素数 的定义并且从素数的暴力算法一路优化到了欧拉筛法
+目录
+
+1.素数的定义
+2.素数相关算法
+
+判别素数的朴素法（暴力法）
+
+
                         
                     </div>
                     <div class="publish-info">
