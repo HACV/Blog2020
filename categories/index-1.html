@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, HACV">
+    <meta name="keywords" content="Categories, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | HACV</title>
+    <title>Categories | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,7 +313,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">categories</h1>
                 </div>
             </div>
         </div>
@@ -458,22 +458,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="测试文件"><a href="#测试文件" class="headerlink" title="测试文件"></a>测试文件</h2><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h6 id="代码段："><a href="#代码段：" class="headerlink" title="代码段："></a>代码段：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Eratosthenes_one.cpp </span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">const int maxn&#x3D;100000+5;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;除了0,1之外(因为0和1既不是合数，也不是素数)</span><br><span class="line">&#x2F;&#x2F;TagArray数组中，0表示i是素数，1表示是合数</span><br><span class="line">int TagArray[maxn]&#x3D;&#123;0&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Prime数组中存放素数(从0号位开始放)</span><br><span class="line">&#x2F;&#x2F;Num表示Prime数组中素数的个数 </span><br><span class="line">int Prime[10000+5]&#x3D;&#123;0&#125;;</span><br><span class="line">int Num&#x3D;0;</span><br><span class="line"></span><br><span class="line">void FindPrime()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i&#x3D;2;i&lt;maxn;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(TagArray[i]&#x3D;&#x3D;0)&#x2F;&#x2F;如果标记数组说i这个数是素数 </span><br><span class="line">		&#123;</span><br><span class="line">			Prime[Num++]&#x3D;i;&#x2F;&#x2F;存素数i，并且Num+1</span><br><span class="line">			</span><br><span class="line">			&#x2F;&#x2F;注意这种写法，本来应该用i*j&lt;&#x3D;(maxn-1)判断就好了</span><br><span class="line">			&#x2F;&#x2F;但是要避免i*j的结果溢出int,所以改为j&lt;&#x3D;((maxn-1)&#x2F;i)</span><br><span class="line">			&#x2F;&#x2F;maxn-1是因为标记数组范围本来就只有0-100004 </span><br><span class="line">			for(int j&#x3D;2; j&lt;&#x3D;((maxn-1)&#x2F;i); ++j)</span><br><span class="line">			&#123;</span><br><span class="line">				TagArray[j*i]&#x3D;1;&#x2F;&#x2F;筛去素数i的倍数 </span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F;求1-100000+4中哪些是素数</span><br><span class="line">	FindPrime();</span><br><span class="line">	printf(&quot;正整数100004内素数的个数:%d\n&quot;,Num);</span><br><span class="line">	</span><br><span class="line">	for(int i&#x3D;0;i&lt;Num;i++) </span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%d\n&quot;,Prime[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+                
             </div>
             <hr/>
 
@@ -498,7 +483,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/28/hello-world/">https://github.com/HACV/HACV.github.io/2020/05/28/hello-world/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/categories/index-1.html">https://github.com/HACV/HACV.github.io/categories/index-1.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -706,19 +691,19 @@
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2020/05/28/hello-world/">
+                <a href="/categories/index-1.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">categories</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -744,19 +729,19 @@
                 Current&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/28/hello-world/">
+                <a href="/categories/index-1.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">categories</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            
                         
                     </div>
                     <div class="publish-info">
