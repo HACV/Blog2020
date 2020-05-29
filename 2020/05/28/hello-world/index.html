@@ -515,7 +515,7 @@
 <h3 id="埃塞托尼亚筛"><a href="#埃塞托尼亚筛" class="headerlink" title="埃塞托尼亚筛"></a>埃塞托尼亚筛</h3><span id="jump022">
 </span>
 
-<h5 id="1）算法原理：-1"><a href="#1）算法原理：-1" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>1&gt;假设从2-N全是素数<br>2&gt;从2开始枚举，对于每个素数，我们筛去它的所有倍数，最后我们剩下来的就都是素数<br><strong>关键点</strong>：<br>从2开始枚举到某个数字A，如果a没有被前面步骤的数筛去，那么a一定是素数。<br>原因：<br><strong>如果A(A&gt;2)是合数</strong>，则<strong>A=素数×另一个数</strong><br><strong>PS：这个素数必定小于A，所以会被我妈前面筛出来的素数筛掉</strong></p>
+<h5 id="1）算法原理：-1"><a href="#1）算法原理：-1" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>1&gt;假设从2-N全是素数<br>2&gt;从2开始枚举，对于每个素数，我们筛去它的所有倍数，最后我们剩下来的就都是素数<br><strong>关键点</strong>：<br>从2开始枚举到某个数字A，如果a没有被前面步骤的数筛去，那么a一定是素数。<br>原因：<br><strong>如果A(A&gt;2)是合数</strong>，则<strong>A=素数×另一个数</strong><br><strong>PS：这个素数必定小于A，所以会被我们前面筛出来的素数筛掉</strong></p>
 <h5 id="2）实现"><a href="#2）实现" class="headerlink" title="2）实现"></a>2）实现</h5><p>用一个标记数组实现<br>枚举的过程中，筛的过程就是依次改变这个标记数组的过程</p>
 <h5 id="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"><a href="#实现1：按照思路直接筛，筛的过程如下图红色箭头所示" class="headerlink" title="实现1：按照思路直接筛，筛的过程如下图红色箭头所示"></a>实现1：按照思路直接筛，筛的过程如下图红色箭头所示</h5><img src="/photos/2020.5.28/2020_5.26_1.png" width="80%">
 
@@ -570,64 +570,63 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h5 id="实现2："><a href="#实现2：" class="headerlink" title="实现2："></a>实现2：</h5><p>在实现1的基础上，我们发现，如图中蓝色部分的，被重复筛了。我们容易观察出，如果要减少筛的次数，我们可以从质数的平方往后筛（优化）<br><img src="/photos/2020.5.28/2020_5.26_2.png" width="80%"></p>
-<h6 id="代码段：-2"><a href="#代码段：-2" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-diff"><code class="language-diff"><span class="token deleted">- //Eratosthenes_two.cpp</span>
-<span class="token deleted">- #include&lt;cstdio></span>
-<span class="token inserted">+ const int maxn=100000+5;</span>
+<h6 id="代码段：-2"><a href="#代码段：-2" class="headerlink" title="代码段："></a>代码段：</h6><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//Eratosthenes_two.cpp</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn<span class="token operator">=</span><span class="token number">100000</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">;</span>
 
-//除了0,1之外(因为0和1既不是合数，也不是素数)
-//TagArray数组中，0表示i是素数，1表示是合数
-int TagArray[maxn]={0};
+<span class="token comment" spellcheck="true">//除了0,1之外(因为0和1既不是合数，也不是素数)</span>
+<span class="token comment" spellcheck="true">//TagArray数组中，0表示i是素数，1表示是合数</span>
+<span class="token keyword">int</span> TagArray<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-//Prime数组中存放素数(从0号位开始放)
-//Num表示Prime数组中素数的个数 
-int Prime[10000+5]={0};
-int Num=0;
+<span class="token comment" spellcheck="true">//Prime数组中存放素数(从0号位开始放)</span>
+<span class="token comment" spellcheck="true">//Num表示Prime数组中素数的个数 </span>
+<span class="token keyword">int</span> Prime<span class="token punctuation">[</span><span class="token number">10000</span><span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> Num<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
 
-void FindPrime()
-{
-    for(int i=2;i&lt;maxn;i++)
-    {
-        if(TagArray[i]==0)//如果标记数组说i这个数是素数 
-        {
-            Prime[Num++]=i;//存素数i，并且Num+1
+<span class="token keyword">void</span> <span class="token function">FindPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>maxn<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>TagArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//如果标记数组说i这个数是素数 </span>
+        <span class="token punctuation">{</span>
+            Prime<span class="token punctuation">[</span>Num<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//存素数i，并且Num+1</span>
 
-            //注意这种写法，本来应该用i*j&lt;=(maxn-1)判断就好了
-            //但是要避免i*j的结果溢出int,所以改为j&lt;=((maxn-1)/i)
-            //maxn-1是因为标记数组范围本来就只有0-100004 
-            //(修改处)将j=2改为了j=i，这样就能少筛掉表格中那些蓝色部分了 
-            for(int j=i; j&lt;=((maxn-1)/i); ++j) 
-            {
-                TagArray[j*i]=1;//筛去素数i的倍数 
-            }
+            <span class="token comment" spellcheck="true">//注意这种写法，本来应该用i*j&lt;=(maxn-1)判断就好了</span>
+            <span class="token comment" spellcheck="true">//但是要避免i*j的结果溢出int,所以改为j&lt;=((maxn-1)/i)</span>
+            <span class="token comment" spellcheck="true">//maxn-1是因为标记数组范围本来就只有0-100004 </span>
+            <span class="token comment" spellcheck="true">//(修改处)将j=2改为了j=i，这样就能少筛掉表格中那些蓝色部分了 </span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token punctuation">;</span> j<span class="token operator">&lt;=</span><span class="token punctuation">(</span><span class="token punctuation">(</span>maxn<span class="token number">-1</span><span class="token punctuation">)</span><span class="token operator">/</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> 
+            <span class="token punctuation">{</span>
+                TagArray<span class="token punctuation">[</span>j<span class="token operator">*</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//筛去素数i的倍数 </span>
+            <span class="token punctuation">}</span>
 
-        }
-    }
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-} 
-
-
-int main()
-{
-    //求1-100000+4中哪些是素数
-    FindPrime();
-    printf("正整数100004内素数的个数:%d\n",Num);
-
-    for(int i=0;i&lt;Num;i++) 
-    {
-        printf("%d\n",Prime[i]);
-    }
+<span class="token punctuation">}</span> 
 
 
-    return 0;
-}
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//求1-100000+4中哪些是素数</span>
+    <span class="token function">FindPrime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"正整数100004内素数的个数:%d\n"</span><span class="token punctuation">,</span>Num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>Num<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>Prime<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h3><span id="jump023">
 </span>
-**由来**：
-由于埃塞托尼亚筛筛的时候重复筛（比如下面的）了，使得算法效率还不够好，所以，我们改进一下，我们继续观察先前的图，发现埃塞托尼亚筛是**竖着筛**，我们似乎也难以优化这种筛法了，我们转换一下思路——**横着筛**
 
+<p><strong>由来</strong>：<br>由于埃塞托尼亚筛筛的时候重复筛（比如下面的）了，使得算法效率还不够好，所以，我们改进一下，我们继续观察先前的图，发现埃塞托尼亚筛是<strong>竖着筛</strong>，我们似乎也难以优化这种筛法了，我们转换一下思路——<strong>横着筛</strong></p>
 <h5 id="1）算法原理：-2"><a href="#1）算法原理：-2" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>思路：在埃氏筛的一种优化<br>任何合数都能写成一个素数乘一个数（显然这个素数不一定是唯一的）<br>//举个例子：12=2<em>6=3</em>4（2和3都是素数）<br>所以，任何合数都有一个<strong>最小的质因数</strong></p>
-<table><tr><td bgcolor=#FFFF FF>用这个**最小质因数**来判断什么时候不用继续筛下去
+<table><tr><td bgcolor=#FFFF FF>用这个"最小质因数"来判断什么时候不用继续筛下去
 </td></tr></table>
 
 
@@ -952,8 +951,8 @@ int main()
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%A0%87%E7%AD%BE/" class="post-category">
-                                    记忆标签
+                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%B3%95/" class="post-category">
+                                    记忆法
                                 </a>
                             
                             
