@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>C语言和C++变量的命名规则</title>
+      <link href="/2020/05/29/The-Rules-Of-Variable-Name/"/>
+      <url>/2020/05/29/The-Rules-Of-Variable-Name/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C语言和C-变量命名规则探讨"><a href="#C语言和C-变量命名规则探讨" class="headerlink" title="C语言和C++变量命名规则探讨"></a>C语言和C++变量命名规则探讨</h1> <img src="/photos/2020.5.29/title_one.jpg" width="80%"><h2 id="变量命名规则"><a href="#变量命名规则" class="headerlink" title="变量命名规则"></a>变量命名规则</h2><p>1）不能是C语言或者C++的标识符。<br>2）区分大小写<br>3）变量的第1个字符必须是大小写字母或者下划线。<br>除去第1个字符之外的其他字符是大小写字母，下划线，或数字。 </p><p><strong>疑问</strong>：为什么，第3点要求看上去这么奇怪？<br>为什么，不直接说，是直接由大小写字母，下划线，数字组成就好了，为何要强调第1个字符，不能是数字？<br>看上去，一点都不对称，没有美感</p><p><strong>解释</strong>:<br>想象一下，定义这样一个变量<br>int 1=9;//变量名字，要是叫1，那么我们的程序，难道以后，我用1就是9？多尴尬</p><p>反观<br>char c=’d’;<br>char D=’c’;<br>这样的多好，原因是：<br>字符在C语言和C++中是有单引号’’围着的<br>字符串是有双引号””围着的</p><p>或许，创造者在变量名取名规则的时候，首先是考虑了<br>1)大小写字母，毕竟是人家母语，要是计算机语言和母语由类似之处，多好。<br>2)数字，毕竟，阿拉伯数字享誉全球。<br>3)下划线，ummm，或许是为了今后的下划线命名法？？？疑问。。</p><p>然后发现，前面那样int 1=9;这样奇怪的语句，就规则强化了</p><h2 id="工程上主流的变量命名法"><a href="#工程上主流的变量命名法" class="headerlink" title="工程上主流的变量命名法"></a>工程上主流的变量命名法</h2><ul><li>下划线命名法（C语言软件设计师常用）</li><li>驼峰命名法（Java软件设计师常用）</li><li>帕斯卡命名法</li><li>匈牙利名</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> C语言碎碎念 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C语言碎碎念 </tag>
+            
+            <tag> 奇怪的想法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>大端和小端存储</title>
       <link href="/2020/05/29/Big-Endian-little-Endian/"/>
       <url>/2020/05/29/Big-Endian-little-Endian/</url>
@@ -13,9 +40,9 @@
       
       <categories>
           
-          <category> 编译器底层 </category>
-          
           <category> 记忆法 </category>
+          
+          <category> 编译器底层 </category>
           
       </categories>
       

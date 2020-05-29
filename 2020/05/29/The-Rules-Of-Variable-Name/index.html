@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Categories, HACV">
+    <meta name="keywords" content="C语言和C++变量的命名规则, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Categories | HACV</title>
+    <title>C语言和C++变量的命名规则 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.29/title_one.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">categories</h1>
+                    <h1 class="description center-align post-title">C语言和C++变量的命名规则</h1>
                 </div>
             </div>
         </div>
@@ -406,12 +406,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C%E8%AF%AD%E8%A8%80%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                                <span class="chip bg-color">C语言碎碎念</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E6%83%B3%E6%B3%95/">
+                                <span class="chip bg-color">奇怪的想法</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C%E8%AF%AD%E8%A8%80%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="post-category">
+                                C语言碎碎念
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -420,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-28
+                    2020-05-29
                 </div>
                 
 
@@ -429,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    0
+                    404
                 </div>
                 
 
@@ -441,7 +458,21 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="C语言和C-变量命名规则探讨"><a href="#C语言和C-变量命名规则探讨" class="headerlink" title="C语言和C++变量命名规则探讨"></a>C语言和C++变量命名规则探讨</h1> <img src="/photos/2020.5.29/title_one.jpg" width="80%">
+
+<h2 id="变量命名规则"><a href="#变量命名规则" class="headerlink" title="变量命名规则"></a>变量命名规则</h2><p>1）不能是C语言或者C++的标识符。<br>2）区分大小写<br>3）变量的第1个字符必须是大小写字母或者下划线。<br>除去第1个字符之外的其他字符是大小写字母，下划线，或数字。 </p>
+<p><strong>疑问</strong>：为什么，第3点要求看上去这么奇怪？<br>为什么，不直接说，是直接由大小写字母，下划线，数字组成就好了，为何要强调第1个字符，不能是数字？<br>看上去，一点都不对称，没有美感</p>
+<p><strong>解释</strong>:<br>想象一下，定义这样一个变量<br>int 1=9;//变量名字，要是叫1，那么我们的程序，难道以后，我用1就是9？多尴尬</p>
+<p>反观<br>char c=’d’;<br>char D=’c’;<br>这样的多好，原因是：<br>字符在C语言和C++中是有单引号’’围着的<br>字符串是有双引号””围着的</p>
+<p>或许，创造者在变量名取名规则的时候，首先是考虑了<br>1)大小写字母，毕竟是人家母语，要是计算机语言和母语由类似之处，多好。<br>2)数字，毕竟，阿拉伯数字享誉全球。<br>3)下划线，ummm，或许是为了今后的下划线命名法？？？疑问。。</p>
+<p>然后发现，前面那样int 1=9;这样奇怪的语句，就规则强化了</p>
+<h2 id="工程上主流的变量命名法"><a href="#工程上主流的变量命名法" class="headerlink" title="工程上主流的变量命名法"></a>工程上主流的变量命名法</h2><ul>
+<li>下划线命名法（C语言软件设计师常用）</li>
+<li>驼峰命名法（Java软件设计师常用）</li>
+<li>帕斯卡命名法</li>
+<li>匈牙利名</li>
+</ul>
+
             </div>
             <hr/>
 
@@ -466,7 +497,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/categories/index-1.html">https://github.com/HACV/HACV.github.io/categories/index-1.html</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/05/29/The-Rules-Of-Variable-Name/">https://github.com/HACV/HACV.github.io/2020/05/29/The-Rules-Of-Variable-Name/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -503,7 +534,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/C%E8%AF%AD%E8%A8%80%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                                    <span class="chip bg-color">C语言碎碎念</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E6%83%B3%E6%B3%95/">
+                                    <span class="chip bg-color">奇怪的想法</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -674,34 +713,49 @@
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/categories/index-1.html">
+                <a href="/2020/05/29/The-Rules-Of-Variable-Name/">
                     <div class="card-image">
                         
+                        <img src="/photos/2020.5.29/title_one.jpg" class="responsive-img" alt="C语言和C++变量的命名规则">
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
-                        
-                        <span class="card-title">categories</span>
+                        <span class="card-title">C语言和C++变量的命名规则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            你有没有想过，为什么C语言和C++的变量命名规则为什么是那样的？
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-29
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HACV
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/C%E8%AF%AD%E8%A8%80%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="post-category">
+                                    C语言碎碎念
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C%E8%AF%AD%E8%A8%80%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                        <span class="chip bg-color">C语言碎碎念</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A5%87%E6%80%AA%E7%9A%84%E6%83%B3%E6%B3%95/">
+                        <span class="chip bg-color">奇怪的想法</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -709,37 +763,51 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/categories/index-1.html">
+                <a href="/2020/05/29/Big-Endian-little-Endian/">
                     <div class="card-image">
                         
+                        <img src="/photos/2020.5.29/title.jpg" class="responsive-img" alt="大端和小端存储">
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="categories">
-                        
-                        <span class="card-title">categories</span>
+                        <span class="card-title">大端和小端存储</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            格列夫游记的鸡蛋——大小端之争
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-29
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HACV
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%B3%95/" class="post-category">
+                                    记忆法
+                                </a>
+                            
+                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%B3%95/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
+                                    编译器底层
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
+                        <span class="chip bg-color">编译器底层原理</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
