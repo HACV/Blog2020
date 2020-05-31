@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>C++的const底层机制</title>
+      <link href="/2020/05/31/Cplusplus-const/"/>
+      <url>/2020/05/31/Cplusplus-const/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-中对C的const关键字增强"><a href="#C-中对C的const关键字增强" class="headerlink" title="C++中对C的const关键字增强"></a>C++中对C的const关键字增强</h1><h2 id="一、问题导入"><a href="#一、问题导入" class="headerlink" title="一、问题导入"></a>一、问题导入</h2><p>背景：<br>我们总说C语言中const修饰的变量看上去似乎是常量，其实是个“冒牌货”，应该叫”常变量”，比如用指针间接赋值，就能改变了。</p><p>代码测试：<br>将指针间接修改变量值的代码放到C语言编译器和C++编译器去测试</p><p>DevC++的C语言编译器</p><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//demo.c </span><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>结果：<br> <img src="/photos/2020.5.30_31/01.png" width="80%"></p><p>DevC++的C++语言编译器</p><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>结果：<br> <img src="/photos/2020.5.30_31/02.png" width="80%"></p><p>奇特的结果：<br>我们要是写了这样的函数在银行程序中，要是用不同编译器，那么对账就对不上了。<br>总结：<br>C中的const是个常变量，变量的值能够被间接修改。<br>C++中的const是一个真正的常量！</p><p>Tips：</p><table><td bgcolor=#FFFF FF>以上两次测试，都没有显示warning和error</td></table><p>那么，我们或许会疑惑：<br>Q：我们说C++中的是一个真正的常量，那为什么，没有C++编译器对我们”用指针间接修改”的行为，没有报warning或者error呢？<br>A：C++要兼容C，所以，它认为这个语法是可以的<br>Q：那么问题又来了，那他既然兼容，那么为什么最后却没改变那个变量的值呢？<br>A：因为C++只是兼容那种语法写法，但是底层的实现却对const关键字进行了加强。</p><h2 id="二、底层原理分析"><a href="#二、底层原理分析" class="headerlink" title="二、底层原理分析"></a>二、底层原理分析</h2><h3 id="1）C-编译器对const做了一些加强，做了一些特殊的处理"><a href="#1）C-编译器对const做了一些加强，做了一些特殊的处理" class="headerlink" title="1）C++编译器对const做了一些加强，做了一些特殊的处理"></a>1）C++编译器对const做了一些加强，做了一些特殊的处理</h3><p>当C++编译器，扫描到常量声明时，它不再像C语言那样，把这个const给它单独分配内存。</p><p>在我们先前的//test.cpp中。<br>C++进行了如下操作：</p><blockquote><ul><li>1）扫描到这一行，const int a=98;<br>C++编译器会把这个<b>变量a</b>放在一个<b>符号表（键值-值对）</b>里面<br><b>此时，并没有分配内存！！！</b><br>注意：这样的话，key和value是定了，不能修改的了。<br>符号表具体的实现和我们的内存中的，栈，堆不是同一套实现机制。<br>有很多常量就都放在这个里面了。<br>Tips：<br>当你去<b>使用</b>这个a的时候，它就给你从符号表里面给你把这个98给拿出来，供你<b>使用</b></li></ul></blockquote><table><td bgcolor=#FFFF FF>注意"使用"一词</td></table><blockquote><ul><li>2）遇到类似这样的情况，此时才给a变量另外分配一个内存。<br>扫描到这一句p=(int <em>)&a;<br>当你对这个a变量取地址的时候，C++编译器，会为这个a再<b>单独的开辟一块内存空间</b>，然后你把这个内存空间，赋给了p，相当于一个指针P指向了这里。然后你通过</em>p去间接的修改的地址，不再是原来的值（value）,而是我们新开辟的空间的值（注意理解）<br>所以，当你再使用a的时候，你打印的还是98（符号表中的a）<img src="/photos/2020.5.30_31/03.png" width="90%"></li></ul></blockquote><h3 id="2）证明"><a href="#2）证明" class="headerlink" title="2）证明"></a>2）证明</h3><p>我们现在来证明这个开辟的内存空间的存在</p><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//solution.cpp </span><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*p=%d"</span><span class="token punctuation">,</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>打印的是:<br> <img src="/photos/2020.5.30_31/04.png" width="80%"></p><p><b>注意：</b></p><table><td bgcolor=#FFFF FF>C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其存储空间中的值，除非你用指针操作。</td></table><h2 id="三、结论和补充"><a href="#三、结论和补充" class="headerlink" title="三、结论和补充"></a>三、结论和补充</h2><p>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b><br>2）C++中的const常量</p><table><td bgcolor=#FFFF FF>注意：可能分配存储空间,也可能不分配存储空间!</td></table><p>编译过程中若发现<b>使用常量</b>则直接以符号表中的值替换</p><p>Tips：<br>只有下面两种的时候，它才会分配空间</p><blockquote><ul><li>当const常量为全局，并且需要在其它文件中使用,即使用了<b>extern</b>操作符</b></li><li>当使用&amp;操作符取const常量的地址，编译过程中若发现对const使用了<b>&amp;操作符</b>，则给对应的常量分配存储空间（兼容C）</li></ul></blockquote><h2 id="四、补充疑问"><a href="#四、补充疑问" class="headerlink" title="四、补充疑问"></a>四、补充疑问</h2><p>Q：那么要是分配内存，C++中那个const的分配内存是在什么时候分配的呢？是在编译器<b>编译阶段</b>，还是在<b>执行阶段</b>分配？</p><table><td bgcolor=#FFFF FF>Ａ：C++中const分配内存的时机，是在编译期间！（记住！）</td></table><p>证明的代码：</p><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">int</span> a<span class="token punctuation">;</span>    <span class="token keyword">const</span> <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> c<span class="token punctuation">;</span>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;b=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用了取地址 </span>    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;c=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <img src="/photos/2020.5.30_31/05.png" width="80%"><p>结果表明：<br>const int b的地址在a和c之间，符合我们局部变量申请内存的<b>压栈的顺序</b>，<b>它并没有因为，&amp;b这句话写到int c后面，就先分配a，c最后才b</b>，而是，它扫描完之后，看到这里有&amp;b了，就分配地址了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编译器底层 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>线性排序</title>
       <link href="/2020/05/30/Linear-Sort/"/>
       <url>/2020/05/30/Linear-Sort/</url>
@@ -38,14 +65,14 @@
       
       <categories>
           
-          <category> C语言碎碎念 </category>
+          <category> C语言 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> C语言碎碎念 </tag>
+            <tag> C语言 </tag>
             
             <tag> 奇怪的想法 </tag>
             
@@ -65,8 +92,6 @@
       
       <categories>
           
-          <category> 记忆法 </category>
-          
           <category> 编译器底层 </category>
           
       </categories>
@@ -74,7 +99,7 @@
       
         <tags>
             
-            <tag> 编译器底层原理 </tag>
+            <tag> 编译器底层 </tag>
             
         </tags>
       
@@ -99,7 +124,7 @@
       
         <tags>
             
-            <tag> C语言碎碎念 </tag>
+            <tag> C语言 </tag>
             
         </tags>
       
