@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C++的const底层机制, HACV">
+    <meta name="keywords" content="字符串匹配之BF&amp;RK, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C++的const底层机制 | HACV</title>
+    <title>字符串匹配之BF&amp;RK | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_5_31title.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_06_01_cover.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C++的const底层机制</h1>
+                    <h1 class="description center-align post-title">字符串匹配之BF&amp;RK</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
+                                <span class="chip bg-color">字符串匹配</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9A%B4%E5%8A%9B/">
+                                <span class="chip bg-color">暴力</span>
+                            </a>
+                        
+                            <a href="/tags/hash/">
+                                <span class="chip bg-color">hash</span>
                             </a>
                         
                     </div>
@@ -420,12 +428,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
-                                编译器底层
-                            </a>
-                        
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/C/" class="post-category">
-                                C++
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -437,7 +441,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-31
+                    2020-06-01
                 </div>
                 
 
@@ -446,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
@@ -458,114 +462,115 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-中对C的const关键字增强"><a href="#C-中对C的const关键字增强" class="headerlink" title="C++中对C的const关键字增强"></a>C++中对C的const关键字增强</h1><h2 id="一、问题导入"><a href="#一、问题导入" class="headerlink" title="一、问题导入"></a>一、问题导入</h2><p>背景：<br>我们总说C语言中const修饰的变量看上去似乎是常量，其实是个“冒牌货”，应该叫”常变量”，比如用指针间接赋值，就能改变了。</p>
-<p>代码测试：<br>将指针间接修改变量值的代码放到C语言编译器和C++编译器去测试</p>
-<p>DevC++的C语言编译器</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//demo.c </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/01.png" width="80%"></p>
-<p>DevC++的C++语言编译器</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/02.png" width="80%"></p>
-<p>奇特的结果：<br>我们要是写了这样的函数在银行程序中，要是用不同编译器，那么对账就对不上了。<br>总结：<br>C中的const是个常变量，变量的值能够被间接修改。<br>C++中的const是一个真正的常量！</p>
-<p>Tips：</p>
-<table><td bgcolor=#FFFF FF>
-以上两次测试，都没有显示warning和error</td></table>
-
-<p>那么，我们或许会疑惑：<br>Q：我们说C++中的是一个真正的常量，那为什么，没有C++编译器对我们”用指针间接修改”的行为，没有报warning或者error呢？<br>A：C++要兼容C，所以，它认为这个语法是可以的<br>Q：那么问题又来了，那他既然兼容，那么为什么最后却没改变那个变量的值呢？<br>A：因为C++只是兼容那种语法写法，但是底层的实现却对const关键字进行了加强。</p>
-<h2 id="二、底层原理分析"><a href="#二、底层原理分析" class="headerlink" title="二、底层原理分析"></a>二、底层原理分析</h2><h3 id="1）C-编译器对const做了一些加强，做了一些特殊的处理"><a href="#1）C-编译器对const做了一些加强，做了一些特殊的处理" class="headerlink" title="1）C++编译器对const做了一些加强，做了一些特殊的处理"></a>1）C++编译器对const做了一些加强，做了一些特殊的处理</h3><p>当C++编译器，扫描到常量声明时，它不再像C语言那样，把这个const给它单独分配内存。</p>
-<p>在我们先前的//test.cpp中。<br>C++进行了如下操作：</p>
-<blockquote>
+                <h1 id="字符串匹配算法预告"><a href="#字符串匹配算法预告" class="headerlink" title="字符串匹配算法预告"></a><font face="楷体">字符串匹配算法预告</font></h1><blockquote>
 <ul>
-<li>1）扫描到这一行，const int a=98;<br>C++编译器会把这个<b>变量a</b>放在一个<b>符号表（键值-值对）</b>里面<br><b>此时，并没有分配内存！！！</b><br>注意：这样的话，key和value是定了，不能修改的了。<br>符号表具体的实现和我们的内存中的，栈，堆不是同一套实现机制。<br>有很多常量就都放在这个里面了。<br>Tips：<br>当你去<b>使用</b>这个a的时候，它就给你从符号表里面给你把这个98给拿出来，供你<b>使用</b></li>
+<li><font face="楷体" color=red size=5>单模式串匹配算法</font><blockquote>
+<ul>
+<li><b>BF算法</b>（Brute Force 的缩写，也叫暴力匹配算法，朴素匹配算法)<blockquote>
+<ul>
+<li>Brute adj. 蛮干不动脑筋的</li>
 </ul>
 </blockquote>
-<table><td bgcolor=#FFFF FF>
-注意"使用"一词</td></table>
-
-<blockquote>
+</li>
+<li><b>RK算法</b>（Rabin-Karp 算法）<blockquote>
 <ul>
-<li>2）遇到类似这样的情况，此时才给a变量另外分配一个内存。<br>扫描到这一句p=(int <em>)&a;<br>当你对这个a变量取地址的时候，C++编译器，会为这个a再<b>单独的开辟一块内存空间</b>，然后你把这个内存空间，赋给了p，相当于一个指针P指向了这里。然后你通过</em>p去间接的修改的地址，不再是原来的值（value）,而是我们新开辟的空间的值（注意理解）<br>所以，当你再使用a的时候，你打印的还是98（符号表中的a）<img src="/photos/2020.5.30_31/03.png" width="90%">
+<li>由它的两位发明者 Rabin 和 Karp 的名字来命名的</li>
+</ul>
+</blockquote>
+</li>
+<li><b>BM算法</b>（Boyer-Moore 算法）<blockquote>
+<ul>
+<li>它是一种非常高效的字符串匹配算法，有实验统计，它的性能是著名的KMP 算法的3到4倍。</li>
+</ul>
+</blockquote>
+</li>
+<li><b>KMP算法</b></li>
+</ul>
+</blockquote>
+</li>
+<li><font face="楷体" color=red size=5>多模式串匹配算法</font><blockquote>
+<ul>
+<li><b>Trie树</b>，（又称前缀树，字典树，单词查找树）<blockquote>
+<ul>
+<li>Trie这个术语来自于retrieval根据词源学, trie的发明者Edward Fredkin把它读作/‘tri:/ “tree”。但是 ,其他作者把它读作/‘tra1/ “try”。</li>
+</ul>
+</blockquote>
+</li>
+<li><b>AC自动机算法</b>（Aho–Corasick算法）是由Alfred V.Aho和Margaret J.Corasick 发明的<blockquote>
+<ul>
+<li>其实，Trie树跟AC自动机之间的关系，就像单模式串匹配中朴素的串匹配算法，跟KMP 算法之间的关系一样，只不过前者针对的是多模式串而已。所以，AC自动机实际上就是在Trie树之上，加了类似KMP的next数组，只不过此处的next数组是构建在树上罢了。</li>
+</ul>
+</blockquote>
 </li>
 </ul>
 </blockquote>
-<h3 id="2）证明"><a href="#2）证明" class="headerlink" title="2）证明"></a>2）证明</h3><p>我们现在来证明这个开辟的内存空间的存在</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//solution.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span> 
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*p=%d"</span><span class="token punctuation">,</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>打印的是:<br> <img src="/photos/2020.5.30_31/04.png" width="80%"></p>
-<p><b>注意：</b></p>
-<table><td bgcolor=#FFFF FF>
-C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其存储空间中的值，除非你用指针操作。</td></table>
-
-
-<h2 id="三、结论和补充"><a href="#三、结论和补充" class="headerlink" title="三、结论和补充"></a>三、结论和补充</h2><p>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b><br>2）C++中的const常量</p>
-<table><td bgcolor=#FFFF FF>
-注意：可能分配存储空间,也可能不分配存储空间!</td></table>
-
-<p>编译过程中若发现<b>使用常量</b>则直接以符号表中的值替换</p>
-<p>Tips：<br>只有下面两种的时候，它才会分配空间</p>
-<blockquote>
-<ul>
-<li>当const常量为全局，并且需要在其它文件中使用,即使用了<b>extern</b>操作符</b></li>
-<li>当使用&amp;操作符取const常量的地址，编译过程中若发现对const使用了<b>&amp;操作符</b>，则给对应的常量分配存储空间（兼容C）</li>
+</li>
 </ul>
 </blockquote>
-<h2 id="四、补充疑问"><a href="#四、补充疑问" class="headerlink" title="四、补充疑问"></a>四、补充疑问</h2><p>Q：那么要是分配内存，C++中那个const的分配内存是在什么时候分配的呢？是在编译器<b>编译阶段</b>，还是在<b>执行阶段</b>分配？</p>
-<table><td bgcolor=#FFFF FF>
-Ａ：C++中const分配内存的时机，是在编译期间！（记住！）</td></table>
-
-<p>证明的代码：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p><b>单模式串匹配的算法</b><br>也就是一个串和一个串进行匹配<br><b>多模式串匹配的算法</b><br>是在一个串中同时查找多个串</p>
+<h2 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h2><p>一顿暴力，直接贴代码</p>
+<p>//指针做输入，const修饰避免改动。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">BF</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>text <span class="token comment" spellcheck="true">/*in*/</span> <span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pattern <span class="token comment" spellcheck="true">/*in*/</span> <span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> c<span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;b=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用了取地址 </span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;c=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token operator">==</span>text<span class="token punctuation">)</span><span class="token operator">||</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token operator">==</span>pattern<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//非法输入</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> pos<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//位置 </span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token string">'\0'</span><span class="token operator">!=</span>text<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> i<span class="token operator">=</span>pos<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//text回溯 </span>
+        <span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//pattern回溯 </span>
+        <span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//已经匹配字符长度</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token string">'\0'</span><span class="token operator">!=</span>pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>text<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token operator">++</span>sum<span class="token punctuation">;</span>
+                <span class="token operator">++</span>j<span class="token punctuation">;</span>
+                <span class="token operator">++</span>i<span class="token punctuation">;</span> 
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span><span class="token punctuation">(</span>sum<span class="token operator">==</span><span class="token function">strlen</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> pos<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token operator">++</span>pos<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//匹配失败    </span>
 <span class="token punctuation">}</span></code></pre>
- <img src="/photos/2020.5.30_31/05.png" width="80%">
-
-<p>结果表明：<br>const int b的地址在a和c之间，符合我们局部变量申请内存的<b>压栈的顺序</b>，<b>它并没有因为，&amp;b这句话写到int c后面，就先分配a，c最后才b</b>，而是，它扫描完之后，看到这里有&amp;b了，就分配地址了。</p>
+<p>分析BF算法：</p>
+<blockquote>
+<ul>
+<li>时间复杂度$O(n*m)$</li>
+<li>空间复杂度$O(1)$</li>
+</ul>
+</blockquote>
+<p>其他补充：</p>
+<blockquote>
+<ul>
+<li>尽管理论上，BF算法的时间复杂度很高，但在实际的开发中，它却是一个比较常用的字符串匹配算法：<blockquote>
+<ul>
+<li>1.实际的软件开发中，大部分情况下，模式串和主串的长度都不会太长。而且每次模式串与主串中的子串匹配的时候，当中途遇到不能匹配的字符的时候，就可以就停止了，不需要把m个字符都比对一下。所以，尽管理论上的最坏情况时间复杂度大，但是，统计意义上，大部分情况下，算法执行效率要比这个高很多。</li>
+<li>2.BF算法思想简单，代码实现也非常简单。简单意味着不容易出错，如果有bug 也容易暴露和修复。<b>在工程中，在满足性能要求的前提下，简单是首选。</b>这也是我们常说的<b>KISS（Keep it Simple and Stupid）设计原则</b>。所以，在实际的软件开发中，绝大部分情况下，BF算法就够用了</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h2 id="RK算法"><a href="#RK算法" class="headerlink" title="RK算法"></a>RK算法</h2><p><b>联系</b>：RK算法是BF算法的改进，它巧妙借助了我们前面讲过的哈希算法，引入<font face="楷体" color=red size=5>哈希算法</font>，时间复杂度立刻就会降低。<br><b>难点</b>：设计一个可以应对各种类型字符的哈希算法并不简单</p>
+<p><b>思路</b>:我们通过哈希算法对主串中的n-m+1个子串分别求哈希值，然后逐个与模式串的哈希值比较大小。如果某个子串的哈希值与模式串相等，那就说明对应的子串和模式串匹配了（当然我们需要考虑哈希冲突的问题）。比较哈希值是非常快速的，所以效率提高了。<br>不过这又<b>引入一个问题</b>：通过哈希算法计算子串的哈希值的时候，我们需要遍历子串中的每个字符。尽管模式串与子串比较的效率提高了，但是，算法整体的效率并没有提高。有没有方法可以提高哈希算法计算子串哈希值的效率？<br><b>哈希算法设计技巧</b>：我们假设要匹配的字符串的字符集中只包含K个字符，我们可以用一个K进制数来表示一个子串，这个K进制数转化成十进制数，作为子串的哈希值。</p>
+<p><b>没有冲突的哈希</b>：我们只需要比较一下模式串和子串的哈希值<br><b>有冲突的哈希</b>：当存在哈希冲突的时候，有可能存在这样的情况，子串和模式串的哈希值虽然是相同的，但是两者本身并不匹配。解决方法很简单。当我们发现一个子串的哈希值跟模式串的哈希值相等的时候，我们只<br>需要再对比一下子串和模式串本身就好了。<br>当然，如果子串的哈希值与模式串的哈希值不相等，那对应的子串和模式串肯定也是不匹配的，就不需要比对子串和模式串本身了。</p>
+<p>总结：哈希算法的冲突概率要相对控制得低一些，如果存在大量冲突，就会导致 RK 算法的时间<br>复杂度退化，效率下降。极端情况下，如果存在大量的冲突，每次都要再对比子串和模式串本<br>身，那时间复杂度就会退化成$O(n*m)$</p>
+<p><b>但一般情况下，冲突不会很多，RK 算法的效率还是比 BF 算法高的。</b></p>
 
             </div>
             <hr/>
@@ -591,7 +596,7 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/">https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/01/BF-RK/">https://github.com/HACV/HACV.github.io/2020/06/01/BF-RK/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -629,8 +634,16 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
+                                    <span class="chip bg-color">字符串匹配</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9A%B4%E5%8A%9B/">
+                                    <span class="chip bg-color">暴力</span>
+                                </a>
+                            
+                                <a href="/tags/hash/">
+                                    <span class="chip bg-color">hash</span>
                                 </a>
                             
                         </div>
@@ -798,9 +811,10 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/06/01/BF-RK/">
                     <div class="card-image">
@@ -817,9 +831,9 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -832,6 +846,7 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -858,30 +873,34 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/30/Linear-Sort/">
+                <a href="/2020/05/31/Cplusplus-const/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_5_30title.jpg" class="responsive-img" alt="线性排序">
+                        <img src="/photos/2020.5.30_31/2020_5_31title.jpg" class="responsive-img" alt="C++的const底层机制">
                         
-                        <span class="card-title">线性排序</span>
+                        <span class="card-title">C++的const底层机制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计数排序，基数排序，桶排序
+                            C++对C的const关键字增强的底层机制
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
+                                    编译器底层
+                                </a>
+                            
+                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/C/" class="post-category">
+                                    C++
                                 </a>
                             
                             
@@ -891,8 +910,8 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">排序</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
