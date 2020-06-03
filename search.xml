@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>详解C++中const常见用途</title>
+      <link href="/2020/06/04/2020-06-04-Const-in-C-language/"/>
+      <url>/2020/06/04/2020-06-04-Const-in-C-language/</url>
+      
+        <content type="html"><![CDATA[<h1 id="详解C-中const常见用途"><a href="#详解C-中const常见用途" class="headerlink" title="详解C++中const常见用途"></a>详解C++中const常见用途</h1><p>C++对C语言的const关键字进行了增强！<br><font color="red" size=3><br>特点：<br>C++中的const修饰的变量，变成了真正的常量，所以叫const常量</font></p><blockquote><ul><li>区别：<blockquote><ul><li>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b></li><li>2）C++中的const常量<br>注意：<b>可能分配存储空间,也可能不分配存储空间!</b></li></ul></blockquote></li></ul></blockquote><p>Tips:要想了解C++中const实现机制，请移步《C++中对C的const关键字增强》一文</p><h2 id="1）const成员函数"><a href="#1）const成员函数" class="headerlink" title="1）const成员函数"></a>1）const成员函数</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">GetLength</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> itslength<span class="token punctuation">;</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">//成员函数声明为常量</span></code></pre><p>当成员函数被声明为const时，如果这个const成员函数试图修改这个对象的数据，编译器将视为错误。<br>因为：你都和我约定了不能修改，那就得履行。</p><h2 id="2）指向const对象的指针"><a href="#2）指向const对象的指针" class="headerlink" title="2）指向const对象的指针"></a>2）指向const对象的指针</h2><p>如果声明了一个<b>指向const对象</b>的指针，则通过该指针只能调用const方法（成员函数）。</p><blockquote><p>-因为：const就是用来规定，<b>属于这个对象</b>的是不能有改变的</p><blockquote><ul><li>const成员函数（常量成员函数），不会去修改这个对象任何<b>非静态成员变量</b>的值。</li><li>static成员函数（静态成员函数），也不会去修改这个对象任何<b>非静态成员变量</b>(毕竟，静态成员函数和静态成员变量其实本质是全局变量嘛，不需要作用在具体的对象上，<b>我们写在类里面，只是为了彰显和这个类有紧密的关系</b>)</li><li>因此，我们指向const对象的指针，能够调用的是const成员函数和static成员函数</li><li>普通成员函数，内部可以实现修改非静态成员变量的语句，所以<b>可能会破坏const对象规定的，不能改变我的内部数据的原则</b>。</li></ul></blockquote></blockquote><pre class=" language-cpp"><code class="language-cpp">Rectangle<span class="token operator">*</span> pRect <span class="token operator">=</span> <span class="token keyword">new</span> Rectangle<span class="token punctuation">;</span><span class="token keyword">const</span> Rectangle <span class="token operator">*</span> pConstRect <span class="token operator">=</span> <span class="token keyword">new</span> Rectangle<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//指向const对象</span>Rectangle<span class="token operator">*</span> <span class="token keyword">const</span> pConstPtr <span class="token operator">=</span> <span class="token keyword">new</span> Rectangle<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// pConstRect是指向const对象的指针，它只能使用声明为const的成员函数，如GetLength（）。</span></code></pre><h2 id="3）const-修饰函数的返回值"><a href="#3）const-修饰函数的返回值" class="headerlink" title="3）const 修饰函数的返回值"></a>3）const 修饰函数的返回值</h2><p>函数返回值采用“引用传递”的场合,出现在类的赋值函数中，目的是为了实现链式表达。<br>例如：</p><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">A</span><span class="token punctuation">{</span>A <span class="token operator">&amp;</span> operate <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">const</span> A <span class="token operator">&amp;</span>other<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 赋值函数</span><span class="token punctuation">}</span><span class="token punctuation">;</span>A a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// a, b, c 为A 的对象</span>a <span class="token operator">=</span> b <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 正常的链式赋值</span><span class="token punctuation">(</span>a <span class="token operator">=</span> b<span class="token punctuation">)</span> <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 不正常的链式赋值，但合法</span><span class="token comment" spellcheck="true">//如果将赋值函数的返回值加const 修饰，那么该返回值的内容不允许被改动。上例中，语句 a = b = c 仍然正确，但是语句 (a = b) = c 则是非法的。</span></code></pre><h2 id="4）补充"><a href="#4）补充" class="headerlink" title="4）补充"></a>4）补充</h2><blockquote><ul><li>非const对象可以访问<b>任意的</b>成员函数,自然包括const成员函数,静态成员函数</li><li>const对象的成员是不可修改的,然而const对象通过指针维护的对象却是可以修改的.</li><li>const成员函数不可以修改对象的数据,不管对象是否具有const性质.它在编译时,以是否修改成员数据为依据,进行检查。</li><li>然而加上mutable修饰符的数据成员,对于任何情况下通过任何手段都可修改,自然此时的const成员函数是可以修改它的</li></ul></blockquote><p>补充杂项：</p><blockquote><ul><li>const 修饰引用（&amp;）修饰输入参数的用法：<blockquote><ul><li>1-对于<b>非内部数据类型</b>的输入参数，应该将“<b>值传递</b>”的方式改为“<b>const 引用传递</b>”，目的是提高效率。例如将<code>void Func(A a)</code> 改为<code>void Func(const A &amp;a)</code>。当然，虽然这样的确能提高效率。但此时千万千万要小心，一定要搞清楚函数究竟是想返回一个对象的“拷贝”还是仅返回“别名”就可以了，否则程序会出错。</li><li>2-对于<b>内部数据类型</b>的输入参数，不要将“值传递”的方式改为“const 引用传递”。否则既达不到提高效率的目的，又降低了函数的可理解性。例如<code>void Func(int x)</code> 不应该改为<code>void Func(const int &amp;x)</code>。（如何理解？？？）</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>const 修饰星号（*）用法：<blockquote><ul><li>如果给以“指针传递”方式的函数返回值加const 修饰，那么函数返回值（即指针）的内容不能被修改，该返回值只能被赋给加const 修饰的同类型指针。例如函数</li></ul></blockquote></li></ul></blockquote><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">GetString</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>如下语句将出现编译错误：<span class="token keyword">char</span> <span class="token operator">*</span>str <span class="token operator">=</span> <span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>正确的用法是<span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str <span class="token operator">=</span> <span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>详解C语言中const</title>
       <link href="/2020/06/03/Const-in-C-language/"/>
       <url>/2020/06/03/Const-in-C-language/</url>
@@ -45,9 +70,9 @@
       
         <tags>
             
-            <tag> C语言 </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> C语言 </tag>
             
         </tags>
       

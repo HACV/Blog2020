@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C++的const底层机制, HACV">
+    <meta name="keywords" content="详解C++中const常见用途, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C++的const底层机制 | HACV</title>
+    <title>详解C++中const常见用途 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_5_31title.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_04_cover.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C++的const底层机制</h1>
+                    <h1 class="description center-align post-title">详解C++中const常见用途</h1>
                 </div>
             </div>
         </div>
@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-31
+                    2020-06-04
                 </div>
                 
 
@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    1.1k
                 </div>
                 
 
@@ -454,114 +454,81 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-中对C的const关键字增强"><a href="#C-中对C的const关键字增强" class="headerlink" title="C++中对C的const关键字增强"></a>C++中对C的const关键字增强</h1><h2 id="一、问题导入"><a href="#一、问题导入" class="headerlink" title="一、问题导入"></a>一、问题导入</h2><p>背景：<br>我们总说C语言中const修饰的变量看上去似乎是常量，其实是个“冒牌货”，应该叫”常变量”，比如用指针间接赋值，就能改变了。</p>
-<p>代码测试：<br>将指针间接修改变量值的代码放到C语言编译器和C++编译器去测试</p>
-<p>DevC++的C语言编译器</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//demo.c </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/01.png" width="80%"></p>
-<p>DevC++的C++语言编译器</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/02.png" width="80%"></p>
-<p>奇特的结果：<br>我们要是写了这样的函数在银行程序中，要是用不同编译器，那么对账就对不上了。<br>总结：<br>C中的const是个常变量，变量的值能够被间接修改。<br>C++中的const是一个真正的常量！</p>
-<p>Tips：</p>
-<table><td bgcolor=#FFFF FF>
-以上两次测试，都没有显示warning和error</td></table>
-
-<p>那么，我们或许会疑惑：<br>Q：我们说C++中的是一个真正的常量，那为什么，没有C++编译器对我们”用指针间接修改”的行为，没有报warning或者error呢？<br>A：C++要兼容C，所以，它认为这个语法是可以的<br>Q：那么问题又来了，那他既然兼容，那么为什么最后却没改变那个变量的值呢？<br>A：因为C++只是兼容那种语法写法，但是底层的实现却对const关键字进行了加强。</p>
-<h2 id="二、底层原理分析"><a href="#二、底层原理分析" class="headerlink" title="二、底层原理分析"></a>二、底层原理分析</h2><h3 id="1）C-编译器对const做了一些加强，做了一些特殊的处理"><a href="#1）C-编译器对const做了一些加强，做了一些特殊的处理" class="headerlink" title="1）C++编译器对const做了一些加强，做了一些特殊的处理"></a>1）C++编译器对const做了一些加强，做了一些特殊的处理</h3><p>当C++编译器，扫描到常量声明时，它不再像C语言那样，把这个const给它单独分配内存。</p>
-<p>在我们先前的//test.cpp中。<br>C++进行了如下操作：</p>
+                <h1 id="详解C-中const常见用途"><a href="#详解C-中const常见用途" class="headerlink" title="详解C++中const常见用途"></a>详解C++中const常见用途</h1><p>C++对C语言的const关键字进行了增强！<br><font color="red" size=3><br>特点：<br>C++中的const修饰的变量，变成了真正的常量，所以叫const常量</font></p>
 <blockquote>
 <ul>
-<li>1）扫描到这一行，const int a=98;<br>C++编译器会把这个<b>变量a</b>放在一个<b>符号表（键值-值对）</b>里面<br><b>此时，并没有分配内存！！！</b><br>注意：这样的话，key和value是定了，不能修改的了。<br>符号表具体的实现和我们的内存中的，栈，堆不是同一套实现机制。<br>有很多常量就都放在这个里面了。<br>Tips：<br>当你去<b>使用</b>这个a的时候，它就给你从符号表里面给你把这个98给拿出来，供你<b>使用</b></li>
+<li>区别：<blockquote>
+<ul>
+<li>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b></li>
+<li>2）C++中的const常量<br>注意：<b>可能分配存储空间,也可能不分配存储空间!</b></li>
 </ul>
 </blockquote>
-<table><td bgcolor=#FFFF FF>
-注意"使用"一词</td></table>
-
-<blockquote>
-<ul>
-<li>2）遇到类似这样的情况，此时才给a变量另外分配一个内存。<br>扫描到这一句p=(int <em>)&a;<br>当你对这个a变量取地址的时候，C++编译器，会为这个a再<b>单独的开辟一块内存空间</b>，然后你把这个内存空间，赋给了p，相当于一个指针P指向了这里。然后你通过</em>p去间接的修改的地址，不再是原来的值（value）,而是我们新开辟的空间的值（注意理解）<br>所以，当你再使用a的时候，你打印的还是98（符号表中的a）<img src="/photos/2020.5.30_31/03.png" width="90%">
 </li>
 </ul>
 </blockquote>
-<h3 id="2）证明"><a href="#2）证明" class="headerlink" title="2）证明"></a>2）证明</h3><p>我们现在来证明这个开辟的内存空间的存在</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//solution.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span> 
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*p=%d"</span><span class="token punctuation">,</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>打印的是:<br> <img src="/photos/2020.5.30_31/04.png" width="80%"></p>
-<p><b>注意：</b></p>
-<table><td bgcolor=#FFFF FF>
-C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其存储空间中的值，除非你用指针操作。</td></table>
-
-
-<h2 id="三、结论和补充"><a href="#三、结论和补充" class="headerlink" title="三、结论和补充"></a>三、结论和补充</h2><p>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b><br>2）C++中的const常量</p>
-<table><td bgcolor=#FFFF FF>
-注意：可能分配存储空间,也可能不分配存储空间!</td></table>
-
-<p>编译过程中若发现<b>使用常量</b>则直接以符号表中的值替换</p>
-<p>Tips：<br>只有下面两种的时候，它才会分配空间</p>
+<p>Tips:要想了解C++中const实现机制，请移步《C++中对C的const关键字增强》一文</p>
+<h2 id="1）const成员函数"><a href="#1）const成员函数" class="headerlink" title="1）const成员函数"></a>1）const成员函数</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">GetLength</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> itslength<span class="token punctuation">;</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">//成员函数声明为常量</span></code></pre>
+<p>当成员函数被声明为const时，如果这个const成员函数试图修改这个对象的数据，编译器将视为错误。<br>因为：你都和我约定了不能修改，那就得履行。</p>
+<h2 id="2）指向const对象的指针"><a href="#2）指向const对象的指针" class="headerlink" title="2）指向const对象的指针"></a>2）指向const对象的指针</h2><p>如果声明了一个<b>指向const对象</b>的指针，则通过该指针只能调用const方法（成员函数）。</p>
+<blockquote>
+<p>-因为：const就是用来规定，<b>属于这个对象</b>的是不能有改变的</p>
 <blockquote>
 <ul>
-<li>当const常量为全局，并且需要在其它文件中使用,即使用了<b>extern</b>操作符</b></li>
-<li>当使用&amp;操作符取const常量的地址，编译过程中若发现对const使用了<b>&amp;操作符</b>，则给对应的常量分配存储空间（兼容C）</li>
+<li>const成员函数（常量成员函数），不会去修改这个对象任何<b>非静态成员变量</b>的值。</li>
+<li>static成员函数（静态成员函数），也不会去修改这个对象任何<b>非静态成员变量</b>(毕竟，静态成员函数和静态成员变量其实本质是全局变量嘛，不需要作用在具体的对象上，<b>我们写在类里面，只是为了彰显和这个类有紧密的关系</b>)</li>
+<li>因此，我们指向const对象的指针，能够调用的是const成员函数和static成员函数</li>
+<li>普通成员函数，内部可以实现修改非静态成员变量的语句，所以<b>可能会破坏const对象规定的，不能改变我的内部数据的原则</b>。</li>
 </ul>
 </blockquote>
-<h2 id="四、补充疑问"><a href="#四、补充疑问" class="headerlink" title="四、补充疑问"></a>四、补充疑问</h2><p>Q：那么要是分配内存，C++中那个const的分配内存是在什么时候分配的呢？是在编译器<b>编译阶段</b>，还是在<b>执行阶段</b>分配？</p>
-<table><td bgcolor=#FFFF FF>
-Ａ：C++中const分配内存的时机，是在编译期间！（记住！）</td></table>
-
-<p>证明的代码：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</blockquote>
+<pre class=" language-cpp"><code class="language-cpp">Rectangle<span class="token operator">*</span> pRect <span class="token operator">=</span> <span class="token keyword">new</span> Rectangle<span class="token punctuation">;</span>
+<span class="token keyword">const</span> Rectangle <span class="token operator">*</span> pConstRect <span class="token operator">=</span> <span class="token keyword">new</span> Rectangle<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//指向const对象</span>
+Rectangle<span class="token operator">*</span> <span class="token keyword">const</span> pConstPtr <span class="token operator">=</span> <span class="token keyword">new</span> Rectangle<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// pConstRect是指向const对象的指针，它只能使用声明为const的成员函数，如GetLength（）。</span></code></pre>
+<h2 id="3）const-修饰函数的返回值"><a href="#3）const-修饰函数的返回值" class="headerlink" title="3）const 修饰函数的返回值"></a>3）const 修饰函数的返回值</h2><p>函数返回值采用“引用传递”的场合,出现在类的赋值函数中，目的是为了实现链式表达。<br>例如：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">A</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> c<span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;b=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用了取地址 </span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;c=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
- <img src="/photos/2020.5.30_31/05.png" width="80%">
-
-<p>结果表明：<br>const int b的地址在a和c之间，符合我们局部变量申请内存的<b>压栈的顺序</b>，<b>它并没有因为，&amp;b这句话写到int c后面，就先分配a，c最后才b</b>，而是，它扫描完之后，看到这里有&amp;b了，就分配地址了。</p>
+A <span class="token operator">&amp;</span> operate <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">const</span> A <span class="token operator">&amp;</span>other<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 赋值函数</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+A a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// a, b, c 为A 的对象</span>
+a <span class="token operator">=</span> b <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 正常的链式赋值</span>
+<span class="token punctuation">(</span>a <span class="token operator">=</span> b<span class="token punctuation">)</span> <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 不正常的链式赋值，但合法</span>
+<span class="token comment" spellcheck="true">//如果将赋值函数的返回值加const 修饰，那么该返回值的内容不允许被改动。上例中，语句 a = b = c 仍然正确，但是语句 (a = b) = c 则是非法的。</span></code></pre>
+<h2 id="4）补充"><a href="#4）补充" class="headerlink" title="4）补充"></a>4）补充</h2><blockquote>
+<ul>
+<li>非const对象可以访问<b>任意的</b>成员函数,自然包括const成员函数,静态成员函数</li>
+<li>const对象的成员是不可修改的,然而const对象通过指针维护的对象却是可以修改的.</li>
+<li>const成员函数不可以修改对象的数据,不管对象是否具有const性质.它在编译时,以是否修改成员数据为依据,进行检查。</li>
+<li>然而加上mutable修饰符的数据成员,对于任何情况下通过任何手段都可修改,自然此时的const成员函数是可以修改它的</li>
+</ul>
+</blockquote>
+<p>补充杂项：</p>
+<blockquote>
+<ul>
+<li>const 修饰引用（&amp;）修饰输入参数的用法：<blockquote>
+<ul>
+<li>1-对于<b>非内部数据类型</b>的输入参数，应该将“<b>值传递</b>”的方式改为“<b>const 引用传递</b>”，目的是提高效率。例如将<code>void Func(A a)</code> 改为<code>void Func(const A &amp;a)</code>。当然，虽然这样的确能提高效率。但此时千万千万要小心，一定要搞清楚函数究竟是想返回一个对象的“拷贝”还是仅返回“别名”就可以了，否则程序会出错。</li>
+<li>2-对于<b>内部数据类型</b>的输入参数，不要将“值传递”的方式改为“const 引用传递”。否则既达不到提高效率的目的，又降低了函数的可理解性。例如<code>void Func(int x)</code> 不应该改为<code>void Func(const int &amp;x)</code>。（如何理解？？？）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>const 修饰星号（*）用法：<blockquote>
+<ul>
+<li>如果给以“指针传递”方式的函数返回值加const 修饰，那么函数返回值（即指针）的内容不能被修改，该返回值只能被赋给加const 修饰的同类型指针。例如函数</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">GetString</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+如下语句将出现编译错误：
+<span class="token keyword">char</span> <span class="token operator">*</span>str <span class="token operator">=</span> <span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+正确的用法是
+<span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str <span class="token operator">=</span> <span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -587,7 +554,7 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/">https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/04/2020-06-04-Const-in-C-language/">https://github.com/HACV/HACV.github.io/2020/06/04/2020-06-04-Const-in-C-language/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -794,53 +761,47 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/01/BF-RK/">
+                <a href="/2020/06/04/2020-06-04-Const-in-C-language/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_06_01_cover.png" class="responsive-img" alt="字符串匹配之BF&amp;RK">
+                        <img src="/photos/2020.6.03_15/2020_06_04_cover.png" class="responsive-img" alt="详解C++中const常见用途">
                         
-                        <span class="card-title">字符串匹配之BF&amp;RK</span>
+                        <span class="card-title">详解C++中const常见用途</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串匹配暴力和hash优化
+                            C++中const常见用途
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                        <span class="chip bg-color">字符串匹配</span>
-                    </a>
-                    
-                    <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                        <span class="chip bg-color">暴力</span>
-                    </a>
-                    
-                    <a href="/Tags/hash/">
-                        <span class="chip bg-color">hash</span>
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -854,30 +815,30 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/30/Linear-Sort/">
+                <a href="/2020/06/03/Const-in-C-language/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_5_30title.jpg" class="responsive-img" alt="线性排序">
+                        <img src="/photos/2020.6.03_15/2020_06_03_cover.jpg" class="responsive-img" alt="详解C语言中const">
                         
-                        <span class="card-title">线性排序</span>
+                        <span class="card-title">详解C语言中const</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计数排序，基数排序，桶排序
+                            C语言中const
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
@@ -887,8 +848,8 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">排序</span>
+                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
                     </a>
                     
                 </div>
