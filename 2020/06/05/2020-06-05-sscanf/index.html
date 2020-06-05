@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C++的const底层机制, HACV">
+    <meta name="keywords" content="sscanf使用, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C++的const底层机制 | HACV</title>
+    <title>sscanf使用 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_5_31title.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_05_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C++的const底层机制</h1>
+                    <h1 class="description center-align post-title">sscanf使用</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">C语言</span>
                             </a>
                         
                     </div>
@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-31
+                    2020-06-05
                 </div>
                 
 
@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
@@ -454,114 +454,235 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-中对C的const关键字增强"><a href="#C-中对C的const关键字增强" class="headerlink" title="C++中对C的const关键字增强"></a>C++中对C的const关键字增强</h1><h2 id="一、问题导入"><a href="#一、问题导入" class="headerlink" title="一、问题导入"></a>一、问题导入</h2><p>背景：<br>我们总说C语言中const修饰的变量看上去似乎是常量，其实是个“冒牌货”，应该叫”常变量”，比如用指针间接赋值，就能改变了。</p>
-<p>代码测试：<br>将指针间接修改变量值的代码放到C语言编译器和C++编译器去测试</p>
-<p>DevC++的C语言编译器</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//demo.c </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/01.png" width="80%"></p>
-<p>DevC++的C++语言编译器</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/02.png" width="80%"></p>
-<p>奇特的结果：<br>我们要是写了这样的函数在银行程序中，要是用不同编译器，那么对账就对不上了。<br>总结：<br>C中的const是个常变量，变量的值能够被间接修改。<br>C++中的const是一个真正的常量！</p>
-<p>Tips：</p>
-<table><td bgcolor=#FFFF FF>
-以上两次测试，都没有显示warning和error</td></table>
-
-<p>那么，我们或许会疑惑：<br>Q：我们说C++中的是一个真正的常量，那为什么，没有C++编译器对我们”用指针间接修改”的行为，没有报warning或者error呢？<br>A：C++要兼容C，所以，它认为这个语法是可以的<br>Q：那么问题又来了，那他既然兼容，那么为什么最后却没改变那个变量的值呢？<br>A：因为C++只是兼容那种语法写法，但是底层的实现却对const关键字进行了加强。</p>
-<h2 id="二、底层原理分析"><a href="#二、底层原理分析" class="headerlink" title="二、底层原理分析"></a>二、底层原理分析</h2><h3 id="1）C-编译器对const做了一些加强，做了一些特殊的处理"><a href="#1）C-编译器对const做了一些加强，做了一些特殊的处理" class="headerlink" title="1）C++编译器对const做了一些加强，做了一些特殊的处理"></a>1）C++编译器对const做了一些加强，做了一些特殊的处理</h3><p>当C++编译器，扫描到常量声明时，它不再像C语言那样，把这个const给它单独分配内存。</p>
-<p>在我们先前的//test.cpp中。<br>C++进行了如下操作：</p>
-<blockquote>
+                <h1 id="详解sscanf"><a href="#详解sscanf" class="headerlink" title="详解sscanf"></a>详解sscanf</h1><h2 id="一、综述"><a href="#一、综述" class="headerlink" title="一、综述"></a>一、综述</h2><blockquote>
 <ul>
-<li>1）扫描到这一行，const int a=98;<br>C++编译器会把这个<b>变量a</b>放在一个<b>符号表（键值-值对）</b>里面<br><b>此时，并没有分配内存！！！</b><br>注意：这样的话，key和value是定了，不能修改的了。<br>符号表具体的实现和我们的内存中的，栈，堆不是同一套实现机制。<br>有很多常量就都放在这个里面了。<br>Tips：<br>当你去<b>使用</b>这个a的时候，它就给你从符号表里面给你把这个98给拿出来，供你<b>使用</b></li>
+<li>正则表达式Regex(regular expression)是一种强大的描述字符序列的工具。在许多语言中都存在着正则表达式.</li>
 </ul>
 </blockquote>
-<table><td bgcolor=#FFFF FF>
-注意"使用"一词</td></table>
-
+<p>sscanf可以用来实现一些简易的类正则表达式功能，提高对字符串的处理效率，但却没有正则表达式强大,所以如果对于比较复杂的字符串处理,建议使用正则表达式。<br>注：C语言中sscanf实现的只是的<b>类正则表达式功能</b>，并不是真的支持正则表达式</p>
 <blockquote>
 <ul>
-<li>2）遇到类似这样的情况，此时才给a变量另外分配一个内存。<br>扫描到这一句p=(int <em>)&a;<br>当你对这个a变量取地址的时候，C++编译器，会为这个a再<b>单独的开辟一块内存空间</b>，然后你把这个内存空间，赋给了p，相当于一个指针P指向了这里。然后你通过</em>p去间接的修改的地址，不再是原来的值（value）,而是我们新开辟的空间的值（注意理解）<br>所以，当你再使用a的时候，你打印的还是98（符号表中的a）<img src="/photos/2020.5.30_31/03.png" width="90%">
+<li>C++语言中，也只有C++11的时候，才将正则表达式纳入了新标准的一部分</li>
+<li>不仅如此，它还支持了6种不同的正则表达式的语法，分别是：ECMASCRIPT、basic、extended、awk、grep和egrep。其中ECMASCRIPT是默认的语法，具体使用哪种语法我们可以在构造正则表达式的时候指定。（本段文字还未考证）</li>
+<li>C++11中使用正则表达式，需要include头文件<b>（regex.h）</b></li>
+<li>在DevC++中编译器默认没有开C++11标准的编译，所以显示没有这个头文件。（但你可以在DevC++中自行启用编译选项，加入<b>（-std=c++11）</b>用C++11就有了）</li>
+</ul>
+</blockquote>
+<h2 id="二、sscanf的用法"><a href="#二、sscanf的用法" class="headerlink" title="二、sscanf的用法"></a>二、sscanf的用法</h2><h3 id="1、跳过数据"><a href="#1、跳过数据" class="headerlink" title="1、跳过数据"></a>1、跳过数据</h3><blockquote>
+<ul>
+<li>语法：<blockquote>
+<ul>
+<li><b>跳过的话，就是加一个*</b>，然后就可以跳过*后面的那种</li>
+<li>比如，%*s或%*d    </li>
+</ul>
+</blockquote>
 </li>
 </ul>
 </blockquote>
-<h3 id="2）证明"><a href="#2）证明" class="headerlink" title="2）证明"></a>2）证明</h3><p>我们现在来证明这个开辟的内存空间的存在</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//solution.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<pre class=" language-c"><code class="language-c">例<span class="token punctuation">:</span> <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"1234 5678"</span><span class="token punctuation">,</span> <span class="token string">"%*d %s"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//这里的d和后面的%之间有个空格</span>
+<span class="token comment" spellcheck="true">//%d的话就是要一个整数，而&lt;b>%*d就是将整数跳过&lt;/b></span></code></pre>
+<p>例子：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> buff<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"1234 5678"</span><span class="token punctuation">,</span><span class="token string">"%*d %s"</span><span class="token punctuation">,</span>buff<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//跳过1234，然后隔一个空格再获取字符串</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span>buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span> 
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*p=%d"</span><span class="token punctuation">,</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>打印的是:<br> <img src="/photos/2020.5.30_31/04.png" width="80%"></p>
-<p><b>注意：</b></p>
-<table><td bgcolor=#FFFF FF>
-C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其存储空间中的值，除非你用指针操作。</td></table>
-
-
-<h2 id="三、结论和补充"><a href="#三、结论和补充" class="headerlink" title="三、结论和补充"></a>三、结论和补充</h2><p>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b><br>2）C++中的const常量</p>
-<table><td bgcolor=#FFFF FF>
-注意：可能分配存储空间,也可能不分配存储空间!</td></table>
-
-<p>编译过程中若发现<b>使用常量</b>则直接以符号表中的值替换</p>
-<p>Tips：<br>只有下面两种的时候，它才会分配空间</p>
-<blockquote>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//输出为：</span>
+<span class="token comment" spellcheck="true">//5678</span></code></pre>
+<h3 id="2、读指定宽度的数据"><a href="#2、读指定宽度的数据" class="headerlink" title="2、读指定宽度的数据"></a>2、读指定宽度的数据</h3><blockquote>
 <ul>
-<li>当const常量为全局，并且需要在其它文件中使用,即使用了<b>extern</b>操作符</b></li>
-<li>当使用&amp;操作符取const常量的地址，编译过程中若发现对const使用了<b>&amp;操作符</b>，则给对应的常量分配存储空间（兼容C）</li>
+<li>语法：<blockquote>
+<ul>
+<li>比如，<b>%[width]s</b> ，<b>%[width]d</b>  其中，[]表示的是<b>可选</b>（也就是可以省略的意思）</li>
+<li>例: sscanf(“12345678”, “%4s”, buf);</li>
 </ul>
 </blockquote>
-<h2 id="四、补充疑问"><a href="#四、补充疑问" class="headerlink" title="四、补充疑问"></a>四、补充疑问</h2><p>Q：那么要是分配内存，C++中那个const的分配内存是在什么时候分配的呢？是在编译器<b>编译阶段</b>，还是在<b>执行阶段</b>分配？</p>
-<table><td bgcolor=#FFFF FF>
-Ａ：C++中const分配内存的时机，是在编译期间！（记住！）</td></table>
-
-<p>证明的代码：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例1 :</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> c<span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;b=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用了取地址 </span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;c=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"12345678"</span><span class="token punctuation">,</span><span class="token string">"%4s"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//从字符串中获取字符串，只要4个字节，存放在buf中</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+<span class="token comment" spellcheck="true">//输出：</span>
+<span class="token comment" spellcheck="true">//1234</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例2 :</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"12345678"</span><span class="token punctuation">,</span><span class="token string">"%3d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span> <span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
- <img src="/photos/2020.5.30_31/05.png" width="80%">
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//输出的：</span>
+<span class="token comment" spellcheck="true">//123</span>
+</code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例3 :(综合1和2)</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"12345678"</span><span class="token punctuation">,</span><span class="token string">"%*3d%3d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span> <span class="token punctuation">;</span>
 
-<p>结果表明：<br>const int b的地址在a和c之间，符合我们局部变量申请内存的<b>压栈的顺序</b>，<b>它并没有因为，&amp;b这句话写到int c后面，就先分配a，c最后才b</b>，而是，它扫描完之后，看到这里有&amp;b了，就分配地址了。</p>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+<span class="token comment" spellcheck="true">//输出：</span>
+<span class="token comment" spellcheck="true">//456</span></code></pre>
+<h3 id="3、支持集合操作"><a href="#3、支持集合操作" class="headerlink" title="3、支持集合操作"></a>3、支持集合操作</h3><table><td bgcolor=#FFFF FF>
+注意：只支持获取到字符串中去，不能获取到整数中去！！！
+</td></table>
+
+
+
+<blockquote>
+<ul>
+<li>语法：<blockquote>
+<ul>
+<li>%[a-z]表示匹配a到z中任意字符(具有贪婪性——尽可能多的匹配)</li>
+<li>%[^a-z]表示读取除a-z<b>以外</b>的所有字符,其实，你可以a-z也可以b-f，他是一个ASCII码范围。</li>
+<li>%[aBc]匹配a、B、c中这几个列出了的字符中的，贪婪性</li>
+<li>%[^aFc]匹配<b>非</b>aFc的任意字符，贪婪性</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例1：</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    <span class="token function">sscanf</span> <span class="token punctuation">(</span><span class="token string">"agkd32DajfDdFF"</span><span class="token punctuation">,</span> <span class="token string">"%[a-z]"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//从字符串中获取输入只要'a''g''k''d'</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为agkd</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例2：(综合1和3)</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    <span class="token function">sscanf</span> <span class="token punctuation">(</span><span class="token string">"agkd32DajfDdFF"</span><span class="token punctuation">,</span> <span class="token string">"%*[a-z]%[^a-z]"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//先跳过，然后要ASCII码不是a-z区间的字符     </span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为32D</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例3：(综合2和3)</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    <span class="token function">sscanf</span> <span class="token punctuation">(</span><span class="token string">"agkd32DajfDdFF"</span><span class="token punctuation">,</span><span class="token string">"%*[a-z]%5s"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//先跳过，然后扫描进5个字节的字符</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为32Daj </span></code></pre>
+<p><font color="red" size=4>本样例，需注意</font></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例4：</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//一旦碰到我不要的，后面的也不看</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"ASHJ$12agkd32DajfDdFF"</span><span class="token punctuation">,</span><span class="token string">"%[^a-z]"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为ASHJ$12</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//例5：</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"acsfsacssss"</span><span class="token punctuation">,</span><span class="token string">"%[absc]"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为acs</span></code></pre>
+<p><font color="red" size=4>易错样例：</font></p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+
+    <span class="token function">sscanf</span> <span class="token punctuation">(</span><span class="token string">"32DajfDdFF"</span><span class="token punctuation">,</span> <span class="token string">"%[1-9]"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//先跳过，然后要ASCII码不是a-z区间的     </span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buf<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//输入32</span>
+
+    <span class="token keyword">int</span> num<span class="token punctuation">;</span> 
+    <span class="token function">sscanf</span> <span class="token punctuation">(</span><span class="token string">"32DajfDdFF"</span><span class="token punctuation">,</span> <span class="token string">"%[1-9]"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//先跳过，然后要ASCII码不是a-z区间的     </span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 出错，不支持，扫描到数字中去！！！</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="三、sscanf的实际应用"><a href="#三、sscanf的实际应用" class="headerlink" title="三、sscanf的实际应用"></a>三、sscanf的实际应用</h2><blockquote>
+<ul>
+<li>解析网络的数据包<blockquote>
+<ul>
+<li>验证E-mail格式</li>
+<li>验证IP地址</li>
+<li>验证URL</li>
+<li>验证电话号码,邮政编号，各种。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h2 id="四、借此来深刻理解，为什么以前我们要记忆那么多所谓的格式字符了"><a href="#四、借此来深刻理解，为什么以前我们要记忆那么多所谓的格式字符了" class="headerlink" title="四、借此来深刻理解，为什么以前我们要记忆那么多所谓的格式字符了"></a>四、借此来深刻理解，为什么以前我们要记忆那么多所谓的格式字符了</h2><p>sscanf和scanf和printf的联系</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> num<span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"AAA123BBB456"</span><span class="token punctuation">,</span><span class="token string">"%*[^0-9]%i"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token comment" spellcheck="true">//先跳过，然后扫描整数  </span>
+    <span class="token comment" spellcheck="true">//其实上面一句等价于，sscanf("AAA123BBB456","%*[^0-9]%d",&amp;num); </span>
+    <span class="token comment" spellcheck="true">//也就是%d和%i都是十进制整数的格式字符，我之所以在这用的是%i</span>
+    <span class="token comment" spellcheck="true">//是为了将正则表达式中类似的语法导入进来，i（integer整数） </span>
+    <span class="token comment" spellcheck="true">//此外，我们可以发现，其实我们在scanf扫入和printf输出的时候，也都用了格式字符 </span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为123</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> c<span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span><span class="token string">"AAA123BBB456"</span><span class="token punctuation">,</span><span class="token string">"%*[^0-9]%c"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c\n"</span><span class="token punctuation">,</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为1</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//补充例子</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span>  <span class="token operator">*</span>line<span class="token operator">=</span><span class="token string">"6161665058"</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> buff<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">sscanf</span><span class="token punctuation">(</span>line<span class="token punctuation">,</span><span class="token string">"%2[{0|1|6}]"</span><span class="token punctuation">,</span>buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s\n"</span><span class="token punctuation">,</span>buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//结果为61</span></code></pre>
+<p>（此处还需补充更好的例子）</p>
 
             </div>
             <hr/>
@@ -587,7 +708,7 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/">https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/05/2020-06-05-sscanf/">https://github.com/HACV/HACV.github.io/2020/06/05/2020-06-05-sscanf/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,8 +746,8 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">C语言</span>
                                 </a>
                             
                         </div>
@@ -794,53 +915,47 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/01/BF-RK/">
+                <a href="/2020/06/05/2020-06-05-sscanf/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_06_01_cover.png" class="responsive-img" alt="字符串匹配之BF&amp;RK">
+                        <img src="/photos/2020.6.03_15/2020_06_05_cover.jpg" class="responsive-img" alt="sscanf使用">
                         
-                        <span class="card-title">字符串匹配之BF&amp;RK</span>
+                        <span class="card-title">sscanf使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串匹配暴力和hash优化
+                            概述
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                        <span class="chip bg-color">字符串匹配</span>
-                    </a>
-                    
-                    <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                        <span class="chip bg-color">暴力</span>
-                    </a>
-                    
-                    <a href="/Tags/hash/">
-                        <span class="chip bg-color">hash</span>
+                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
                     </a>
                     
                 </div>
@@ -854,30 +969,30 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/30/Linear-Sort/">
+                <a href="/2020/06/04/2020-06-04-Const-in-C-language/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_5_30title.jpg" class="responsive-img" alt="线性排序">
+                        <img src="/photos/2020.6.03_15/2020_06_04_cover.png" class="responsive-img" alt="详解C++中const常见用途">
                         
-                        <span class="card-title">线性排序</span>
+                        <span class="card-title">详解C++中const常见用途</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计数排序，基数排序，桶排序
+                            C++中const常见用途
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
@@ -887,8 +1002,8 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">排序</span>
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
