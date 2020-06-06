@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C++的const底层机制, HACV">
+    <meta name="keywords" content="大端和小端存储, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C++的const底层机制 | HACV</title>
+    <title>大端和小端存储 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_5_31title.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.29/title.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C++的const底层机制</h1>
+                    <h1 class="description center-align post-title">大端和小端存储</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                                <span class="chip bg-color">编译器底层</span>
                             </a>
                         
                     </div>
@@ -420,8 +420,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
+                                编译器底层
                             </a>
                         
                     </div>
@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-31
+                    2020-05-29
                 </div>
                 
 
@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
@@ -454,114 +454,54 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-中对C的const关键字增强"><a href="#C-中对C的const关键字增强" class="headerlink" title="C++中对C的const关键字增强"></a>C++中对C的const关键字增强</h1><h2 id="一、问题导入"><a href="#一、问题导入" class="headerlink" title="一、问题导入"></a>一、问题导入</h2><p>背景：<br>我们总说C语言中const修饰的变量看上去似乎是常量，其实是个“冒牌货”，应该叫”常变量”，比如用指针间接赋值，就能改变了。</p>
-<p>代码测试：<br>将指针间接修改变量值的代码放到C语言编译器和C++编译器去测试</p>
-<p>DevC++的C语言编译器</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//demo.c </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/01.png" width="80%"></p>
-<p>DevC++的C++语言编译器</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/02.png" width="80%"></p>
-<p>奇特的结果：<br>我们要是写了这样的函数在银行程序中，要是用不同编译器，那么对账就对不上了。<br>总结：<br>C中的const是个常变量，变量的值能够被间接修改。<br>C++中的const是一个真正的常量！</p>
-<p>Tips：</p>
-<table><td bgcolor=#FFFF FF>
-以上两次测试，都没有显示warning和error</td></table>
-
-<p>那么，我们或许会疑惑：<br>Q：我们说C++中的是一个真正的常量，那为什么，没有C++编译器对我们”用指针间接修改”的行为，没有报warning或者error呢？<br>A：C++要兼容C，所以，它认为这个语法是可以的<br>Q：那么问题又来了，那他既然兼容，那么为什么最后却没改变那个变量的值呢？<br>A：因为C++只是兼容那种语法写法，但是底层的实现却对const关键字进行了加强。</p>
-<h2 id="二、底层原理分析"><a href="#二、底层原理分析" class="headerlink" title="二、底层原理分析"></a>二、底层原理分析</h2><h3 id="1）C-编译器对const做了一些加强，做了一些特殊的处理"><a href="#1）C-编译器对const做了一些加强，做了一些特殊的处理" class="headerlink" title="1）C++编译器对const做了一些加强，做了一些特殊的处理"></a>1）C++编译器对const做了一些加强，做了一些特殊的处理</h3><p>当C++编译器，扫描到常量声明时，它不再像C语言那样，把这个const给它单独分配内存。</p>
-<p>在我们先前的//test.cpp中。<br>C++进行了如下操作：</p>
+                <h2 id="引子："><a href="#引子：" class="headerlink" title="引子："></a><strong>引子</strong>：</h2><p>《格列夫游记》一书中讲到，格列佛在小人国中，遇到了这样一件事情：</p>
 <blockquote>
-<ul>
-<li>1）扫描到这一行，const int a=98;<br>C++编译器会把这个<b>变量a</b>放在一个<b>符号表（键值-值对）</b>里面<br><b>此时，并没有分配内存！！！</b><br>注意：这样的话，key和value是定了，不能修改的了。<br>符号表具体的实现和我们的内存中的，栈，堆不是同一套实现机制。<br>有很多常量就都放在这个里面了。<br>Tips：<br>当你去<b>使用</b>这个a的时候，它就给你从符号表里面给你把这个98给拿出来，供你<b>使用</b></li>
-</ul>
+<p> 小人国的人纠结于吃鸡蛋的时候，先打破鸡蛋的小端还大端，原来，在这之前所有人都认为,吃鸡蛋前,原始的方法是打破鸡蛋较大的一端。可是当今皇帝的祖父小时候吃鸡蛋,一次按古法打鸡蛋时碰巧将一个手指弄破了,因此他的父亲,当时的皇帝，就下了一道敕令,命令全体臣民吃鸡蛋时打破鸡蛋较小的一端,违令者重罚。老百姓们对这项命令极为反感。历史告诉我们，由此曾发生过六次叛乱,其中一个皇帝送了命,另一个丢了王位。关于这一争端,曾出版过几百本大部著作,不过大端派的书一直是受禁的,法律也规定该派的任何人不得做官。</p>
 </blockquote>
-<table><td bgcolor=#FFFF FF>
-注意"使用"一词</td></table>
+<p>在计算机界，也有一个类似的大端小端之争，但是并没有像小人国那般，原先我们虽然在纠结选大端还是小端存储？但是随着计算机的发展，历史告诉我们，这些都是合理的，但是要在计算机间合理通信或者理解计算机底层的时候，你自己记得转换就好了。</p>
+<h1 id="大端和小端存储"><a href="#大端和小端存储" class="headerlink" title="大端和小端存储"></a>大端和小端存储</h1><h2 id="一．概念"><a href="#一．概念" class="headerlink" title="一．概念"></a>一．概念</h2><p>大端：指低字节存储在高地址。<br>小端：指低字节存储在低地址。</p>
+<p><strong>记忆方法：</strong></p>
+<table><td bgcolor=#FFFF FF>小端说：我就是个低低（弟弟）</td></table>
 
-<blockquote>
-<ul>
-<li>2）遇到类似这样的情况，此时才给a变量另外分配一个内存。<br>扫描到这一句p=(int <em>)&a;<br>当你对这个a变量取地址的时候，C++编译器，会为这个a再<b>单独的开辟一块内存空间</b>，然后你把这个内存空间，赋给了p，相当于一个指针P指向了这里。然后你通过</em>p去间接的修改的地址，不再是原来的值（value）,而是我们新开辟的空间的值（注意理解）<br>所以，当你再使用a的时候，你打印的还是98（符号表中的a）<img src="/photos/2020.5.30_31/03.png" width="90%">
-</li>
-</ul>
-</blockquote>
-<h3 id="2）证明"><a href="#2）证明" class="headerlink" title="2）证明"></a>2）证明</h3><p>我们现在来证明这个开辟的内存空间的存在</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//solution.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<p>下图描述了——大端存储（低字节存储在内存高地址了）：<br> <img src="/photos/2020.5.29/1.png" width="80%"></p>
+<p>下图描述了——小端存储（低字节存储在内存低地址了）：：<br> <img src="/photos/2020.5.29/2.png" width="80%"></p>
+<h2 id="二．具体的，大端法和小端法的应用"><a href="#二．具体的，大端法和小端法的应用" class="headerlink" title="二．具体的，大端法和小端法的应用"></a>二．具体的，大端法和小端法的应用</h2><p>有的产品用的大端法，有的产品则是小端法。<br>PS:这个大端和小端并没有严格按照企业界限来区分，因为有的企业，它在之前采用的处理器，可能是大端，但是后面的产品中改变了采用的处理器，可能就采用小端法了。<br>前沿：许多比较新的微处理器使用双端法，也就是说可以把它们配置成作为大端或者小端的机器运行。</p>
+<h2 id="三．大端法和小端法导致的问题："><a href="#三．大端法和小端法导致的问题：" class="headerlink" title="三．大端法和小端法导致的问题："></a>三．大端法和小端法导致的问题：</h2><h3 id="1）网络应用程序数据传输"><a href="#1）网络应用程序数据传输" class="headerlink" title="1）网络应用程序数据传输"></a>1）网络应用程序数据传输</h3><p>在采用不同大小端存储的机器之间通过网络传送二进制数据时候，会导致采用不同大小端存储方式的数据的字节变成反序。<br>解决方案：网络应用程序的代码编写，必须遵循已建立的关于字节顺序的规则（第一处：网络传输规定了，网络字节序(它采用的大端)）。<br>第2处，你的机器发送报文前，需要将你的内部表达转换成网络标准。<br>第3处，你的机器接受报文时候，需要根据你的机器，将网络标准转换为你的内部表示。。</p>
+<p>网络字节序<br>网络上传输的数据都是字节流,对于一个多字节数值，在进行网络传输的时候,先传递哪个字节?也就是说,当接收端收到第一个字节的时候,它将这个字节作为高位字节还是低位字节处理,是一个比较有意义的问题;<br>UDP/TCP/IP协议规定:<br>把接收到的第一个字节当作高位字节看待,这就要求发送端发送的第一个字节是高位字节;</p>
+<p>而在发送端发送数据时，发送的第一个字节是该数值在内存中的起始地址处对应的那个字节,也就是说,该数值在内存中的起始地址处对应的那个字节就是要发送的第一个高位字节(即:高位字节存放在低地址处);<br>由此可见,多字节数值在发送之前,在内存中因该是以大端法存放的;所以说,网络字节序是大端字节序;</p>
+<p>比如,我们经过网络发送整型数值0x12345678时,在80x86平台中,它是以小端发存放的,在发送之前需要使用系统提供的字节序转换函数将其转换成大端法存放的数值;</p>
+<p>常见CPU的宇节序<br>大端（big Endian）: PowerPC、IBM、 Sun<br>小端（little Endian）:x86、DEC<br>ARM既可以工作在大端模式,也可以工作在小端模式。</p>
+<h3 id="2）反汇编的时候"><a href="#2）反汇编的时候" class="headerlink" title="2）反汇编的时候"></a>2）反汇编的时候</h3><table><tr><td bgcolor=#FFFF FF>（——————未完待续）</td></tr></table>
+
+<h2 id="四．如何判别大端和小端"><a href="#四．如何判别大端和小端" class="headerlink" title="四．如何判别大端和小端"></a>四．如何判别大端和小端</h2><p>1）我们可以根据C语言中的，联合体来判断，该系统是大端还是小端。<br>因为，联合体变量总是从低地址存储。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
+    <span class="token keyword">union</span> test
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> a<span class="token punctuation">;</span>
+        <span class="token keyword">char</span> c<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>demo<span class="token punctuation">;</span>
 
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span> 
+    demo<span class="token punctuation">.</span>a<span class="token operator">=</span><span class="token number">0x01ffff03</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>demo<span class="token punctuation">.</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*p=%d"</span><span class="token punctuation">,</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>打印的是:<br> <img src="/photos/2020.5.30_31/04.png" width="80%"></p>
-<p><b>注意：</b></p>
-<table><td bgcolor=#FFFF FF>
-C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其存储空间中的值，除非你用指针操作。</td></table>
-
-
-<h2 id="三、结论和补充"><a href="#三、结论和补充" class="headerlink" title="三、结论和补充"></a>三、结论和补充</h2><p>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b><br>2）C++中的const常量</p>
-<table><td bgcolor=#FFFF FF>
-注意：可能分配存储空间,也可能不分配存储空间!</td></table>
-
-<p>编译过程中若发现<b>使用常量</b>则直接以符号表中的值替换</p>
-<p>Tips：<br>只有下面两种的时候，它才会分配空间</p>
-<blockquote>
-<ul>
-<li>当const常量为全局，并且需要在其它文件中使用,即使用了<b>extern</b>操作符</b></li>
-<li>当使用&amp;操作符取const常量的地址，编译过程中若发现对const使用了<b>&amp;操作符</b>，则给对应的常量分配存储空间（兼容C）</li>
-</ul>
-</blockquote>
-<h2 id="四、补充疑问"><a href="#四、补充疑问" class="headerlink" title="四、补充疑问"></a>四、补充疑问</h2><p>Q：那么要是分配内存，C++中那个const的分配内存是在什么时候分配的呢？是在编译器<b>编译阶段</b>，还是在<b>执行阶段</b>分配？</p>
-<table><td bgcolor=#FFFF FF>
-Ａ：C++中const分配内存的时机，是在编译期间！（记住！）</td></table>
-
-<p>证明的代码：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> c<span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;b=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用了取地址 </span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;c=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">0x03</span><span class="token operator">==</span>demo<span class="token punctuation">.</span>c<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"这个机器是小端存储！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">0x00</span><span class="token operator">==</span>demo<span class="token punctuation">.</span>c<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"这个机器是大端存储！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"无法判断机器类型！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
- <img src="/photos/2020.5.30_31/05.png" width="80%">
-
-<p>结果表明：<br>const int b的地址在a和c之间，符合我们局部变量申请内存的<b>压栈的顺序</b>，<b>它并没有因为，&amp;b这句话写到int c后面，就先分配a，c最后才b</b>，而是，它扫描完之后，看到这里有&amp;b了，就分配地址了。</p>
+<p>显然，<br>要是小端存储，那么（低字节）0x03在低地址，<br>要是大端存储，那么（高字节）0x00在低地址。<br>所以，打印出3就是小端存储。打印出0那就是大端存储。<br>笔者的电脑是采用的intel的X86CPU，是小端存储。<br>  <img src="/photos/2020.5.29/3.png" width="80%"></p>
 
             </div>
             <hr/>
@@ -587,7 +527,7 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/">https://github.com/HACV/HACV.github.io/2020/05/31/Cplusplus-const/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/05/29/2020-05-29-Big-Endian-little-Endian/">https://github.com/HACV/HACV.github.io/2020/05/29/2020-05-29-Big-Endian-little-Endian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,8 +565,8 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                                    <span class="chip bg-color">编译器底层</span>
                                 </a>
                             
                         </div>
@@ -798,30 +738,30 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/06/01/BF-RK/">
+                <a href="/2020/05/29/2020-05-29-The-Rules-Of-Variable-Name/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_06_01_cover.png" class="responsive-img" alt="字符串匹配之BF&amp;RK">
+                        <img src="/photos/2020.5.29/title_one.jpg" class="responsive-img" alt="C语言和C++变量的命名规则">
                         
-                        <span class="card-title">字符串匹配之BF&amp;RK</span>
+                        <span class="card-title">C语言和C++变量的命名规则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串匹配暴力和hash优化
+                            你有没有想过，为什么C语言和C++的变量命名规则为什么是那样的？
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-29
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
@@ -831,16 +771,12 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                        <span class="chip bg-color">暴力</span>
+                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
                     </a>
                     
-                    <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                        <span class="chip bg-color">字符串匹配</span>
-                    </a>
-                    
-                    <a href="/Tags/hash/">
-                        <span class="chip bg-color">hash</span>
+                    <a href="/Tags/idea/">
+                        <span class="chip bg-color">idea</span>
                     </a>
                     
                 </div>
@@ -854,30 +790,30 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/30/Linear-Sort/">
+                <a href="/2020/05/28/2020-05-28-C_priority_and_associative_memory/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_5_30title.jpg" class="responsive-img" alt="线性排序">
+                        <img src="/photos/2020.5.28/1.jpg" class="responsive-img" alt="C语言优先级和结合性记忆">
                         
-                        <span class="card-title">线性排序</span>
+                        <span class="card-title">C语言优先级和结合性记忆</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计数排序，基数排序，桶排序
+                            记忆C语言的优先级和结合性真的像孔乙己记忆“回”字的四种写法一样没必要吗？
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E8%AE%B0%E5%BF%86%E6%B3%95/" class="post-category">
+                                    记忆法
                                 </a>
                             
                             
@@ -887,8 +823,12 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">排序</span>
+                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
+                    </a>
+                    
+                    <a href="/Tags/idea/">
+                        <span class="chip bg-color">idea</span>
                     </a>
                     
                 </div>

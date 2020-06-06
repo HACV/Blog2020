@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数组的初始化, HACV">
+    <meta name="keywords" content="C语言和C++变量的命名规则, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数组的初始化 | HACV</title>
+    <title>C语言和C++变量的命名规则 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_06_02_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.29/title_one.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数组的初始化</h1>
+                    <h1 class="description center-align post-title">C语言和C++变量的命名规则</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/C/">
-                                <span class="chip bg-color">C++</span>
-                            </a>
-                        
                             <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
                                 <span class="chip bg-color">C语言</span>
+                            </a>
+                        
+                            <a href="/Tags/idea/">
+                                <span class="chip bg-color">idea</span>
                             </a>
                         
                     </div>
@@ -437,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-02
+                    2020-05-29
                 </div>
                 
 
@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    659
+                    406
                 </div>
                 
 
@@ -458,119 +458,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数组的不完全初始化"><a href="#数组的不完全初始化" class="headerlink" title="数组的不完全初始化"></a>数组的不完全初始化</h1><h2 id="一、问题由来"><a href="#一、问题由来" class="headerlink" title="一、问题由来"></a>一、问题由来</h2><pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span> 把数组全部初始化为<span class="token number">0</span>
-<span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span> 把数组全部初始化为<span class="token number">1</span>，为什么却失败了呢？</code></pre>
-<h2 id="二、数组的几种初始化方式"><a href="#二、数组的几种初始化方式" class="headerlink" title="二、数组的几种初始化方式"></a>二、数组的几种初始化方式</h2><p>1）完全初始化(completely initialized) 给每个元素初始化<br>int a[5]={0,1,2,3,4};<br>int a[]={1,2,3};</p>
-<p>2）完全不初始化(uninitialized)<br>int a[5];<br>注意：<br>不进行显式初始化的情况下：</p>
-<blockquote>
+                <h1 id="C语言和C-变量命名规则探讨"><a href="#C语言和C-变量命名规则探讨" class="headerlink" title="C语言和C++变量命名规则探讨"></a>C语言和C++变量命名规则探讨</h1> <img src="/photos/2020.5.29/title_one.jpg" width="80%">
+
+<h2 id="变量命名规则"><a href="#变量命名规则" class="headerlink" title="变量命名规则"></a>变量命名规则</h2><blockquote>
 <ul>
-<li><b>未初始化的</b>全局变量以及静态变量的初始均为0（因为他们都存在.bss段，默认初始化为0）</li>
-<li><b>未初始化的</b>局部变量(自动变量)随机（其实也不叫随机，要是你能够精确的设计上一个释放这块内存的地方存了什么值）。（局部变量处于栈区，其数值是当时内存中的值。）</li>
+<li>不能是C语言或者C++的标识符。</li>
+<li>区分大小写</li>
+<li>变量的第1个字符必须是大小写字母或者下划线。</li>
+<li>即，除去第1个字符之外的其他字符是大小写字母，下划线，或数字。 </li>
 </ul>
 </blockquote>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:(不确定的)</span>
-<span class="token comment" spellcheck="true">//6487736</span>
-<span class="token comment" spellcheck="true">//4202350</span>
-<span class="token comment" spellcheck="true">//4202256</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//29</span></code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">static</span> <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<p>3）不完全初始化(partly initialized)（即：部分初始化）<br>int a[5]={0,1,2};<br>K&amp;R C语言中是这样阐述：</p>
-<blockquote>
-<ul>
-<li><b>如果初始化表达式的个数比数组元素数少，则对外部变量，静态变量和自动变量来说，没有初始化表达式的元素将被初始化为0。</b>(至于为什么是初始化为0而不是其他的，原因是.bss的实现机制)</li>
-<li>如果初始化表达式的个数比数组元素数多,则是错误的。<br>所以，上面数组，前三个元素被初始化为0，1，2，后两个元素被初始化为0。</li>
+<p><strong>疑问</strong>：为什么，第3点要求看上去这么奇怪？<br>为什么，不直接说，是直接由大小写字母，下划线，数字组成就好了，为何要强调第1个字符，不能是数字？<br>看上去，一点都不对称，没有美感</p>
+<p><strong>解释</strong>:<br>想象一下，定义这样一个变量<br>int 1=9;//变量名字，要是叫1，那么我们的程序，难道以后，我用1就是9？多尴尬</p>
+<p>反观<br>char c=’d’;<br>char D=’c’;<br>这样的多好，原因是：<br>字符在C语言和C++中是有单引号’’围着的<br>字符串是有双引号””围着的</p>
+<p>或许，创造者在变量名取名规则的时候，首先是考虑了<br>1)大小写字母，毕竟是人家母语，要是计算机语言和母语由类似之处，多好。<br>2)数字，毕竟，阿拉伯数字享誉全球。<br>3)下划线，ummm，或许是为了今后的下划线命名法？？？疑问。。</p>
+<p>然后发现，前面那样int 1=9;这样奇怪的语句，就规则强化了</p>
+<h2 id="工程上主流的变量命名法"><a href="#工程上主流的变量命名法" class="headerlink" title="工程上主流的变量命名法"></a>工程上主流的变量命名法</h2><ul>
+<li>下划线命名法（C语言软件设计师常用）</li>
+<li>驼峰命名法（Java软件设计师常用）</li>
+<li>帕斯卡命名法</li>
+<li>匈牙利名</li>
 </ul>
-</blockquote>
-<p>实际上，int a[5]={0};属于不完全初始化，先把第一个元素初始化为0，由于初始化元素个数不够，所以剩余的元素按照规则被初始化为0，虽然都是0，但是它和后面那些0的意义不同（此0非彼0）</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//1</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">static</span> <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//1</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<h2 id="三、初始化和赋值区别："><a href="#三、初始化和赋值区别：" class="headerlink" title="三、初始化和赋值区别："></a>三、初始化和赋值区别：</h2><p>只有在数组定义时，给数组值才叫初始化<br>定义过后，再给数组值叫赋值</p>
-
+<table><tr><td bgcolor=#FFFF FF>（——————未完待续）</td></tr></table>
             </div>
             <hr/>
 
@@ -595,7 +504,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/02/C-Array-init/">https://github.com/HACV/HACV.github.io/2020/06/02/C-Array-init/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/05/29/2020-05-29-The-Rules-Of-Variable-Name/">https://github.com/HACV/HACV.github.io/2020/05/29/2020-05-29-The-Rules-Of-Variable-Name/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -633,12 +542,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/C/">
-                                    <span class="chip bg-color">C++</span>
-                                </a>
-                            
                                 <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
                                     <span class="chip bg-color">C语言</span>
+                                </a>
+                            
+                                <a href="/Tags/idea/">
+                                    <span class="chip bg-color">idea</span>
                                 </a>
                             
                         </div>
@@ -810,72 +719,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/06/03/Const-in-C-language/">
+                <a href="/2020/05/30/2020-05-30-Linear-Sort/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_03_cover.jpg" class="responsive-img" alt="详解C语言中const">
+                        <img src="/photos/2020.5.30_31/2020_5_30title.jpg" class="responsive-img" alt="线性排序">
                         
-                        <span class="card-title">详解C语言中const</span>
+                        <span class="card-title">线性排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言中const
+                            计数排序，基数排序，桶排序
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/06/01/BF-RK/">
-                    <div class="card-image">
-                        
-                        <img src="/photos/2020.5.30_31/2020_06_01_cover.png" class="responsive-img" alt="字符串匹配之BF&amp;RK">
-                        
-                        <span class="card-title">字符串匹配之BF&amp;RK</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            字符串匹配暴力和hash优化
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -891,16 +752,56 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                        <span class="chip bg-color">暴力</span>
+                    <a href="/Tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
                     </a>
                     
-                    <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                        <span class="chip bg-color">字符串匹配</span>
-                    </a>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/29/2020-05-29-Big-Endian-little-Endian/">
+                    <div class="card-image">
+                        
+                        <img src="/photos/2020.5.29/title.jpg" class="responsive-img" alt="大端和小端存储">
+                        
+                        <span class="card-title">大端和小端存储</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            格列夫游记的鸡蛋——大小端之争
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
+                                    编译器底层
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
                     
-                    <a href="/Tags/hash/">
-                        <span class="chip bg-color">hash</span>
+                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                        <span class="chip bg-color">编译器底层</span>
                     </a>
                     
                 </div>
