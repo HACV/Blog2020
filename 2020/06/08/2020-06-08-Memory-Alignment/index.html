@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言为什么没有数组下标越界检查？, HACV">
+    <meta name="keywords" content="内存对齐, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C语言为什么没有数组下标越界检查？ | HACV</title>
+    <title>内存对齐 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_07_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_08_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言为什么没有数组下标越界检查？</h1>
+                    <h1 class="description center-align post-title">内存对齐</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/idea/">
-                                <span class="chip bg-color">idea</span>
+                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">C语言</span>
+                            </a>
+                        
+                            <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                                <span class="chip bg-color">编译器底层</span>
+                            </a>
+                        
+                            <a href="/Tags/C/">
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
                     </div>
@@ -420,8 +428,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
+                                编译器底层
                             </a>
                         
                     </div>
@@ -433,7 +441,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-07
+                    2020-06-08
                 </div>
                 
 
@@ -442,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.3k
+                    2.5k
                 </div>
                 
 
@@ -454,75 +462,226 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C语言为什么没有数组下标越界检查？"><a href="#C语言为什么没有数组下标越界检查？" class="headerlink" title="C语言为什么没有数组下标越界检查？"></a>C语言为什么没有数组下标越界检查？</h1><h2 id="一、综述"><a href="#一、综述" class="headerlink" title="一、综述"></a>一、综述</h2><p>我们常常在VS中看到这样的句子：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//提醒你说，strcpy是不安全的版本，建议使用安全版的strnpy</span>
-<span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>  _Dest<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>  _Source<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strncpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>  _Dest<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>  _Source<span class="token punctuation">,</span> size_t _Count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>原因：</p>
-<blockquote>
-<ul>
-<li>C对数组的长度范围不会进行检查！当向数组越界写入数据的时候，经常产生“内存被破坏”的问题</li>
-<li>直到，操作系统发现异常并且提示Segmentation fault，或者“强制关闭异常的应用程序”。但是此时相邻变量的值已经被破坏，程序却还在继续运行，那后果就不可想象了。</li>
-</ul>
-</blockquote>
-<h2 id="二、C语言为什么不进行数组下标越界检查？"><a href="#二、C语言为什么不进行数组下标越界检查？" class="headerlink" title="二、C语言为什么不进行数组下标越界检查？"></a>二、C语言为什么不进行数组下标越界检查？</h2><p>补充背景：</p>
-<blockquote>
-<ul>
-<li>我们知道对C来说，当数组名做函数参数时，它会被解读成指针。（退化为指针，一维数组退化为一级指针，二维数组退化为二级指针）</li>
-<li>此外，我们可以利用指针的性质，控制好指针类型，即控制好<b>指针的步长</b>，我们就可以使用其他的指针变量指向数组的任意元素，并且这个指针可以随意进行加减运算。</li>
-<li>比如我们在引用一维数组<code>int a[3];</code>我们在引用数组元素的时候，写成<code>a[i]</code>和<code>*(a+i)</code>，是等效的,因为在a被解读成指针的时候，他就指向该数组的第一个元素的地址。</li>
-</ul>
-</blockquote>
-<p>原因：</p>
-<blockquote>
-<ul>
-<li>1）当你向一个函数传递数组的时候，实际上你传递的是一个指向初始元素的指针。如果这个函数还存在于其他的代码文件中（<b>另外一个编译单元</b>），那么通过编译器是不可能追踪到数组的。所以，要求C语言在<b>编译时</b>生成检查数组长度的代码，是有些强人所难的意味的.<blockquote>
-<ul>
-<li>比如，你自己在开发一个模块，到时候要是extern进别人的一个数组，而那个模块的负责人还没把那个模块完成，那你又要测试，你到时候也不知道别人用你的模块是干什么的（比如，不知道到底他会传入一个多长的数组），那么你就只能写一个接口给他，说你传入一个地址的吧，到时候我在函数中判断。</li>
-</ul>
-</blockquote>
-</li>
-<li>2）为了提高运行效率，不检查数组下表越界，程序就可以跑得快，毕竟这样我就只需要传进一个地址，并不需要再传进一些额外的描述信息。<blockquote>
-<ul>
-<li>C的数组标识符，<b>里面并没有包含该数组长度的信息，只包含地址信息</b>，所以语言本身无法检查，只能通过编译器检查。</li>
-<li>也因此，C语言才速度快，效率高。几乎所有对性能有苛刻要求的场合都使用C语言。</li>
-</ul>
-</blockquote>
-</li>
-<li>3）不检查下标还给程序员更大的空间，也为指针操作带来更多的方便。如果有这个检查的话指针的功能将会大大被削弱。</li>
-</ul>
-</blockquote>
-<p>实际上，除了某些<b>解释型的编程语言</b>之外，目前几乎没有编译器可以为我们做数组的越界检查。</p>
-<blockquote>
-<ul>
-<li>如果你在项目中需要检查边界这样的功能，你可以像下面这样模拟实现：<blockquote>
-<ul>
-<li>1）我们可以人工的像前面的安全版本的strnpy，进行额外的操作传进长度辅助就好了。</li>
-<li>2）可以考虑将指针封装成结构体那样，运行时让指针自身持有可取值范围的信息。但是这样做对性能的影响很大，同时，也丧失了非调试模式下编译后的库和指针的兼容性。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>标准C语言是不进行数组下表越界检查的。<br>但目前各种编译器对这些行为的处理不同，<br>使得这样的行为是未定义的，建议不要写这样的代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+                <h1 id="内存对齐"><a href="#内存对齐" class="headerlink" title="内存对齐"></a>内存对齐</h1><h2 id="一、引例"><a href="#一、引例" class="headerlink" title="一、引例"></a>一、引例</h2><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">struct</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>demo<span class="token punctuation">;</span>
+
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//下标越界</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>demo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//DevC++5.11编译通过，而且还输出了1</span>
-<span class="token comment" spellcheck="true">//VS2012则表示，下标越界，会报错。缓冲区“a”(大小为 24 字节)将溢出</span></code></pre>
+<span class="token comment" spellcheck="true">// 输出8不是5，表现了内存对齐</span></code></pre>
+<p>原因:<font face="楷体" color ="red" size=4>现代的计算机中，有一个内存对齐的要求</font></p>
+<h2 id="二、说明"><a href="#二、说明" class="headerlink" title="二、说明"></a>二、说明</h2><p><b>PS：现代计算机中内存空间都是按照字节划分的，所以图示中一个黑色的长条代表一个字节。</b></p>
+<p>例:有些平台<b>每次读都是从偶地址</b>开始的<br>如果一个int型（假设为32位系统）<br>1）如果他存放在<b>偶地址</b>开始的地方，那么一个CPU读的周期，就可以读出这个32bit的int</p>
+<img src="/photos/2020.6.03_15/2020_06_08_1.png" width="90%">
+
+
+<p>2）如果他存放在<b>奇地址</b>开始的地方，那么我们要是想要读取，蓝色的部分的int，我们的CPU需要读两个红色的框框。在第一个4字节块,剔除不想要的字节（0地址）,然后从地址4开始读取下一个4字节块,同样剔除不要的数据（5，6，7地址）,最后将留下的两块数据合并放入寄存器。也就是说这种情况CPU需要2个读周期，并且对两次读出的结果的高低字节进行拼凑才能得到这个32位bit的数据。<br>很显然，这个在读取的效率上下降了很多。</p>
+<img src="/photos/2020.6.03_15/2020_06_08_2.png" width="90%">
+此处肯定有疑惑
+
 <blockquote>
 <ul>
-<li>访问数组的本质是访问一段连续内存中的某个单元，只要这个单元的内存是可用的，那么程序就暂时不会崩溃，但是不立即崩溃，并不是是就完事大吉了，有时候可能真的没太大影响，但是有时候会修改到你正好要用到的数据。（所以，这种内存单元可用的，我们也不要这写，特别是在<b>多线程编程</b>的时候）</li>
-<li>更严重的，有时候数组越界正好越界到了操作系统的内存保护区域，会导致内存不可用的原因，由于操作系统的内存保护机制，程序会因此而崩溃。</li>
+<li>Q:难道就不能直接从那个奇地址开始读吗？</li>
+<li>A:理论上讲，我们对任何类型的变量的访问可以从任何奇或者偶地址开始，这样是可以的。但是，我们的硬件在设计的时候，CPU的底层访问实现的似乎就是这个，每次从偶地址开始读取。</li>
 </ul>
 </blockquote>
-<h2 id="四、防范"><a href="#四、防范" class="headerlink" title="四、防范"></a>四、防范</h2><p>为了防范这样的可能被用于缓冲区溢出攻击的语法，建议使用更加安全版本的函数。<br>比如，strcpy改用strnpy</p>
+<p>总的来说，内存对齐一般是由于以下原因：</p>
+<blockquote>
+<ul>
+<li>1）<b>平台原因（移植原因）</b>：不是所有的硬件平台都能访问任意地址上的任意数据的；某些硬件平台只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。（有的硬件的设计就是只支持从偶地址开始访问的）</li>
+<li>2）<b>性能原因（根本原因）</b>：数据结构(尤其是栈)应该尽可能地在自然边界上对齐。原因在于，为了访问未对齐的内存，处理器需要作两次内存访问（前面我们的例子就是这样）；而对齐的内存访问仅需要一次访问。<blockquote>
+<ul>
+<li>我们要提高CPU访问内存数据的<b>效率</b>的问题。</li>
+<li>计算机访问内存一般是以内存块为单位的，块的大小是地址对齐的。如4,8,16字节对齐等。</li>
+<li>一般来说对齐是跟CPU位数及CPU特性有关的，具体的比如X86-64支持1,2,4,8字节对齐.所以里面的讲的对齐主要还是取决于C语言中数据类型的大小。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h2 id="三、内存对齐规则"><a href="#三、内存对齐规则" class="headerlink" title="三、内存对齐规则"></a>三、内存对齐规则</h2><p>（写的很混乱，，，，主要看例子体会吧）<br>Tips：C语言和C++允许你用预编译来干预内存对齐,比如用<code>#pragma pack</code>来干预。<br><font face="楷体" color="red" size=4>不同平台上编译器的 <code>pragma pack</code> 默认值不同。而我们可以通过预编译命令<code>#pragma pack(n)</code>, n= 1,2,4,8,16来改变对齐系数。</font><br>现代计算机读取数据的时候，都是一次性读取一个内存块，比如4字节。（更准确来说是与数据线根数有关）</p>
+<table><td bgcolor=#FFFF FF>一般<b>内存块</b>对齐方式：32位机器默认4字节对齐，64位机器默认8字节对齐</td></table>
+
+
+
+<blockquote>
+<ul>
+<li>规则1：<b>基本类型</b>的对齐值就是其sizeof获得值;（我们在进行基本类型对齐的同时，我们要尽量保证每个变量整体能放到1个或者2个内存块当中，并且要尽可能的小。（也就是能放在1个内存块，绝不放2个，否则会降低效率——比如先前图片中int放的位置。）</li>
+<li>规则2：<b>结构(struct)和联合(union))的数据成员</b>对齐规则：第一个数据成员放在<b>offset（偏移量）</b>为0的地方。<blockquote>
+<ul>
+<li>1—<b>未改变默认规定对齐值</b>，则按照32位机器默认4字节对齐，64位机器默认8字节对齐。意思，就是要说结构体不满4字节（64位机器是8字节对齐），那么我们就要给他弄成这么多。</li>
+<li>2—<b>修改了默认规定对齐值</b>，比如<code>#pragma pack</code>，那么<b>每个数据成员</b>的对齐按照<code>#pragma pack</code>指定的数值和这个数据成员sizeof的值中<b>小</b>的那个进行对齐。</li>
+</ul>
+</blockquote>
+</li>
+<li>规则3：<b>结构和联合整体</b>对齐规则：在数据成员完成各自对齐之后，结构和联合本身也要进行对齐。<blockquote>
+<ul>
+<li>1—<b>未改变默认规定对齐值</b>，对齐将按照结构或联合整体sizeof和默认的机器字节对齐中，比较小的那个进行;</li>
+<li>2—<b>修改了默认规定对齐值</b>，比如<code>#pragma pack</code>，对齐将按照<code>#pragma pack</code>指定的数值和结构(或联合)sizeof获得值中<b>小</b>的那个进行;</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h2 id="四、规则的应用"><a href="#四、规则的应用" class="headerlink" title="四、规则的应用"></a>四、规则的应用</h2><p>例1（规则1的应用）</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> a<span class="token operator">=</span><span class="token string">'a'</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> b<span class="token operator">=</span><span class="token string">'b'</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> c<span class="token operator">=</span><span class="token string">'c'</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> d<span class="token operator">=</span><span class="token string">'d'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">char</span> e<span class="token operator">=</span><span class="token string">'e'</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> num<span class="token operator">=</span><span class="token number">9</span><span class="token punctuation">;</span> 
+    <span class="token keyword">char</span> f<span class="token operator">=</span><span class="token string">'f'</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>f<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//本程序在32位的编译环境测试的</span>
+<span class="token comment" spellcheck="true">//62feaf</span>
+<span class="token comment" spellcheck="true">//62feae</span>
+<span class="token comment" spellcheck="true">//62fead</span>
+<span class="token comment" spellcheck="true">//62feac</span>
+<span class="token comment" spellcheck="true">//显然，上面按照变量在内存中栈的生长方向，是一个挨着一个放的，</span>
+<span class="token comment" spellcheck="true">//而且char基本数据也符合1字节对齐（规则1）。</span>
+
+<span class="token comment" spellcheck="true">//62feab</span>
+<span class="token comment" spellcheck="true">//62fea0</span>
+
+<span class="token comment" spellcheck="true">//从62feab按照常理应该是隔着（62fea省略）a 9 8 7 6 5 4 3八个字节，</span>
+<span class="token comment" spellcheck="true">//也就是说最后赢输出62fea3而不是62fea0</span>
+<span class="token comment" spellcheck="true">//那么，其中的那个多余的a 9 8三个字节的没有被利用，这就是被编译器进行了内存对齐，</span>
+<span class="token comment" spellcheck="true">//为了访问数据方便</span>
+<span class="token comment" spellcheck="true">//因为这样的话，前面那字符e和这3个字节也就能凑齐4个字节了。（规则1）</span>
+
+<span class="token comment" spellcheck="true">//62fe9f</span></code></pre>
+<p>例2（规则2和3的应用）：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">struct</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> c1<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> c2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>demo1<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span><span class="token punctuation">{</span>
+    <span class="token keyword">char</span> c1<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> c2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>demo2<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span><span class="token punctuation">{</span>
+    <span class="token keyword">char</span> c1<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> c2<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>demo3<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>demo1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>demo2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>demo3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//sizeof(c1)=1&lt;=4(32位系统默认的内存块对齐)</span>
+<span class="token comment" spellcheck="true">//sizeof(i)=4&lt;=4</span>
+<span class="token comment" spellcheck="true">//sizeof(c2)=1&lt;=4</span>
+<span class="token comment" spellcheck="true">//本程序在32位的编译环境测试的</span>
+<span class="token comment" spellcheck="true">//8    </span>
+<span class="token comment" spellcheck="true">//第一个内存块（4个字节大小）正好可以放进int(占用offset=0-3),然后两个char分别(</span>
+<span class="token comment" spellcheck="true">//占用offset=4和5)，根据规则3，整体要进行4字节对齐，所以，offset=6-7，我结构体也要占领，</span>
+<span class="token comment" spellcheck="true">//虽然我也不用他，但就是不能给别人去占用。</span>
+<span class="token comment" spellcheck="true">//12    </span>
+<span class="token comment" spellcheck="true">//第一个内存块（4个字节大小）可以放进c1(占用offset=0),现在又要放int，</span>
+<span class="token comment" spellcheck="true">//为了效率放(占用offset=4-7),下面又放char(占用offset=8),这样，我们目前占</span>
+<span class="token comment" spellcheck="true">//用了9个字节。但是呢，根据规则3，整体要进行4字节对齐，所以，offset=9-11，</span>
+<span class="token comment" spellcheck="true">//我结构体也要占领，虽然我也不用他，但就是不能给别人去占用。</span>
+<span class="token comment" spellcheck="true">//8        </span>
+<span class="token comment" spellcheck="true">//因为第一个内存块（4个字节大小）可以放进c1(占用offset=0),c2(占用offset=1),</span>
+<span class="token comment" spellcheck="true">//但是后面发现我要是再放进一个int类型的前2个字节，那我以后CPU访问就要访问这个</span>
+<span class="token comment" spellcheck="true">//内存块和下一个内存块，太没效率了。所以，我们将offset=2,3都空着，不用了。</span>
+<span class="token comment" spellcheck="true">//我们将int放在下一个内存块中（4个字节大小），正好占用offset=4-7</span>
+
+<span class="token comment" spellcheck="true">//所以整体用了2个内存块大小，也就是4*2=8字节</span></code></pre>
+<p>例3：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> test
+<span class="token punctuation">{</span> 
+    <span class="token keyword">int</span> ml<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> m2<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> m3<span class="token punctuation">;</span>
+    <span class="token keyword">union</span> uu
+    <span class="token punctuation">{</span>
+        <span class="token keyword">char</span> ul<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> u2<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> ua<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> myaa<span class="token punctuation">;</span>
+
+问<span class="token number">32</span>位机器下<span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">struct</span> test <span class="token punctuation">)</span>
+答：<span class="token number">20</span></code></pre>
+<p>解释：根据联合体的内存共用机制，显然union整体占用8个字节<br>int m1  4个<br>char m2 1个<br>float m3 4个<br>按照规则2和3，我们要按照默认的4字节对齐来对这些在结构体中重排列<br>m1  offset=0-3<br>m2    offset=4<br>offset=5-7不用，但是占领<br>m3    offset=8-11<br>union    offset=12-19<br>总共，占用5个内存块，一个20个字节。</p>
+<p>例4：</p>
+<pre class=" language-c"><code class="language-c">以下代码打印的结果是（假设运行在 <span class="token number">64</span> 位计算机上）：
+<span class="token keyword">struct</span> st_t <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> status<span class="token punctuation">;</span>
+    <span class="token keyword">short</span> <span class="token operator">*</span>pdata<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> errstr<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+st_t st<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span>st<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>esstr<span class="token operator">+</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span>“<span class="token operator">%</span>d”<span class="token punctuation">,</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//题目来自——牛客网</span></code></pre>
+<p>//上面这道题，我们暂时不分析最后的结果，我们只分析在64位的机器下的这个结构体占用的字节。</p>
+<table><td bgcolor=#FFFF FF>
+<b>因为是64位环境下，所以默认对齐方式是8字节为一个内存块</b></td></table>
+
+<p><code>int status;</code>虽然int只占用4个 由于后面的指针八个字节放不下 填补不了空位 所以对其要八个字节(后面的4个为对齐位）<br><code>short *pdata;</code>这个指针会占用8个字节<br><code>char errstr[32];</code> 占用32个字节<br>所以一共占用 8+8+32=48个字节<br><code>char *p=(char *)(st[2].esstr+32)</code>，p实际指向了st[3]<br>则<code>p-(char *)(st))</code>，即为<code>&amp;st[3]-&amp;st[0]</code>,占用空间为3个结构体的大小，即3*48=14</p>
+<p>例题5：（分析下面在32位编译环境的程序）</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">pragma</span> pack(2)</span>
+
+<span class="token comment" spellcheck="true">//要是不加#pragma pack(2)，则是默认4字节对齐，我们其实可以看做#pragma pack(4)</span>
+<span class="token keyword">struct</span><span class="token punctuation">{</span>
+    <span class="token keyword">char</span> c1<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> c2<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>demo<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>demo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//输出为6   //因为加了#pragma pack(2)，根据规则2可以知道也是6</span></code></pre>
+<p>例6：（可能嵌入式和网络编程中会用到这种用法：位段（也叫位域）一种特殊的类结构体语法）</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">struct</span> 
+<span class="token punctuation">{</span>
+   <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">8</span><span class="token punctuation">;</span>
+   <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>
+   <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>ab<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>ab<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//输出4</span></code></pre>
 
             </div>
             <hr/>
@@ -548,7 +707,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/07/2020_06_07_C_check_array_bounds/">https://github.com/HACV/HACV.github.io/2020/06/07/2020_06_07_C_check_array_bounds/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/08/2020-06-08-Memory-Alignment/">https://github.com/HACV/HACV.github.io/2020/06/08/2020-06-08-Memory-Alignment/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,8 +745,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/idea/">
-                                    <span class="chip bg-color">idea</span>
+                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">C语言</span>
+                                </a>
+                            
+                                <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                                    <span class="chip bg-color">编译器底层</span>
+                                </a>
+                            
+                                <a href="/Tags/C/">
+                                    <span class="chip bg-color">C++</span>
                                 </a>
                             
                         </div>
@@ -755,9 +922,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/06/08/2020-06-08-Memory-Alignment/">
                     <div class="card-image">
@@ -774,9 +942,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -789,6 +957,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -815,23 +984,23 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/06/2020-06-06-The-development-of-C-language-standard/">
+                <a href="/2020/06/07/2020_06_07_C_check_array_bounds/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_06_cover.jpg" class="responsive-img" alt="C语言标准的发展进程">
+                        <img src="/photos/2020.6.03_15/2020_06_07_cover.jpg" class="responsive-img" alt="C语言为什么没有数组下标越界检查？">
                         
-                        <span class="card-title">C语言标准的发展进程</span>
+                        <span class="card-title">C语言为什么没有数组下标越界检查？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言标准的发展进程
+                            C语言不进行数组下标越界检查的一些注意点
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-07
                             </span>
                         <span class="publish-author">
                             
@@ -848,8 +1017,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
+                    <a href="/Tags/idea/">
+                        <span class="chip bg-color">idea</span>
                     </a>
                     
                 </div>
