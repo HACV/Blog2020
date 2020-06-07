@@ -463,7 +463,7 @@
 <ul>
 <li>记忆一些特定的优先级和结合性，能够帮助从编译器角度来快速识别多级指针和数组指针和函数指针判定指针类型。</li>
 <li>某些项目的遗留代码中有一些编程风格不好的片段，总是不写括号，遇到就需要查书，对研究别人代码，有一定影响。记忆优先级和结合性，能够降低开发中重构已有代码的难度。</li>
-<li>有的相关试题中，有考优先级的题目的存在。(考优先级不是目的，而是为了解决那些风格不好的遗留代码)</li>
+<li>有的相关试题中，有考优先级的题目的存在。（考优先级不是目的，而是为了解决那些风格不好的遗留代码）</li>
 <li>由于编译器语法分析阶段的设计原理，其他语言的优先级也可以在此基础上记忆。<blockquote>
 <ul>
 <li>C语言的优先级，再添加上一些C++本身的运算符，则很容易转换到记忆C++的优先级</li>
@@ -491,7 +491,7 @@
 
 <p>除以上规则以外,还有一点。<br>标准的C语言编译器对运算符的解析遵循“最大贪婪”规则。</p>
 <h2 id="“最大贪婪”规则"><a href="#“最大贪婪”规则" class="headerlink" title="“最大贪婪”规则"></a><strong>“最大贪婪”规则</strong></h2><p>当C语言编译器对源程序进行词法分析时，如果运算符的下一个符号还是运算符，并且能和前一个运算符构成一个新的合法运算符时，编译器的词法分析器必须将其解析为两个运算符符号构成的新的运算符。</p>
-<p>举一个没太大实际意义的例子来辅证，例如: x=z+++y;<br>是按照x=z+(++y);来计算，还是按照x=(z++)+y;来计算呢?<br>根据C编译器的“最大贪婪”规则,是按照x=(z++)+y;来计算，而不是按照x=z+(++y)来计算<br>可以验证</p>
+<p>举一个没太大实际意义的例子来辅证，例如: x=z+++y;<br>是按照x=z+（++y）;来计算，还是按照x=（z++）+y;来计算呢?<br>根据C编译器的“最大贪婪”规则,是按照x=（z++）+y;来计算，而不是按照x=z+（++y）来计算<br>可以验证</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> z<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> x<span class="token punctuation">;</span>
 x<span class="token operator">=</span>z<span class="token operator">++</span><span class="token operator">+</span>y<span class="token punctuation">;</span>
