@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>位段__一种特殊的结构体</title>
+      <link href="/2020/06/09/2020-06-09-Bit-Segment/"/>
+      <url>/2020/06/09/2020-06-09-Bit-Segment/</url>
+      
+        <content type="html"><![CDATA[<h1 id="位段（也叫位域）"><a href="#位段（也叫位域）" class="headerlink" title="位段（也叫位域）"></a>位段（也叫位域）</h1><h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>我们在做单片机的时候。微控制单元（Microcontroller Unit；MCU），又称单片微型计算机（Single Chip Microcomputer ）或者单片机。<br>经常会告诉你第几个比特是什么什么叫停止比特啥的。<br>如何操作呢？后面的数字是说，这个成员占几个比特。<br>其实这种手法在C语言中的实现就可以用我们现在要讲的位段方式。当然，位段并不是这些偏底层的程序实现的唯一应用场景，我们还能将这些用于网络通信等。</p><h2 id="二、语法"><a href="#二、语法" class="headerlink" title="二、语法"></a>二、语法</h2><pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> test    <span class="token punctuation">{</span>        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>        <span class="token keyword">int</span> tt<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>demo<span class="token punctuation">;</span></code></pre><p>特点：<br>编译器会安排其中的位的排列，不具有可移植性<br>当所需的位超过一个int时会采用多个int</p><h2 id="三、位段的特点和内存对齐"><a href="#三、位段的特点和内存对齐" class="headerlink" title="三、位段的特点和内存对齐"></a>三、位段的特点和内存对齐</h2><p>对于位域的定义，有以下几点说明：</p><blockquote><ul><li>（1）一个位域必须存储在同一个字节中，不能跨两个字节。如一个字节所剩空间不够存放另一位域时，应从下一单元起存放该位域。也可以有意使某位域从下一单元开始。</li></ul></blockquote><pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wy<span class="token punctuation">{</span>   <span class="token keyword">unsigned</span> a<span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">;</span>   <span class="token keyword">unsigned</span> <span class="token number">0</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//空域</span>   <span class="token keyword">unsigned</span> b<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//从一单元开始存放</span>   <span class="token keyword">unsigned</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment" spellcheck="true">//在这个位域定义中，a占第一字节的6位，后2位填0表示不使用，</span><span class="token comment" spellcheck="true">//b从第二字节开始，占用4位，c占用4位。</span></code></pre><blockquote><ul><li>（2）由于位域不允许跨两个字节，因此位域的长度不能大于一个字节的长度，也就是不能超过8位二进位。</li><li>（3）位域可以无位域名，这时它只用来填充或调整位置。无名的位域是不能使用的。</li></ul></blockquote><pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wk<span class="token punctuation">{</span>   <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>   <span class="token keyword">int</span> <span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//不能使用</span>   <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">;</span>   <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>从以上述分析可以看出，位域可以看做是一种结构类型，其特点是成员均<b>按二进位分配</b>    。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C语言 </tag>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>内存对齐</title>
       <link href="/2020/06/08/2020-06-08-Memory-Alignment/"/>
       <url>/2020/06/08/2020-06-08-Memory-Alignment/</url>

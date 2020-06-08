@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="字符串匹配之BF&amp;RK, HACV">
+    <meta name="keywords" content="位段__一种特殊的结构体, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>字符串匹配之BF&amp;RK | HACV</title>
+    <title>位段__一种特殊的结构体 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_06_01_cover.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://github.com/HACV/Blog_Gallery/blob/master/Cover_photo/01.Scenery/008.jpg?raw=true')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">字符串匹配之BF&amp;RK</h1>
+                    <h1 class="description center-align post-title">位段__一种特殊的结构体</h1>
                 </div>
             </div>
         </div>
@@ -408,16 +408,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                                <span class="chip bg-color">暴力</span>
+                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">C语言</span>
                             </a>
                         
-                            <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                                <span class="chip bg-color">字符串匹配</span>
-                            </a>
-                        
-                            <a href="/Tags/hash/">
-                                <span class="chip bg-color">hash</span>
+                            <a href="/Tags/C/">
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
                     </div>
@@ -428,8 +424,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                编程语言
                             </a>
                         
                     </div>
@@ -441,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-01
+                    2020-06-09
                 </div>
                 
 
@@ -450,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    501
                 </div>
                 
 
@@ -462,115 +458,44 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="字符串匹配算法预告"><a href="#字符串匹配算法预告" class="headerlink" title="字符串匹配算法预告"></a><font face="楷体">字符串匹配算法预告</font></h1><blockquote>
+                <h1 id="位段（也叫位域）"><a href="#位段（也叫位域）" class="headerlink" title="位段（也叫位域）"></a>位段（也叫位域）</h1><h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>我们在做单片机的时候。微控制单元（Microcontroller Unit；MCU），又称单片微型计算机（Single Chip Microcomputer ）或者单片机。<br>经常会告诉你第几个比特是什么什么叫停止比特啥的。<br>如何操作呢？后面的数字是说，这个成员占几个比特。<br>其实这种手法在C语言中的实现就可以用我们现在要讲的位段方式。当然，位段并不是这些偏底层的程序实现的唯一应用场景，我们还能将这些用于网络通信等。</p>
+<h2 id="二、语法"><a href="#二、语法" class="headerlink" title="二、语法"></a>二、语法</h2><pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> test
+    <span class="token punctuation">{</span>
+        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> tt<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>demo<span class="token punctuation">;</span></code></pre>
+<p>特点：<br>编译器会安排其中的位的排列，不具有可移植性<br>当所需的位超过一个int时会采用多个int</p>
+<h2 id="三、位段的特点和内存对齐"><a href="#三、位段的特点和内存对齐" class="headerlink" title="三、位段的特点和内存对齐"></a>三、位段的特点和内存对齐</h2><p>对于位域的定义，有以下几点说明：</p>
+<blockquote>
 <ul>
-<li><font face="楷体" color=red size=5>单模式串匹配算法</font><blockquote>
-<ul>
-<li><b>BF算法</b>（Brute Force 的缩写，也叫暴力匹配算法，朴素匹配算法)<blockquote>
-<ul>
-<li>Brute adj. 蛮干不动脑筋的</li>
+<li>（1）一个位域必须存储在同一个字节中，不能跨两个字节。如一个字节所剩空间不够存放另一位域时，应从下一单元起存放该位域。也可以有意使某位域从下一单元开始。</li>
 </ul>
 </blockquote>
-</li>
-<li><b>RK算法</b>（Rabin-Karp 算法）<blockquote>
-<ul>
-<li>由它的两位发明者 Rabin 和 Karp 的名字来命名的</li>
-</ul>
-</blockquote>
-</li>
-<li><b>BM算法</b>（Boyer-Moore 算法）<blockquote>
-<ul>
-<li>它是一种非常高效的字符串匹配算法，有实验统计，它的性能是著名的KMP 算法的3到4倍。</li>
-</ul>
-</blockquote>
-</li>
-<li><b>KMP算法</b></li>
-</ul>
-</blockquote>
-</li>
-<li><font face="楷体" color=red size=5>多模式串匹配算法</font><blockquote>
-<ul>
-<li><b>Trie树</b>，（又称前缀树，字典树，单词查找树）<blockquote>
-<ul>
-<li>Trie这个术语来自于retrieval根据词源学, trie的发明者Edward Fredkin把它读作/‘tri:/ “tree”。但是 ,其他作者把它读作/‘tra1/ “try”。</li>
-</ul>
-</blockquote>
-</li>
-<li><b>AC自动机算法</b>（Aho–Corasick算法）是由Alfred V.Aho和Margaret J.Corasick 发明的<blockquote>
-<ul>
-<li>其实，Trie树跟AC自动机之间的关系，就像单模式串匹配中朴素的串匹配算法，跟KMP 算法之间的关系一样，只不过前者针对的是多模式串而已。所以，AC自动机实际上就是在Trie树之上，加了类似KMP的next数组，只不过此处的next数组是构建在树上罢了。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<p><b>单模式串匹配的算法</b><br>也就是一个串和一个串进行匹配<br><b>多模式串匹配的算法</b><br>是在一个串中同时查找多个串</p>
-<h2 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h2><p>一顿暴力，直接贴代码</p>
-<p>//指针做输入，const修饰避免改动。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">BF</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>text <span class="token comment" spellcheck="true">/*in*/</span> <span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pattern <span class="token comment" spellcheck="true">/*in*/</span> <span class="token punctuation">)</span>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wy
 <span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token operator">==</span>text<span class="token punctuation">)</span><span class="token operator">||</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token operator">==</span>pattern<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//非法输入</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">int</span> pos<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//位置 </span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token string">'\0'</span><span class="token operator">!=</span>text<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> i<span class="token operator">=</span>pos<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//text回溯 </span>
-        <span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//pattern回溯 </span>
-        <span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//已经匹配字符长度</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token string">'\0'</span><span class="token operator">!=</span>pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>text<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>pattern<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token operator">++</span>sum<span class="token punctuation">;</span>
-                <span class="token operator">++</span>j<span class="token punctuation">;</span>
-                <span class="token operator">++</span>i<span class="token punctuation">;</span> 
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">if</span><span class="token punctuation">(</span>sum<span class="token operator">==</span><span class="token function">strlen</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> pos<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token operator">++</span>pos<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//匹配失败    </span>
+   <span class="token keyword">unsigned</span> a<span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">;</span>
+   <span class="token keyword">unsigned</span> <span class="token number">0</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//空域</span>
+   <span class="token keyword">unsigned</span> b<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//从一单元开始存放</span>
+   <span class="token keyword">unsigned</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//在这个位域定义中，a占第一字节的6位，后2位填0表示不使用，</span>
+<span class="token comment" spellcheck="true">//b从第二字节开始，占用4位，c占用4位。</span></code></pre>
+<blockquote>
+<ul>
+<li>（2）由于位域不允许跨两个字节，因此位域的长度不能大于一个字节的长度，也就是不能超过8位二进位。</li>
+<li>（3）位域可以无位域名，这时它只用来填充或调整位置。无名的位域是不能使用的。</li>
+</ul>
+</blockquote>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wk
+<span class="token punctuation">{</span>
+   <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
+   <span class="token keyword">int</span> <span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//不能使用</span>
+   <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">;</span>
+   <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>分析BF算法：</p>
-<blockquote>
-<ul>
-<li>时间复杂度$O(n*m)$</li>
-<li>空间复杂度$O(1)$</li>
-</ul>
-</blockquote>
-<p>其他补充：</p>
-<blockquote>
-<ul>
-<li>尽管理论上，BF算法的时间复杂度很高，但在实际的开发中，它却是一个比较常用的字符串匹配算法：<blockquote>
-<ul>
-<li>1.实际的软件开发中，大部分情况下，模式串和主串的长度都不会太长。而且每次模式串与主串中的子串匹配的时候，当中途遇到不能匹配的字符的时候，就可以就停止了，不需要把m个字符都比对一下。所以，尽管理论上的最坏情况时间复杂度大，但是，统计意义上，大部分情况下，算法执行效率要比这个高很多。</li>
-<li>2.BF算法思想简单，代码实现也非常简单。简单意味着不容易出错，如果有bug 也容易暴露和修复。<b>在工程中，在满足性能要求的前提下，简单是首选。</b>这也是我们常说的<b>KISS（Keep it Simple and Stupid）设计原则</b>。所以，在实际的软件开发中，绝大部分情况下，BF算法就够用了</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h2 id="RK算法"><a href="#RK算法" class="headerlink" title="RK算法"></a>RK算法</h2><p><b>联系</b>：RK算法是BF算法的改进，它巧妙借助了我们前面讲过的哈希算法，引入<font face="楷体" color=red size=5>哈希算法</font>，时间复杂度立刻就会降低。<br><b>难点</b>：设计一个可以应对各种类型字符的哈希算法并不简单</p>
-<p><b>思路</b>:我们通过哈希算法对主串中的n-m+1个子串分别求哈希值，然后逐个与模式串的哈希值比较大小。如果某个子串的哈希值与模式串相等，那就说明对应的子串和模式串匹配了（当然我们需要考虑哈希冲突的问题）。比较哈希值是非常快速的，所以效率提高了。<br>不过这又<b>引入一个问题</b>：通过哈希算法计算子串的哈希值的时候，我们需要遍历子串中的每个字符。尽管模式串与子串比较的效率提高了，但是，算法整体的效率并没有提高。有没有方法可以提高哈希算法计算子串哈希值的效率？<br><b>哈希算法设计技巧</b>：我们假设要匹配的字符串的字符集中只包含K个字符，我们可以用一个K进制数来表示一个子串，这个K进制数转化成十进制数，作为子串的哈希值。</p>
-<p><b>没有冲突的哈希</b>：我们只需要比较一下模式串和子串的哈希值<br><b>有冲突的哈希</b>：当存在哈希冲突的时候，有可能存在这样的情况，子串和模式串的哈希值虽然是相同的，但是两者本身并不匹配。解决方法很简单。当我们发现一个子串的哈希值跟模式串的哈希值相等的时候，我们只<br>需要再对比一下子串和模式串本身就好了。<br>当然，如果子串的哈希值与模式串的哈希值不相等，那对应的子串和模式串肯定也是不匹配的，就不需要比对子串和模式串本身了。</p>
-<p>总结：哈希算法的冲突概率要相对控制得低一些，如果存在大量冲突，就会导致 RK 算法的时间<br>复杂度退化，效率下降。极端情况下，如果存在大量的冲突，每次都要再对比子串和模式串本<br>身，那时间复杂度就会退化成$O(n*m)$</p>
-<p><b>但一般情况下，冲突不会很多，RK 算法的效率还是比 BF 算法高的。</b></p>
+<p>从以上述分析可以看出，位域可以看做是一种结构类型，其特点是成员均<b>按二进位分配</b>    。</p>
 
             </div>
             <hr/>
@@ -596,7 +521,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/01/2020-06-01-BF-RK/">https://github.com/HACV/HACV.github.io/2020/06/01/2020-06-01-BF-RK/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/09/2020-06-09-Bit-Segment/">https://github.com/HACV/HACV.github.io/2020/06/09/2020-06-09-Bit-Segment/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -634,16 +559,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                                    <span class="chip bg-color">暴力</span>
+                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">C语言</span>
                                 </a>
                             
-                                <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                                    <span class="chip bg-color">字符串匹配</span>
-                                </a>
-                            
-                                <a href="/Tags/hash/">
-                                    <span class="chip bg-color">hash</span>
+                                <a href="/Tags/C/">
+                                    <span class="chip bg-color">C++</span>
                                 </a>
                             
                         </div>
@@ -811,28 +732,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/02/2020-06-02-C-Array-init/">
+                <a href="/2020/06/09/2020-06-09-Bit-Segment/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_06_02_cover.jpg" class="responsive-img" alt="数组的初始化">
+                        <img src="https://github.com/HACV/Blog_Gallery/blob/master/Cover_photo/01.Scenery/008.jpg?raw=true" class="responsive-img" alt="位段__一种特殊的结构体">
                         
-                        <span class="card-title">数组的初始化</span>
+                        <span class="card-title">位段__一种特殊的结构体</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            细说C语言和C++中数组的初始化
+                            Bit_Segment
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -845,6 +767,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -867,30 +790,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/31/2020-05-31-Cplusplus-const/">
+                <a href="/2020/06/08/2020-06-08-Memory-Alignment/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_5_31title.jpg" class="responsive-img" alt="C++的const底层机制">
+                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="内存对齐">
                         
-                        <span class="card-title">C++的const底层机制</span>
+                        <span class="card-title">内存对齐</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++对C的const关键字增强的底层机制
+                            C语言和C++中内存对齐
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
+                                    编译器底层
                                 </a>
                             
                             
@@ -899,6 +822,14 @@
                 </div>
                 
                 <div class="card-action article-tags">
+                    
+                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
+                    </a>
+                    
+                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                        <span class="chip bg-color">编译器底层</span>
+                    </a>
                     
                     <a href="/Tags/C/">
                         <span class="chip bg-color">C++</span>
