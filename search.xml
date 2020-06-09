@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>共用体（联合）</title>
+      <link href="/2020/06/10/2020-06-10-Union/"/>
+      <url>/2020/06/10/2020-06-10-Union/</url>
+      
+        <content type="html"><![CDATA[<h1 id="共用体（联合）"><a href="#共用体（联合）" class="headerlink" title="共用体（联合）"></a>共用体（联合）</h1><h2 id="一、union"><a href="#一、union" class="headerlink" title="一、union"></a>一、union</h2><p>union中文翻译为“联合”（又称共用体）</p><blockquote><ul><li>吐槽——没事取这么多名字干啥……（好吧，其实是翻译，每个人有自己的翻译方式）<blockquote><ul><li>个人倾向于用共用体的名字，因为union共用内存的特点从名字就能直观的看出来，但是也有书上写成联合，所以，我也从各种地方搜集，发现一个还算说过过去的说明，叫“联合”显示union特点的解释。</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>联合：大家联合起来使用同一个空间</li></ul></blockquote><h2 id="二、union的特点"><a href="#二、union的特点" class="headerlink" title="二、union的特点"></a>二、union的特点</h2><p><b>特点</b>：使用同一个空间。（tips：共用体也有内存对齐！）<br>你用了，我就不能用了（除非你想使坏，把前面别人要用的给覆盖掉）。</p><p>PS:共用体，其实表明了计算机学科一个很重要的性质，那就是，其实数据都是0和1，至于为什么后面会有字符型，整型，图片，音频什么的，完全是对这些比特位的解释的不用导致的情况，所以，同样比特的可以解释是1首歌，也可以解释是一张图片（当然，需要你解释这些比特的算法正确）。</p><h2 id="三、常用场景"><a href="#三、常用场景" class="headerlink" title="三、常用场景"></a>三、常用场景</h2><blockquote><ul><li>1）这么节省内存，那嵌入式必须首先用起（要是两个不会同时使用的话。）</li><li>2）网络传输：通信中的数据包会用到共用体，因为不知道对方会发送一个什么过来，用共用体就简单了，定义几种格式的包，收到包之后就可以直接根据包的格式取出数据。</li></ul></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C语言 </tag>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>位段__一种特殊的结构体</title>
       <link href="/2020/06/09/2020-06-09-Bit-Segment/"/>
       <url>/2020/06/09/2020-06-09-Bit-Segment/</url>
