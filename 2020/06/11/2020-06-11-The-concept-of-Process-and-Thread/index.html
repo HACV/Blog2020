@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数组的初始化, HACV">
+    <meta name="keywords" content="进程、线程杂谈, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数组的初始化 | HACV</title>
+    <title>进程、线程杂谈 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_06_02_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_11_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数组的初始化</h1>
+                    <h1 class="description center-align post-title">进程、线程杂谈</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">C语言</span>
-                            </a>
-                        
-                            <a href="/Tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/Tags/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
+                                <span class="chip bg-color">进程和线程</span>
                             </a>
                         
                     </div>
@@ -424,8 +420,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                操作系统
                             </a>
                         
                     </div>
@@ -437,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-02
+                    2020-06-11
                 </div>
                 
 
@@ -446,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    666
+                    1.6k
                 </div>
                 
 
@@ -458,118 +454,113 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数组的不完全初始化"><a href="#数组的不完全初始化" class="headerlink" title="数组的不完全初始化"></a>数组的不完全初始化</h1><h2 id="一、问题由来"><a href="#一、问题由来" class="headerlink" title="一、问题由来"></a>一、问题由来</h2><pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span> 把数组全部初始化为<span class="token number">0</span>
-<span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span> 把数组全部初始化为<span class="token number">1</span>，为什么却失败了呢？</code></pre>
-<h2 id="二、数组的几种初始化方式"><a href="#二、数组的几种初始化方式" class="headerlink" title="二、数组的几种初始化方式"></a>二、数组的几种初始化方式</h2><p>1）完全初始化（$completely initialized$）给每个元素初始化<br>int a[5]={0,1,2,3,4};<br>int a[]={1,2,3};</p>
-<p>2）完全不初始化（$uninitialized$）<br>int a[5];<br>注意：<br>不进行显式初始化的情况下：</p>
-<blockquote>
+                <h1 id="进程和线程中的同步机制"><a href="#进程和线程中的同步机制" class="headerlink" title="进程和线程中的同步机制"></a>进程和线程中的同步机制</h1><p><b>进程</b>是<b>资源管理</b>的最小单位<br><b>线程</b>是<b>程序执行</b>的最小单位。<br>记忆方法：<br><font style="background: yellow">大Boss（进程），只管拿着资源统筹兼顾。<br>小兵（线程），要卖力执行命令。</font></p>
+<h2 id="一、进程和线程在两大操作系统的特点"><a href="#一、进程和线程在两大操作系统的特点" class="headerlink" title="一、进程和线程在两大操作系统的特点"></a>一、进程和线程在两大操作系统的特点</h2><blockquote>
 <ul>
-<li><b>未初始化的</b>全局变量以及静态变量的初始均为0（因为他们都存在.bss段，默认初始化为0）</li>
-<li><b>未初始化的</b>局部变量（自动变量）随机（其实也不叫随机，要是你能够精确的设计上一个释放这块内存的地方存了什么值，你就能自行控制，局部变量处于栈区，其数值是当时内存中的值。）</li>
+<li>Windows对进程和线程的实现如同教科书一般标准。<blockquote>
+<ul>
+<li><font style="background: yellow">Windows内核中有明确的<b>进程</b>和<b>线程</b>的概念</font></li>
 </ul>
 </blockquote>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:(不确定的)</span>
-<span class="token comment" spellcheck="true">//6487736</span>
-<span class="token comment" spellcheck="true">//4202350</span>
-<span class="token comment" spellcheck="true">//4202256</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//29</span></code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">static</span> <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<p>3）不完全初始化（$partly initialized$）（即：部分初始化）<br>int a[5]={0,1,2};<br>K&amp;R C语言中是这样阐述：</p>
-<blockquote>
+</li>
+<li>Linux内核中<b>并不存在真正意义上</b>的<b>线程</b>的概念<blockquote>
 <ul>
-<li><b>如果初始化表达式的个数比数组元素数少，则对外部变量，静态变量和自动变量来说，没有初始化表达式的元素将被初始化为0。</b>（至于为什么是初始化为0而不是其他的，原因是.bss的实现机制）</li>
-<li>如果初始化表达式的个数比数组元素数多,则是错误的。<br>所以，上面数组，前三个元素被初始化为0，1，2，后两个元素被初始化为0。</li>
+<li>Linux将所有的执行实体（无论是进程还是线程）都称为<font style="background: yellow"><b>任务（Task）</b></font></li>
+<li><b>每个Task概念上都类似于一个单线程的进程</b>，具有内存空间、执行实体、文件资源等。</li>
+<li>不过,<b>Linux下不同的任务之间可以选择共享内存空间</b>，因而在实际意义上，共享了同一个内存空间的多个任务构成了一个进程， 这些任务也就成了这个进程里的线程。<blockquote>
+<ul>
+<li>Linux下的线程本质上用进程实现;（题目）</li>
 </ul>
 </blockquote>
-<p>实际上，int a[5]={0};属于不完全初始化，先把第一个元素初始化为0，由于初始化元素个数不够，所以剩余的元素按照规则被初始化为0，虽然都是0，但是它和后面那些0的意义不同（此0非彼0）</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//1</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-    <span class="token keyword">static</span> <span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5</span> <span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span> <span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//output:</span>
-<span class="token comment" spellcheck="true">//1</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span></code></pre>
-<h2 id="三、初始化和赋值区别："><a href="#三、初始化和赋值区别：" class="headerlink" title="三、初始化和赋值区别："></a>三、初始化和赋值区别：</h2><p>只有在数组定义时，给数组值才叫初始化<br>定义过后，再给数组值叫赋值</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h2 id="二、线程安全"><a href="#二、线程安全" class="headerlink" title="二、线程安全"></a>二、线程安全</h2><p><font color="red" size=5>（记得到时候加上代码）</font><br>为了避免多个线程同时读写同一个数据而产生不可预料的后果,我们需要将各个线程对同一个数据的访问同步(Synchronization)。<br>所谓同步，既是指在一个线程访问数据未结束的时候，其他线程不得对同一个数据进行访问。</p>
+<h3 id="同步的常见方法："><a href="#同步的常见方法：" class="headerlink" title="同步的常见方法："></a>同步的常见方法：</h3><blockquote>
+<ul>
+<li><font style="background: yellow" type="楷体" size=5>（1）</font>同步的<b>最常见方法</b>是使用<b>锁（Lock）</b>。锁是一种非强制机制，每一个线程在访问数据或资源之前首先试图获取(Acquire)锁，并在访问结束之后释放(Release)锁。在锁已经被占用的时候试图获取锁时，线程会等待，直到锁重新可用。<blockquote>
+<ul>
+<li><font style="background: yellow"><b>（严格程度：低）二元信号量（Binary Semaphore）</font>是最简单的一种锁</b>，它只有两种状态:占用与非占用。它适合只能被唯一个线程独占访问的资源。当二元信号量处于非占用状态时，第一个试图获取该二元信号量的线程会获得该锁，并将二元信号量置为占用状态，此后其他的所有试图获取该二元信号量的线程将会等待，直到该锁被释放。</li>
+<li>对于<b>允许多个线程并发访问</b>的资源，<b>多元信号量简称信号量(Semaphore)</b>,它是一个很好的选择。一个初始值为N的信号量允许N个线程并发访问。线程访问资源的时候首先获取信号量，进行如下操作:<blockquote>
+<ul>
+<li>将信号量的值减1。</li>
+<li>如果信号量的值小于0，则进入等待状态，否则继续执行。</li>
+</ul>
+</blockquote>
+</li>
+<li>访问完资源之后，线程释放信号量，进行如下操作:<blockquote>
+<ul>
+<li>将信号量的值加1。</li>
+<li>如果信号量的值小于1,唤醒-一个等待中的线程。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><font style="background: yellow"><b>（严格程度：中）互斥量（Mutex）</b></font>和<b>二元信号量</b>很类似，资源仅同时允许一个线程访问，但和信号量不同的是:<blockquote>
+<ul>
+<li>1）<b>信号量</b>在整个系统可以被任意线程获取并释放，也就是说，同一个信号量可以被系统中的一个线程获取之后的<font style="background: yellow">另一个线程</font>释放。</li>
+<li>2）<b>互斥量</b>则要求哪个线程获取了互斥量，哪个线程就要负责释放这个锁，其他线程越俎代庖去释放互斥量是无效的。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><font style="background: yellow"><b>（严格程度：高）临界区（Critical Section）</b></font>是比<b>互斥量</b>更加严格的同步手段。<blockquote>
+<ul>
+<li>在术语中，把临界区的锁的获取称为进入临界区,而把锁的程放称为离开临界区。</li>
+<li>临界区和互斥量与信号量的区别在于:<blockquote>
+<ul>
+<li>1）<b>互斥量和信号量</b>在系统的<font style="background: yellow"><b>任何进程</b></font>里都是可见的，也就是说，一个进程创建了一个互斥量或信号量,另一个进程试图去获取该锁是合法的。</li>
+<li>2）<b>临界区</b>的作用范围<font style="background: yellow"><b>仅限于本进程</b></font>，其他的进程无法获取该锁。除此之外，临界区具有和互斥量相同的性质。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><font style="background: yellow" type="楷体" size=5>（2）</font><font style="background: yellow"><b>读写锁（Read-Write Lock）</b></font><blockquote>
+<ul>
+<li>由来：对于一段数据，多个线程同时读取总是没有问题的，但假设操作都不是原子型，只要有任何一个线程试图对这个数据进行修改，就必须使用同步手段来避免出错。如果我们使用上述信号量、互斥量或临界区中的任何一种来进行同步，尽管可以保证程序正确，但<b>对于读取频繁，而仅仅偶尔写入的情况</b>，会显得非常低效。</li>
+<li>读写锁(Read-Write Lock)致力于一种更加特定的场合的同步:<b>读取频繁，偶尔写入的情况</b></li>
+<li>读写锁可以避免这个问题。对于同一个锁，读写锁有两种获取方式，<b>共享的(Shared)</b>或<b>独占(Exclusive)</b>。<blockquote>
+<ul>
+<li>当锁处于自由的状态时，试图以任何一种方式获取锁都能成功，并将锁置于对应的状态。</li>
+<li>如果锁处于共享状态，其他线程以共享的方式获取锁仍然会成功，此时这个锁分配给了多个线程。然而，如果其他线程试图以独身的方式获取已经处于共享状态的锁，那么它将必须等待锁被所有的线程释放。</li>
+<li>相应地，处于独占状态的锁将阻止任何其他线程获取该锁，不论它们试图以哪种方式获取。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><font style="background: yellow" type="楷体" size=5>（3）</font><font style="background: yellow"><b>条件变量（Condition Variable）</b></font> 作为一种同步手段，作用类似于一个栅栏。<blockquote>
+<ul>
+<li>对于条件变量，线程可以有两种操作，首先线程可以等待条件变量，一个条件变量可以被多个线程等待。</li>
+<li>其次，线程可以唤醒条件变量,此时某个或所有等待此条件变量的线程都会被唤醒并继续支持。也就是说，使用条件变量可以让许多线程-起等待某个事件的发生，当事件发生时(条件变量被唤醒)，所有的线程可以一起恢复执行。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
 
             </div>
             <hr/>
@@ -595,7 +586,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/02/2020-06-02-C-Array-init/">https://github.com/HACV/HACV.github.io/2020/06/02/2020-06-02-C-Array-init/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/11/2020-06-11-The-concept-of-Process-and-Thread/">https://github.com/HACV/HACV.github.io/2020/06/11/2020-06-11-The-concept-of-Process-and-Thread/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -633,12 +624,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">C语言</span>
-                                </a>
-                            
-                                <a href="/Tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/Tags/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
+                                    <span class="chip bg-color">进程和线程</span>
                                 </a>
                             
                         </div>
@@ -806,28 +793,78 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/03/2020-06-03-Const-in-C-language/">
+                <a href="/2020/06/11/2020-06-11-The-concept-of-Process-and-Thread/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_03_cover.jpg" class="responsive-img" alt="详解C语言中const">
+                        <img src="/photos/2020.6.03_15/2020_06_11_cover.jpg" class="responsive-img" alt="进程、线程杂谈">
                         
-                        <span class="card-title">详解C语言中const</span>
+                        <span class="card-title">进程、线程杂谈</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言中const
+                            进程、线程概念辨析和线程安全
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-03
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Tags/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
+                        <span class="chip bg-color">进程和线程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/06/10/2020-06-10-Union/">
+                    <div class="card-image">
+                        
+                        <img src="/photos/2020.6.03_15/2020_06_10_cover.jpg" class="responsive-img" alt="共用体（联合）">
+                        
+                        <span class="card-title">共用体（联合）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Union
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -847,60 +884,8 @@
                         <span class="chip bg-color">C语言</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/06/01/2020-06-01-BF-RK/">
-                    <div class="card-image">
-                        
-                        <img src="/photos/2020.5.30_31/2020_06_01_cover.png" class="responsive-img" alt="字符串匹配之BF&amp;RK">
-                        
-                        <span class="card-title">字符串匹配之BF&amp;RK</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            字符串匹配暴力和hash优化
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                        <span class="chip bg-color">暴力</span>
-                    </a>
-                    
-                    <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                        <span class="chip bg-color">字符串匹配</span>
-                    </a>
-                    
-                    <a href="/Tags/hash/">
-                        <span class="chip bg-color">hash</span>
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>

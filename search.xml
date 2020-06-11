@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>进程、线程杂谈</title>
+      <link href="/2020/06/11/2020-06-11-The-concept-of-Process-and-Thread/"/>
+      <url>/2020/06/11/2020-06-11-The-concept-of-Process-and-Thread/</url>
+      
+        <content type="html"><![CDATA[<h1 id="进程和线程中的同步机制"><a href="#进程和线程中的同步机制" class="headerlink" title="进程和线程中的同步机制"></a>进程和线程中的同步机制</h1><p><b>进程</b>是<b>资源管理</b>的最小单位<br><b>线程</b>是<b>程序执行</b>的最小单位。<br>记忆方法：<br><font style="background: yellow">大Boss（进程），只管拿着资源统筹兼顾。<br>小兵（线程），要卖力执行命令。</font></p><h2 id="一、进程和线程在两大操作系统的特点"><a href="#一、进程和线程在两大操作系统的特点" class="headerlink" title="一、进程和线程在两大操作系统的特点"></a>一、进程和线程在两大操作系统的特点</h2><blockquote><ul><li>Windows对进程和线程的实现如同教科书一般标准。<blockquote><ul><li><font style="background: yellow">Windows内核中有明确的<b>进程</b>和<b>线程</b>的概念</font></li></ul></blockquote></li><li>Linux内核中<b>并不存在真正意义上</b>的<b>线程</b>的概念<blockquote><ul><li>Linux将所有的执行实体（无论是进程还是线程）都称为<font style="background: yellow"><b>任务（Task）</b></font></li><li><b>每个Task概念上都类似于一个单线程的进程</b>，具有内存空间、执行实体、文件资源等。</li><li>不过,<b>Linux下不同的任务之间可以选择共享内存空间</b>，因而在实际意义上，共享了同一个内存空间的多个任务构成了一个进程， 这些任务也就成了这个进程里的线程。<blockquote><ul><li>Linux下的线程本质上用进程实现;（题目）</li></ul></blockquote></li></ul></blockquote></li></ul></blockquote><h2 id="二、线程安全"><a href="#二、线程安全" class="headerlink" title="二、线程安全"></a>二、线程安全</h2><p><font color="red" size=5>（记得到时候加上代码）</font><br>为了避免多个线程同时读写同一个数据而产生不可预料的后果,我们需要将各个线程对同一个数据的访问同步(Synchronization)。<br>所谓同步，既是指在一个线程访问数据未结束的时候，其他线程不得对同一个数据进行访问。</p><h3 id="同步的常见方法："><a href="#同步的常见方法：" class="headerlink" title="同步的常见方法："></a>同步的常见方法：</h3><blockquote><ul><li><font style="background: yellow" type="楷体" size=5>（1）</font>同步的<b>最常见方法</b>是使用<b>锁（Lock）</b>。锁是一种非强制机制，每一个线程在访问数据或资源之前首先试图获取(Acquire)锁，并在访问结束之后释放(Release)锁。在锁已经被占用的时候试图获取锁时，线程会等待，直到锁重新可用。<blockquote><ul><li><font style="background: yellow"><b>（严格程度：低）二元信号量（Binary Semaphore）</font>是最简单的一种锁</b>，它只有两种状态:占用与非占用。它适合只能被唯一个线程独占访问的资源。当二元信号量处于非占用状态时，第一个试图获取该二元信号量的线程会获得该锁，并将二元信号量置为占用状态，此后其他的所有试图获取该二元信号量的线程将会等待，直到该锁被释放。</li><li>对于<b>允许多个线程并发访问</b>的资源，<b>多元信号量简称信号量(Semaphore)</b>,它是一个很好的选择。一个初始值为N的信号量允许N个线程并发访问。线程访问资源的时候首先获取信号量，进行如下操作:<blockquote><ul><li>将信号量的值减1。</li><li>如果信号量的值小于0，则进入等待状态，否则继续执行。</li></ul></blockquote></li><li>访问完资源之后，线程释放信号量，进行如下操作:<blockquote><ul><li>将信号量的值加1。</li><li>如果信号量的值小于1,唤醒-一个等待中的线程。</li></ul></blockquote></li></ul></blockquote></li></ul></blockquote><blockquote><ul><li><font style="background: yellow"><b>（严格程度：中）互斥量（Mutex）</b></font>和<b>二元信号量</b>很类似，资源仅同时允许一个线程访问，但和信号量不同的是:<blockquote><ul><li>1）<b>信号量</b>在整个系统可以被任意线程获取并释放，也就是说，同一个信号量可以被系统中的一个线程获取之后的<font style="background: yellow">另一个线程</font>释放。</li><li>2）<b>互斥量</b>则要求哪个线程获取了互斥量，哪个线程就要负责释放这个锁，其他线程越俎代庖去释放互斥量是无效的。</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li><font style="background: yellow"><b>（严格程度：高）临界区（Critical Section）</b></font>是比<b>互斥量</b>更加严格的同步手段。<blockquote><ul><li>在术语中，把临界区的锁的获取称为进入临界区,而把锁的程放称为离开临界区。</li><li>临界区和互斥量与信号量的区别在于:<blockquote><ul><li>1）<b>互斥量和信号量</b>在系统的<font style="background: yellow"><b>任何进程</b></font>里都是可见的，也就是说，一个进程创建了一个互斥量或信号量,另一个进程试图去获取该锁是合法的。</li><li>2）<b>临界区</b>的作用范围<font style="background: yellow"><b>仅限于本进程</b></font>，其他的进程无法获取该锁。除此之外，临界区具有和互斥量相同的性质。</li></ul></blockquote></li></ul></blockquote></li></ul></blockquote><blockquote><ul><li><font style="background: yellow" type="楷体" size=5>（2）</font><font style="background: yellow"><b>读写锁（Read-Write Lock）</b></font><blockquote><ul><li>由来：对于一段数据，多个线程同时读取总是没有问题的，但假设操作都不是原子型，只要有任何一个线程试图对这个数据进行修改，就必须使用同步手段来避免出错。如果我们使用上述信号量、互斥量或临界区中的任何一种来进行同步，尽管可以保证程序正确，但<b>对于读取频繁，而仅仅偶尔写入的情况</b>，会显得非常低效。</li><li>读写锁(Read-Write Lock)致力于一种更加特定的场合的同步:<b>读取频繁，偶尔写入的情况</b></li><li>读写锁可以避免这个问题。对于同一个锁，读写锁有两种获取方式，<b>共享的(Shared)</b>或<b>独占(Exclusive)</b>。<blockquote><ul><li>当锁处于自由的状态时，试图以任何一种方式获取锁都能成功，并将锁置于对应的状态。</li><li>如果锁处于共享状态，其他线程以共享的方式获取锁仍然会成功，此时这个锁分配给了多个线程。然而，如果其他线程试图以独身的方式获取已经处于共享状态的锁，那么它将必须等待锁被所有的线程释放。</li><li>相应地，处于独占状态的锁将阻止任何其他线程获取该锁，不论它们试图以哪种方式获取。</li></ul></blockquote></li></ul></blockquote></li></ul></blockquote><blockquote><ul><li><font style="background: yellow" type="楷体" size=5>（3）</font><font style="background: yellow"><b>条件变量（Condition Variable）</b></font> 作为一种同步手段，作用类似于一个栅栏。<blockquote><ul><li>对于条件变量，线程可以有两种操作，首先线程可以等待条件变量，一个条件变量可以被多个线程等待。</li><li>其次，线程可以唤醒条件变量,此时某个或所有等待此条件变量的线程都会被唤醒并继续支持。也就是说，使用条件变量可以让许多线程-起等待某个事件的发生，当事件发生时(条件变量被唤醒)，所有的线程可以一起恢复执行。</li></ul></blockquote></li></ul></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 进程和线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>共用体（联合）</title>
       <link href="/2020/06/10/2020-06-10-Union/"/>
       <url>/2020/06/10/2020-06-10-Union/</url>
@@ -327,7 +352,7 @@
       
       <categories>
           
-          <category> 编程语言 </category>
+          <category> 随笔 </category>
           
       </categories>
       
@@ -379,7 +404,7 @@
       
       <categories>
           
-          <category> 记忆法 </category>
+          <category> 随笔 </category>
           
       </categories>
       
