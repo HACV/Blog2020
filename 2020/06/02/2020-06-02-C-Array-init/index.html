@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    666
+                    690
                 </div>
                 
 
@@ -460,8 +460,8 @@
             <div id="articleContent">
                 <h1 id="数组的不完全初始化"><a href="#数组的不完全初始化" class="headerlink" title="数组的不完全初始化"></a>数组的不完全初始化</h1><h2 id="一、问题由来"><a href="#一、问题由来" class="headerlink" title="一、问题由来"></a>一、问题由来</h2><pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span> 把数组全部初始化为<span class="token number">0</span>
 <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span> 把数组全部初始化为<span class="token number">1</span>，为什么却失败了呢？</code></pre>
-<h2 id="二、数组的几种初始化方式"><a href="#二、数组的几种初始化方式" class="headerlink" title="二、数组的几种初始化方式"></a>二、数组的几种初始化方式</h2><p>1）完全初始化（$completely initialized$）给每个元素初始化<br>int a[5]={0,1,2,3,4};<br>int a[]={1,2,3};</p>
-<p>2）完全不初始化（$uninitialized$）<br>int a[5];<br>注意：<br>不进行显式初始化的情况下：</p>
+<h2 id="二、数组的几种初始化方式"><a href="#二、数组的几种初始化方式" class="headerlink" title="二、数组的几种初始化方式"></a>二、数组的几种初始化方式</h2><h3 id="1）完全初始化（-completely-initialized-）给每个元素初始化"><a href="#1）完全初始化（-completely-initialized-）给每个元素初始化" class="headerlink" title="1）完全初始化（$completely initialized$）给每个元素初始化"></a>1）完全初始化（$completely initialized$）给每个元素初始化</h3><p>int a[5]={0,1,2,3,4};<br>int a[]={1,2,3};</p>
+<h3 id="2）完全不初始化（-uninitialized-）"><a href="#2）完全不初始化（-uninitialized-）" class="headerlink" title="2）完全不初始化（$uninitialized$）"></a>2）完全不初始化（$uninitialized$）</h3><p>int a[5];<br>注意：<br>不进行显式初始化的情况下：</p>
 <blockquote>
 <ul>
 <li><b>未初始化的</b>全局变量以及静态变量的初始均为0（因为他们都存在.bss段，默认初始化为0）</li>
@@ -523,7 +523,7 @@
 <span class="token comment" spellcheck="true">//0</span>
 <span class="token comment" spellcheck="true">//0</span>
 <span class="token comment" spellcheck="true">//0</span></code></pre>
-<p>3）不完全初始化（$partly initialized$）（即：部分初始化）<br>int a[5]={0,1,2};<br>K&amp;R C语言中是这样阐述：</p>
+<h3 id="3）不完全初始化（-partly-initialized-）（即：部分初始化）"><a href="#3）不完全初始化（-partly-initialized-）（即：部分初始化）" class="headerlink" title="3）不完全初始化（$partly initialized$）（即：部分初始化）"></a>3）不完全初始化（$partly initialized$）（即：部分初始化）</h3><p>int a[5]={0,1,2};<br>K&amp;R C语言中是这样阐述：</p>
 <blockquote>
 <ul>
 <li><b>如果初始化表达式的个数比数组元素数少，则对外部变量，静态变量和自动变量来说，没有初始化表达式的元素将被初始化为0。</b>（至于为什么是初始化为0而不是其他的，原因是.bss的实现机制）</li>
@@ -569,6 +569,7 @@
 <span class="token comment" spellcheck="true">//0</span>
 <span class="token comment" spellcheck="true">//0</span>
 <span class="token comment" spellcheck="true">//0</span></code></pre>
+<h3 id="4）假装初始化（我编的。。）"><a href="#4）假装初始化（我编的。。）" class="headerlink" title="4）假装初始化（我编的。。）"></a>4）假装初始化（我编的。。）</h3><p><code>int a[10]={};</code><br>编译器自动将<strong>所有元素置0</strong></p>
 <h2 id="三、初始化和赋值区别："><a href="#三、初始化和赋值区别：" class="headerlink" title="三、初始化和赋值区别："></a>三、初始化和赋值区别：</h2><p>只有在数组定义时，给数组值才叫初始化<br>定义过后，再给数组值叫赋值</p>
 
             </div>
@@ -1066,7 +1067,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">26.7k</span>&nbsp;字
+                class="white-color">26.8k</span>&nbsp;字
             
             
             
