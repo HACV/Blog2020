@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Cmd运行命令</title>
+      <link href="/2020/06/14/2020-06-14-Run-command/"/>
+      <url>/2020/06/14/2020-06-14-Run-command/</url>
+      
+        <content type="html"><![CDATA[<p>#电脑运行命令集锦（整理）：</p><p>自己常用的：</p><blockquote><ul><li>calc———–启动计算器 （写代码的时候，可以快速看二进制）</li><li>mspaint——–画图板 （可以画讲解图,博客和数位板用）</li></ul></blockquote><blockquote><ul><li>regedit——–注册表（编辑器） </li><li>regedt32——-注册表编辑器（同上）</li><li>firewall.cpl—WINDOWS防火墙 </li><li>control——–打开控制面板 </li><li>lusrmgr.msc—-本机用户和组<br>（win10可以不用这个来管理）</li><li>gpedit.msc—–组策略（？） </li></ul></blockquote><blockquote><ul><li>notepad——–打开记事本（有时候用）</li><li>write———-写字板（就是rtf格式的那种文件）</li><li>wordpad——–写字板 (和上面一样，冗余的)</li></ul></blockquote><p>?—表示不能使用</p><p>@-运行按WIN键+R，在『运行』窗口中输入：<br>（按英文字符顺序排列） </p><p>%temp%———打开临时文件夹<br>.————–C:\DocumentsandSettings\用户名所在文件夹 （？）<br>..————-打开用户<br>…————我的电脑<br><code>\--------------C盘</code><br>appwize.cpl—-添加、删除程序 （？）<br>access.cpl—–辅助功能选项（？）<br>Accwiz———辅助功能向导（？）<br>cmd————CMD命令提示符<br>command——–CMD命令提示符（？）<br>chkdsk.exe—–Chkdsk磁盘检查<br>（可能要谨慎使用）<br>certmgr.msc—-证书管理实用程序<br>（不知道干啥用） </p><p>charmap——–启动字符映射表<br>cintsetp——-仓颉拼音输入法（？）<br>cliconfg——-SQLSERVER客户端网络实用程序 </p><p>clipbrd——–剪贴板查看器（？） </p><p>conf———–启动netmeeting （？）<br>（Conf听说在局域网用）<br>compmgmt.msc—计算机管理<br>cleanmgr——-（磁盘）垃圾整理<br>ciadv.msc——索引服务程序（？）<br>dcomcnfg——-打开系统组件服务<br>ddeshare——-打开DDE共享设置（？）<br>dxdiag———检查DirectX信息<br>drwtsn32——-系统医生（？）<br>devmgmt.msc—-设备管理器<br>desk.cpl——-显示属性<br>dfrg.msc——-磁盘碎片整理程序（？）<br>diskmgmt.msc—磁盘管理实用程序<br>dvdplay——–DVD播放器<br>eventvwr——-一个事情查看器<br>eudcedit——-造字程序 </p><p>explorer——-打开资源管理器<br>（个人习惯用win+E快捷键更加好一些）</p><p>fsmgmt.msc—–共享文件夹管理器 </p><p>hdwwiz.cpl—–添加硬件<br>（为啥打开了设备管理器？）<br>iexpress——-木马捆绑工具，系统自带 111<br>inetcpl.cpl—-INTETNET选项<br>（打开了Internet属性）<br>intl.cpl——-区域和语言选项（输入法选项）<br>irprops.cpl—-无线链接<br>（打开了红外线，。。。）<br>joy.cpl——–游戏控制器 </p><p>logoff———注销命令（？）<br>main.cpl——-鼠标<br>mem.exe——–显示内存使用情况（？）<br>—————————–上次学到 </p><p>migwiz———文件转移向导<br>mlcfg32.cpl—-邮件 （？）<br>mplayer2——-简易widnowsmediaplayer </p><p>msconfig.exe—系统配置实用程序<br>mstsc———-远程桌面连接 </p><p>magnify——–放大镜实用程序 </p><p>mmc————打开控制台<br>mmsys.cpl——声音和音频设备<br>mobsync——–同步命令<br>ncpa.cpl——-网络连接<br>nslookup——-IP地址侦测器<br>netstartX—-开始X服务 （–未测试）<br>netstopX—–停止X服务 （–未测试）<br>netstat-an—-命令检查接口（？）<br>netsetup.cpl—无线网络安装向导（？） </p><p>narrator——-屏幕“讲述人”<br>（讲出来）<br>ntbackup——-系统备份和还原（？）<br>ntmsmgr.msc—-移动存储管理器（？）<br>ntmsoprq.msc—移动存储管理员操作请求（？）<br>nusrmgr.cpl—-用户账户（？）<br>nwc.cpl——–NetWare客户服务（？）<br>osk————打开屏幕键盘<br>odbcad32——-ODBC数据源管理器<br>odbccp32.cpl—ODBC数据源管理器(?)<br>oobe/msoobe/a-检查XP是否激活(?)<br>packager——-对象包装程序（？）<br>perfmon.msc—-计算机性能监测程序<br>powercfg.cpl—电源选项 </p><p>progman——–程序管理器（？） </p><p>rsop.msc——-组策略结果集（？） </p><p>regsvr32/?—-调用、卸载DLL文件运行（详细请在cmd中输入regsvr32/?）<br>（谨慎使用！）<br>sapi.cpl——-语音（？）<br>services.msc—本地服务设置<br>syncapp——–创建一个公文包<br>（–未测试）<br>sysedit——–系统配置编辑器（？）<br>sigverif——-文件签名验证程序<br>sndrec32——-录音机（？）<br>sndvol32——-音量控制程序（？）<br>shrpubw——–共享文件夹设置工具<br>secpol.msc—–本地安全策略（？）<br>sysdm.cpl——系统<br>syskey———系统加密（一旦加密就不能解开，保护windowsxp系统的双重密码）<br>（谨慎使用—未测试）<br>sfc.exe——–系统文件检查器<br>（不知道是啥？框框一闪而过）<br>sfc/scannow—windows文件保护（？）<br>shutdown——-关机命令（详细请在cmd中输入shutdown/?）<br>（—未测试）<br>taskmgr——–任务管理器<br>telephon.cpl—电话和调制解调器选项<br>telnet———远程连接程序（？）<br>timedate.cpl—日期和时间<br>tourstart——xp简介（安装完成后出现的漫游xp程序）（？）<br>tsshutdn——-60秒倒计时关机命令<br>（—未测试）<br>utilman——–辅助工具管理器<br>winver———检查Windows版本<br>winmsd———系统信息（？）<br>wiaacmgr——-扫描仪和照相机向导<br>（要安装了扫描仪或照相机才有用）<br>winchat——–XP自带局域网聊天（？）<br>wmimgmt.msc—-打开windows管理体系结构(WMI) </p><p>wuaucpl.cpl—-自动更新（–未测试）<br>wupdmgr—–windows更新程序（–未测试） </p><p>wscript——–windows脚本宿主设置<br>wscui.cpl——安全中心<br>C:/windows/fonts字体</p><p>oobe/msoobe /a—-检查XP是否激活<br>net start messenger—-开始信使服务<br>compmgmt.msc—计算机管理<br>net stop messenger—–停止信使服务<br>dfrg.msc——-磁盘碎片整理程序<br>chkdsk.exe—–Chkdsk磁盘检查<br>devmgmt.msc— 设备管理器<br>regsvr32 /u *.dll—-停止dll文件运行<br>drwtsn32—— 系统医生<br>rononce -p —-15秒关机<br>dxdiag———检查DirectX信息</p><p>Msconfig.exe—系统配置实用程序<br>rsop.msc——-组策略结果集</p><p>mem.exe——–显示内存使用情况<br>sfc /scannow—–扫描错误并复原<br>taskmgr—–任务管理器（2000／xp／2003<br>wmimgmt.msc—-打开windows管理体系结构(WMI)<br>mem.exe——–显示内存使用情况<br>Msconfig.exe—系统配置实用程序<br>mplayer2——-简易widnows media player<br>mstsc———-远程桌面连接<br>mplayer2——-媒体播放机<br>magnify——–放大镜实用程序<br>mmc————打开控制台<br>mobsync——–同步命令<br>devmgmt.msc— 设备管理器<br>dfrg.msc——-磁盘碎片整理程序<br>diskmgmt.msc—磁盘管理实用程序<br>dcomcnfg——-打开系统组件服务<br>net stop messenger—–停止信使服务<br>net start messenger—-开始信使服务<br>nslookup——-网络管理的工具向导<br>ntmsmgr.msc—-移动存储管理器<br>ntmsoprq.msc—移动存储管理员操作请求<br>netstat -an—-（TC）命令检查接口<br>sysedit——–系统配置编辑器<br>secpol.msc—–本地安全策略<br>services.msc—本地服务设置<br>Sndvol32——-音量控制程序<br>sfc /scannow—windows文件保护<br>tsshutdn——-60秒倒计时关机命令<br>rsop.msc——-组策略结果集<br>rononce -p —-15秒关机<br>regsvr32 /u *.dll—-停止dll文件运行<br>regsvr32 /u zipfldr.dll——取消ZIP支持<br>certmgr.msc—-证书管理实用程序<br>cliconfg——-SQL SERVER 客户端网络实用程序</p><p>compmgmt.msc—计算机管理<br>ciadv.msc——索引服务程序<br>odbcad32——-ODBC数据源管理器</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> Cmd命令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo命令</title>
+      <link href="/2020/06/14/2020-06-14-Hexo/"/>
+      <url>/2020/06/14/2020-06-14-Hexo/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h1><blockquote><ul><li>hexo clean  清除缓存文件<code>db.json</code> 和已生成的静态文件<code>public</code><blockquote><ul><li>网站显示异常时可以执行这条命令试试,比如，网站的标签和分类没有及时更新</li></ul></blockquote></li><li>hexo g &amp;&amp; hexo s -p 5555   用本地的555端口，进行本地调试</li><li>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d    上传到github</li></ul></blockquote><blockquote><ul><li>hexo new page “tags”    新建标签</li></ul></blockquote><blockquote><ul><li>hexo new test    新建一篇博客，名字叫test.md</li></ul></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>STL强化</title>
       <link href="/2020/06/13/2020-06-13-STL/"/>
       <url>/2020/06/13/2020-06-13-STL/</url>
@@ -70,9 +124,9 @@
       
         <tags>
             
-            <tag> Markdown </tag>
-            
             <tag> 工具 </tag>
+            
+            <tag> Markdown </tag>
             
         </tags>
       
@@ -122,9 +176,9 @@
       
         <tags>
             
-            <tag> C语言 </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> C语言 </tag>
             
         </tags>
       
@@ -149,9 +203,9 @@
       
         <tags>
             
-            <tag> C语言 </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> C语言 </tag>
             
         </tags>
       
@@ -176,11 +230,11 @@
       
         <tags>
             
-            <tag> C语言 </tag>
-            
             <tag> 编译器底层 </tag>
             
             <tag> C++ </tag>
+            
+            <tag> C语言 </tag>
             
         </tags>
       
@@ -330,9 +384,9 @@
       
         <tags>
             
-            <tag> C语言 </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> C语言 </tag>
             
         </tags>
       

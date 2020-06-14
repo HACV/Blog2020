@@ -323,7 +323,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/6.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
 </script>
 
 
@@ -339,7 +339,7 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/">20</a></span>
+    <span class="count"><a href="/">22</a></span>
     <span class="name">Posts</span>
 </div>
 
@@ -353,7 +353,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">12</a></span>
+    <span class="count"><a href="/tags">14</a></span>
     <span class="name">Tags</span>
 </div>
 
@@ -369,7 +369,7 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/">20</a></span>
+    <span class="count"><a href="/">22</a></span>
     <span class="name">Posts</span>
 </div>
 
@@ -383,7 +383,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">12</a></span>
+    <span class="count"><a href="/tags">14</a></span>
     <span class="name">Tags</span>
 </div>
 
@@ -511,7 +511,7 @@
                 name: 'Number of posts',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,6,14],
+                data: [0,0,0,0,0,0,0,0,0,0,0,6,16],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -553,7 +553,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"随笔","value":3},{"name":"算法","value":3},{"name":"编译器底层","value":2},{"name":"编程语言","value":11},{"name":"操作系统","value":1}],
+                data: [{"name":"算法","value":3},{"name":"编译器底层","value":2},{"name":"编程语言","value":11},{"name":"随笔","value":5},{"name":"操作系统","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -577,7 +577,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["C语言","C++","idea","暴力","编译器底层","素数","排序","字符串匹配","hash","Markdown"]
+                data: ["C语言","C++","idea","工具","暴力","编译器底层","素数","进程和线程","Cmd命令","hexo"]
             }
         ],
         yAxis: [
@@ -590,7 +590,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [10,7,3,2,2,1,1,1,1,1],
+                data: [10,7,3,3,2,2,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -782,18 +782,6 @@
         <div class="tag-chips center-align">
             
             
-            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                <span class="chip center-align waves-effect waves-light chip-default">C语言</span>
-            </a>
-            
-            
-            
-            <a href="/Tags/idea/">
-                <span class="chip center-align waves-effect waves-light chip-default">idea</span>
-            </a>
-            
-            
-            
             <a href="/Tags/%E7%B4%A0%E6%95%B0/">
                 <span class="chip center-align waves-effect waves-light chip-default">素数</span>
             </a>
@@ -812,11 +800,53 @@
             
             
             
-            <a href="/Tags/%E6%8E%92%E5%BA%8F/">
-                <span class="chip center-align waves-effect waves-light chip-default">排序</span>
+            
+            
+            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                <span class="chip center-align waves-effect waves-light chip-default">C语言</span>
             </a>
             
             
+            
+            <a href="/Tags/idea/">
+                <span class="chip center-align waves-effect waves-light chip-default">idea</span>
+            </a>
+            
+            
+            
+            <a href="/Tags/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
+                <span class="chip center-align waves-effect waves-light chip-default">进程和线程</span>
+            </a>
+            
+            
+            
+            <a href="/Tags/%E5%B7%A5%E5%85%B7/">
+                <span class="chip center-align waves-effect waves-light chip-default">工具</span>
+            </a>
+            
+            
+            
+            <a href="/Tags/Cmd%E5%91%BD%E4%BB%A4/">
+                <span class="chip center-align waves-effect waves-light chip-default">Cmd命令</span>
+            </a>
+            
+            
+            
+            <a href="/Tags/hexo/">
+                <span class="chip center-align waves-effect waves-light chip-default">hexo</span>
+            </a>
+            
+            
+            
+            <a href="/Tags/Markdown/">
+                <span class="chip center-align waves-effect waves-light chip-default">Markdown</span>
+            </a>
+            
+            
+            
+            <a href="/Tags/%E6%8E%92%E5%BA%8F/">
+                <span class="chip center-align waves-effect waves-light chip-default">排序</span>
+            </a>
             
             
             
@@ -828,24 +858,6 @@
             
             <a href="/Tags/hash/">
                 <span class="chip center-align waves-effect waves-light chip-default">hash</span>
-            </a>
-            
-            
-            
-            <a href="/Tags/Markdown/">
-                <span class="chip center-align waves-effect waves-light chip-default">Markdown</span>
-            </a>
-            
-            
-            
-            <a href="/Tags/%E5%B7%A5%E5%85%B7/">
-                <span class="chip center-align waves-effect waves-light chip-default">工具</span>
-            </a>
-            
-            
-            
-            <a href="/Tags/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
-                <span class="chip center-align waves-effect waves-light chip-default">进程和线程</span>
             </a>
             
             
@@ -883,7 +895,7 @@
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">26.8k</span>&nbsp;字
+                class="white-color">28.4k</span>&nbsp;字
             
             
             
