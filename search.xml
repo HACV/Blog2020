@@ -4,11 +4,38 @@
   
     
     <entry>
+      <title>Windows和Linux下盘符</title>
+      <link href="/2020/06/15/2020-06-15-Directory/"/>
+      <url>/2020/06/15/2020-06-15-Directory/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Windows和Linux切换路径的区别"><a href="#Windows和Linux切换路径的区别" class="headerlink" title="Windows和Linux切换路径的区别"></a>Windows和Linux切换路径的区别</h1><h2 id="一、Linux下"><a href="#一、Linux下" class="headerlink" title="一、Linux下"></a>一、Linux下</h2><p>桌面<code>/</code>学期资源<br>PS：45度，这大概是Linux唯一一个，正向的常人思维吧<br>Windows虽然用图形界面赢得了大多数人操作的便利，但是在这个斜杠上，就不如Linux的常规了。</p><h2 id="二、Windows下"><a href="#二、Windows下" class="headerlink" title="二、Windows下"></a>二、Windows下</h2><p>桌面<code>\</code>学期资源</p><h2 id="三、Windows下Cmd"><a href="#三、Windows下Cmd" class="headerlink" title="三、Windows下Cmd"></a>三、Windows下Cmd</h2><h3 id="《1》特点"><a href="#《1》特点" class="headerlink" title="《1》特点"></a>《1》特点</h3><blockquote><ul><li>1）cmd中命令，<strong>不区分大小写</strong></li><li>2）从<font style="background: yellow" size=5><strong>一个磁盘到另一个磁盘目录</strong></font>，需要修改磁盘，<font style="background: yellow" size=5><strong>不能直接cd一步到底</strong></font>，详情见下面。</li></ul></blockquote><h3 id="《2》CMD命令进入另一个磁盘的目录"><a href="#《2》CMD命令进入另一个磁盘的目录" class="headerlink" title="《2》CMD命令进入另一个磁盘的目录"></a>《2》CMD命令进入另一个磁盘的目录</h3><blockquote><ul><li>进入某个磁盘，直接盘符代号：如<code>D:</code>不能用cd命令切换</li><li>然后才能用那个文件在<strong>这个（注意）</strong>盘符的相对路径或者绝对路径。</li></ul></blockquote><p>场景样例</p><blockquote><p>//当前目录是C:\Users<br>//我要去D:____Software\00.Mygithub_web\blog\HACV<br>解决方案1）<strong>个人习惯用</strong></p></blockquote><pre class=" language-cmd"><code class="language-cmd">D:cd D:\____Software\00.Mygithub_web\blog\HACV</code></pre><p>解决方案2）</p><pre class=" language-cmd"><code class="language-cmd">cd D:\____Software\00.Mygithub_web\blog\HACVD:</code></pre><p>//注意，这种方式的，第1条语句执行后发现，什么也没变<br>//但是当第2条语句执行之后，就直接给你进入了<code>D:\____Software\00.Mygithub_web\blog\HACV</code><br>若一打开CMD的时候运行<code>CD D:\____Software\00.Mygithub_web\blog\HACV</code>，目录不会切换<br>但在下次输入盘符的时候进入上一次希望进入的目录，如输入<code>D：</code>会直接进入<code>D:\____Software\00.Mygithub_web\blog\HACV</code></p><h3 id="《3》CMD进入带有空格的文件夹"><a href="#《3》CMD进入带有空格的文件夹" class="headerlink" title="《3》CMD进入带有空格的文件夹"></a>《3》CMD进入带有空格的文件夹</h3><p>注：查看带有空格的文件夹（如Documents and settings，Program files等文件夹）<br>有下面两种处理方法：</p><blockquote><ul><li><strong>给文件夹加引号</strong>。如C磁盘<code>cd c:\&quot;documents and settings&quot;</code><br>这样的好处是多长的文件名都可以全部显示出来。</li><li>由于一般情况下DOS系统只支持8.3格式的文件名，因此在DOS下遇到长文件名的文件夹时，<strong>取前面6位</strong>，然后在后面加上一个<code>~</code>号和数字<code>1</code>。 你可以输入C:/&gt; <code>cd c:/docume~1</code> 进入<code>Documents and settings</code>文件夹。当截取前面的6个字母之后出现重复时，可以将1改为2，依此类推。</li></ul></blockquote><h2 id="四、C语言中编程建议"><a href="#四、C语言中编程建议" class="headerlink" title="四、C语言中编程建议"></a>四、C语言中编程建议</h2><pre class=" language-c"><code class="language-c">FILE <span class="token operator">*</span> fp<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//文件名可以有两种写法 </span><span class="token comment" spellcheck="true">//方法1）char *filename="f:\\1.txt";</span><span class="token keyword">char</span> <span class="token operator">*</span>filename2<span class="token operator">=</span><span class="token string">"f:/test.txt"</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//写法2）</span><span class="token comment" spellcheck="true">//记住，我们以后写代码，统一用这种45度的 </span><span class="token comment" spellcheck="true">//原因：45度在Linux下，Windows下通用</span><span class="token keyword">char</span> a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">27</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"123456\n"</span><span class="token punctuation">,</span><span class="token string">"234555\n"</span><span class="token punctuation">,</span><span class="token string">"KKKKK"</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token keyword">char</span> tt<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>fp<span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span>filename2<span class="token punctuation">,</span><span class="token string">"wb"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p><font style="background: yellow" size=5>以后写代码，统一用这种45度的（也就是Linux那种）</font><br>原因：C语言中45度在Linux下，Windows下通用</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> Cmd命令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Cmd运行命令</title>
       <link href="/2020/06/14/2020-06-14-Run-command/"/>
       <url>/2020/06/14/2020-06-14-Run-command/</url>
       
-        <content type="html"><![CDATA[<p>#电脑运行命令集锦（整理）：</p><p>自己常用的：</p><blockquote><ul><li>calc———–启动计算器 （写代码的时候，可以快速看二进制）</li><li>mspaint——–画图板 （可以画讲解图,博客和数位板用）</li></ul></blockquote><blockquote><ul><li>regedit——–注册表（编辑器） </li><li>regedt32——-注册表编辑器（同上）</li><li>firewall.cpl—WINDOWS防火墙 </li><li>control——–打开控制面板 </li><li>lusrmgr.msc—-本机用户和组<br>（win10可以不用这个来管理）</li><li>gpedit.msc—–组策略（？） </li></ul></blockquote><blockquote><ul><li>notepad——–打开记事本（有时候用）</li><li>write———-写字板（就是rtf格式的那种文件）</li><li>wordpad——–写字板 (和上面一样，冗余的)</li></ul></blockquote><p>?—表示不能使用</p><p>@-运行按WIN键+R，在『运行』窗口中输入：<br>（按英文字符顺序排列） </p><p>%temp%———打开临时文件夹<br>.————–C:\DocumentsandSettings\用户名所在文件夹 （？）<br>..————-打开用户<br>…————我的电脑<br><code>\--------------C盘</code><br>appwize.cpl—-添加、删除程序 （？）<br>access.cpl—–辅助功能选项（？）<br>Accwiz———辅助功能向导（？）<br>cmd————CMD命令提示符<br>command——–CMD命令提示符（？）<br>chkdsk.exe—–Chkdsk磁盘检查<br>（可能要谨慎使用）<br>certmgr.msc—-证书管理实用程序<br>（不知道干啥用） </p><p>charmap——–启动字符映射表<br>cintsetp——-仓颉拼音输入法（？）<br>cliconfg——-SQLSERVER客户端网络实用程序 </p><p>clipbrd——–剪贴板查看器（？） </p><p>conf———–启动netmeeting （？）<br>（Conf听说在局域网用）<br>compmgmt.msc—计算机管理<br>cleanmgr——-（磁盘）垃圾整理<br>ciadv.msc——索引服务程序（？）<br>dcomcnfg——-打开系统组件服务<br>ddeshare——-打开DDE共享设置（？）<br>dxdiag———检查DirectX信息<br>drwtsn32——-系统医生（？）<br>devmgmt.msc—-设备管理器<br>desk.cpl——-显示属性<br>dfrg.msc——-磁盘碎片整理程序（？）<br>diskmgmt.msc—磁盘管理实用程序<br>dvdplay——–DVD播放器<br>eventvwr——-一个事情查看器<br>eudcedit——-造字程序 </p><p>explorer——-打开资源管理器<br>（个人习惯用win+E快捷键更加好一些）</p><p>fsmgmt.msc—–共享文件夹管理器 </p><p>hdwwiz.cpl—–添加硬件<br>（为啥打开了设备管理器？）<br>iexpress——-木马捆绑工具，系统自带 111<br>inetcpl.cpl—-INTETNET选项<br>（打开了Internet属性）<br>intl.cpl——-区域和语言选项（输入法选项）<br>irprops.cpl—-无线链接<br>（打开了红外线，。。。）<br>joy.cpl——–游戏控制器 </p><p>logoff———注销命令（？）<br>main.cpl——-鼠标<br>mem.exe——–显示内存使用情况（？）<br>—————————–上次学到 </p><p>migwiz———文件转移向导<br>mlcfg32.cpl—-邮件 （？）<br>mplayer2——-简易widnowsmediaplayer </p><p>msconfig.exe—系统配置实用程序<br>mstsc———-远程桌面连接 </p><p>magnify——–放大镜实用程序 </p><p>mmc————打开控制台<br>mmsys.cpl——声音和音频设备<br>mobsync——–同步命令<br>ncpa.cpl——-网络连接<br>nslookup——-IP地址侦测器<br>netstartX—-开始X服务 （–未测试）<br>netstopX—–停止X服务 （–未测试）<br>netstat-an—-命令检查接口（？）<br>netsetup.cpl—无线网络安装向导（？） </p><p>narrator——-屏幕“讲述人”<br>（讲出来）<br>ntbackup——-系统备份和还原（？）<br>ntmsmgr.msc—-移动存储管理器（？）<br>ntmsoprq.msc—移动存储管理员操作请求（？）<br>nusrmgr.cpl—-用户账户（？）<br>nwc.cpl——–NetWare客户服务（？）<br>osk————打开屏幕键盘<br>odbcad32——-ODBC数据源管理器<br>odbccp32.cpl—ODBC数据源管理器(?)<br>oobe/msoobe/a-检查XP是否激活(?)<br>packager——-对象包装程序（？）<br>perfmon.msc—-计算机性能监测程序<br>powercfg.cpl—电源选项 </p><p>progman——–程序管理器（？） </p><p>rsop.msc——-组策略结果集（？） </p><p>regsvr32/?—-调用、卸载DLL文件运行（详细请在cmd中输入regsvr32/?）<br>（谨慎使用！）<br>sapi.cpl——-语音（？）<br>services.msc—本地服务设置<br>syncapp——–创建一个公文包<br>（–未测试）<br>sysedit——–系统配置编辑器（？）<br>sigverif——-文件签名验证程序<br>sndrec32——-录音机（？）<br>sndvol32——-音量控制程序（？）<br>shrpubw——–共享文件夹设置工具<br>secpol.msc—–本地安全策略（？）<br>sysdm.cpl——系统<br>syskey———系统加密（一旦加密就不能解开，保护windowsxp系统的双重密码）<br>（谨慎使用—未测试）<br>sfc.exe——–系统文件检查器<br>（不知道是啥？框框一闪而过）<br>sfc/scannow—windows文件保护（？）<br>shutdown——-关机命令（详细请在cmd中输入shutdown/?）<br>（—未测试）<br>taskmgr——–任务管理器<br>telephon.cpl—电话和调制解调器选项<br>telnet———远程连接程序（？）<br>timedate.cpl—日期和时间<br>tourstart——xp简介（安装完成后出现的漫游xp程序）（？）<br>tsshutdn——-60秒倒计时关机命令<br>（—未测试）<br>utilman——–辅助工具管理器<br>winver———检查Windows版本<br>winmsd———系统信息（？）<br>wiaacmgr——-扫描仪和照相机向导<br>（要安装了扫描仪或照相机才有用）<br>winchat——–XP自带局域网聊天（？）<br>wmimgmt.msc—-打开windows管理体系结构(WMI) </p><p>wuaucpl.cpl—-自动更新（–未测试）<br>wupdmgr—–windows更新程序（–未测试） </p><p>wscript——–windows脚本宿主设置<br>wscui.cpl——安全中心<br>C:/windows/fonts字体</p><p>oobe/msoobe /a—-检查XP是否激活<br>net start messenger—-开始信使服务<br>compmgmt.msc—计算机管理<br>net stop messenger—–停止信使服务<br>dfrg.msc——-磁盘碎片整理程序<br>chkdsk.exe—–Chkdsk磁盘检查<br>devmgmt.msc— 设备管理器<br>regsvr32 /u *.dll—-停止dll文件运行<br>drwtsn32—— 系统医生<br>rononce -p —-15秒关机<br>dxdiag———检查DirectX信息</p><p>Msconfig.exe—系统配置实用程序<br>rsop.msc——-组策略结果集</p><p>mem.exe——–显示内存使用情况<br>sfc /scannow—–扫描错误并复原<br>taskmgr—–任务管理器（2000／xp／2003<br>wmimgmt.msc—-打开windows管理体系结构(WMI)<br>mem.exe——–显示内存使用情况<br>Msconfig.exe—系统配置实用程序<br>mplayer2——-简易widnows media player<br>mstsc———-远程桌面连接<br>mplayer2——-媒体播放机<br>magnify——–放大镜实用程序<br>mmc————打开控制台<br>mobsync——–同步命令<br>devmgmt.msc— 设备管理器<br>dfrg.msc——-磁盘碎片整理程序<br>diskmgmt.msc—磁盘管理实用程序<br>dcomcnfg——-打开系统组件服务<br>net stop messenger—–停止信使服务<br>net start messenger—-开始信使服务<br>nslookup——-网络管理的工具向导<br>ntmsmgr.msc—-移动存储管理器<br>ntmsoprq.msc—移动存储管理员操作请求<br>netstat -an—-（TC）命令检查接口<br>sysedit——–系统配置编辑器<br>secpol.msc—–本地安全策略<br>services.msc—本地服务设置<br>Sndvol32——-音量控制程序<br>sfc /scannow—windows文件保护<br>tsshutdn——-60秒倒计时关机命令<br>rsop.msc——-组策略结果集<br>rononce -p —-15秒关机<br>regsvr32 /u *.dll—-停止dll文件运行<br>regsvr32 /u zipfldr.dll——取消ZIP支持<br>certmgr.msc—-证书管理实用程序<br>cliconfg——-SQL SERVER 客户端网络实用程序</p><p>compmgmt.msc—计算机管理<br>ciadv.msc——索引服务程序<br>odbcad32——-ODBC数据源管理器</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="电脑运行命令集锦"><a href="#电脑运行命令集锦" class="headerlink" title="电脑运行命令集锦"></a>电脑运行命令集锦</h1><p>win+R，在『运行』窗口中输入</p><p>cmd————CMD命令提示符 </p><h2 id="一、自己常用"><a href="#一、自己常用" class="headerlink" title="一、自己常用"></a>一、自己常用</h2><blockquote><ul><li>calc———–启动计算器 （写代码的时候，可以快速看二进制）</li><li>mspaint——–画图板 （可以画讲解图,博客和数位板用）</li></ul></blockquote><blockquote><ul><li>regedit——–注册表（编辑器） </li><li>regedt32——-注册表编辑器（同上）</li><li>firewall.cpl—WINDOWS防火墙 </li><li>control——–打开控制面板 </li><li>lusrmgr.msc—-本机用户和组<br>（win10可以不用这个来管理）</li><li>gpedit.msc—–组策略（？） </li></ul></blockquote><blockquote><ul><li>notepad——–打开记事本（有时候用）</li><li>write———-写字板（就是rtf格式的那种文件）</li><li>wordpad——–写字板 （和上面一样，冗余的）</li></ul></blockquote><h2 id="二、管理电脑系统"><a href="#二、管理电脑系统" class="headerlink" title="二、管理电脑系统"></a>二、管理电脑系统</h2><p>utilman——–辅助工具管理器 （比如调整键盘映射？？？）</p><h3 id="《1》系统"><a href="#《1》系统" class="headerlink" title="《1》系统"></a>《1》系统</h3><blockquote><ul><li><font size=5><code>.</code></font>————–打开<font size=5>当前用户名</font>所在文件夹 （比如本用户的各种快速访问）</li><li><code>..</code>————-打开<font size=5>所有用户</font>所在文件夹（比如，你用Windows电脑的<font size=5>多用户功能</font>的时候）</li><li><code>...</code>————我的电脑 </li></ul></blockquote><p><code>\</code>————–C盘</p><blockquote><ul><li>%temp%———打开临时文件夹 </li><li>desk.cpl——-显示器属性（屏幕分辨率） </li><li>fsmgmt.msc—–共享文件夹管理器 </li></ul></blockquote><p>explorer——-打开资源管理器<br>（个人习惯用win+E快捷键,更好一些）</p><h3 id="《2》网络"><a href="#《2》网络" class="headerlink" title="《2》网络"></a>《2》网络</h3><blockquote><ul><li>ncpa.cpl——-网络连接（比如，我的无线等网络各种的设置） </li><li>nslookup——-IP地址侦测器 ——-网络管理的工具向导<br>iexpress——-网络安全工具，似乎可以木马捆绑工具，系统自带 111<br>inetcpl.cpl—-INTETNET选项 （打开了Internet属性）<br>mstsc———-远程桌面连接 </li></ul></blockquote><h3 id="《3》硬件"><a href="#《3》硬件" class="headerlink" title="《3》硬件"></a>《3》硬件</h3><blockquote><ul><li>hdwwiz.cpl—–添加硬件（打开了设备管理器）<br>devmgmt.msc—-设备管理器 </li></ul></blockquote><p>taskmgr——–任务管理器 （我用快捷键更加快？）（2000／xp／2003我的Windows10也OK</p><h3 id="《4》多媒体"><a href="#《4》多媒体" class="headerlink" title="《4》多媒体"></a>《4》多媒体</h3><p>dvdplay——–DVD播放器<br>mplayer2——-简易widnowsmediaplayer （同上）</p><p>mplayer2——-简易widnows media player<br>mplayer2——-媒体播放机</p><p>mmsys.cpl——声音和音频设备 （设置声音，那些什么立体，也就是录制的是麦还是电脑本身）<br>main.cpl——-鼠标 </p><p>magnify——–放大镜实用程序<br>narrator——-屏幕“讲述人”<br>（讲出来）<br>osk————打开屏幕键盘 </p><h2 id="三、不大常用"><a href="#三、不大常用" class="headerlink" title="三、不大常用"></a>三、不大常用</h2><p>winver———检查Windows版本 </p><p>compmgmt.msc—计算机管理<br>odbcad32——-ODBC数据源管理器<br>C:/windows/fonts字体</p><h2 id="四、未强化"><a href="#四、未强化" class="headerlink" title="四、未强化"></a>四、未强化</h2><p>certmgr.msc—-证书管理实用程序（不知道干啥用）<br>cliconfg——-SQL SERVER（Windows公司的那个数据库） 客户端网络实用程序</p><p>intl.cpl——-区域和语言选项（输入法选项）<br>eventvwr——-一个事情查看器<br>eudcedit——-造字程序<br>cleanmgr——-（磁盘）垃圾整理<br>diskmgmt.msc—磁盘管理实用程序<br>chkdsk.exe—–Chkdsk磁盘检查 （可能要谨慎使用）<br>charmap——–启动字符映射表<br>dcomcnfg——-打开系统组件服务<br>dxdiag———检查DirectX信息<br>irprops.cpl—-无线链接<br>（打开了红外线，。。。）<br>joy.cpl——–游戏控制器<br>migwiz———文件转移向导<br>msconfig.exe—系统配置实用程序<br>mmc————打开控制台<br>mobsync——–同步命令<br>perfmon.msc—-计算机性能监测程序<br>powercfg.cpl—电源选项<br>rsop.msc——-组策略结果集<br>sysdm.cpl——系统<br>timedate.cpl—日期和时间<br>services.msc—本地服务设置<br>sigverif——-文件签名验证程序<br>shrpubw——–共享文件夹设置工具<br>sfc.exe——–系统文件检查器<br>（不知道是啥？框框一闪而过）<br>telephon.cpl—电话和调制解调器选项<br>sfc /scannow—–扫描错误并复原<br>wmimgmt.msc—-打开windows管理体系结构(WMI)<br>wscript——–windows脚本宿主设置<br>wscui.cpl——安全中心<br>wiaacmgr——-扫描仪和照相机向导<br>（要安装了扫描仪或照相机才有用）<br>net start messenger—-开始信使服务<br>net stop messenger—–停止信使服务<br><b>（测试完后，鼠标就消失了？当时环境我连接了VPN（oobe/msoobe/a-检查XP是否激活(罪魁祸首) ）</b></p><h2 id="五、未测试的"><a href="#五、未测试的" class="headerlink" title="五、未测试的"></a>五、未测试的</h2><p>logoff———注销命令（？）<br>netstartX—-开始X服务 （–未测试）<br>netstopX—–停止X服务 （–未测试）<br>syskey———系统加密（一旦加密就不能解开，保护windowsxp系统的双重密码）<br>（谨慎使用—未测试）<br>shutdown——-关机命令（详细请在cmd中输入shutdown/?）<br>（—未测试）<br><code>regsvr32 /u *.dll</code>—-停止dll文件运行<br><code>regsvr32 /u zipfldr.dll</code>——取消ZIP支持<br><code>regsvr32/?</code>—-调用、卸载DLL文件运行（详细请在cmd中输入regsvr32/?）<br>（谨慎使用！）<br>syncapp——–创建一个公文包<br>（–未测试）<br>wuaucpl.cpl—-自动更新（–未测试）<br>wupdmgr—–windows更新程序（–未测试）<br>tsshutdn——-60秒倒计时关机命令<br>rononce -p —-15秒关机<br>sfc /scannow—windows文件保护<br>netstat -an—-（TC）命令检查接口</p><h2 id="六、Windows10，本电脑测试不通过的"><a href="#六、Windows10，本电脑测试不通过的" class="headerlink" title="六、Windows10，本电脑测试不通过的"></a>六、Windows10，本电脑测试不通过的</h2><p>conf———–启动netmeeting （？）（Conf听说在局域网用）<br>drwtsn32—— 系统医生（？）<br>Sndvol32——-音量控制程序<br>ciadv.msc——索引服务程序<br>clipbrd——–剪贴板查看器（？）<br>appwize.cpl—-添加、删除程序 （？）<br>access.cpl—–辅助功能选项（？）<br>Accwiz———辅助功能向导（？）<br>cintsetp——-仓颉拼音输入法（？）<br>ciadv.msc——索引服务程序（？）<br>ddeshare——-打开DDE共享设置（？）<br>drwtsn32——-系统医生（？）<br>dfrg.msc——-磁盘碎片整理程序（？）<br>mem.exe——–显示内存使用情况（？）<br>mlcfg32.cpl—-邮件 （？）<br>netstat-an—-命令检查接口（？）<br>netsetup.cpl—无线网络安装向导（？）<br>ntbackup——-系统备份和还原（？）<br>ntmsmgr.msc—-移动存储管理器（？）<br>ntmsoprq.msc—移动存储管理员操作请求（？）<br>nusrmgr.cpl—-用户账户（？）<br>nwc.cpl——–NetWare客户服务（？）<br>oobe/msoobe/a-检查XP是否激活(?)<br>packager——-对象包装程序（？）<br>progman——–程序管理器（？）<br>sndrec32——-录音机（？）<br>sndvol32——-音量控制程序（？）<br>sapi.cpl——-语音（？）<br>sysedit——–系统配置编辑器（？）<br>secpol.msc—–本地安全策略（？）<br>sfc/scannow—windows文件保护（？）<br>tourstart——xp简介（安装完成后出现的漫游xp程序）（？）<br>winmsd———系统信息（？）<br>telnet———远程连接程序（？）<br>winchat——–XP自带局域网聊天（？） </p>]]></content>
       
       
       <categories>
@@ -124,9 +151,9 @@
       
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> Markdown </tag>
+            
+            <tag> 工具 </tag>
             
         </tags>
       
@@ -176,9 +203,9 @@
       
         <tags>
             
-            <tag> C++ </tag>
-            
             <tag> C语言 </tag>
+            
+            <tag> C++ </tag>
             
         </tags>
       
@@ -203,9 +230,9 @@
       
         <tags>
             
-            <tag> C++ </tag>
-            
             <tag> C语言 </tag>
+            
+            <tag> C++ </tag>
             
         </tags>
       
@@ -230,11 +257,11 @@
       
         <tags>
             
-            <tag> 编译器底层 </tag>
+            <tag> C语言 </tag>
             
             <tag> C++ </tag>
             
-            <tag> C语言 </tag>
+            <tag> 编译器底层 </tag>
             
         </tags>
       
@@ -384,9 +411,9 @@
       
         <tags>
             
-            <tag> C++ </tag>
-            
             <tag> C语言 </tag>
+            
+            <tag> C++ </tag>
             
         </tags>
       
