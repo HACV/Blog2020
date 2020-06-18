@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="位段__一种特殊的结构体, HACV">
+    <meta name="keywords" content="Win快捷键, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>位段__一种特殊的结构体 | HACV</title>
+    <title>Win快捷键 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_09_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_08_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">位段__一种特殊的结构体</h1>
+                    <h1 class="description center-align post-title">Win快捷键</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">C语言</span>
+                            <a href="/Tags/Windows%E6%95%88%E7%8E%87/">
+                                <span class="chip bg-color">Windows效率</span>
                             </a>
                         
-                            <a href="/Tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                                <span class="chip bg-color">快捷键</span>
                             </a>
                         
                     </div>
@@ -424,8 +424,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
+                                效率
                             </a>
                         
                     </div>
@@ -437,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-09
+                    2020-06-18
                 </div>
                 
 
@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    501
+                    1.1k
                 </div>
                 
 
@@ -458,44 +458,39 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="位段（也叫位域）"><a href="#位段（也叫位域）" class="headerlink" title="位段（也叫位域）"></a>位段（也叫位域）</h1><h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>我们在做单片机的时候。微控制单元（Microcontroller Unit；MCU），又称单片微型计算机（Single Chip Microcomputer ）或者单片机。<br>经常会告诉你第几个比特是什么什么叫停止比特啥的。<br>如何操作呢？后面的数字是说，这个成员占几个比特。<br>其实这种手法在C语言中的实现就可以用我们现在要讲的位段方式。当然，位段并不是这些偏底层的程序实现的唯一应用场景，我们还能将这些用于网络通信等。</p>
-<h2 id="二、语法"><a href="#二、语法" class="headerlink" title="二、语法"></a>二、语法</h2><pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> test
-    <span class="token punctuation">{</span>
-        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> tt<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>demo<span class="token punctuation">;</span></code></pre>
-<p>特点：<br>编译器会安排其中的位的排列，不具有可移植性<br>当所需的位超过一个int时会采用多个int</p>
-<h2 id="三、位段的特点和内存对齐"><a href="#三、位段的特点和内存对齐" class="headerlink" title="三、位段的特点和内存对齐"></a>三、位段的特点和内存对齐</h2><p>对于位域的定义，有以下几点说明：</p>
-<blockquote>
-<ul>
-<li>（1）一个位域必须存储在同一个字节中，不能跨两个字节。如一个字节所剩空间不够存放另一位域时，应从下一单元起存放该位域。也可以有意使某位域从下一单元开始。</li>
-</ul>
-</blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wy
-<span class="token punctuation">{</span>
-   <span class="token keyword">unsigned</span> a<span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">;</span>
-   <span class="token keyword">unsigned</span> <span class="token number">0</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//空域</span>
-   <span class="token keyword">unsigned</span> b<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//从一单元开始存放</span>
-   <span class="token keyword">unsigned</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//在这个位域定义中，a占第一字节的6位，后2位填0表示不使用，</span>
-<span class="token comment" spellcheck="true">//b从第二字节开始，占用4位，c占用4位。</span></code></pre>
-<blockquote>
-<ul>
-<li>（2）由于位域不允许跨两个字节，因此位域的长度不能大于一个字节的长度，也就是不能超过8位二进位。</li>
-<li>（3）位域可以无位域名，这时它只用来填充或调整位置。无名的位域是不能使用的。</li>
-</ul>
-</blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wk
-<span class="token punctuation">{</span>
-   <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
-   <span class="token keyword">int</span> <span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//不能使用</span>
-   <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">;</span>
-   <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>从以上述分析可以看出，位域可以看做是一种结构类型，其特点是成员均<b>按二进位分配</b>    。</p>
+                <h1 id="Win快捷键"><a href="#Win快捷键" class="headerlink" title="Win快捷键"></a>Win快捷键</h1><h2 id="第1部分"><a href="#第1部分" class="headerlink" title="第1部分"></a>第1部分</h2><p>在屏幕是桌面的时候的快捷键的意思</p>
+<p>WIN+Q   打开了搜索    似乎Q是question  ？<br>WIN+W   打开了便笺和草图   我的win10上是的<br>WIN+E    打开资源管理器<br>WIN+R    打开“运行”对话框<br>WIN+T  后面</p>
+<p>WIN+Y  无<br>WIN+U 讲述人的设置  打开“辅助工具管理器”（我的Windows10电脑是打开了“设置”）<br>WIN+I  打开设置<br>WIN+O  无<br>WIN+P  投影</p>
+<hr>
+<p>WIN+A   打开新通知，或者能够更快的去编辑右下角的网络啥的<br>WIN+S   似乎和WIN+Q一样，，search<br>WIN+D    显示桌面<br>WIN+F反馈中心<br>打开“查找：所有文件”对话框（我的Windows10电脑是打开了“反馈中心”）搜索文件或文件夹<br>WIN+G</p>
+<p>WIN+H    无<br>WIN+J    无<br>WIN+K   连接  比如什么无线显示器和音频设备（应该有用）<br>WIN+L   锁屏<br>win+L 快速锁屏lock</p>
+<p>win+E 资源管理器</p>
+<hr>
+<p>WIN+Z    无<br>WIN+X<br>WIN+C    无<br>WIN+V    无<br>WIN+B   后面</p>
+<p>WIN+N    无<br>WIN+M    无</p>
+<hr>
+<p>————————————这两个用于强化win+X<br>WIN+T    到达那个左下角应用第一个位置<br>WIN+B  到达那个右下角第一个位置   再结合左右《—和—》就可以控制网络开关了</p>
+<h2 id="第2部分"><a href="#第2部分" class="headerlink" title="第2部分"></a>第2部分</h2><p>1.WIN+X<br>然后再按一个键盘就可以去往<br>    I PS<br>    A 管理员下的PS<br>    F 应用和功能——-似乎在这个先卸载软件更加清晰</p>
+<h2 id="第3部分"><a href="#第3部分" class="headerlink" title="第3部分"></a>第3部分</h2><p>win+1-9啥的就可以直接打开你的Windows系统的下面的任务栏中对应的一些程序！！</p>
+<p>而且还有一个用途，要是下面的程序不是固定的，那么其实也是可以调用的</p>
+<p>————————用win+B和win+T可以改善下面的<br>TAB 1次 到 左下角第一个win的图标<br>TAB 2次 到 左下角第2个图标  我的是搜索<br>TAB 3次 到 左下角第3个图标 我的是任意，我放的第一个固定的应用<br>此时就可以接着用《—和—》 左右选中去 下面的固定的应用</p>
+<p>TAB 4次 到 右下角第一个图标<br>此时就可以接着用《—和—》 左右选中去 右边的固定的地方了，<br>比如这样就可以去往控制我的网络开关等</p>
+<p>Win快捷键<br>01.Windows键+BREAK： 打开“系统属性”对话框（可以看是64位还是32位等信息）</p>
+<p>05.windows键或CTRL+ESC打开开始菜单<br>06.Windows键+CTRL+M:重新将恢复上一项操作前窗口的大小和位置<br>07.Windows键+CTRL+F打开“查找：计算机”对话框（这个OK）　　 </p>
+<p>Windows键+F1帮助<br>Windows键+TAB在打开的项目之间切换</p>
+<h2 id="快捷键熟练使用我的电脑（不一定用这个）"><a href="#快捷键熟练使用我的电脑（不一定用这个）" class="headerlink" title="快捷键熟练使用我的电脑（不一定用这个）"></a>快捷键熟练使用我的电脑（不一定用这个）</h2><p>我的Windows10事件的</p>
+<p>win+E进入之后</p>
+<p>Alt能够显示上面几个数字的用途<br>其中：</p>
+<p>1）  F——进入文件  （其实也可以一次性之间按Alt和F进入文件） 进入文件后就可以直接输入以下<br><code>N  R  O H  C  1   2   3   4  5  6  7 等等它们所对应的文件夹或者powershell</code></p>
+<p><code>1</code>——看当前选中的东西的属性（其实也可以一次性之间按Alt和1卡属性）</p>
+<p><code>2</code>——在当前下面新建文件夹并且能够自动让你重命名（其实也可以一次性之间按Alt和2新建文件夹）</p>
+<p>在我的电脑中，按那个F4就能到达那个类似于浏览器的浏览框中。<br>用D:\啥的，回车后就能去往D盘</p>
+<p>似乎在我的电脑中F10和Alt是一样的功能。</p>
+<p>此外F1到F12之间，F3的功能是多了一个搜索（感觉没啥用————还未领悟）</p>
+<p>重点：Alt+F在谷歌浏览器中是 打开文件菜单</p>
+<p>小键盘替代鼠标<br>打开方式：键盘左边的Alt+左边的shift+Numlock   后面会显示一个对话框，确定就OK<br>关闭的方式也是那3个键，只是最后按否。</p>
+<p>进入这个模式之后，<br>移动鼠标图符。鼠标键盘共有八个方向键，键“8”、“2”、“4”、“6”、<br>“7”、“1”、“9”、“3”的功能分别为使鼠标图符向上、下、左、右、<br>左上、左下、右上、右下移动，键按下时鼠标图符的移动是由慢到快加速<br>进行的，当到达目标位置时松开即可。</p>
+<p>进入这个模式之后，Numlock就是开关这个替换。。此外，开了这个的话，小键盘就不能用了。</p>
 
             </div>
             <hr/>
@@ -521,7 +516,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/09/2020-06-09-Bit-Segment/">https://github.com/HACV/HACV.github.io/2020/06/09/2020-06-09-Bit-Segment/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/18/2020-06-18-Win-shortcut/">https://github.com/HACV/HACV.github.io/2020/06/18/2020-06-18-Win-shortcut/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -559,12 +554,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">C语言</span>
+                                <a href="/Tags/Windows%E6%95%88%E7%8E%87/">
+                                    <span class="chip bg-color">Windows效率</span>
                                 </a>
                             
-                                <a href="/Tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                                    <span class="chip bg-color">快捷键</span>
                                 </a>
                             
                         </div>
@@ -732,49 +727,51 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/10/2020-06-10-Union/">
+                <a href="/2020/06/18/2020-06-18-Win-shortcut/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_10_cover.jpg" class="responsive-img" alt="共用体（联合）">
+                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="Win快捷键">
                         
-                        <span class="card-title">共用体（联合）</span>
+                        <span class="card-title">Win快捷键</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Union
+                            Win快捷键
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
+                                    效率
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
+                    <a href="/Tags/Windows%E6%95%88%E7%8E%87/">
+                        <span class="chip bg-color">Windows效率</span>
                     </a>
                     
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                        <span class="chip bg-color">快捷键</span>
                     </a>
                     
                 </div>
@@ -788,30 +785,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/08/2020-06-08-Memory-Alignment/">
+                <a href="/2020/06/17/2020-06-17-Browser-shortcut/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="内存对齐">
+                        <img src="/photos/2020.6.03_15/2020_06_07_cover.jpg" class="responsive-img" alt="浏览器快捷键">
                         
-                        <span class="card-title">内存对齐</span>
+                        <span class="card-title">浏览器快捷键</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言和C++中内存对齐
+                            浏览器使用加速快捷键
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
-                                    编译器底层
+                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
+                                    效率
                                 </a>
                             
                             
@@ -821,16 +818,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
-                    </a>
-                    
-                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
-                        <span class="chip bg-color">编译器底层</span>
-                    </a>
-                    
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                        <span class="chip bg-color">快捷键</span>
                     </a>
                     
                 </div>
