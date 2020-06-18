@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="线性排序, HACV">
+    <meta name="keywords" content="Word快捷键, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>线性排序 | HACV</title>
+    <title>Word快捷键 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_5_30title.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_09_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">线性排序</h1>
+                    <h1 class="description center-align post-title">Word快捷键</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/%E6%8E%92%E5%BA%8F/">
-                                <span class="chip bg-color">排序</span>
+                            <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                                <span class="chip bg-color">快捷键</span>
                             </a>
                         
                     </div>
@@ -420,8 +420,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
+                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
+                                效率
                             </a>
                         
                     </div>
@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-30
+                    2020-06-19
                 </div>
                 
 
@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.6k
+                    1.1k
                 </div>
                 
 
@@ -454,242 +454,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="三种线性排序"><a href="#三种线性排序" class="headerlink" title="三种线性排序"></a>三种线性排序</h1><h2 id="一、前述"><a href="#一、前述" class="headerlink" title="一、前述"></a>一、前述</h2><p>《算法导论》中提到有定理表明：</p>
-<blockquote>
-<ul>
-<li>任何比较排序在最坏的情况下都要经过$\Omega(nlogn)$次比较</li>
-</ul>
-</blockquote>
-<p>下面讨论三种<b>线性时间复杂度</b>的排序算法。<br>原因：这三种算法是用<b>运算</b>而不是<b>比较</b>来确定排序顺序的，所以能够突破这个定理的桎梏</p>
-<p>排序算法四问：</p>
-<blockquote>
-<ul>
-<li><b>1)时间复杂度</b></li>
-<li><b>2)空间复杂度</b></li>
-<li><b>3)排序是否原地</b><blockquote>
-<ul>
-<li><b>原地排序</b>：指不需要开辟额外空间</li>
-</ul>
-</blockquote>
-</li>
-<li><b>4)稳定性</b><blockquote>
-<ul>
-<li><b>稳定的排序</b>：具有相同值的元素在输出数组中的相对次序与他们在输入数组中的相对次序<b>相同</b></li>
-<li><b>意义</b>：只有当进行排序的数据还附带<b>“卫星数据”</b>时才比较重要。  eg.我们排序的是结构体的整数值，而整数值相同的，可能他的字符串不同。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h2 id="二、计数排序（counting-sort）读音是第4声"><a href="#二、计数排序（counting-sort）读音是第4声" class="headerlink" title="二、计数排序（counting sort）读音是第4声"></a>二、计数排序（counting sort）读音是第4声</h2><h3 id="1-假设和操作"><a href="#1-假设和操作" class="headerlink" title="1.假设和操作"></a>1.假设和操作</h3><h4 id="输入数据假设"><a href="#输入数据假设" class="headerlink" title="输入数据假设"></a>输入数据假设</h4><p>假设n个输入元素中的每个元素都是在[min,max]区间的一个<b>整数</b>。<br>排序快的原因：</p>
-<blockquote>
-<ul>
-<li>进行了上面的假设</li>
-<li>用空间换时间</li>
-</ul>
-</blockquote>
-<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><blockquote>
-<ul>
-<li>1·建立一个长度为max-min+1的统计数组，元素初始化为0</li>
-<li>2·每次扫描进数据，那么对应的统计数组的值+1（数组每一个下标位置的值，代表了数列中对应整数出现的次数）<b>（计数一词的来源）</b></li>
-<li>3·遍历统计数组，输出数组元素的下标值，元素的值是几，就输出几次</li>
-<li>4·如果排序的带有<b>“卫星数据”</b>,则需要进行第4步————此举，保证了计数排序的稳定性<blockquote>
-<ul>
-<li>对已经填充完的统计数组，做一下变形——具体的请见下面场景</li>
-<li>根据情况，选择正向或者反向遍历统计数组</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<p>Tips：计数排序的稳定性很重要的另一个原因是：计数排序经常会被用作基数排序算法的一个子过程，为了使基数排序正确执行，计数排序必须是稳定的。</p>
-<p>创造场景如下：</p>
-<blockquote>
-<ul>
-<li>假设有一个企业的招聘系统规则如下<blockquote>
-<ul>
-<li>申请者需要投递简历，写好姓名，将得到一个原始的排名Ranking</li>
-<li>为了激励大家投递简历，发布了一条通知,我们的排名（Ranking）依据两个维度来给申请者面试名额<blockquote>
-<ul>
-<li>1.笔试成绩高者，排名（Ranking）高</li>
-<li>2.笔试成绩相同者，公司会给先投递简历的人高的排名（Ranking）<br>此处体现了，排序的稳定性需求</li>
-<li>我们最后会将排名（Ranking）前4的申请者的名字（name）打印出来<br>名字是我们要排序的成绩（grade）的卫星数据</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<p>申请者的结构体设计如下</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> Apply
-<span class="token punctuation">{</span>
-    <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> grade<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>Ranking<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
-<p>显然，我们的计数排序是根据结构体的元素，grade来排名。<br>此外，为了容易说明计数排序，我们假设，笔试成绩范围是0-10分<br>投递简历如下图：<br> <img src="/photos/2020.5.30_31/1.png" width="80%"><br> 笔试完了，成绩如下图：<br><img src="/photos/2020.5.30_31/2.png" width="80%"><br>请按照规则给上面排序，注意：小橙和小青的成绩都是6<br>操作：<br>1·建立一个长度为11的统计数组，元素初始化为0，表示我们的成绩为0-10<br>2·每次扫描进数据，那么对应的统计数组的值+1<br>显然获得统计数组如下图：<br><img src="/photos/2020.5.30_31/3.png" width="90%"><br>3.暂时，不需要输出<br>4.对统计数组进行变形：<br>方法，从倒数第2位开始，反向遍历统计数组，a[i]=a[i+1]+a[i];<br>相加的目的,是为了让统计数组存储的元素值,等于相应grade的排名的最终排序位置。<br><img src="/photos/2020.5.30_31/4.png" width="90%"><br>5.接下来,我们创建输出数组,长度和输入数组一致。<br>然后</p>
-<table><td bgcolor=#FFFF FF>注意1）从后往前遍历</td></table>
-原先的输入数组
-小青，成绩6，查统计数组,值为2（有2个同成绩的），查变形后数组，放输出数组<b>第5位</b>
-Tips：查到统计数组值为2，我们在放完小青到输出数组之后，需将变形后的数组的值减1，变成了4
-<table><td bgcolor=#FFFF FF>注意2）从5变成4,代表着下次再遇到6分的成绩时,最终排名是第4。（这就保证了计数排序的稳定性!）</td></table>
-
-<p>小蓝，成绩7,查统计数组,值为1（唯一），查变形后的数组，放输出数组的<b>第3位</b><br>小绿，成绩5,查统计数组,值为1（唯一），查变形后的数组，放输出数组的<b>第6位</b><br>小黄，成绩8,查统计数组,值为1（唯一），查变形后的数组，放输出数组的<b>第2位</b></p>
-<p>小橙，成绩6,查统计数组,值为2（有2个同成绩的），查变形后数组，知放输出数组<b>第4位</b><br>我们在放完小橙到输出数组之后，需将变形后的数组的值，减1，变成了3</p>
-<p>小红,成绩9,查统计数组,值为1（唯一），查变形后的数组，知放输出数组的<b>第1位</b> </p>
-<p>排序后结果（如图，保证了卫星数据的稳定性）：<br><img src="/photos/2020.5.30_31/5.png" width="90%"></p>
-<h3 id="2-算法分析"><a href="#2-算法分析" class="headerlink" title="2.算法分析"></a>2.算法分析</h3><blockquote>
-<ul>
-<li>时间复杂度：$O(n+m)$    其中m是原始数组的整数范围</li>
-<li>空间复杂度：$O(n+m)$</li>
-<li>是否原地排序：否</li>
-<li>稳定性：稳定</li>
-<li>数据结构：数组，hash</li>
-</ul>
-</blockquote>
-<p>Tips：有人也把统计数组的每个位置，叫做一个个桶，但我们暂时不这么叫，免得大家将桶排序和计数排序弄混了</p>
-<h3 id="3-局限性"><a href="#3-局限性" class="headerlink" title="3.局限性"></a>3.局限性</h3><blockquote>
-<ul>
-<li>1.当输入数组元素最大最小值差距过大时<br>比如给定20个随机整数,范围在0到1亿之间,这时若使用计数排序,需创建长度为1亿的数组。严重浪费空间,且时间复杂度也随之升高。<br>解决方案：见桶排序</li>
-<li>2.当输入数组元索不是整数，如字符，浮点数<blockquote>
-<ul>
-<li>如果数列中的元素都是小数,比如25.23 ,或是0.01这样子,无法创建对应的统计数组。<br>解决方案1：假如是0.3,0.13,0.001,0.22  我们可以将他们全乘1000，然后就转换为计数排序，输出的时候，记得除回来<br>解决方案2：见桶排序</li>
-<li>如果数列中的元素都是字符或字符串,比如abc,b,c<br>解决方案1：借助字符的ASCII码，按位赋权，转换hash为数字，再排序<br>解决方案2：见基数排序，借助字符的ASCII码。</li>
-</ul>
-</blockquote>
-</li>
-<li>4.如果，输入的元素是大整数，比如15位长的号码1234567894554541,可是,15位长的号码有多少种组合?这要建立一个大得不可想象的数组,才能装下所有可能出现的15位长的号码，很不划算!<br>解决方案：见基数排序（思想：减而治之）</li>
-<li>5.其他————碰到了再补充，总之，要灵活运用，而不是将某种算法运用场景当做教条，场景只是帮助更好的理解算法的一种方式。</li>
-</ul>
-</blockquote>
-<h2 id="三、基数排序（Radix-sort）读音是第1声"><a href="#三、基数排序（Radix-sort）读音是第1声" class="headerlink" title="三、基数排序（Radix sort）读音是第1声"></a>三、基数排序（Radix sort）读音是第1声</h2><h3 id="1-操作"><a href="#1-操作" class="headerlink" title="1.操作"></a>1.操作</h3><p>需求：为如下一组英文单词排序<br><img src="/photos/2020.5.30_31/6.png" width="90%"><br>操作：我们把排序工作拆分成多个阶段,每一个阶段只根据一个字符(基数排序，基字的由来)进行计数排序, 一共排序k轮, k是元素长度。<br>如何将这些字符串按照字母顺序排序呢?<br>具体的<br>由于每个字符串的长度是3个字符,我们可以把排序工作拆分成3轮</p>
-<blockquote>
-<ul>
-<li>第一轮:按照最低位字符排序。排序过程使用计数排序,把字母的ascii码对应到数组下标，第1轮排序结果如下:<img src="/photos/2020.5.30_31/7.png" width="90%">
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>第二轮:<b>在第一轮排序结果的基础上</b>,按照第二位字符排序，第2轮排序结果如下:<img src="/photos/2020.5.30_31/8.png" width="90%">
-</li>
-</ul>
-</blockquote>
-<table><td bgcolor=#FFFF FF>
-注意：这里使用的计数排序必须是稳定排序,这样才能保证第1轮排出的先后顺序在第2轮还能继续保持！</td></table>
-<table><td bgcolor=#FFFF FF>
-比如，在第1轮排序后,元素uue在元素yui之前。那么第二轮排序时,两者的第二位字符虽然同样是u,但先后顺序一定不能变,否则第1轮排序就白做了。</td></table>
-
-<blockquote>
-<ul>
-<li>第三轮：同理，略。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>基数排序(Radix Sort)：形如这样把字符串元素按位拆分,每一个基位进行一次稳定性的排序的算法,就是基数排序<br>基数排序既可以<b>从高位优先</b>进行排序（Most Significant Digit first ,简称MSD ）<br>也可以<b>从低位优先</b>进行排序（Least Significant Digit first ,简称LSD）<br>刚才我们所举的例子,就是典型的LSD方式的基数排序。</li>
-</ul>
-</blockquote>
-<h3 id="2-疑问"><a href="#2-疑问" class="headerlink" title="2.疑问"></a>2.疑问</h3><p>问：如果排序的字符串长度不规则呢?  比如有的字符串是5位，有的是3位</p>
-<pre><code>banana
-apple
-orange
-ape
-he</code></pre><p>毛主席说过，<b>没有条件，我们就创造条件</b><br>创造条件：<br>我们以最长的字符串为准，其他长度不足的字符串，在<b>末尾补0</b>即可</p>
-<pre><code>banana
-apple0
-orange
-ape000
-he0000</code></pre><p>在排序时,我们把字符0当做是比a更小的字符,排序结果如下:</p>
-<pre><code>ape000
-apple0
-banana
-he0000
-orange</code></pre><h3 id="3-算法分析"><a href="#3-算法分析" class="headerlink" title="3.算法分析"></a>3.算法分析</h3><blockquote>
-<ul>
-<li>时间复杂度：$O(k(n+m))$    其中m是原始数组的整数范围<br>由于字符串元素的长度k是一个固定常量，所以我们认为这个是一个线性的排序算法。</li>
-<li>空间复杂度：$O(n+m)$    至于空间复杂度，由于基数排序的辅助数组是反复重用的，所以基数排序的空间复杂度和计算排序一样。</li>
-<li>是否原地排序：否</li>
-<li>稳定性：稳定</li>
-<li>数据结构：数组，hash</li>
-</ul>
-</blockquote>
-<table><td bgcolor=#FFFF FF>
-注意点：</td></table>
-<table><td bgcolor=#FFFF FF>
-1.上面的算法时间复杂度分析是不够完善的，其实上面的是以计数排序这种稳定排序作为基数排序的子过程的复杂度分析。基数排序，其实主要是强调，我们对待一些排序，可以按位（比如，我们二进制中，按照以2为基的任何位），来分别排序。</td></table>
-<table><td bgcolor=#FFFF FF>
-2.推而广之：基数排序的子过程，可以是任何具有稳定性的排序算法（注意点）
-eg.插入排序，折半插入排序，冒泡排序</td></table>
-<table><td bgcolor=#FFFF FF>
-Tips:其实，基数排序的算法的时间复杂度分析依赖于我们所使用的稳定的排序算法！！！
-</td></table>
-
-
-
-
-<h2 id="四、桶排序（bucket-sort）"><a href="#四、桶排序（bucket-sort）" class="headerlink" title="四、桶排序（bucket sort）"></a>四、桶排序（bucket sort）</h2><h3 id="1-假设和操作："><a href="#1-假设和操作：" class="headerlink" title="1.假设和操作："></a>1.假设和操作：</h3><blockquote>
-<ul>
-<li>碎碎念：桶排序同样是一种线性时间的排序算法。类似于计数排序所创建的<b>统计数组</b>，桶排序需要创建<b>若干个桶</b>来协助排序。这也大概是为什么有的人，将计数排序中的统计数组的叫做一个个桶的原因吧，然后推而广之，也在基数排序中叫桶<br>殊不知：有时就是这样的叫法把初学者弄混了，不知道，是不是有桶的都叫桶排序？</li>
-</ul>
-</blockquote>
-<p>其实，《算法导论》一书中，并没有把计数排序和基数排序中的统计数组叫桶…</p>
-<p>但是，其实桶排序体现的是一种思想，我们不用纠结的是”桶”到底是什么，我们需要的是根据实际情况去选择合适的数据结构去存储，实现这个抽象的”桶”，所以，我们也将计数和基数排序中的统计数组算做是”桶”点一种实现方式吧。</p>
-<p>与计数排序相似，因为对输入数据进行了某种假设，桶排序的速度也很快。<br>假设：输入数据服从<b>均匀分布</b></p>
-<p>那么,桶排序当中所谓的”桶”，又是什么概念呢?<br>每一个桶(bucket)代表一个区间范围,里面可以承载一个或多个元素。</p>
-<blockquote>
-<ul>
-<li>操作：<blockquote>
-<ul>
-<li>第一步，就是创建这些桶,确定每一个桶的区间范围</li>
-<li>第二步，将创建这些桶,分别都进行排序处理（由于，数据满足均匀分布，所以，我们的每个桶放的元素应该都差不多一样多，也就是均匀）</li>
-<li>第三步，合并桶，进行输出</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h3 id="2-算法分析-1"><a href="#2-算法分析-1" class="headerlink" title="2.算法分析"></a>2.算法分析</h3><p>假设原始数列有n个元素,分成m个桶, 平均每个桶的元素个数为n/m。<br>下面我们来逐步分析算法复杂度:<br>第一步，求数列最大最小值,运算量为n。<br>第二步，创建空桶,运算量为m。<br>第三步，遍历原始数列,运算量为n。<br>第四步，在每个桶内部做排序,若是使用了$0(nlogn)$的排序算法,所以运算量为<br>$n/m * log(n/m)* m$<br>第五步,输出排序数列,运算量为n。<br>加起来,总的运算为$3n+m+ n/m * log(n/m)* m = 3n+m+ n(logn-logm)$<br>去掉系数,时间复杂度为:<br>$O(n+m+n(logn-logm))$</p>
-<p>空间复杂度:<br>空桶占用的空间+数列在桶中占用的空间=$O(n+m)$</p>
-<blockquote>
-<ul>
-<li>时间复杂度：$O(n+m+n(logn-logm))$</li>
-<li>空间复杂度：$O(n+m)$    </li>
-<li>是否原地排序：否</li>
-<li>稳定性：若是桶内使用不稳定的排序，则不稳定，但是桶与桶之间是稳定的</li>
-<li>数据结构：数组，链表，堆…看场景</li>
-</ul>
-</blockquote>
-<table><td bgcolor=#FFFF FF>
-Tips：分析
-</td></table>
-
-<blockquote>
-<ul>
-<li>时间复杂度：<blockquote>
-<ul>
-<li>最坏n方（一个桶)）</li>
-<li>最好为n（n个桶而且值排列均匀）</li>
-</ul>
-</blockquote>
-</li>
-<li>空间复杂度：<blockquote>
-<ul>
-<li>其实，要是想要空间复杂度最好，得用链表，但是那样时间复杂度就做不到最好</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h2 id="五、联系和总结"><a href="#五、联系和总结" class="headerlink" title="五、联系和总结"></a>五、联系和总结</h2><p>总的来说，计数排序，基数排序，桶排序都是用的空间换取时间的思想。<br>另外，我们的计数排序和基数排序都可以看做是桶排序，”桶思想”的一种特例。</p>
-<blockquote>
-<ul>
-<li>由于，桶排序的复杂度分析很依赖于具体的数据，我们常用的反而是计数排序和基数排序。</li>
-<li>从桶排序的算法分析中，我们需要知道的是，没有绝对高效的算法，只有合适的算法应用场景！！！</li>
-<li>总的说来，算法的设计，一般体现的是用时间换空间，或者空间换时间。</li>
-</ul>
-</blockquote>
+                <h1 id="Word快捷键"><a href="#Word快捷键" class="headerlink" title="Word快捷键"></a>Word快捷键</h1><p>记住常用的就好了</p>
+<h2 id="一、常用的"><a href="#一、常用的" class="headerlink" title="一、常用的"></a>一、常用的</h2><p>Ctrl+Y：重复上一操作部分操作不适用，也是是<strong>反向撤销</strong><br>CTRL+E 居中（在选中目标情况下）<br><code>Ctrl+[</code>     缩小选中的文字或者先缩小文字号，然后我们再打字就变小了<br><code>Ctrl+]</code>     放大选中的文字<br><code>Ctrl+shift+ +</code> 上标<br><code>Ctrl+ +</code> 下标</p>
+<p>Ctrl+F：打开“查找与替换”对话框，并定位在“查找”标签上。<br>Ctrl+G：打开“查找与替换”对话框，并定位在“定位”标签上。 </p>
+<p>Ctrl+H：打开“查找与替换”对话框，并定位在“替换”标签上。 </p>
+<p>CTRL+L 左对齐（在选中目标情况下）<br>CTRL+R 右对齐（在选中目标情况下）<br>CTRL+J 两端对齐（在选中目标情况下）</p>
+<p>CTRL+D     字体设置（在选中目标情况下）打开“字体”对话框，快速完成字体的各种设置。 </p>
+<p>CTRL+P 打印<br>CTRL+A 全选<br>CTRL+O     打开    然后就可以用四个方向键控制一点其他的</p>
+<p>CTRL+N 新建文档窗口 </p>
+<p>Ctrl+F4或者Ctrl+W 关闭当前文档。</p>
+<p>CTRL+U 绘制下划线（在选中目标情况下）;<br>CTRL+B 加粗文字（在选中目标情况下）;<br>CTRL+I 倾斜文字（在选中目标情况下）; </p>
+<p>CTRL+K 插入超链接 </p>
+<p>Ctrl+A（或Ctrl+小键盘上数字5）：选中全文。<br>Ctrl+X：将选中的文字剪切到剪贴板中。<br>Ctrl+Z：撤销刚才进行的操作（可以多次使用）。<br>Ctrl+W：关闭当前文档 </p>
+<p>Ctrl+V：将剪贴板中的文本或图片粘贴到光标处。若剪贴板中有多个内容，则将最后一条内容粘贴到光标处。  </p>
+<h2 id="二、其他"><a href="#二、其他" class="headerlink" title="二、其他"></a>二、其他</h2><p>CTRL+M 左边距（在选中目标情况下）;<br>CTRL+Q 两边对齐（无首行缩进），（在选中目标情况下）或将光标放置目标文字的段尾，亦可操作<br>CTRL+T/Y 可进行首行缩进（将光标移到需做此操作的段尾，或将此段选中进行操作 </p>
+<p>Ctrl+Shift+L：给光标所在行的文本加上“项目符号”<br>Ctrl+M：同时增加首行和悬挂缩进<br>Ctrl+Shift+M：同时减少首行和悬挂缩进<br>Ctrl+O（或Ctrl+F12）：打开“打开”对话框<br>Ctrl+P（或Ctrl+Shift+F12）：打开“打印”对话框<br>Ctrl+R：使光标所在行的文本右对齐<br>Ctrl+S：为新文档打开“另保存为”对话框，或对当前文档进行保存<br>Ctrl+T：增加首行缩进<br>Ctrl+Shift+T：减少首行缩进 </p>
+<p>Ctrl+0：将选中的文本每段前增加12磅的间距。<br>Ctrl+1：若选中的文本行距不是“单倍行距”，则将其快速设置为“单倍行距”。<br>Ctrl+2：将选中的文本行距设置为“两倍行距”。<br>Ctrl+5：将选中的文本行距设置为“1.5倍行距”。<br>Ctrl+F2：快速执行“打印预览”功能。<br>Ctrl+F5：使窗口还原到最大化之前的状态。<br>Ctrl+Shift+F5：打开“书签”对话框。<br>Ctrl+Shift+F8：激活列选择功能，即通常所说的选择竖块文本（再按一次或按ESC键，取消该功能）。<br>Ctrl+F9：在光标处插入一域记号“{}”（注意：直接输入的一对大括号不能作为域记号）。<br>Ctrl+F5：使窗口还原到最大化之前的状态（再按一次，就会使窗口再次最大化）。<br>Ctrl+Deltet：删除光标后面的一个英文单词或一个中文词语（可反复使用）。<br>Ctrl+退格键：删除光标前面的一个英文单词或一个中文词语（可反复使用）。<br>Ctrl+Enter：将光标后面的内容快速移到下一页。<br>Ctrl+End：快速将光标移到文末。<br>Ctrl+Home（或Ctrl+Page Up）：快速将光标移到文首。<br>Ctrl+Insert+Insert(即按两下Insert键)：快速打开或更改“任务窗格”到“剪贴板”状态。<br>Ctrl+~：打开中文输入法的“在线造词”功能<br><code>Ctrl++</code>：快速切换到下标输入状态（再按一次恢复到正常状态）<br><code>Ctrl+Shift++</code>：快速切换到上标输入状态（再按一次恢复到正常状态）<br><code>Ctrl+→</code>：按英文单词或中文词语的间隔向后移动光标。<br><code>Ctrl+←</code>：按英文单词或中文词语的间隔向前移动光标。<br><code>Ctrl+Q</code>：段落重置 </p>
 
             </div>
             <hr/>
@@ -715,7 +495,7 @@ Tips：分析
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/30/2020-05-30-Linear-Sort/">https://github.com/HACV/HACV.github.io/2020/05/30/2020-05-30-Linear-Sort/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/19/2020-06-19-Word-shortcut/">https://github.com/HACV/HACV.github.io/2020/06/19/2020-06-19-Word-shortcut/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -753,8 +533,8 @@ Tips：分析
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/%E6%8E%92%E5%BA%8F/">
-                                    <span class="chip bg-color">排序</span>
+                                <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                                    <span class="chip bg-color">快捷键</span>
                                 </a>
                             
                         </div>
@@ -922,45 +702,47 @@ Tips：分析
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/05/31/2020-05-31-Cplusplus-const/">
+                <a href="/2020/06/19/2020-06-19-Word-shortcut/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_5_31title.jpg" class="responsive-img" alt="C++的const底层机制">
+                        <img src="/photos/2020.6.03_15/2020_06_09_cover.jpg" class="responsive-img" alt="Word快捷键">
                         
-                        <span class="card-title">C++的const底层机制</span>
+                        <span class="card-title">Word快捷键</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++对C的const关键字增强的底层机制
+                            Word快捷键
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
+                                    效率
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                        <span class="chip bg-color">快捷键</span>
                     </a>
                     
                 </div>
@@ -974,30 +756,30 @@ Tips：分析
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/29/2020-05-29-The-Rules-Of-Variable-Name/">
+                <a href="/2020/06/18/2020-06-18-Win-shortcut/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.29/title_one.jpg" class="responsive-img" alt="C语言和C++变量的命名规则">
+                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="Win快捷键">
                         
-                        <span class="card-title">C语言和C++变量的命名规则</span>
+                        <span class="card-title">Win快捷键</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            你有没有想过，为什么C语言和C++的变量命名规则为什么是那样的？
+                            Win快捷键
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                    随笔
+                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
+                                    效率
                                 </a>
                             
                             
@@ -1007,12 +789,12 @@ Tips：分析
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
+                    <a href="/Tags/Windows%E6%95%88%E7%8E%87/">
+                        <span class="chip bg-color">Windows效率</span>
                     </a>
                     
-                    <a href="/Tags/idea/">
-                        <span class="chip bg-color">idea</span>
+                    <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+                        <span class="chip bg-color">快捷键</span>
                     </a>
                     
                 </div>
