@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Vim命令强化</title>
+      <link href="/2020/06/22/2020-06-22-Vim/"/>
+      <url>/2020/06/22/2020-06-22-Vim/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Vim命令强化"><a href="#Vim命令强化" class="headerlink" title="Vim命令强化"></a>Vim命令强化</h1><p>PS：所有测试在Redhat RHEL7（<strong>R</strong>ed<strong>H</strong>at <strong>E</strong>nterprise <strong>L</strong>inux <strong>7</strong>）通过</p><h2 id="一、Vim三种模式"><a href="#一、Vim三种模式" class="headerlink" title="一、Vim三种模式"></a>一、Vim三种模式</h2><p>Vim编辑器中设置了三种模式一命令模式、末行模式和编辑模式<br><strong>每种模式分别又支持多种不同的命令快捷键</strong></p><p>我们先弄清这三种模式的操作区别以及模式之间的切换方法</p><blockquote><ul><li>命令模式:控制光标移动，可对文本进行复制、粘贴、删除和查找等工作。</li><li>输人模式:正常的文本录入。</li><li>末行模式:保存或退出文档，以及设置编辑环境。</li></ul></blockquote><img src="https://github.com/HACV/Blog_Gallery/blob/master/2020/2020_6/2020_06_22_Vim_01.png?raw=true" width="80%"><p>说明：<br><code>vim 文件名</code> 则进入了vim的命令模式<br>1）在每次运行Vim编辑器时，<strong>默认进入</strong>命令模式，<br>2）此外，每次在编写完文档后需要先返回命令模式，然后再进人末行模式，执行文档.的保存或退出操作。<br><strong>在Vim中，无法直接从输人模式切换到末行模式。</strong></p><p>命令模式进入输入模式：</p><blockquote><ul><li>i取自insert插入，<blockquote><ul><li><code>i</code> 光标处<strong>前一个字符</strong>编辑</li><li><code>I</code> 大写的 i，光标所处<strong>行首</strong>编辑</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li><strong>a取append</strong>追加，（我记得在Python中有用过这个函数，然后似乎C++11中也有？）<blockquote><ul><li><code>a</code> 光标处<strong>后一个字符</strong>编辑</li><li><code>A</code> 光标所处<strong>行尾</strong>编辑</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>暂时没想到<br><code>o</code> 光标处<strong>向下</strong>新建一行编辑<br><code>O</code> 大写的 o，光标处<strong>向上</strong>新建一行编辑</li></ul></blockquote><h2 id="二、命令模式"><a href="#二、命令模式" class="headerlink" title="二、命令模式"></a>二、命令模式</h2><p>命令模式:控制光标移动，可对文本进行复制、粘贴、删除和查找等工作。</p><blockquote><ul><li>剪切类（可以用作删除）（但是<strong>d却是delete删除，首字母</strong>）<blockquote><ul><li><code>dd</code>剪切(删除)<strong>光标所在整行</strong></li><li><code>5dd</code>删除(剪切)从光标处开始的5行</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>复制类（暂时用<strong>copy的末尾y记忆</strong>）<blockquote><ul><li><code>yy</code>复制<strong>光标所在整行</strong></li><li><code>5yy</code>复制从光标处开始的5行</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>粘贴（<strong>p是paste</strong>粘贴，首字符）<blockquote><ul><li><code>p</code>将之前剪切(dd)或复制(yy)过的数据粘贴到光标后面</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>撤销（<strong>u是unsay</strong>收回，撤回，首字母）<blockquote><ul><li><code>u</code>撤销上一步的操作</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>单个字符修改<blockquote><ul><li><code>X</code>删除光标所处的字符：X（和Windows下Ctrl+X有点类似了，但是只是删除）</li><li>按<code>R</code>后输入新的字符替换光标所处的字符</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>字符串匹配后续<blockquote><ul><li><code>n</code>显示搜索命令定位到的下一个字符串</li><li><code>N</code>显示搜索命令定位到的上一个字符串</li></ul></blockquote></li></ul></blockquote><h2 id="三、输入模式"><a href="#三、输入模式" class="headerlink" title="三、输入模式"></a>三、输入模式</h2><p>输人模式:正常的文本录入。</p><h2 id="四、末行模式"><a href="#四、末行模式" class="headerlink" title="四、末行模式"></a>四、末行模式</h2><p>末行模式:保存或退出文档，以及设置编辑环境。</p><p>末行模式的命令都写在你用<code>:</code>进去末行模式后面</p><blockquote><p>总的来说格式：<br><code>:命令</code>执行该命令</p></blockquote><p><strong>下面的都省略了<code>:</code></strong><br><code>整数</code>跳转到这个整数的那一行<br><code>w</code> 保存<br><code>q</code> 退出（quit）<br><code>q!</code>强制退出（放弃对文档的修改内容）</p><p><code>wq!</code>强制保存退出</p><blockquote><ul><li>看代码常用<blockquote><ul><li><code>set nu</code>显示行号，nu——num</li><li><code>set nonu</code>显示行号，</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>查找和替换<blockquote><ul><li>查找<blockquote><ul><li><code>/字符串</code> 在文本中<strong>从上至下</strong>搜索该字符串</li><li><code>?字符串</code> 在文本中<strong>从下至上</strong>搜索该字符串</li></ul></blockquote></li><li>替换<blockquote><ul><li><code>:s/one/two</code>将<strong>当前光标所在行</strong>的第一个 one替换成two</li><li><code>:s/one/two/g</code>将当<strong>前光标所在行</strong>的<strong>所有</strong>one替换成two</li><li><code>:%s/one/two/g 8s/one/two/g</code>将<strong>全文</strong>中的<strong>所有</strong>one替换成two</li></ul></blockquote></li></ul></blockquote></li></ul></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 效率 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux效率 </tag>
+            
+            <tag> Vim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>其他快捷键</title>
       <link href="/2020/06/21/2020-06-21-Other-shortcut/"/>
       <url>/2020/06/21/2020-06-21-Other-shortcut/</url>
@@ -95,9 +122,9 @@
       
         <tags>
             
-            <tag> Windows效率 </tag>
-            
             <tag> 快捷键 </tag>
+            
+            <tag> Windows效率 </tag>
             
         </tags>
       
@@ -147,9 +174,9 @@
       
         <tags>
             
-            <tag> Windows效率 </tag>
-            
             <tag> 快捷键 </tag>
+            
+            <tag> Windows效率 </tag>
             
         </tags>
       
@@ -174,9 +201,9 @@
       
         <tags>
             
-            <tag> Windows效率 </tag>
-            
             <tag> 快捷键 </tag>
+            
+            <tag> Windows效率 </tag>
             
         </tags>
       
@@ -201,9 +228,9 @@
       
         <tags>
             
-            <tag> Cmd命令 </tag>
-            
             <tag> Windows效率 </tag>
+            
+            <tag> Cmd命令 </tag>
             
             <tag> Linux效率 </tag>
             
@@ -230,9 +257,9 @@
       
         <tags>
             
-            <tag> Cmd命令 </tag>
-            
             <tag> Windows效率 </tag>
+            
+            <tag> Cmd命令 </tag>
             
         </tags>
       
@@ -442,9 +469,9 @@
             
             <tag> C语言 </tag>
             
-            <tag> 编译器底层 </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> 编译器底层 </tag>
             
         </tags>
       
