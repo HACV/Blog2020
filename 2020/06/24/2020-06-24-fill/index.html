@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STL强化, HACV">
+    <meta name="keywords" content="给数组赋相同值——fill, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>STL强化 | HACV</title>
+    <title>给数组赋相同值——fill | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_15_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_01_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STL强化</h1>
+                    <h1 class="description center-align post-title">给数组赋相同值——fill</h1>
                 </div>
             </div>
         </div>
@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-13
+                    2020-06-24
                 </div>
                 
 
@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    508
+                    328
                 </div>
                 
 
@@ -454,83 +454,31 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="STL整理"><a href="#STL整理" class="headerlink" title="STL整理"></a>STL整理</h1><blockquote>
-<ul>
-<li>类模板 </li>
-<li>函数模板</li>
-<li>数据结构</li>
-<li>算法</li>
-<li>封装</li>
-</ul>
-</blockquote>
-<h2 id="（1）-include-lt-vector-gt"><a href="#（1）-include-lt-vector-gt" class="headerlink" title="（1）#include&lt;vector&gt;"></a>（1）#include&lt;vector&gt;</h2><p>可变长数组<br>底层实现是数组<br>具体可以看清华邓俊辉的</p>
-<h2 id="（2）-include-lt-set-gt"><a href="#（2）-include-lt-set-gt" class="headerlink" title="（2）#include&lt;set&gt;"></a>（2）#include&lt;set&gt;</h2><p>集合<br>内部自动有序<br>并且不含重复元素的容器，也就是会去重。</p>
-<p>内部实现是<strong>红黑树</strong></p>
-<h3 id="（1）multiset"><a href="#（1）multiset" class="headerlink" title="（1）multiset"></a>（1）multiset</h3><blockquote>
-<p>set中元素是唯一的。<br>而我的这个的元素不是唯一的。<br>也就是元素没有去重。</p>
-</blockquote>
-<p>样例：</p>
-<pre class=" language-txt"><code class="language-txt">输入一个长度不超过20的字符串，对所输入的字符串，
-按照ASCII码的大小从小到大进行排序，请输出排序后的结果</code></pre>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;string.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;set></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+                <h1 id="给数组赋相同值——fill"><a href="#给数组赋相同值——fill" class="headerlink" title="给数组赋相同值——fill"></a>给数组赋相同值——fill</h1><p>前提：<br>C++中头文件<code>#include&lt;algorithm&gt;</code></p>
+<p>fill可以将<strong>数组</strong>（我记得我看过的有一本书，似乎上面说，数组其实在<code>C++</code>中也是一容器<font style="background: yellow" size=5>待补充是哪本书</font>）<br>或<strong>容器</strong>中的某一段区间赋为某个相同的值。</p>
+<h2 id="一、fill的常用用法"><a href="#一、fill的常用用法" class="headerlink" title="一、fill的常用用法"></a>一、fill的常用用法</h2><p>和memset不同，这下你想给那个数组赋值是多少就可以<strong>任意</strong>选，你完全不用从bit的角度来思考很直观。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//一维数组</span>
+<span class="token function">fill</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">233</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>OJ中，做图论等一些题目，用<strong>邻接矩阵</strong>常用下面的方式</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">int</span> INF<span class="token operator">=</span><span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> MAXN<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//二维数组</span>
+<span class="token function">fill</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>MAXN<span class="token operator">*</span>MAXN<span class="token punctuation">,</span>INF<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//注意这里a[0]</span></code></pre>
+<p>十六进制0x3f3f3f3f<br>对应二进制<br>‭<code>0011 1111</code> <code>0011 1111</code> <code>0011 1111</code> <code>0011 1111‬</code></p>
+<p>Tips:看二进制，个人还是习惯直接用Windows的calc</p>
+<h2 id="二、对比memset和fill的语法，记忆"><a href="#二、对比memset和fill的语法，记忆" class="headerlink" title="二、对比memset和fill的语法，记忆"></a>二、对比memset和fill的语法，记忆</h2><h3 id="DevC-中memset声明"><a href="#DevC-中memset声明" class="headerlink" title="DevC++中memset声明"></a>DevC++中memset<strong>声明</strong></h3><p><code>void * __cdecl memset(void *_Dst,int _Val,size_t _Size);</code></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="DevC-中fill声明"><a href="#DevC-中fill声明" class="headerlink" title="DevC++中fill声明"></a>DevC++中fill<strong>声明</strong></h3><p><code>template&lt;typename _FIter, typename _Tp&gt;</code><br><code>void  fill(_FIter, _FIter, const _Tp&amp;);</code></p>
+<p>所以</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//一维数组</span>
+<span class="token function">fill</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">233</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">const</span> <span class="token keyword">int</span> INF<span class="token operator">=</span><span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> MAXN<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//二维数组</span>
+<span class="token function">fill</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>MAXN<span class="token operator">*</span>MAXN<span class="token punctuation">,</span>INF<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>//<font style="background: yellow" size=5>注意,fill中二维数组的这里</font><br><code>fill(a[0],a[0]+MAXN*MAXN,INF);</code></p>
 
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">20</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    multiset<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">></span> st<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//要是用set，则去重了，不行baca这样子的</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        st<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">while</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token string">'\0'</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            st<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">++</span>i<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">for</span><span class="token punctuation">(</span>multiset<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">></span><span class="token operator">::</span>iterator it<span class="token operator">=</span>st<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> it<span class="token operator">!=</span>st<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>it<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span><span class="token operator">*</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">memset</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span></code></pre>
-<h3 id="（2）unordered-set"><a href="#（2）unordered-set" class="headerlink" title="（2）unordered_set"></a>（2）unordered_set</h3><p><font color="red" size=5>C++11标准中添加的</font></p>
-<blockquote>
-<p>可以用来处理只去重复，但是不排序<br>内部实现是散列（hash）</p>
-</blockquote>
-<h2 id="（3）-include-lt-string-gt"><a href="#（3）-include-lt-string-gt" class="headerlink" title="（3）#include&lt;string&gt;"></a>（3）#include&lt;string&gt;</h2><h2 id="（4）-include-lt-map-gt"><a href="#（4）-include-lt-map-gt" class="headerlink" title="（4）#include&lt;map&gt;"></a>（4）#include&lt;map&gt;</h2><p>映射</p>
-<p>可以将任何基本类型和STL容器，映射到任何基本类型和STL容器</p>
-<p>注意，map中的键和值是唯一的</p>
-<p>内部实现是<strong>红黑树</strong></p>
-<h3 id="（1）multimap"><a href="#（1）multimap" class="headerlink" title="（1）multimap"></a>（1）multimap</h3><blockquote>
-<p>一个键对应多个值</p>
-</blockquote>
-<h3 id="（2）unordered-map"><a href="#（2）unordered-map" class="headerlink" title="（2）unordered_map"></a>（2）unordered_map</h3><p><font color="red" size=5>C++11标准中添加的</font></p>
-<blockquote>
-<p>底层实现是散列（hash）</p>
-</blockquote>
-<h2 id="（5）-include-lt-queue-gt"><a href="#（5）-include-lt-queue-gt" class="headerlink" title="（5）#include&lt;queue&gt;"></a>（5）#include&lt;queue&gt;</h2><p>队列</p>
-<h3 id="（1）deque"><a href="#（1）deque" class="headerlink" title="（1）deque"></a>（1）deque</h3><blockquote>
-<p>双端队列。双向队列</p>
-</blockquote>
-<h3 id="（2）priority-queue"><a href="#（2）priority-queue" class="headerlink" title="（2）priority_queue"></a>（2）priority_queue</h3><blockquote>
-<p><code>include&lt;queue&gt;</code>就可以用优先队列<br>优先队列<br>用堆实现的<strong>默认</strong>将当前队列<strong>最大元素</strong>置于队首的容器</p>
-</blockquote>
-<h2 id="（6）-include-lt-stack-gt"><a href="#（6）-include-lt-stack-gt" class="headerlink" title="（6）#include&lt;stack&gt;"></a>（6）#include&lt;stack&gt;</h2><h2 id="（7）pair"><a href="#（7）pair" class="headerlink" title="（7）pair"></a>（7）pair</h2><p>（使）成对<br><code>#include&lt;utility&gt;</code>才能使用（奇奇怪怪）</p>
-<p>注意，map内部实现涉及到了pair,所以，要是我们<br><code>#include&lt;map&gt;</code><br>那么我们要是想要使用pair，就不用另外<code>#include&lt;utility&gt;</code>了</p>
-<h2 id="（8）-include-lt-list-gt"><a href="#（8）-include-lt-list-gt" class="headerlink" title="（8）#include&lt;list&gt;"></a>（8）#include&lt;list&gt;</h2><p>双向链表</p>
-<h2 id="（9）-include-lt-bitset-gt"><a href="#（9）-include-lt-bitset-gt" class="headerlink" title="（9）#include&lt;bitset&gt;"></a>（9）#include&lt;bitset&gt;</h2><p>若干个位</p>
-<h2 id="（10）-include-lt-algorithm-gt"><a href="#（10）-include-lt-algorithm-gt" class="headerlink" title="（10）#include&lt;algorithm&gt;"></a>（10）#include&lt;algorithm&gt;</h2>
             </div>
             <hr/>
 
@@ -555,7 +503,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/13/2020-06-13-STL/">https://github.com/HACV/HACV.github.io/2020/06/13/2020-06-13-STL/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/24/2020-06-24-fill/">https://github.com/HACV/HACV.github.io/2020/06/24/2020-06-24-fill/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -762,79 +710,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/14/2020-06-14-Hexo/">
+                <a href="/2020/06/24/2020-06-24-fill/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_01_cover.jpg" class="responsive-img" alt="Hexo命令">
+                        <img src="/photos/2020.6.03_15/2020_06_01_cover.jpg" class="responsive-img" alt="给数组赋相同值——fill">
                         
-                        <span class="card-title">Hexo命令</span>
+                        <span class="card-title">给数组赋相同值——fill</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Hexo命令
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-14
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                    随笔
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/Tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
-                    </a>
-                    
-                    <a href="/Tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/06/12/2020-06-12-Flexible-Array/">
-                    <div class="card-image">
-                        
-                        <img src="/photos/2020.6.03_15/2020_06_13_cover.jpg" class="responsive-img" alt="柔性数组（Flexible Array）">
-                        
-                        <span class="card-title">柔性数组（Flexible Array）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            柔性数组（Flexible Array）（可变长数组）
+                            顺路编一个记忆memset和fill的口诀？ummm，没有，直接看编译器中的声明
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-24
                             </span>
                         <span class="publish-author">
                             
@@ -848,11 +745,64 @@
                         </span>
                     </div>
                 </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/06/23/2020-06-23-Memset/">
+                    <div class="card-image">
+                        
+                        <img src="/photos/2020.6.03_15/2020_06_13_cover.jpg" class="responsive-img" alt="给数组赋相同值——Memset">
+                        
+                        <span class="card-title">给数组赋相同值——Memset</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            对Memset底层原理的测试
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
+                                    效率
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
                 
                 <div class="card-action article-tags">
                     
                     <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
                         <span class="chip bg-color">C语言</span>
+                    </a>
+                    
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
