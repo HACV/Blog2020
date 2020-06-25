@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言优先级和结合性记忆, HACV">
+    <meta name="keywords" content="计算机二进制编码, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C语言优先级和结合性记忆 | HACV</title>
+    <title>计算机二进制编码 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.28/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_03_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言优先级和结合性记忆</h1>
+                    <h1 class="description center-align post-title">计算机二进制编码</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">C语言</span>
-                            </a>
-                        
-                            <a href="/Tags/idea/">
-                                <span class="chip bg-color">idea</span>
+                            <a href="/Tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                                <span class="chip bg-color">计算机组成原理</span>
                             </a>
                         
                     </div>
@@ -424,8 +420,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                随笔
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
+                                计算机组成原理
                             </a>
                         
                     </div>
@@ -437,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-28
+                    2020-06-25
                 </div>
                 
 
@@ -446,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    1.5k
                 </div>
                 
 
@@ -458,81 +454,56 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C语言优先级和结合性记忆"><a href="#C语言优先级和结合性记忆" class="headerlink" title="C语言优先级和结合性记忆"></a>C语言优先级和结合性记忆</h1><p><strong>前述</strong>：以前以为，记忆C语言的优先级和结合性就像孔乙己记忆“回”字的四种写法一样有些没必要，对于技术，简洁即美。但以下场景，记忆C语言的优先级结合性还是有一定好处<br><strong>场景</strong>：</p>
+                <h1 id="原码，反码，补码——，移码"><a href="#原码，反码，补码——，移码" class="headerlink" title="原码，反码，补码——，移码"></a>原码，反码，补码——，移码</h1><h2 id="一、实际背景"><a href="#一、实际背景" class="headerlink" title="一、实际背景"></a>一、实际背景</h2><p><strong>现实生活</strong>中：在计算机中所有的数据运算都是采用<strong>补码</strong>进行的（比如Windows中）<br>注意：负数用补码表示，如果相加的和为负，也采用补码表示。</p>
+<h2 id="二、有符号数的原码，反码，补码"><a href="#二、有符号数的原码，反码，补码" class="headerlink" title="二、有符号数的原码，反码，补码"></a>二、有符号数的原码，反码，补码</h2><p>计算机中，<font color=red size=5>有符号数</font>有3种表示法：原码–&gt;反码–&gt;补码（发展历程，记得“<strong>简书</strong>”上有篇文章讲解了这个发展的历程，告诉了为什么一步步，最后用的补码）<br>但是现在目前的电脑其实都是补码表示了，当然，<strong>也有书上说</strong>：负数是补码表示，正数是原码/反码/补码表示，行吧，也算是对的。。谁让他们编码真的一样）<br>（当然，个人从底层硬件实现来考虑，我觉得说正数是原码表示，负数是补码表示蛮好的，因为这样，我可以想象的是正数和负数首先全部编码为原码，然后根据符号位来判断，我要不要调用求补码的线路，正数不用，负数显然要）<br><font style="background: yellow" >记忆：符号位，0为正，1为负</font></p>
+<p>原码，反码，补码的正数表达是一样的</p>
+<h3 id="1）原码："><a href="#1）原码：" class="headerlink" title="1）原码："></a>1）原码：</h3><p>原码就是符号位加上真值的绝对值<br>既最高位为符号位，0为正，1为负，其余表示数值的大小<br>比如<br>正数+3=00000011<br>负数-3=10000011</p>
+<h3 id="2）反码："><a href="#2）反码：" class="headerlink" title="2）反码："></a>2）反码：</h3><p>原码，反码，补码的正数表达是一样的<br>正数+3=00000011</p>
+<p><strong>负数</strong>的反码是在原码的基础上（<strong>符号位不变</strong>，其他位均取反）<br>负数-3=11111100</p>
+<h3 id="3）补码"><a href="#3）补码" class="headerlink" title="3）补码"></a>3）补码</h3><p>原码，反码，补码的正数表达是一样的<br>正数+3=00000011</p>
+<p>负数的补码是在<strong>反码</strong>的基础上（<strong>符号位不变</strong>，在末位加1）<br>负数-3=11111101</p>
+<p><font style="background: yellow" >至此，我们可以总结出一种<strong>求一个负数的补码</strong>的规则：</font><br>写出<strong>负数</strong>的原码-》符号位不变，其他位取反（求反码）-》符号位不变，末位+1（求补码）<br><strong>即：负数原码基础上，符号位不变，其他位取反，末位+1</strong><br>上面，也是国内主流的教材上的方法（比如清华的那本计算机组成的教材）</p>
+<p>但是，我在<font style="background: yellow" ><strong>另一些书</strong>上看到了下面两种求一个负数的补码方法：</font></p>
 <blockquote>
 <ul>
-<li>记忆一些特定的优先级和结合性，能够帮助从编译器角度来快速识别多级指针和数组指针和函数指针判定指针类型。</li>
-<li>某些项目的遗留代码中有一些编程风格不好的片段，总是不写括号，遇到就需要查书，对研究别人代码，有一定影响。记忆优先级和结合性，能够降低开发中重构已有代码的难度。</li>
-<li>有的相关试题中，有考优先级的题目的存在。（考优先级不是目的，而是为了解决那些风格不好的遗留代码）</li>
-<li>由于编译器语法分析阶段的设计原理，其他语言的优先级也可以在此基础上记忆。<blockquote>
+<li>1）（唯一的,也是独特的）<strong>负数的原码</strong>基础上，直接变补码规则如下：符号位不变，从数的右边往左开始数,遇到“0”不理它,<strong>直到遇到第一个“1”为止</strong>，这个<strong>第一次遇到的1它本身不变</strong>,但事继续向左（直到符号位右边一个）的每一位取反<br>比如：<br>原码1001 0010<br>补码1110 1110</li>
+<li>2）先<strong>找到这个负数的正数编码</strong>，然后在这个基础上，所有位全取反，末位+1<br>比如：-1（我用8个比特说明）</li>
+</ul>
+<p>+1原码是0000 0001<br>全取反是1111 1110<br>末位加一是1111 1111<br>继续将，主流的方法补充到这，成为第3条</p>
 <ul>
-<li>C语言的优先级，再添加上一些C++本身的运算符，则很容易转换到记忆C++的优先级</li>
-<li>Java的运算符的优先级和C语言相似</li>
+<li>3）负数原码基础上，符号位不变，其他位取反，末位+1<br>总结这三种方法：其实，本质都是等效的。。。我也不知道为什么，以前在自学的时候竟然看到了三种方法。</li>
 </ul>
 </blockquote>
-</li>
-</ul>
-</blockquote>
-<p><strong><center>优先级从高到低，分为15级</center></strong><br><img src="/photos/2020.5.28/2020_5.28_1.jpg" width="80%"><br><img src="/photos/2020.5.28/2020_5.28_2.jpg" width="80%"></p>
-<h2 id="优先级记忆"><a href="#优先级记忆" class="headerlink" title="优先级记忆"></a>优先级记忆</h2><table><td bgcolor=#FFFF FF>
-初-单-算-移-关        （出箪蒜一罐）</td></table>  
-<table><td bgcolor=#FFFF FF>
-位-逻-三-赋-逗        （味落三伏豆）</td></table> 
-
-<p>//箪—意指古代盛饭用的圆形竹器</p>
-<blockquote>
-<p>记忆场景：<br>每年三伏天农作时期，要为田间劳作者送饭，送饭者专门用箪盛着食物前往，还专门为其中一个很喜欢吃大蒜的劳作者带了一罐蒜解馋。后来，劳作者吃着发现，今年的三伏天的黄豆也格外美味。</p>
-</blockquote>
-<p>解释：<br>初：初级运算符<br>单：单目运算符<br>算：算数运算符（包含2个优先级）<br>移：移位运算符<br>关：关系运算符（包含2个优先级）</p>
-<p>位：位运算（除去，位运算中的单目运算符~ 包含3个优先级）<br>逻：逻辑运算符（包含2个优先级）<br>三：三目运算符<br>赋：赋值运算符<br>逗：逗号运算符</p>
-<h2 id="结合性记忆"><a href="#结合性记忆" class="headerlink" title="结合性记忆"></a>结合性记忆</h2><table><td bgcolor=#FFFF FF>
-单三赋    从右左</td></table> 
-
-
-<p>除以上规则以外,还有一点。<br>标准的C语言编译器对运算符的解析遵循“最大贪婪”规则。</p>
-<h2 id="“最大贪婪”规则"><a href="#“最大贪婪”规则" class="headerlink" title="“最大贪婪”规则"></a><strong>“最大贪婪”规则</strong></h2><p>当C语言编译器对源程序进行词法分析时，如果运算符的下一个符号还是运算符，并且能和前一个运算符构成一个新的合法运算符时，编译器的词法分析器必须将其解析为两个运算符符号构成的新的运算符。</p>
-<p>举一个没太大实际意义的例子来辅证，例如: x=z+++y;<br>是按照x=z+（++y）;来计算，还是按照x=（z++）+y;来计算呢?<br>根据C编译器的“最大贪婪”规则,是按照x=（z++）+y;来计算，而不是按照x=z+（++y）来计算<br>可以验证</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> z<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> x<span class="token punctuation">;</span>
-x<span class="token operator">=</span>z<span class="token operator">++</span><span class="token operator">+</span>y<span class="token punctuation">;</span>
-<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//输出结果为8，而不是9</span>
-<span class="token comment" spellcheck="true">//考点：C编译器的“最大贪婪”规则</span></code></pre>
-<h2 id="用法举例"><a href="#用法举例" class="headerlink" title="用法举例"></a>用法举例</h2><ul>
-<li><p>记忆第一优先级中的和第二优先级</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//这是一个数组指针，指向的类型是int (*)[3]</span>
-<span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//这是一个指针数组，里面的是int *类型的指针</span>
-<span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">*</span> p<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//这是一个二级指针，指向的类型是int *</span>
-<span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token punctuation">,</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//这是一个函数指针，指向的类型是int (*)(int,int)</span>
-<span class="token keyword">int</span> <span class="token operator">*</span><span class="token function">p</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token punctuation">,</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//这是一个返回值为指针的函数</span></code></pre>
-</li>
-<li><p>比格基地笔试题</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//以下程序的k最终值是：</span>
-<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-k <span class="token operator">*</span><span class="token operator">=</span> i <span class="token operator">+</span> j<span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//答:90</span>
-<span class="token comment" spellcheck="true">//解释  =是赋值运算符 *=是赋值运算符  +是算数运算符 </span>
-<span class="token comment" spellcheck="true">//“出箪蒜一罐,味落三伏豆”知，算数运算符优先级高，先算i+j</span>
-<span class="token comment" spellcheck="true">//考点：编程语言的优先级</span></code></pre>
-</li>
-<li><p>360公司笔试题</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<p>Tips:<strong>对于负整数</strong>，补码的补码是原码（强调是负整数，有的书没有强调是负整数）<br>比如：<br>原码1001<br>补码（我用方法3））<code>1001-&gt;1110-&gt;1111</code><br>原码（补码的补码，继续方法3）<code>1111-&gt;1000-&gt;1001</code></p>
+<h2 id="三、有符号数到无符号数的过渡标题"><a href="#三、有符号数到无符号数的过渡标题" class="headerlink" title="三、有符号数到无符号数的过渡标题"></a>三、有符号数到无符号数的过渡标题</h2><p>重点：<br><strong>计算机不区分有符号数和无符号数</strong><br><strong>只有</strong><font color=red size=5>有符号数</font>有原码，反码，补码<br>计算机中存储数据<br>a.无符号数——直接以对应的二进制表示<br>b.有符号数——补码形式表示，无论是计算还是存储</p>
+<p>其实可以说无符号数没有原码，反码，补码一说，毕竟又不用分符号。</p>
+<p>《C陷阱与缺陷》一书在“整数溢出”一节中指出：<br>如果算术运算符的一个操作数是有符号数，另一个是无符号数，那么有符号数会被转换为无符号数。</p>
+<h2 id="四、关于无符号数和有符号一个注意的地方"><a href="#四、关于无符号数和有符号一个注意的地方" class="headerlink" title="四、关于无符号数和有符号一个注意的地方"></a>四、关于无符号数和有符号一个注意的地方</h2><h3 id="无符号数，竟然没有溢出一说"><a href="#无符号数，竟然没有溢出一说" class="headerlink" title="无符号数，竟然没有溢出一说?"></a>无符号数，竟然没有溢出一说?</h3><p>样例：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span> 
-  <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> m<span class="token operator">=</span><span class="token number">6</span><span class="token punctuation">,</span>n<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span>  <span class="token operator">*</span>p<span class="token operator">=</span><span class="token operator">&amp;</span>n<span class="token punctuation">,</span> <span class="token operator">*</span>q<span class="token operator">=</span><span class="token operator">&amp;</span>m<span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//“出箪蒜一罐,味落三伏豆”知,关系运算符==的优先级比赋值运算符=高，知i=0</span>
-  i<span class="token operator">=</span>p<span class="token operator">==</span><span class="token operator">&amp;</span>m<span class="token punctuation">;</span>    
-  <span class="token comment" spellcheck="true">//(-*p)中，-和*都是单目运算符，结合性是“单三赋，从右左”，所以，相当于(-n)</span>
-  j<span class="token operator">=</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token operator">*</span>q<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">7</span><span class="token punctuation">;</span>
-  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i=%d,j=%d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//输出为 i=0,j=7</span>
-<span class="token comment" spellcheck="true">//考点：编程语言的优先级,结合性</span></code></pre>
-</li>
-</ul>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//4294967295对应二进制 11111111 11111111 11111111 1111111</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">4294967295</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"无符号输出:%u\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"有符号输出:%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%u"</span><span class="token punctuation">,</span>a<span class="token operator">+</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span> 
+<span class="token comment" spellcheck="true">//输出结果如下： </span>
+<span class="token comment" spellcheck="true">//无符号输出:4294967295</span>
+<span class="token comment" spellcheck="true">//有符号输出:-1</span>
+<span class="token comment" spellcheck="true">//0</span>
+<span class="token comment" spellcheck="true">//此外编译器警告（unsigned int a=4294967295;）：</span>
+<span class="token comment" spellcheck="true">//[Warning] this decimal constant is unsigned only in ISO C90</span></code></pre>
+<p>无符号的加法</p>
+<blockquote>
+<p>A11111111 11111111 11111111 11111111（表示32位的无符号最大值4294967295）<br>A00000000 00000000 00000000 00000001（表示1）<br>1<strong>00000000 00000000 00000000 00000000<br>**丢弃最高位，所以等于0</strong>（硬件自动实现）<br>其实这种情况下个人认为是”溢出”了，但是可以通过下面的做法进行解释<br>//上面编译的，没有显示溢出的异常<br><font style="background: yellow" >解释：这样溢出后就相当于对（2<sup>32</sup>-1）+1=2<sup>32</sup> ，再对和2<sup>32</sup> 取模2<sup>32</sup>得到为0</font></p>
+</blockquote>
+<p><strong>但是，有本书上的说法，让我对“溢出”这个概念有些混乱</strong><br>《C陷阱与缺陷》在“整数溢出”一节中指出，在<font color=red size=5>无符号</font>算术运算中，没有所谓的“溢出”一说。<br>有个博客对它的解释是：<br>我想Koenig的思路可能是这样，钟表上，当下午1点的时候，没有任何人会说：“现在是12点溢出了。”<br>因为我们已经常识性地知道，我们的钟表上是没有13这个数字的。</p>
+<blockquote>
+<p>虽然，这么说，个人还是觉得这种在一个数据类型边界出现较反常的，我都应该关注一下、<br>到目前为止我看过的好几本书的说法，真的有点弄晕我的感觉。但是，至此，我个人倾向是忘记什么叫溢出。只关注底层的比特的变化会不会造成影响。</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -558,7 +529,7 @@ k <span class="token operator">*</span><span class="token operator">=</span> i <
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/28/2020-05-28-C_priority_and_associative_memory/">https://github.com/HACV/HACV.github.io/2020/05/28/2020-05-28-C_priority_and_associative_memory/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/25/2020-06-25-Underlying-coding/">https://github.com/HACV/HACV.github.io/2020/06/25/2020-06-25-Underlying-coding/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -596,12 +567,8 @@ k <span class="token operator">*</span><span class="token operator">=</span> i <
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">C语言</span>
-                                </a>
-                            
-                                <a href="/Tags/idea/">
-                                    <span class="chip bg-color">idea</span>
+                                <a href="/Tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                                    <span class="chip bg-color">计算机组成原理</span>
                                 </a>
                             
                         </div>
@@ -769,45 +736,47 @@ k <span class="token operator">*</span><span class="token operator">=</span> i <
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/05/29/2020-05-29-Big-Endian-little-Endian/">
+                <a href="/2020/06/25/2020-06-25-Underlying-coding/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.29/title.jpg" class="responsive-img" alt="大端和小端存储">
+                        <img src="/photos/2020.6.03_15/2020_06_03_cover.jpg" class="responsive-img" alt="计算机二进制编码">
                         
-                        <span class="card-title">大端和小端存储</span>
+                        <span class="card-title">计算机二进制编码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            格列夫游记的鸡蛋——大小端之争
+                            补码和有符号的溢出
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
-                                    编译器底层
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
+                                    计算机组成原理
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
-                        <span class="chip bg-color">编译器底层</span>
+                    <a href="/Tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                        <span class="chip bg-color">计算机组成原理</span>
                     </a>
                     
                 </div>
@@ -821,30 +790,30 @@ k <span class="token operator">*</span><span class="token operator">=</span> i <
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/28/2020-05-28-Prime_sieve_algorithm/">
+                <a href="/2020/06/24/2020-06-24-fill/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.28/2.jpg" class="responsive-img" alt="素数暴力到欧拉筛法">
+                        <img src="/photos/2020.6.03_15/2020_06_01_cover.jpg" class="responsive-img" alt="给数组赋相同值——fill">
                         
-                        <span class="card-title">素数暴力到欧拉筛法</span>
+                        <span class="card-title">给数组赋相同值——fill</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            素数的朴素暴力，埃塞托尼亚筛，欧拉筛
+                            顺路编一个记忆memset和fill的口诀？ummm，没有，直接看编译器中的声明
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
@@ -854,12 +823,8 @@ k <span class="token operator">*</span><span class="token operator">=</span> i <
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E7%B4%A0%E6%95%B0/">
-                        <span class="chip bg-color">素数</span>
-                    </a>
-                    
-                    <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                        <span class="chip bg-color">暴力</span>
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
