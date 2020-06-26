@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>底层工具集《转载和修改》</title>
+      <link href="/2020/06/27/2020-06-27-Assembly-tools/"/>
+      <url>/2020/06/27/2020-06-27-Assembly-tools/</url>
+      
+        <content type="html"><![CDATA[<h1 id="底层原理研究工具集"><a href="#底层原理研究工具集" class="headerlink" title="底层原理研究工具集"></a>底层原理研究工具集</h1><h2 id="一、Windows下"><a href="#一、Windows下" class="headerlink" title="一、Windows下"></a>一、Windows下</h2><h3 id="1）cl-MSVC编译器"><a href="#1）cl-MSVC编译器" class="headerlink" title="1）cl,MSVC编译器"></a>1）cl,MSVC编译器</h3><blockquote><p><code>/c</code>:只编译不链接。<br><code>/Za</code>:禁止语言扩展。<br><code>/link</code>:链接指定的模块或给链接器传递参数。<br><code>/Od</code>:（大写字母O）禁止优化。<br><code>/O2</code>:（大写字母O）以运行速度最快为目标优化。<br><code>/O1</code>:（大写字母O）以最节省空间为目标优化。<br><code>/GR或/GR-</code>:开启或关闭RTTI。<br><code>/Gy</code>:开启函数级别链接。<br><code>/GS或/GS-</code>:开启或关闭。<br><code>/Fa[file]</code>:输出汇编文件。<br><code>/E</code>:只进行预处理并且把结果输出。<br><code>/I</code>:指定头文件包含目录。<br><code>/Zi</code>:启用调试信息。<br><code>/LD</code>:编译产生DLL文件。<br><code>/LDd</code>:编译产生DLL文件(调试版)。<br><code>/MD</code>:与动态 多线程版本运行库MSVCRTLIB链接。<br><code>MDd</code>:与调试版动态多线程版本运行库MSVCRTD.LIB链接。<br><code>/MT</code>:与静态多线程版本运行库LIBCMTLIB链接。<br><code>/MTd</code>:与调试版静态多线程版本运行库LIBCMTD.LIB链接。</p></blockquote><h3 id="2）link，-MSVC链接器"><a href="#2）link，-MSVC链接器" class="headerlink" title="2）link， MSVC链接器"></a>2）link， MSVC链接器</h3><blockquote><p><code>/BASE:address</code>:指定输出文件的基地址。<br><code>/DEBUG</code>:输出调试模式版本。<br><code>/DEF:filename</code>: 指定模块定义文件.DEF。<br><code>/DEFAULTLIB:ibrary</code>:指定默认运行库。<br><code>/DLL</code>: 产生DLL。<br><code>/ENTRY:symbol</code>:指定程序入口。<br><code>/EXPORT:symbol</code>: 指定某个符号为导出符号。<br><code>/HEAP</code>:指定默认堆大小。<br><code>/LIBPATH:dir</code>:指定链接时库搜索路径。<br><code>/MAP[:filename]</code>: 产生链接MAP文件。<br><code>/NODEFAULTLIB[:ibrary]</code>:禁止默认运行库。<br><code>/OUT:filename</code>: 指定输出文件名。<br><code>/RELEASE</code>:以发布版本产生输出文件。<br><code>/STACK</code>: 指定默认栈大小。<br><code>/SUBSYSTEM</code>: 指定子系统。</p></blockquote><h3 id="3）dumpbin-MSVC的COFF-PE文件查看器（反汇编常用）"><a href="#3）dumpbin-MSVC的COFF-PE文件查看器（反汇编常用）" class="headerlink" title="3）dumpbin, MSVC的COFF/PE文件查看器（反汇编常用）"></a>3）dumpbin, MSVC的COFF/PE文件查看器（反汇编常用）</h3><blockquote><p><code>/ALL</code>: 显示所有信息。<br><code>/ARCHIVEMEMBERS</code>: 显示.LIB 文件中所有目标文件列表。<br><code>/DEPENDENTS</code>:显示文件的动态链接依赖关系。<br><code>/DIRECTIVES</code>: 显示链接器指示。<br><code>/DISASM</code>: 显示反汇编。,<br><code>/EXPORTS</code>:显示导出函数表。<br><code>/HEADERS</code>: 显示文件头。<br><code>/IMPORTS</code>: 显示导入函数表。<br><code>/LINENUMBERS</code>:显示行号信息。<br><code>/RELOCATIONS</code>: 显示重定位信息。<br><code>/SECTION:name</code> :显示某个段。<br><code>/SECTION</code>:显示文件概要信息。<br><code>/SYMBOLS</code>: 显示文件符号表。.<br><code>/TLS</code>: 显示线程局部存储TLS信息。</p></blockquote><h2 id="二、Linux下"><a href="#二、Linux下" class="headerlink" title="二、Linux下"></a>二、Linux下</h2><h3 id="1）gcc，GCC编译器"><a href="#1）gcc，GCC编译器" class="headerlink" title="1）gcc，GCC编译器"></a>1）gcc，GCC编译器</h3><blockquote><p><code>-E</code>:只进行预处理并把预处理结果输出。<br><code>-c</code>:只编译不链接。<br><code>-o &lt;filename&gt;</code>:指定输出文件名。.<br><code>-S:</code>输出编译后的汇编代码文件。<br><code>-I</code>;指定头文件路径。<br><code>-e</code> name:<br><code>-e name</code>:指定name为程序入口地址。<br><code>-ffreestanding</code>;编译独立的程序，不会自动链接C运行库、启动文件等。<br><code>-finline-functions,- fno. inline functions</code>:启用/关闭内联函数。<br><code>-g</code>:在编译结果中加入调试信息，-ggdb 就是加入GDB调试器能够识别的格式。<br><code>-L &lt;directory&gt;</code>:指定链接时查找路径，多个路径之间用冒号隔开。<br><code>-nostarfiles</code>:不要链接启动文件，比如crtbegin.o、crtend.o.<br><code>-nostdlib</code>:不要链接标准库文件，主要是C运行库。<br><code>-O0</code>:关闭所有优化选项。（前面是大写字母O，后面是数字0）<br><code>-shared</code>:产生共享对象文件。<br><code>-static</code>:使用静态链接。<br><code>-Wall</code>:对源代码中的多数编译警告进行启用。<br><code>-fPIC</code>:使用地址无关代码模式进行编译。<br><code>-PIE</code>:使用地址无关代码模式编译可执行文件。<br><code>-XLinker &lt;option&gt;</code>:把option传递给链接器。<br><code>-Wl &lt;option&gt;</code>:把option传递给链接器，与上面的选项类似。<br><code>-fomit-frame-pointer</code>:禁止使用EBP作为函数帧指针。<br><code>-fno-buitin</code>:禁止GCC编译器内置函数。<br><code>-fno-stack-    protector</code>:是指关闭堆栈保护功能。<br><code>-ffunctionsections</code>:将每个函数编译到独立的代码段。<br><code>-fdata-sections</code>:将全局/静态变量编译到独立的数据段。</p></blockquote><h3 id="2）ld，GNU链接器（Linker）"><a href="#2）ld，GNU链接器（Linker）" class="headerlink" title="2）ld，GNU链接器（Linker）"></a>2）ld，GNU链接器（Linker）</h3><blockquote><p><code>-static</code>:静态链接。<br><code>-I&lt;libname&gt;</code>:指定链接某个库。<br><code>-e name</code>:指定name为程序尺口。<br><code>-r</code>: 合并目标文件，不进行最终链接。<br><code>-L &lt;directory&gt;</code>:指定链接时查找路径，多个路径之间用冒号隔开。<br><code>-M</code>;将链接时的符号和地址输出成-个映射文件。<br><code>-o</code>:指定输出文件名。<br><code>-s</code>:清除输出文件中的符号信息。<br><code>-S</code>:清除输出文件中的调试信息。<br><code>-T &lt;scriptfile&gt;</code>:指定链接脚本文件。<br><code>-version-script &lt;file&gt;</code>:指定符号版本脚本文件。<br><code>-soname &lt;name&gt;</code>:指定输出共享库的SONAME.<br><code>-export dynamic</code>:将全局符号全部导出。<br><code>-verbose</code>:链接时输出详细信息。<br><code>-rpath &lt;path&gt;</code>:指定链接时库查找路径。</p></blockquote><h3 id="3）objdump-GNU目标文件可执行文件查看器（反汇编常用）"><a href="#3）objdump-GNU目标文件可执行文件查看器（反汇编常用）" class="headerlink" title="3）objdump, GNU目标文件可执行文件查看器（反汇编常用）"></a>3）objdump, GNU目标文件可执行文件查看器（反汇编常用）</h3><blockquote><p><code>-a</code>:列举.a文件中所有的目标文件。.<br><code>-b</code> bfdname:指定BFD名。<br><code>-C</code>:对于C++符号名进行反修饰(Demangle).<br><code>-g</code>:显示调试信息。<br><code>-d</code>:对包含机器指令的段进行反汇编。<br><code>-D</code>:对所有的段进行反汇编。<br><code>-f</code>:显示目标文件文件头。<br><code>-h</code>: 显示段表。<br><code>|</code>:显示行 号信息。<br><code>-p</code>:显示专有头部信息，具体内容取决于文件格式。<br><code>-r</code>:显示重定位信息。<br><code>-R</code>:显示动态链接重定位信息。<br><code>-S</code>:.显示文件所有内容。<br><code>-S</code>:显示源代码和反汇编代码(包含-d参数)。<br><code>-W</code>:显示文件中包含有DWARF调试信息格式的段。<br><code>-t</code>:显示文件中的符号表。<br><code>-T</code>:显示动态链接符号表。<br><code>-X</code>：显示文件的所有文件头。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 效率 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> 汇编（Assembly） </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>左移和右移</title>
       <link href="/2020/06/26/2020-06-26-Displacement/"/>
       <url>/2020/06/26/2020-06-26-Displacement/</url>
