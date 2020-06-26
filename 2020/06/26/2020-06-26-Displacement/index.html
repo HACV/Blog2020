@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="自用Markdown语法, HACV">
+    <meta name="keywords" content="左移和右移, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>自用Markdown语法 | HACV</title>
+    <title>左移和右移 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_12_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_03_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">自用Markdown语法</h1>
+                    <h1 class="description center-align post-title">左移和右移</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/Markdown/">
-                                <span class="chip bg-color">Markdown</span>
+                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">C语言</span>
                             </a>
                         
-                            <a href="/Tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/Tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/Tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                                <span class="chip bg-color">计算机组成原理</span>
                             </a>
                         
                     </div>
@@ -424,8 +428,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                随笔
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
+                                计算机组成原理
                             </a>
                         
                     </div>
@@ -437,7 +441,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-11
+                    2020-06-26
                 </div>
                 
 
@@ -446,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    392
+                    950
                 </div>
                 
 
@@ -458,71 +462,83 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h1><h2 id="一、重视快捷键，重视工具"><a href="#一、重视快捷键，重视工具" class="headerlink" title="一、重视快捷键，重视工具"></a>一、重视快捷键，重视工具</h2><p>一定要重视工具的使用，对于常用的工具，要观察好自己的使用习惯，积累自己使用的定制方案</p>
-<h2 id="二、自己常用的Markdown的语法"><a href="#二、自己常用的Markdown的语法" class="headerlink" title="二、自己常用的Markdown的语法"></a>二、自己常用的Markdown的语法</h2><blockquote>
-<ul>
-<li>粗体 <code>** **</code>  （三者都支持）    Ctrl+B（快捷键）<blockquote>
-<ul>
-<li>粗体 <code>&lt;b&gt; &lt;/b&gt;</code>（三者都支持）</li>
-</ul>
-</blockquote>
-</li>
-<li>字体颜色<code>&lt;font color=&quot;red&quot;&gt;   &lt;/font&gt;</code> <font color="red">字体颜色</font></li>
-<li>字体大小<code>&lt;font size=5&gt;    &lt;/font&gt;</code><font size=6>字体大小</font></li>
-<li>字体类型<code>&lt;font face=&quot;行书&quot; size=5&gt;  &lt;/font&gt;</code><font face="楷书" size=5>字体类型</font></li>
-<li>字体背景颜色<code>&lt;font style=&quot;background: red&quot;&gt;红色&lt;/font&gt;&lt;br&gt;</code><font style="background: red">字体背景颜色</font></li>
-<li>插入图片和大小<code>&lt;img src=&quot;../photos/2020.6.03_15/2020_06_08_1.png&quot; width=&quot;80%&quot;&gt;</code></li>
-<li>加个换行<code>&lt;br&gt;</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>Markdown一个套兼容HTML的语法，所以使用HTML中下标下标的语法即可。<blockquote>
-<ul>
-<li>上标<code>&lt;sup&gt;&lt;/sup&gt;</code>2<sup>32</sup></li>
-<li>下标<code>&lt;sub&gt;&lt;/sub&gt;</code>H<sub>2</sub>O</li>
-</ul>
-</blockquote>
-</li>
-<li>表格的底色<code>&lt;table&gt;&lt;td bgcolor=#FFFF FF&gt;&lt;/td&gt;&lt;/table&gt;</code></li>
-</ul>
-</blockquote>
-<p>md原生表格</p>
-<p>语法</p>
-<p><code>| 水果        | 价格    |  数量  |</code><br><code>| ---           | ---   | --- |</code><br><code>| 香蕉        | 1      |   5    |</code><br><code>| 苹果        | 1      |   6    |</code><br><code>| 草莓        | 1      |   7    |</code></p>
-<table>
-<thead>
-<tr>
-<th>水果</th>
-<th>价格</th>
-<th>数量</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>香蕉</td>
-<td>1</td>
-<td>5</td>
-</tr>
-<tr>
-<td>苹果</td>
-<td>1</td>
-<td>6</td>
-</tr>
-<tr>
-<td>草莓</td>
-<td>1</td>
-<td>7</td>
-</tr>
-</tbody></table>
-<h3 id="三、Haroopad上Markdown常用快捷键"><a href="#三、Haroopad上Markdown常用快捷键" class="headerlink" title="三、Haroopad上Markdown常用快捷键"></a>三、Haroopad上Markdown常用快捷键</h3><blockquote>
-<ul>
-<li>ALt+左方向        跳到行最左边</li>
-<li>ALt+右方向         跳到行最右左边</li>
-<li>Ctrl+K          将选中的添加行内代码标记</li>
-<li>Ctrl+Shift+Q      在选中的行前面添加<code>&gt;</code></li>
-<li>Ctrl+shift+J  添加行内<strong>数学公式</strong>  但是3个<code>$$$</code>什么鬼(注意，<strong>hexo中的数学公式则只支持一个$</strong>)</li>
-</ul>
-</blockquote>
+                <h1 id="位运算之左移和右移"><a href="#位运算之左移和右移" class="headerlink" title="位运算之左移和右移"></a>位运算之左移和右移</h1><h2 id="一、用途"><a href="#一、用途" class="headerlink" title="一、用途"></a>一、用途</h2><p>1）获得int型最大值<br>这样的话在编程的时候就算不带书也能很准确的得知int等的数字大小。<br>其实就是不想记忆具体范围。</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">getMaxInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">31</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//2147483647， 由于优先级关系，括号不可省略</span>
+<span class="token punctuation">}</span></code></pre>
+<p>解释：整型int占用4个字节（即32位）<br>所以可以表示2<sup>32</sup>个数字，int有正负和0；<br>所以表示的数字范围是    -2<sup>31</sup>—（2<sup>31</sup>-1）<br>所以是1（二进制为 00000000 00000000 00000000 00000001）<br>移位31位，然后变成了2<sup>31</sup>  （二进制为 10000000 00000000 00000000 00000000）<br> 但是0占掉了一个数字，所以还要减去1，才得到最大的int的数值。<br>（二进制为 01111111 11111111 11111111 11111111）<br>注意：<br>我在测试的时候，在devC++和VS2017中编译这个，都显示了warm<br><code>[Warning] integer overflow in expression [-Woverflow]</code><br>但是都最终还是显示了结果：</p>
+<p>原因：<br>1.最高位的进位在计算机中被舍去，因为没有位去存储它<br>2.在计算机中似乎<strong>只检测有符号数的溢出</strong>（<strong>这就和那本书《C陷阱与缺陷》上说的一样，我们不认为无符号整数有溢出。。。</strong>），在编译器中会显示warm，但是它不给你处理，还是会让你运行。（这是正常的，正是因为这样，所以C语言才这么自由，它认为这些你能够自己解决）它还是一样的用加法器和补码器进行有符号数和无符号数的加法和减法。<br>补码器真的就是由这样的电路组成<br>1.如果是有符号数的取补码，符号位不变，后面的诸位取反然后末尾加1<br>2.无符号数的取补码</p>
+<h2 id="二、右移——注意点"><a href="#二、右移——注意点" class="headerlink" title="二、右移——注意点"></a>二、右移——注意点</h2><p>比如，求int类型数据中bit中1点个数。</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token operator">++</span>sum<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        n<span class="token operator">>>=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>看上去，蛮好的，但是其实不然<br>因为，我们需要注意右移的一个注意点。<br><font style="background: yellow">对于<strong>有符号数</strong>的<strong>右移</strong>，它会用符号位来补全。</font></p>
+<p>这样测试</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token operator">++</span>sum<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"loop\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//测试</span>
+        n<span class="token operator">>>=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span> 
+<span class="token comment" spellcheck="true">//发现，一直输出loop</span>
+<span class="token comment" spellcheck="true">//因为-1的二进制全是1，符号位也是1。一直右移，还是把1补进来。</span></code></pre>
+<p>此外，用1，这样的有符号数测试，就会发现，得出了1，因为他的符号位是0，到时候补的还是0</p>
+<p><font style="background: yellow">改进：（用无符号数来右移，就能解决这种右移可能导致的bug）</font></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">unsigned</span> temp<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span><span class="token punctuation">)</span>n<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//改进</span>
+    <span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>temp<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token operator">++</span>sum<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        temp<span class="token operator">>>=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//用-1，测试是32</span></code></pre>
+<h2 id="三、C语言中数据表示的杂谈"><a href="#三、C语言中数据表示的杂谈" class="headerlink" title="三、C语言中数据表示的杂谈"></a>三、C语言中数据表示的杂谈</h2><p><font style="background: yellow">C语言中变量<strong>默认为有符号</strong>的类型</font><br>unsigned关键字声明变量为无符号类型<br>C语言中<strong>只有整数类型</strong>能够声明unsigned变量</p>
+<p>1）有符号数的表示法<br>在计算机内部用补码表示有符号数<br>正数的补码为正数本身<br>负数的补码为负数的绝对值各位取反后加1<br>2）无符号数的表示法<br>在计算机内部用原码表示无符号数<br><strong>无符号数默认为正数</strong><br>无符号数没有符号位<br>对于固定长度的无符号数            有用！</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//其实，获取C语言中数据范围，还可以查看这些宏，但是不同编译器可能实现不同？忘记查了。</span>
+MAX_VALUE <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">--</span><span class="token operator">></span> MIN_VALUE
+MIN_VALUE <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">--</span><span class="token operator">></span> MAX_VALUE</code></pre>
+<p>计算机中，当确定为有符号数运算时，符号数一律用补码表示，运算时符号位和数字位一起参加运算。<br>运算结果也用补码表示。</p>
 
             </div>
             <hr/>
@@ -548,7 +564,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/11/2020-06-11-Markdown/">https://github.com/HACV/HACV.github.io/2020/06/11/2020-06-11-Markdown/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/26/2020-06-26-Displacement/">https://github.com/HACV/HACV.github.io/2020/06/26/2020-06-26-Displacement/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,12 +602,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/Markdown/">
-                                    <span class="chip bg-color">Markdown</span>
+                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">C语言</span>
                                 </a>
                             
-                                <a href="/Tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/Tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/Tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                                    <span class="chip bg-color">计算机组成原理</span>
                                 </a>
                             
                         </div>
@@ -759,45 +779,55 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/12/2020-06-12-Flexible-Array/">
+                <a href="/2020/06/26/2020-06-26-Displacement/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_13_cover.jpg" class="responsive-img" alt="柔性数组（Flexible Array）">
+                        <img src="/photos/2020.6.03_15/2020_06_03_cover.jpg" class="responsive-img" alt="左移和右移">
                         
-                        <span class="card-title">柔性数组（Flexible Array）</span>
+                        <span class="card-title">左移和右移</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            柔性数组（Flexible Array）（可变长数组）
+                            左移和右移
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
+                                    计算机组成原理
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
                         <span class="chip bg-color">C语言</span>
+                    </a>
+                    
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/Tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                        <span class="chip bg-color">计算机组成原理</span>
                     </a>
                     
                 </div>
@@ -811,30 +841,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/11/2020-06-11-The-concept-of-Process-and-Thread/">
+                <a href="/2020/06/25/2020-06-25-Underlying-coding/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_11_cover.jpg" class="responsive-img" alt="进程、线程杂谈">
+                        <img src="/photos/2020.6.03_15/2020_06_02_cover.jpg" class="responsive-img" alt="计算机二进制编码">
                         
-                        <span class="card-title">进程、线程杂谈</span>
+                        <span class="card-title">计算机二进制编码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            进程、线程概念辨析和线程安全
+                            补码和有符号的溢出
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    操作系统
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
+                                    计算机组成原理
                                 </a>
                             
                             
@@ -844,8 +874,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
-                        <span class="chip bg-color">进程和线程</span>
+                    <a href="/Tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                        <span class="chip bg-color">计算机组成原理</span>
                     </a>
                     
                 </div>
