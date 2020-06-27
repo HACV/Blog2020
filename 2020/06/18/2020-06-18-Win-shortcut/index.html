@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -491,7 +491,25 @@
 <p>小键盘替代鼠标<br>打开方式：键盘左边的Alt+左边的shift+Numlock   后面会显示一个对话框，确定就OK<br>关闭的方式也是那3个键，只是最后按否。</p>
 <p>进入这个模式之后，<br>移动鼠标图符。鼠标键盘共有八个方向键，键“8”、“2”、“4”、“6”、<br>“7”、“1”、“9”、“3”的功能分别为使鼠标图符向上、下、左、右、<br>左上、左下、右上、右下移动，键按下时鼠标图符的移动是由慢到快加速<br>进行的，当到达目标位置时松开即可。</p>
 <p>进入这个模式之后，Numlock就是开关这个替换。。此外，开了这个的话，小键盘就不能用了。</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -979,7 +997,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

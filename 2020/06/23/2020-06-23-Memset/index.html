@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    595
+                    647
                 </div>
                 
 
@@ -483,7 +483,7 @@
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">//测试结果是循环输出A 65</span></code></pre>
 <p>//原因，65的二进制<code>0100</code> `0001‬，它的最后一个字节是也正好是这个<br>//然后，我要重复使用这个字节填入char，也正好一个字节，那就正好是它了</p>
-<h2 id="二、底层原理"><a href="#二、底层原理" class="headerlink" title="二、底层原理"></a>二、底层原理</h2><p>原理：<font size=3>取二进制位的<strong>最后一个字节</strong></font>，<font style="background:yellow" size=5><strong>重复使用</strong></font>它给目标赋值。</p>
+<h2 id="二、底层原理"><a href="#二、底层原理" class="headerlink" title="二、底层原理"></a>二、底层原理</h2><p>原理：<font size="3">取二进制位的<strong>最后一个字节</strong></font>，<font style="background:yellow" size="5"><strong>重复使用</strong></font>它给目标赋值。</p>
 <p>验证上述的例子：</p>
 <pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;string.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
@@ -505,7 +505,25 @@
 <h2 id="三、解释一些说法"><a href="#三、解释一些说法" class="headerlink" title="三、解释一些说法"></a>三、解释一些说法</h2><p>正是由于，只看那个最后一个字节。<br>所以，我们在编码的时候，常用用这个初始化全0，或者全-1<br>因为，他们的补码最后一个字节分别是<code>0000 0000</code> 和 <code>1111 1111</code><br>而其他的的最后一个字节的重复使用，对于赋值给不同类型的数据，效果不同，也就比较少用了。</p>
 <p>PS:个人习惯的话，看自己喜欢吧，以前写俄罗斯方块，最初用的数组，后面学了位运算，发现还能这样精确的控制bit，我还优化了一次。（虽说，那样的思维强度比直观的用数组高一点）<br>当然，要是从<strong>可读性</strong>方面来看，还是数组的好一点，位运算的，可能对看自己代码的不友好。</p>
 <p>此外，memset比<code>C++中fill</code>的速度快，所以，做OJ的一些题目，能用这种提速就尽量用这种。</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -997,7 +1015,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

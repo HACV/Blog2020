@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.3k
+                    1.4k
                 </div>
                 
 
@@ -458,7 +458,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="底层原理研究工具集"><a href="#底层原理研究工具集" class="headerlink" title="底层原理研究工具集"></a>底层原理研究工具集</h1><h2 id="一、Windows下"><a href="#一、Windows下" class="headerlink" title="一、Windows下"></a>一、Windows下</h2><h3 id="1）cl-MSVC编译器"><a href="#1）cl-MSVC编译器" class="headerlink" title="1）cl,MSVC编译器"></a>1）cl,MSVC编译器</h3><blockquote>
+                <h1 id="底层原理研究工具集"><a href="#底层原理研究工具集" class="headerlink" title="底层原理研究工具集"></a>底层原理研究工具集</h1><p><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span></p>
+<h2 id="一、Windows下"><a href="#一、Windows下" class="headerlink" title="一、Windows下"></a>一、Windows下</h2><h3 id="1）cl-MSVC编译器"><a href="#1）cl-MSVC编译器" class="headerlink" title="1）cl,MSVC编译器"></a>1）cl,MSVC编译器</h3><blockquote>
 <p><code>/c</code>:只编译不链接。<br><code>/Za</code>:禁止语言扩展。<br><code>/link</code>:链接指定的模块或给链接器传递参数。<br><code>/Od</code>:（大写字母O）禁止优化。<br><code>/O2</code>:（大写字母O）以运行速度最快为目标优化。<br><code>/O1</code>:（大写字母O）以最节省空间为目标优化。<br><code>/GR或/GR-</code>:开启或关闭RTTI。<br><code>/Gy</code>:开启函数级别链接。<br><code>/GS或/GS-</code>:开启或关闭。<br><code>/Fa[file]</code>:输出汇编文件。<br><code>/E</code>:只进行预处理并且把结果输出。<br><code>/I</code>:指定头文件包含目录。<br><code>/Zi</code>:启用调试信息。<br><code>/LD</code>:编译产生DLL文件。<br><code>/LDd</code>:编译产生DLL文件(调试版)。<br><code>/MD</code>:与动态 多线程版本运行库MSVCRTLIB链接。<br><code>MDd</code>:与调试版动态多线程版本运行库MSVCRTD.LIB链接。<br><code>/MT</code>:与静态多线程版本运行库LIBCMTLIB链接。<br><code>/MTd</code>:与调试版静态多线程版本运行库LIBCMTD.LIB链接。</p>
 </blockquote>
 <h3 id="2）link，-MSVC链接器"><a href="#2）link，-MSVC链接器" class="headerlink" title="2）link， MSVC链接器"></a>2）link， MSVC链接器</h3><blockquote>
@@ -476,7 +477,25 @@
 <h3 id="3）objdump-GNU目标文件可执行文件查看器（反汇编常用）"><a href="#3）objdump-GNU目标文件可执行文件查看器（反汇编常用）" class="headerlink" title="3）objdump, GNU目标文件可执行文件查看器（反汇编常用）"></a>3）objdump, GNU目标文件可执行文件查看器（反汇编常用）</h3><blockquote>
 <p><code>-a</code>:列举.a文件中所有的目标文件。.<br><code>-b</code> bfdname:指定BFD名。<br><code>-C</code>:对于C++符号名进行反修饰(Demangle).<br><code>-g</code>:显示调试信息。<br><code>-d</code>:对包含机器指令的段进行反汇编。<br><code>-D</code>:对所有的段进行反汇编。<br><code>-f</code>:显示目标文件文件头。<br><code>-h</code>: 显示段表。<br><code>|</code>:显示行 号信息。<br><code>-p</code>:显示专有头部信息，具体内容取决于文件格式。<br><code>-r</code>:显示重定位信息。<br><code>-R</code>:显示动态链接重定位信息。<br><code>-S</code>:.显示文件所有内容。<br><code>-S</code>:显示源代码和反汇编代码(包含-d参数)。<br><code>-W</code>:显示文件中包含有DWARF调试信息格式的段。<br><code>-t</code>:显示文件中的符号表。<br><code>-T</code>:显示动态链接符号表。<br><code>-X</code>：显示文件的所有文件头。</p>
 </blockquote>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -978,7 +997,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

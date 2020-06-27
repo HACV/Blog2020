@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    328
+                    380
                 </div>
                 
 
@@ -455,7 +455,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="给数组赋相同值——fill"><a href="#给数组赋相同值——fill" class="headerlink" title="给数组赋相同值——fill"></a>给数组赋相同值——fill</h1><p>前提：<br>C++中头文件<code>#include&lt;algorithm&gt;</code></p>
-<p>fill可以将<strong>数组</strong>（我记得我看过的有一本书，似乎上面说，数组其实在<code>C++</code>中也是一容器<font style="background: yellow" size=5>待补充是哪本书</font>）<br>或<strong>容器</strong>中的某一段区间赋为某个相同的值。</p>
+<p>fill可以将<strong>数组</strong>（我记得我看过的有一本书，似乎上面说，数组其实在<code>C++</code>中也是一容器<font style="background: yellow" size="5">待补充是哪本书</font>）<br>或<strong>容器</strong>中的某一段区间赋为某个相同的值。</p>
 <h2 id="一、fill的常用用法"><a href="#一、fill的常用用法" class="headerlink" title="一、fill的常用用法"></a>一、fill的常用用法</h2><p>和memset不同，这下你想给那个数组赋值是多少就可以<strong>任意</strong>选，你完全不用从bit的角度来思考很直观。</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//一维数组</span>
 <span class="token function">fill</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token operator">+</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">233</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
@@ -477,8 +477,26 @@
 <span class="token keyword">const</span> <span class="token keyword">int</span> MAXN<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> a<span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">[</span>MAXN<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//二维数组</span>
 <span class="token function">fill</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>MAXN<span class="token operator">*</span>MAXN<span class="token punctuation">,</span>INF<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>//<font style="background: yellow" size=5>注意,fill中二维数组的这里</font><br><code>fill(a[0],a[0]+MAXN*MAXN,INF);</code></p>
-
+<p>//<font style="background: yellow" size="5">注意,fill中二维数组的这里</font><br><code>fill(a[0],a[0]+MAXN*MAXN,INF);</code></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -966,7 +984,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

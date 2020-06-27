@@ -454,12 +454,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="详解C语言中const"><a href="#详解C语言中const" class="headerlink" title="详解C语言中const"></a>详解C语言中const</h1><p><font color="red" size=4>C语言中的const修饰的变量，叫做<b>常变量</b>（奇怪的名字）</font></p>
+                <h1 id="详解C语言中const"><a href="#详解C语言中const" class="headerlink" title="详解C语言中const"></a>详解C语言中const</h1><p><font color="red" size="4">C语言中的const修饰的变量，叫做<b>常变量</b>（奇怪的名字）</font></p>
 <h2 id="1）概述："><a href="#1）概述：" class="headerlink" title="1）概述："></a>1）概述：</h2><p>Q：C语言中，const关键字限定一个变量为只读，但它是真正意义上的只读吗？<br>A：C语言中的并不是的！const虽说是constant的简写，是不变的意思。<br>但在C语言中，const并不是说它修饰常量，而是说它限定一个变量为只读。</p>
 <blockquote>
 <ul>
 <li><b>C语言</b>中，const关键字修饰的变量并<b>非真正意义完完全全的只读</b>！</li>
-<li>（难怪叫<b>常变量</b>,<font color="blue" >因为C语言中const就没有把这个变量变成常量！）</font></li>
+<li>（难怪叫<b>常变量</b>,<font color="blue">因为C语言中const就没有把这个变量变成常量！）</font></li>
 </ul>
 </blockquote>
 <p>Tips：<b>C++</b>中则对const关键字进行了加强，使得真的变成了常量（详情见C++中const详解）<br>所以，<b>我们常说C++中const修饰的变量，叫做const常量。</b></p>
@@ -496,7 +496,7 @@ arr<span class="token punctuation">[</span><span class="token number">2</span><s
 p <span class="token operator">=</span> <span class="token operator">&amp;</span>b<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//合法，改变了p的指向</span></code></pre>
 <p>换句话说更加准确：指针P是指向const int *</p>
 <p>这里为了便于理解，可认为const修饰的是<em>p，通常使用</em>对指针进行解引用来访问对象，因而该对象是只读的。</p>
-<p><font color="red" size=5 >（此处补充——《C专家编程》书中的一段）</font></p>
+<p><font color="red" size="5">（此处补充——《C专家编程》书中的一段）</font></p>
 <pre class=" language-c"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span>cp<span class="token punctuation">;</span>
 <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>Ccp<span class="token punctuation">;</span>
 ccp <span class="token operator">=</span> Cp<span class="token punctuation">;</span>
@@ -538,9 +538,9 @@ p <span class="token operator">=</span> <span class="token operator">&amp;</span
 <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//编译错误，指向的对象是只读的，不可通过p进行改变</span>
 p <span class="token operator">=</span> <span class="token operator">&amp;</span>b<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//编译错误，p是一个const指针，只读，不可变</span></code></pre>
 <p>小结：<br>const放在<em>的左侧，限定了该指针指向的对象是只读的；<br>const放在</em>的右侧，限定了指针本身是只读的，即不可变的。</p>
-<table><td bgcolor=#FFFF>
+<table><tbody><tr><td bgcolor="#FFFF">
 记忆法：
-const右边修饰谁，就说明谁是不可变的</td></table>
+const右边修饰谁，就说明谁是不可变的</td></tr></tbody></table>
 
 <p>解释：</p>
 <blockquote>
@@ -552,7 +552,7 @@ const右边修饰谁，就说明谁是不可变的</td></table>
 <li>此外，这种记忆法，还能帮助记忆先前那两个等价的形式：<blockquote>
 <ul>
 <li>const int NUM = 10;     //与int const NUM等价</li>
-<li>const int *p  = &a;        //与int const *p等价</li>
+<li>const int *p  = &amp;a;        //与int const *p等价</li>
 <li>const int arr[] = {0,0,2,3,4};     //与int const arr[]等价</li>
 </ul>
 </blockquote>
@@ -597,11 +597,11 @@ const右边修饰谁，就说明谁是不可变的</td></table>
 <span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;a.h></span></span>
 <span class="token comment" spellcheck="true">//后面可以使用ARR</span>
 注意，这里必须使用<span class="token keyword">static</span>修饰，否则多个文件包含导致编译会出现重复定义的错误。可以尝试一下。（为什么？因为，<span class="token keyword">static</span>修饰的变量，要是初始化了是放在<span class="token punctuation">.</span>data段的，而不是栈区）</code></pre>
-<table><td bgcolor=#FFFF FF>
+<table><tbody><tr><td bgcolor="#FFFF" ff="">
 易错点：
 Q：C语言中const修饰的变量是真正的只读吗？
 A：C语言const修饰的变量，可以被间接修改！
-</td></table>
+</td></tr></tbody></table>
 
 
 <p>在C语言中，const变量只不过是修饰该变量名，它并不能使内存变为只读。也就是说，我们不能通过变量名再去操作这块内存。但是可以通过其它方法，如指针，通过指针是可以修改被const修饰的那块内存的。</p>
@@ -618,7 +618,7 @@ A：C语言const修饰的变量，可以被间接修改！
 <p>我们要知道的是，const关键字告诉了编译器，它修饰的变量不能被改变，如果代码中发现有类似改变该变量的操作，那么编译器就会捕捉这个错误。</p>
 <p>那么它在<b>实际中的意义之一</b>是什么呢？<br>帮助程序员提前发现问题，避免不该修改的值被意外地修改，但是无法完全保证不被修改！<br>也就是说，C语言中<b>const关键字是给编译器用的</b>帮助程序员提早发现可能存在的问题。<br>（所以给了个warning？但是却不给error，也是够了。）</p>
 <p>从这次的分析中，我们可以获得的思考：<br>1）<b>不要忽略编译器的警告，除非你很清楚在做什么</b>。（比如，上面我们用那些方法修改了const修饰的。）<br>2）虽然可以通过某种不正规途径修改const修饰的变量，但是在<b>工程中</b>永远不要这么做。<br>3）const关键字让编译器帮助我们发现变量不该被修改却被意外修改的错误。</p>
-<p><font color="red" size=5 >常见的问题：</font><br>C语言中:</p>
+<p><font color="red" size="5">常见的问题：</font><br>C语言中:</p>
 <pre class=" language-c"><code class="language-c"><span class="token keyword">const</span> <span class="token keyword">int</span> maxn<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> test<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[Error] variably modified 'aa' at file scope</span>
 
@@ -629,7 +629,25 @@ A：C语言const修饰的变量，可以被间接修改！
 <span class="token comment" spellcheck="true">//当然，上面语法在Ｃ＋＋中是可以的，因为C++对C语言中const关键字进行了加强，使得真的是常量了，</span>
 <span class="token comment" spellcheck="true">//而且，在C++中，还给const修饰而形成的常量，取名叫做const常量。</span>
 </code></pre>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1117,7 +1135,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

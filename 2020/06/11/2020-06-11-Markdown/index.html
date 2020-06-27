@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    392
+                    521
                 </div>
                 
 
@@ -458,7 +458,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h1><h2 id="一、重视快捷键，重视工具"><a href="#一、重视快捷键，重视工具" class="headerlink" title="一、重视快捷键，重视工具"></a>一、重视快捷键，重视工具</h2><p>一定要重视工具的使用，对于常用的工具，要观察好自己的使用习惯，积累自己使用的定制方案</p>
+                <h1 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h1><h2 id="一、重视快捷键，重视工具"><a href="#一、重视快捷键，重视工具" class="headerlink" title="一、重视快捷键，重视工具"></a>一、重视快捷键，重视工具</h2><p>一定要重视工具的使用，对于常用的工具，要观察好自己的使用习惯，积累自己使用的定制方案<br>:smile::smile::smile:</p>
 <h2 id="二、自己常用的Markdown的语法"><a href="#二、自己常用的Markdown的语法" class="headerlink" title="二、自己常用的Markdown的语法"></a>二、自己常用的Markdown的语法</h2><blockquote>
 <ul>
 <li>粗体 <code>** **</code>  （三者都支持）    Ctrl+B（快捷键）<blockquote>
@@ -467,11 +467,11 @@
 </ul>
 </blockquote>
 </li>
-<li>字体颜色<code>&lt;font color=&quot;red&quot;&gt;   &lt;/font&gt;</code> <font color="red">字体颜色</font></li>
-<li>字体大小<code>&lt;font size=5&gt;    &lt;/font&gt;</code><font size=6>字体大小</font></li>
-<li>字体类型<code>&lt;font face=&quot;行书&quot; size=5&gt;  &lt;/font&gt;</code><font face="楷书" size=5>字体类型</font></li>
-<li>字体背景颜色<code>&lt;font style=&quot;background: red&quot;&gt;红色&lt;/font&gt;&lt;br&gt;</code><font style="background: red">字体背景颜色</font></li>
-<li>插入图片和大小<code>&lt;img src=&quot;../photos/2020.6.03_15/2020_06_08_1.png&quot; width=&quot;80%&quot;&gt;</code></li>
+<li>字体颜色<code>&lt;font color="red"&gt;   &lt;/font&gt;</code> <font color="red">字体颜色</font></li>
+<li>字体大小<code>&lt;font size=5&gt;    &lt;/font&gt;</code><font size="6">字体大小</font></li>
+<li>字体类型<code>&lt;font face="行书" size=5&gt;  &lt;/font&gt;</code><font face="楷书" size="5">字体类型</font></li>
+<li>字体背景颜色<code>&lt;font style="background: red"&gt;红色&lt;/font&gt;&lt;br&gt;</code><font style="background: red">字体背景颜色</font></li>
+<li>插入图片和大小<code>&lt;img src="../photos/2020.6.03_15/2020_06_08_1.png" width="80%"&gt;</code></li>
 <li>加个换行<code>&lt;br&gt;</code></li>
 </ul>
 </blockquote>
@@ -523,7 +523,36 @@
 <li>Ctrl+shift+J  添加行内<strong>数学公式</strong>  但是3个<code>$$$</code>什么鬼(注意，<strong>hexo中的数学公式则只支持一个$</strong>)</li>
 </ul>
 </blockquote>
-
+<h3 id="四、数学公式（markdown支持latex）"><a href="#四、数学公式（markdown支持latex）" class="headerlink" title="四、数学公式（markdown支持latex）"></a>四、数学公式（markdown支持latex）</h3><p>以后，或许用于写论文？<br>:smile::smile::smile:</p>
+<p><code>$C_{下面}^{上面}$</code>  比如$C_{2n}^{n}$<br><code>$\infty$</code> 就是$\infty$<br><code>$\frac{分子}{分母}$</code>  比如$\frac{i}{n}$</p>
+<h3 id="五、安装emoji"><a href="#五、安装emoji" class="headerlink" title="五、安装emoji"></a>五、安装emoji</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-filter-github-emojis --save</code></pre>
+<p>Add configuration of <code>_config.yml</code> file in Hexo root folder as follows：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">githubEmojis</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">className</span><span class="token punctuation">:</span> github<span class="token punctuation">-</span>emoji
+  <span class="token key atrule">inject</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">styles</span><span class="token punctuation">:</span>
+  customEmojis<span class="token punctuation">:</span></code></pre>
+<p>然后就可以<br><code>:smile::smile::smile:</code><br><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1011,7 +1040,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

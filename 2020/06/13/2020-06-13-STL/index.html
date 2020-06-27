@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    508
+                    560
                 </div>
                 
 
@@ -463,8 +463,8 @@
 <li>封装</li>
 </ul>
 </blockquote>
-<h2 id="（1）-include-lt-vector-gt"><a href="#（1）-include-lt-vector-gt" class="headerlink" title="（1）#include&lt;vector&gt;"></a>（1）#include&lt;vector&gt;</h2><p>可变长数组<br>底层实现是数组<br>具体可以看清华邓俊辉的</p>
-<h2 id="（2）-include-lt-set-gt"><a href="#（2）-include-lt-set-gt" class="headerlink" title="（2）#include&lt;set&gt;"></a>（2）#include&lt;set&gt;</h2><p>集合<br>内部自动有序<br>并且不含重复元素的容器，也就是会去重。</p>
+<h2 id="（1）-include-lt-vector-gt"><a href="#（1）-include-lt-vector-gt" class="headerlink" title="（1）#include<vector>"></a>（1）#include&lt;vector&gt;</h2><p>可变长数组<br>底层实现是数组<br>具体可以看清华邓俊辉的</p>
+<h2 id="（2）-include-lt-set-gt"><a href="#（2）-include-lt-set-gt" class="headerlink" title="（2）#include<set>"></a>（2）#include&lt;set&gt;</h2><p>集合<br>内部自动有序<br>并且不含重复元素的容器，也就是会去重。</p>
 <p>内部实现是<strong>红黑树</strong></p>
 <h3 id="（1）multiset"><a href="#（1）multiset" class="headerlink" title="（1）multiset"></a>（1）multiset</h3><blockquote>
 <p>set中元素是唯一的。<br>而我的这个的元素不是唯一的。<br>也就是元素没有去重。</p>
@@ -504,33 +504,51 @@
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
  <span class="token punctuation">}</span></code></pre>
-<h3 id="（2）unordered-set"><a href="#（2）unordered-set" class="headerlink" title="（2）unordered_set"></a>（2）unordered_set</h3><p><font color="red" size=5>C++11标准中添加的</font></p>
+<h3 id="（2）unordered-set"><a href="#（2）unordered-set" class="headerlink" title="（2）unordered_set"></a>（2）unordered_set</h3><p><font color="red" size="5">C++11标准中添加的</font></p>
 <blockquote>
 <p>可以用来处理只去重复，但是不排序<br>内部实现是散列（hash）</p>
 </blockquote>
-<h2 id="（3）-include-lt-string-gt"><a href="#（3）-include-lt-string-gt" class="headerlink" title="（3）#include&lt;string&gt;"></a>（3）#include&lt;string&gt;</h2><h2 id="（4）-include-lt-map-gt"><a href="#（4）-include-lt-map-gt" class="headerlink" title="（4）#include&lt;map&gt;"></a>（4）#include&lt;map&gt;</h2><p>映射</p>
+<h2 id="（3）-include-lt-string-gt"><a href="#（3）-include-lt-string-gt" class="headerlink" title="（3）#include<string>"></a>（3）#include&lt;string&gt;</h2><h2 id="（4）-include-lt-map-gt"><a href="#（4）-include-lt-map-gt" class="headerlink" title="（4）#include<map>"></a>（4）#include&lt;map&gt;</h2><p>映射</p>
 <p>可以将任何基本类型和STL容器，映射到任何基本类型和STL容器</p>
 <p>注意，map中的键和值是唯一的</p>
 <p>内部实现是<strong>红黑树</strong></p>
 <h3 id="（1）multimap"><a href="#（1）multimap" class="headerlink" title="（1）multimap"></a>（1）multimap</h3><blockquote>
 <p>一个键对应多个值</p>
 </blockquote>
-<h3 id="（2）unordered-map"><a href="#（2）unordered-map" class="headerlink" title="（2）unordered_map"></a>（2）unordered_map</h3><p><font color="red" size=5>C++11标准中添加的</font></p>
+<h3 id="（2）unordered-map"><a href="#（2）unordered-map" class="headerlink" title="（2）unordered_map"></a>（2）unordered_map</h3><p><font color="red" size="5">C++11标准中添加的</font></p>
 <blockquote>
 <p>底层实现是散列（hash）</p>
 </blockquote>
-<h2 id="（5）-include-lt-queue-gt"><a href="#（5）-include-lt-queue-gt" class="headerlink" title="（5）#include&lt;queue&gt;"></a>（5）#include&lt;queue&gt;</h2><p>队列</p>
+<h2 id="（5）-include-lt-queue-gt"><a href="#（5）-include-lt-queue-gt" class="headerlink" title="（5）#include<queue>"></a>（5）#include&lt;queue&gt;</h2><p>队列</p>
 <h3 id="（1）deque"><a href="#（1）deque" class="headerlink" title="（1）deque"></a>（1）deque</h3><blockquote>
 <p>双端队列。双向队列</p>
 </blockquote>
 <h3 id="（2）priority-queue"><a href="#（2）priority-queue" class="headerlink" title="（2）priority_queue"></a>（2）priority_queue</h3><blockquote>
 <p><code>include&lt;queue&gt;</code>就可以用优先队列<br>优先队列<br>用堆实现的<strong>默认</strong>将当前队列<strong>最大元素</strong>置于队首的容器</p>
 </blockquote>
-<h2 id="（6）-include-lt-stack-gt"><a href="#（6）-include-lt-stack-gt" class="headerlink" title="（6）#include&lt;stack&gt;"></a>（6）#include&lt;stack&gt;</h2><h2 id="（7）pair"><a href="#（7）pair" class="headerlink" title="（7）pair"></a>（7）pair</h2><p>（使）成对<br><code>#include&lt;utility&gt;</code>才能使用（奇奇怪怪）</p>
+<h2 id="（6）-include-lt-stack-gt"><a href="#（6）-include-lt-stack-gt" class="headerlink" title="（6）#include<stack>"></a>（6）#include&lt;stack&gt;</h2><h2 id="（7）pair"><a href="#（7）pair" class="headerlink" title="（7）pair"></a>（7）pair</h2><p>（使）成对<br><code>#include&lt;utility&gt;</code>才能使用（奇奇怪怪）</p>
 <p>注意，map内部实现涉及到了pair,所以，要是我们<br><code>#include&lt;map&gt;</code><br>那么我们要是想要使用pair，就不用另外<code>#include&lt;utility&gt;</code>了</p>
-<h2 id="（8）-include-lt-list-gt"><a href="#（8）-include-lt-list-gt" class="headerlink" title="（8）#include&lt;list&gt;"></a>（8）#include&lt;list&gt;</h2><p>双向链表</p>
-<h2 id="（9）-include-lt-bitset-gt"><a href="#（9）-include-lt-bitset-gt" class="headerlink" title="（9）#include&lt;bitset&gt;"></a>（9）#include&lt;bitset&gt;</h2><p>若干个位</p>
-<h2 id="（10）-include-lt-algorithm-gt"><a href="#（10）-include-lt-algorithm-gt" class="headerlink" title="（10）#include&lt;algorithm&gt;"></a>（10）#include&lt;algorithm&gt;</h2>
+<h2 id="（8）-include-lt-list-gt"><a href="#（8）-include-lt-list-gt" class="headerlink" title="（8）#include<list>"></a>（8）#include&lt;list&gt;</h2><p>双向链表</p>
+<h2 id="（9）-include-lt-bitset-gt"><a href="#（9）-include-lt-bitset-gt" class="headerlink" title="（9）#include<bitset>"></a>（9）#include&lt;bitset&gt;</h2><p>若干个位</p>
+<h2 id="（10）-include-lt-algorithm-gt"><a href="#（10）-include-lt-algorithm-gt" class="headerlink" title="（10）#include<algorithm>"></a>（10）#include&lt;algorithm&gt;</h2><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1018,7 +1036,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

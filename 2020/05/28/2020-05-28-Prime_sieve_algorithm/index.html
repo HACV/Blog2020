@@ -492,7 +492,7 @@
 <li>3.==总结==</li>
 </ul>
 </blockquote>
-<h2 id="1-素数的定义"><a href="#1-素数的定义" class="headerlink" title="1.素数的定义"></a>1.素数的定义</h2><p>维基百科定义：<br><strong>质数</strong>（Prime number），又称<strong>素数</strong><br><strong>指在大于1的自然数中</strong>，除了1和该数自身外，无法被其他自然数整除的数（也可定义为只有1与该数本身两个正因数的数）。大于1的自然数若不是素数，则称之为<strong>合数</strong>（也称为<strong>合成数</strong>）。<br> <strong>Tips：</strong><br>1.有的教材上：（指在大于1的自然数中）这一点没有强调，导致容易误解！！！<br>也是经常弄晕一些人对素数的理解的原因。<br>2.所以：<table><tr><td bgcolor=#FFFF FF>1既不是素数也不是合数！！！</td></tr></table></p>
+<h2 id="1-素数的定义"><a href="#1-素数的定义" class="headerlink" title="1.素数的定义"></a>1.素数的定义</h2><p>维基百科定义：<br><strong>质数</strong>（Prime number），又称<strong>素数</strong><br><strong>指在大于1的自然数中</strong>，除了1和该数自身外，无法被其他自然数整除的数（也可定义为只有1与该数本身两个正因数的数）。大于1的自然数若不是素数，则称之为<strong>合数</strong>（也称为<strong>合成数</strong>）。<br> <strong>Tips：</strong><br>1.有的教材上：（指在大于1的自然数中）这一点没有强调，导致容易误解！！！<br>也是经常弄晕一些人对素数的理解的原因。<br>2.所以：<table><tbody><tr><td bgcolor="#FFFF" ff="">1既不是素数也不是合数！！！</td></tr></tbody></table></p>
 <h2 id="2-素数相关算法"><a href="#2-素数相关算法" class="headerlink" title="2.素数相关算法"></a>2.素数相关算法</h2><h3 id="判别素数的朴素法（暴力法）"><a href="#判别素数的朴素法（暴力法）" class="headerlink" title="判别素数的朴素法（暴力法）"></a>判别素数的朴素法（暴力法）</h3><span id="jump021">
 </span>
 
@@ -631,8 +631,8 @@
 
 <p><strong>由来</strong>：<br>由于埃塞托尼亚筛筛的时候重复筛（比如下面的）了，使得算法效率还不够好，所以，我们改进一下，我们继续观察先前的图，发现埃塞托尼亚筛是<strong>竖着筛</strong>，我们似乎也难以优化这种筛法了，我们转换一下思路——<strong>横着筛</strong></p>
 <h5 id="1）算法原理：-2"><a href="#1）算法原理：-2" class="headerlink" title="1）算法原理："></a>1）算法原理：</h5><p>思路：在埃氏筛的一种优化<br>任何合数都能写成一个素数乘一个数（显然这个素数不一定是唯一的）<br>//举个例子：12=2<em>6=3</em>4（2和3都是素数）<br>所以，任何合数都有一个<strong>最小的质因数</strong></p>
-<table><tr><td bgcolor=#FFFF FF>用这个"最小质因数"来判断什么时候不用继续筛下去
-</td></tr></table>
+<table><tbody><tr><td bgcolor="#FFFF" ff="">用这个"最小质因数"来判断什么时候不用继续筛下去
+</td></tr></tbody></table>
 
 
 <p>那么如何实现呢？<br>欧拉研究发现，我要是<strong>横着筛</strong>就会比前面那种只优化掉蓝色部分的埃氏筛还快</p>
@@ -694,7 +694,25 @@
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1191,7 +1209,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

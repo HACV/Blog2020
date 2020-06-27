@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    538
+                    590
                 </div>
                 
 
@@ -466,7 +466,25 @@
 <p><code>Ctrl+P</code>　打开“打印”面板（可以打印网页,图片什么的…）<br><code>Ctrl+Q</code>　<strong>（未测试完全）</strong>打开“添加到过滤列表”面板（将当前页面地址发送到过滤列表）<br><code>Ctrl+R</code>　刷新当前页面（在前端调试的时候，我用过）<br><code>Ctrl+S</code>　打开“保存网页”面板（可以将当前页面所有内容保存下来）<br><code>Ctrl+T</code>　<strong>（未测试完全）</strong>垂直平铺所有窗口 </p>
 <p><code>Ctrl+U</code>  word——下划线<br><code>Ctrl+V</code>　粘贴当前剪贴板内的内容<br><code>Ctrl+W</code>　关闭当前标签（窗口）<br><code>Ctrl+X</code>　剪切当前选中内容（一般只用于文本操作）<br><code>Ctrl+Y</code>　<strong>重做</strong>刚才动作（一般只用于文本操作）</p>
 <p><code>Ctrl+Z</code>　撤消刚才动作（一般只用于文本操作）</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -950,7 +968,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

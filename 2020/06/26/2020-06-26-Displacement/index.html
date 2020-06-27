@@ -450,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    950
+                    1k
                 </div>
                 
 
@@ -539,7 +539,25 @@
 MAX_VALUE <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">--</span><span class="token operator">></span> MIN_VALUE
 MIN_VALUE <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">--</span><span class="token operator">></span> MAX_VALUE</code></pre>
 <p>计算机中，当确定为有符号数运算时，符号数一律用补码表示，运算时符号位和数字位一起参加运算。<br>运算结果也用补码表示。</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1035,7 +1053,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

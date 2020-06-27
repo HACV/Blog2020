@@ -470,7 +470,25 @@
 <h2 id="二、其他"><a href="#二、其他" class="headerlink" title="二、其他"></a>二、其他</h2><p>CTRL+M 左边距（在选中目标情况下）;<br>CTRL+Q 两边对齐（无首行缩进），（在选中目标情况下）或将光标放置目标文字的段尾，亦可操作<br>CTRL+T/Y 可进行首行缩进（将光标移到需做此操作的段尾，或将此段选中进行操作 </p>
 <p>Ctrl+Shift+L：给光标所在行的文本加上“项目符号”<br>Ctrl+M：同时增加首行和悬挂缩进<br>Ctrl+Shift+M：同时减少首行和悬挂缩进<br>Ctrl+O（或Ctrl+F12）：打开“打开”对话框<br>Ctrl+P（或Ctrl+Shift+F12）：打开“打印”对话框<br>Ctrl+R：使光标所在行的文本右对齐<br>Ctrl+S：为新文档打开“另保存为”对话框，或对当前文档进行保存<br>Ctrl+T：增加首行缩进<br>Ctrl+Shift+T：减少首行缩进 </p>
 <p>Ctrl+0：将选中的文本每段前增加12磅的间距。<br>Ctrl+1：若选中的文本行距不是“单倍行距”，则将其快速设置为“单倍行距”。<br>Ctrl+2：将选中的文本行距设置为“两倍行距”。<br>Ctrl+5：将选中的文本行距设置为“1.5倍行距”。<br>Ctrl+F2：快速执行“打印预览”功能。<br>Ctrl+F5：使窗口还原到最大化之前的状态。<br>Ctrl+Shift+F5：打开“书签”对话框。<br>Ctrl+Shift+F8：激活列选择功能，即通常所说的选择竖块文本（再按一次或按ESC键，取消该功能）。<br>Ctrl+F9：在光标处插入一域记号“{}”（注意：直接输入的一对大括号不能作为域记号）。<br>Ctrl+F5：使窗口还原到最大化之前的状态（再按一次，就会使窗口再次最大化）。<br>Ctrl+Deltet：删除光标后面的一个英文单词或一个中文词语（可反复使用）。<br>Ctrl+退格键：删除光标前面的一个英文单词或一个中文词语（可反复使用）。<br>Ctrl+Enter：将光标后面的内容快速移到下一页。<br>Ctrl+End：快速将光标移到文末。<br>Ctrl+Home（或Ctrl+Page Up）：快速将光标移到文首。<br>Ctrl+Insert+Insert(即按两下Insert键)：快速打开或更改“任务窗格”到“剪贴板”状态。<br>Ctrl+~：打开中文输入法的“在线造词”功能<br><code>Ctrl++</code>：快速切换到下标输入状态（再按一次恢复到正常状态）<br><code>Ctrl+Shift++</code>：快速切换到上标输入状态（再按一次恢复到正常状态）<br><code>Ctrl+→</code>：按英文单词或中文词语的间隔向后移动光标。<br><code>Ctrl+←</code>：按英文单词或中文词语的间隔向前移动光标。<br><code>Ctrl+Q</code>：段落重置 </p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -958,7 +976,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

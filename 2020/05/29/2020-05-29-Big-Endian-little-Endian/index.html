@@ -461,7 +461,7 @@
 <p>在计算机界，也有一个类似的大端小端之争，但是并没有像小人国那般，原先我们虽然在纠结选大端还是小端存储？但是随着计算机的发展，历史告诉我们，这些都是合理的，但是要在计算机间合理通信或者理解计算机底层的时候，你自己记得转换就好了。</p>
 <h1 id="大端和小端存储"><a href="#大端和小端存储" class="headerlink" title="大端和小端存储"></a>大端和小端存储</h1><h2 id="一．概念"><a href="#一．概念" class="headerlink" title="一．概念"></a>一．概念</h2><p>大端：指低字节存储在高地址。<br>小端：指低字节存储在低地址。</p>
 <p><strong>记忆方法：</strong></p>
-<table><td bgcolor=#FFFF FF>小端说：我就是个低低（弟弟）</td></table>
+<table><tbody><tr><td bgcolor="#FFFF" ff="">小端说：我就是个低低（弟弟）</td></tr></tbody></table>
 
 <p>下图描述了——大端存储（低字节存储在内存高地址了）：<br> <img src="/photos/2020.5.29/1.png" width="80%"></p>
 <p>下图描述了——小端存储（低字节存储在内存低地址了）：：<br> <img src="/photos/2020.5.29/2.png" width="80%"></p>
@@ -471,7 +471,7 @@
 <p>而在发送端发送数据时，发送的第一个字节是该数值在内存中的起始地址处对应的那个字节,也就是说,该数值在内存中的起始地址处对应的那个字节就是要发送的第一个高位字节(即:高位字节存放在低地址处);<br>由此可见,多字节数值在发送之前,在内存中因该是以大端法存放的;所以说,网络字节序是大端字节序;</p>
 <p>比如,我们经过网络发送整型数值0x12345678时,在80x86平台中,它是以小端发存放的,在发送之前需要使用系统提供的字节序转换函数将其转换成大端法存放的数值;</p>
 <p>常见CPU的宇节序<br>大端（big Endian）: PowerPC、IBM、 Sun<br>小端（little Endian）:x86、DEC<br>ARM既可以工作在大端模式,也可以工作在小端模式。</p>
-<h3 id="2）反汇编的时候"><a href="#2）反汇编的时候" class="headerlink" title="2）反汇编的时候"></a>2）反汇编的时候</h3><table><tr><td bgcolor=#FFFF FF>（——————未完待续）</td></tr></table>
+<h3 id="2）反汇编的时候"><a href="#2）反汇编的时候" class="headerlink" title="2）反汇编的时候"></a>2）反汇编的时候</h3><table><tbody><tr><td bgcolor="#FFFF" ff="">（——————未完待续）</td></tr></tbody></table>
 
 <h2 id="四．如何判别大端和小端"><a href="#四．如何判别大端和小端" class="headerlink" title="四．如何判别大端和小端"></a>四．如何判别大端和小端</h2><p>1）我们可以根据C语言中的，联合体来判断，该系统是大端还是小端。<br>因为，联合体变量总是从低地址存储。</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
@@ -502,7 +502,25 @@
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <p>显然，<br>要是小端存储，那么（低字节）0x03在低地址，<br>要是大端存储，那么（高字节）0x00在低地址。<br>所以，打印出3就是小端存储。打印出0那就是大端存储。<br>笔者的电脑是采用的intel的X86CPU，是小端存储。<br>  <img src="/photos/2020.5.29/3.png" width="80%"></p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -994,7 +1012,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

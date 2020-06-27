@@ -464,7 +464,7 @@
             <div id="articleContent">
                 <h1 id="字符串匹配算法预告"><a href="#字符串匹配算法预告" class="headerlink" title="字符串匹配算法预告"></a><font face="楷体">字符串匹配算法预告</font></h1><blockquote>
 <ul>
-<li><font face="楷体" color=red size=5>单模式串匹配算法</font><blockquote>
+<li><font face="楷体" color="red" size="5">单模式串匹配算法</font><blockquote>
 <ul>
 <li><b>BF算法</b>（Brute Force 的缩写，也叫暴力匹配算法，朴素匹配算法)<blockquote>
 <ul>
@@ -488,7 +488,7 @@
 </ul>
 </blockquote>
 </li>
-<li><font face="楷体" color=red size=5>多模式串匹配算法</font><blockquote>
+<li><font face="楷体" color="red" size="5">多模式串匹配算法</font><blockquote>
 <ul>
 <li><b>Trie树</b>，（又称前缀树，字典树，单词查找树）<blockquote>
 <ul>
@@ -566,12 +566,30 @@
 </li>
 </ul>
 </blockquote>
-<h2 id="RK算法"><a href="#RK算法" class="headerlink" title="RK算法"></a>RK算法</h2><p><b>联系</b>：RK算法是BF算法的改进，它巧妙借助了我们前面讲过的哈希算法，引入<font face="楷体" color=red size=5>哈希算法</font>，时间复杂度立刻就会降低。<br><b>难点</b>：设计一个可以应对各种类型字符的哈希算法并不简单</p>
+<h2 id="RK算法"><a href="#RK算法" class="headerlink" title="RK算法"></a>RK算法</h2><p><b>联系</b>：RK算法是BF算法的改进，它巧妙借助了我们前面讲过的哈希算法，引入<font face="楷体" color="red" size="5">哈希算法</font>，时间复杂度立刻就会降低。<br><b>难点</b>：设计一个可以应对各种类型字符的哈希算法并不简单</p>
 <p><b>思路</b>:我们通过哈希算法对主串中的n-m+1个子串分别求哈希值，然后逐个与模式串的哈希值比较大小。如果某个子串的哈希值与模式串相等，那就说明对应的子串和模式串匹配了（当然我们需要考虑哈希冲突的问题）。比较哈希值是非常快速的，所以效率提高了。<br>不过这又<b>引入一个问题</b>：通过哈希算法计算子串的哈希值的时候，我们需要遍历子串中的每个字符。尽管模式串与子串比较的效率提高了，但是，算法整体的效率并没有提高。有没有方法可以提高哈希算法计算子串哈希值的效率？<br><b>哈希算法设计技巧</b>：我们假设要匹配的字符串的字符集中只包含K个字符，我们可以用一个K进制数来表示一个子串，这个K进制数转化成十进制数，作为子串的哈希值。</p>
 <p><b>没有冲突的哈希</b>：我们只需要比较一下模式串和子串的哈希值<br><b>有冲突的哈希</b>：当存在哈希冲突的时候，有可能存在这样的情况，子串和模式串的哈希值虽然是相同的，但是两者本身并不匹配。解决方法很简单。当我们发现一个子串的哈希值跟模式串的哈希值相等的时候，我们只<br>需要再对比一下子串和模式串本身就好了。<br>当然，如果子串的哈希值与模式串的哈希值不相等，那对应的子串和模式串肯定也是不匹配的，就不需要比对子串和模式串本身了。</p>
 <p>总结：哈希算法的冲突概率要相对控制得低一些，如果存在大量冲突，就会导致 RK 算法的时间<br>复杂度退化，效率下降。极端情况下，如果存在大量的冲突，每次都要再对比子串和模式串本<br>身，那时间复杂度就会退化成$O(n*m)$</p>
 <p><b>但一般情况下，冲突不会很多，RK 算法的效率还是比 BF 算法高的。</b></p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1067,7 +1085,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

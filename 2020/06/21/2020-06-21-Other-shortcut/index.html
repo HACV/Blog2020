@@ -465,7 +465,25 @@
 <h2 id="三、Shift快捷键"><a href="#三、Shift快捷键" class="headerlink" title="三、Shift快捷键"></a>三、Shift快捷键</h2><p>01.Shift+空格 半\全角切换<br>02.Shift + Delete 永久删除所选项，而不将它放到“回收站”中。<br>03.拖动某一项时按 CTRL 复制所选项。<br>04.拖动某一项时按 CTRL + SHIFT 创建所选项目的快捷键。<br>05.SHIFT+F10或鼠标右击：打开当前活动项目的快捷菜单<br>06.SHIFT：在放入CD的时候按下不放，可以跳过自动播放CD。在打开word的时候按下不放，可以跳过自启动的宏<br>将光盘插入到CD-ROM驱动器时按SHIFT键阻止光盘自动播放 </p>
 <h2 id="四、资源管理器"><a href="#四、资源管理器" class="headerlink" title="四、资源管理器"></a>四、资源管理器</h2><p>NUMLOCK+数字键盘的减号(-)折叠所选的文件夹<br>NUMLOCK+数字键盘的加号(+)显示所选文件夹的内容<br>NUMLOCK+数字键盘的星号(*)显示所选文件夹的所有子文件夹<br>向左键 当前所选项处于“展开”状态时折叠该项，或“选定”其（父文件夹）<br>向右键  当前所选项处于“折叠”状态时展开该项，或“选定”（第一个子文件夹） </p>
 <h2 id="五、辅助功能"><a href="#五、辅助功能" class="headerlink" title="五、辅助功能"></a>五、辅助功能</h2><p>按右边的SHIFT键八秒钟切换筛选键的开和关<br>按SHIFT五次切换粘滞键的开和关<br>按NUMLOCK五秒钟切换切换键的开和关<br>左边的ALT+左边的SHIFT+NUMLOCK切换鼠标键的开和关<br>左边的ALT+左边的SHIFT+PRINTSCREEN切换高对比度的开和关 </p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -953,7 +971,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

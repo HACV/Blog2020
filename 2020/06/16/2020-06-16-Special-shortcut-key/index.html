@@ -446,7 +446,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    184
+                    236
                 </div>
                 
 
@@ -466,7 +466,25 @@
 <p>使用win+ctrl+f4快捷键可以关闭当前虚拟桌面，如果当前<br>的虚拟桌面有窗口，则窗口全部跑到前一个虚拟桌面上去</p>
 <p>win+a快捷键：<br>使用win+a快捷键可以打开操作中心</p>
 <p>Windows10  <strong>内置截图</strong>功能，快捷键是<strong>win+shift+S</strong><br>截图后，他就在剪切板中了。<br>直接粘贴到需要的地方就行了</p>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -958,7 +976,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

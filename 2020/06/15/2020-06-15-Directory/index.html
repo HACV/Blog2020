@@ -450,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    647
+                    697
                 </div>
                 
 
@@ -467,7 +467,7 @@
 <h2 id="三、Windows下Cmd"><a href="#三、Windows下Cmd" class="headerlink" title="三、Windows下Cmd"></a>三、Windows下Cmd</h2><h3 id="《1》特点"><a href="#《1》特点" class="headerlink" title="《1》特点"></a>《1》特点</h3><blockquote>
 <ul>
 <li>1）cmd中命令，<strong>不区分大小写</strong></li>
-<li>2）从<font style="background: yellow" size=5><strong>一个磁盘到另一个磁盘目录</strong></font>，需要修改磁盘，<font style="background: yellow" size=5><strong>不能直接cd一步到底</strong></font>，详情见下面。</li>
+<li>2）从<font style="background: yellow" size="5"><strong>一个磁盘到另一个磁盘目录</strong></font>，需要修改磁盘，<font style="background: yellow" size="5"><strong>不能直接cd一步到底</strong></font>，详情见下面。</li>
 </ul>
 </blockquote>
 <h3 id="《2》CMD命令进入另一个磁盘的目录"><a href="#《2》CMD命令进入另一个磁盘的目录" class="headerlink" title="《2》CMD命令进入另一个磁盘的目录"></a>《2》CMD命令进入另一个磁盘的目录</h3><blockquote>
@@ -489,7 +489,7 @@ D:</code></pre>
 <h3 id="《3》CMD进入带有空格的文件夹"><a href="#《3》CMD进入带有空格的文件夹" class="headerlink" title="《3》CMD进入带有空格的文件夹"></a>《3》CMD进入带有空格的文件夹</h3><p>注：查看带有空格的文件夹（如Documents and settings，Program files等文件夹）<br>有下面两种处理方法：</p>
 <blockquote>
 <ul>
-<li><strong>给文件夹加引号</strong>。如C磁盘<code>cd c:\&quot;documents and settings&quot;</code><br>这样的好处是多长的文件名都可以全部显示出来。</li>
+<li><strong>给文件夹加引号</strong>。如C磁盘<code>cd c:\"documents and settings"</code><br>这样的好处是多长的文件名都可以全部显示出来。</li>
 <li>由于一般情况下DOS系统只支持8.3格式的文件名，因此在DOS下遇到长文件名的文件夹时，<strong>取前面6位</strong>，然后在后面加上一个<code>~</code>号和数字<code>1</code>。 你可以输入C:/&gt; <code>cd c:/docume~1</code> 进入<code>Documents and settings</code>文件夹。当截取前面的6个字母之后出现重复时，可以将1改为2，依此类推。</li>
 </ul>
 </blockquote>
@@ -505,8 +505,26 @@ D:</code></pre>
 <span class="token keyword">char</span> tt<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
 fp<span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span>filename2<span class="token punctuation">,</span><span class="token string">"wb"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><font style="background: yellow" size=5>以后写代码，统一用这种45度的（也就是Linux那种）</font><br>原因：C语言中45度在Linux下，Windows下通用</p>
-
+<p><font style="background: yellow" size="5">以后写代码，统一用这种45度的（也就是Linux那种）</font><br>原因：C语言中45度在Linux下，Windows下通用</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1006,7 +1024,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

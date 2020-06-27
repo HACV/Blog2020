@@ -460,7 +460,7 @@
 <li>1978年，丹尼斯•里奇（Dennis Ritchie）和布莱恩•柯林汉（Brian Kernighan）合作出版了<b>《C程序设计语言》的第一版</b>。<b>书中介绍的C语言标准也被称作“K&amp;R C”</b>。</li>
 </ul>
 </blockquote>
-<h3 id="2）标准——ANSI-C、ISO-C、C89、C90-（重点）"><a href="#2）标准——ANSI-C、ISO-C、C89、C90-（重点）" class="headerlink" title="2）标准——ANSI C、ISO C、C89、C90  （重点）"></a>2）标准——ANSI C、ISO C、C89、C90  <font color="red" size =5>（重点）</font></h3><p><font color="red" size =4>(目前，我们说的<b>标准C</b>指的一般就是ANSI C)</font><br>典型用书:《C程序设计语言》的<font color="red" size =4><b>第二版</b></font></p>
+<h3 id="2）标准——ANSI-C、ISO-C、C89、C90-（重点）"><a href="#2）标准——ANSI-C、ISO-C、C89、C90-（重点）" class="headerlink" title="2）标准——ANSI C、ISO C、C89、C90  （重点）"></a>2）标准——ANSI C、ISO C、C89、C90  <font color="red" size="5">（重点）</font></h3><p><font color="red" size="4">(目前，我们说的<b>标准C</b>指的一般就是ANSI C)</font><br>典型用书:《C程序设计语言》的<font color="red" size="4"><b>第二版</b></font></p>
 <img src="/photos/2020.6.03_15/2020_06_06_1.jpg" width="60%">
 
 <blockquote>
@@ -512,9 +512,9 @@
 <p>Tips：</p>
 <blockquote>
 <ul>
-<li>1)另外，事实上，<b>不定长数组</b>的定义早在C的C99标准里就已经被提出，但是<b>从来都没在C++标准（C++98、C++03、C++11）里存在过</b>。因此，<b>G++支持不定长数组完全是因为它<font color="red" size=4>同时支持C99和C++</font>（对C99标准支持得最好的就是G++了）</b>，而VS不怎么支持C99标准那是人尽皆知的，也就理所当然不支持C99的不定长数组了。</li>
+<li>1)另外，事实上，<b>不定长数组</b>的定义早在C的C99标准里就已经被提出，但是<b>从来都没在C++标准（C++98、C++03、C++11）里存在过</b>。因此，<b>G++支持不定长数组完全是因为它<font color="red" size="4">同时支持C99和C++</font>（对C99标准支持得最好的就是G++了）</b>，而VS不怎么支持C99标准那是人尽皆知的，也就理所当然不支持C99的不定长数组了。</li>
 <li>2)此外，目前没有编译器可以完全实现C99，而且<b>为了兼容性，在写C代码时，通常我们不会去用C99标准</b>，<b>编译器也是默认不使用C99</b>的，因此C语言的书里说不允许这样定义数组，也是可以理解的。而C++ primer里也这么说，那是因为它说的是事实，C++里根本就不支持不定长数组。</li>
-<li>3)大概也是因为如上的原因，所以，<font color="red" size=3>到目前为止，我们还是认为ANSI C才是标准C</font>。</li>
+<li>3)大概也是因为如上的原因，所以，<font color="red" size="3">到目前为止，我们还是认为ANSI C才是标准C</font>。</li>
 </ul>
 </blockquote>
 <h3 id="四、标准——C11"><a href="#四、标准——C11" class="headerlink" title="四、标准——C11"></a>四、标准——C11</h3><blockquote>
@@ -540,7 +540,25 @@
 </li>
 </ul>
 </blockquote>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1024,7 +1042,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             

@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    1.5k
                 </div>
                 
 
@@ -475,11 +475,11 @@
 <blockquote>
 <p>测试环境：32位，DevC++5.11的C语言编译器<br>输出：8<br>测试环境：32位，VS2012的C语言编译器<br>输出：8</p>
 </blockquote>
-</br>
+<br>
 柔性数组解释：
 这是因为在定义这个结构体的时候，结构体的大小已经不包含柔性数组的内存大小了。  
 <b>柔性数组不占结构体内</b>。只是在使用的时候需要把它当作结构体的一个成员而已。
-</br>
+<br>
 （这个说法，让我想起了C++类中的static变量，本质是全局变量，所以其实不占那个类的内存，但是我把它放在类里面只是为了告知，这个变量和这个类有联系）
 
 
@@ -490,8 +490,8 @@
 <ul>
 <li>特别注意：<blockquote>
 <ul>
-<li>1）<font style="background: yellow">这个空数组必须声明为结构体的<strong>最后一个</strong>成员</li>
-<li>2）并且还要求这样的结构体<strong>至少</strong>包含一个<strong>其他类型</strong>的成员</font></li>
+<li>1）<font style="background: yellow">这个空数组必须声明为结构体的<strong>最后一个</strong>成员</font></li><font style="background: yellow">
+</font><li><font style="background: yellow">2）并且还要求这样的结构体<strong>至少</strong>包含一个<strong>其他类型</strong>的成员</font></li>
 </ul>
 </blockquote>
 </li>
@@ -600,7 +600,25 @@ D、没有作用</code></pre>
 <li>2）<strong>跳跃表（跳表，Skip list）</strong>的实现上，可以使用柔性数组。</li>
 </ul>
 </blockquote>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1088,7 +1106,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.5k</span>&nbsp;字
+                class="white-color">42.4k</span>&nbsp;字
             
             
             
