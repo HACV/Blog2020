@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言为什么没有数组下标越界检查？, HACV">
+    <meta name="keywords" content="ASCII表格, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C语言为什么没有数组下标越界检查？ | HACV</title>
+    <title>ASCII表格 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,7 +291,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言为什么没有数组下标越界检查？</h1>
+                    <h1 class="description center-align post-title">ASCII表格</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/idea/">
-                                <span class="chip bg-color">idea</span>
+                            <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                                <span class="chip bg-color">编译器底层</span>
                             </a>
                         
                     </div>
@@ -420,8 +420,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
+                                编译器底层
                             </a>
                         
                     </div>
@@ -433,7 +433,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-07
+                    2020-06-30
                 </div>
                 
 
@@ -442,7 +442,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    980
                 </div>
                 
 
@@ -454,75 +454,522 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C语言为什么没有数组下标越界检查？"><a href="#C语言为什么没有数组下标越界检查？" class="headerlink" title="C语言为什么没有数组下标越界检查？"></a>C语言为什么没有数组下标越界检查？</h1><h2 id="一、综述"><a href="#一、综述" class="headerlink" title="一、综述"></a>一、综述</h2><p>我们常常在VS中看到这样的句子：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//提醒你说，strcpy是不安全的版本，建议使用安全版的strnpy</span>
-<span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>  _Dest<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>  _Source<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strncpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>  _Dest<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>  _Source<span class="token punctuation">,</span> size_t _Count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>原因：</p>
+                <h1 id="ASCII码表"><a href="#ASCII码表" class="headerlink" title="ASCII码表"></a>ASCII码表</h1><p><b>（0-255）</b></p>
 <blockquote>
 <ul>
-<li>C对数组的长度范围不会进行检查！当向数组越界写入数据的时候，经常产生“内存被破坏”的问题</li>
-<li>直到，操作系统发现异常并且提示Segmentation fault，或者“强制关闭异常的应用程序”。但是此时相邻变量的值已经被破坏，程序却还在继续运行，那后果就不可想象了。</li>
-</ul>
-</blockquote>
-<h2 id="二、C语言为什么不进行数组下标越界检查？"><a href="#二、C语言为什么不进行数组下标越界检查？" class="headerlink" title="二、C语言为什么不进行数组下标越界检查？"></a>二、C语言为什么不进行数组下标越界检查？</h2><p>补充背景：</p>
-<blockquote>
+<li>第0~32号及第127号(共<strong>34</strong>个)是<strong>控制字符</strong>或<strong>通讯专用字符</strong><br>如控制符: <code>LF(换行)、CR(回车)、FF(换页)、DEL(删除)、BEL(振铃)</code>等;<br>通讯专用字符:<code>SOH(文头)、EOT(文尾)、ACK(确认)</code>等;<blockquote>
 <ul>
-<li>我们知道对C来说，当数组名做函数参数时，它会被解读成指针。（退化为指针，一维数组退化为一级指针，二维数组退化为二级指针）</li>
-<li>此外，我们可以利用指针的性质，控制好指针类型，即控制好<b>指针的步长</b>，我们就可以使用其他的指针变量指向数组的任意元素，并且这个指针可以随意进行加减运算。</li>
-<li>比如我们在引用一维数组<code>int a[3];</code>我们在引用数组元素的时候，写成<code>a[i]</code>和<code>*(a+i)</code>，是等效的,因为在a被解读成指针的时候，他就指向该数组的第一个元素的地址。</li>
-</ul>
-</blockquote>
-<p>原因：</p>
-<blockquote>
-<ul>
-<li>1）当你向一个函数传递数组的时候，实际上你传递的是一个指向初始元素的指针。如果这个函数还存在于其他的代码文件中（<b>另外一个编译单元</b>），那么通过编译器是不可能追踪到数组的。所以，要求C语言在<b>编译时</b>生成检查数组长度的代码，是有些强人所难的意味的.<blockquote>
-<ul>
-<li>比如，你自己在开发一个模块，到时候要是extern进别人的一个数组，而那个模块的负责人还没把那个模块完成，那你又要测试，你到时候也不知道别人用你的模块是干什么的（比如，不知道到底他会传入一个多长的数组），那么你就只能写一个接口给他，说你传入一个地址的吧，到时候我在函数中判断。</li>
+<li>第<code>33~126</code>号（共94个）是字符，其中第<code>48~57</code>号为0~9十个阿拉伯数字;</li>
+<li><code>65~90</code>号为26个大写英文字母，<code>97~122</code>号为26个小写英文字母，其余为一些标点符号、运算符号等。</li>
 </ul>
 </blockquote>
 </li>
-<li>2）为了提高运行效率，不检查数组下表越界，程序就可以跑得快，毕竟这样我就只需要传进一个地址，并不需要再传进一些额外的描述信息。<blockquote>
-<ul>
-<li>C的数组标识符，<b>里面并没有包含该数组长度的信息，只包含地址信息</b>，所以语言本身无法检查，只能通过编译器检查。</li>
-<li>也因此，C语言才速度快，效率高。几乎所有对性能有苛刻要求的场合都使用C语言。</li>
+<li><strong>后128个(128——255)称为扩展ASCII码</strong>，目前许多基于<strong>x86</strong>的系统都支持使用扩展(或“高”) ASCII。见最后一页扩展表:</li>
 </ul>
 </blockquote>
-</li>
-<li>3）不检查下标还给程序员更大的空间，也为指针操作带来更多的方便。如果有这个检查的话指针的功能将会大大被削弱。</li>
-</ul>
-</blockquote>
-<p>实际上，除了某些<b>解释型的编程语言</b>之外，目前几乎没有编译器可以为我们做数组的越界检查。</p>
-<blockquote>
-<ul>
-<li>如果你在项目中需要检查边界这样的功能，你可以像下面这样模拟实现：<blockquote>
-<ul>
-<li>1）我们可以人工的像前面的安全版本的strnpy，进行额外的操作传进长度辅助就好了。</li>
-<li>2）可以考虑将指针封装成结构体那样，运行时让指针自身持有可取值范围的信息。但是这样做对性能的影响很大，同时，也丧失了非调试模式下编译后的库和指针的兼容性。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>标准C语言是不进行数组下表越界检查的。<br>但目前各种编译器对这些行为的处理不同，<br>使得这样的行为是未定义的，建议不要写这样的代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//下标越界</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//DevC++5.11编译通过，而且还输出了1</span>
-<span class="token comment" spellcheck="true">//VS2012则表示，下标越界，会报错。缓冲区“a”(大小为 24 字节)将溢出</span></code></pre>
-<blockquote>
-<ul>
-<li>访问数组的本质是访问一段连续内存中的某个单元，只要这个单元的内存是可用的，那么程序就暂时不会崩溃，但是不立即崩溃，并不是是就完事大吉了，有时候可能真的没太大影响，但是有时候会修改到你正好要用到的数据。（所以，这种内存单元可用的，我们也不要这写，特别是在<b>多线程编程</b>的时候）</li>
-<li>更严重的，有时候数组越界正好越界到了操作系统的内存保护区域，会导致内存不可用的原因，由于操作系统的内存保护机制，程序会因此而崩溃。</li>
-</ul>
-</blockquote>
-<h2 id="四、防范"><a href="#四、防范" class="headerlink" title="四、防范"></a>四、防范</h2><p>为了防范这样的可能被用于缓冲区溢出攻击的语法，建议使用更加安全版本的函数。<br>比如，strcpy改用strnpy</p>
+<h2 id="一、缘由"><a href="#一、缘由" class="headerlink" title="一、缘由"></a>一、缘由</h2><p>几个月前，测试汇编和C语言的时候，有时候碰到控制字符的底层就会很抓狂。<br>比如，有时候测试一个ASCII对应响铃，但是由于自己把电脑静音了。。。没测出来</p>
+<p>此外，ASCII码表和扩展表，可以帮助更好的理解ASCII编码和Unicode和UTF8（Unicode的一种实现方式）</p>
+<h2 id="二、ASCII码表和解释"><a href="#二、ASCII码表和解释" class="headerlink" title="二、ASCII码表和解释"></a>二、ASCII码表和解释</h2><p>哪天闲着无聊，或许真的会把这个背记的（特别是前面的控制字符）</p>
+<p>:stuck_out_tongue_closed_eyes:</p>
+<p><font style="background: yellow" size="5">还需要继续整理完，顺路补充代码</font></p>
+<table>
+<thead>
+<tr>
+<th>binary</th>
+<th>Dec</th>
+<th>Hex</th>
+<th>缩写字符</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0000 0000</td>
+<td>0</td>
+<td>00</td>
+<td>NUL（<strong>NUL</strong>L）</td>
+<td>空字符</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>01</td>
+<td>SOH（<strong>S</strong>tart Of Handling）</td>
+<td>标题开始</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>2</td>
+<td>02</td>
+<td>STX（<strong>S</strong>tart of <strong>T</strong>e<strong>X</strong>t）</td>
+<td>正文开始</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>3</td>
+<td>03</td>
+<td>ETX（<strong>E</strong>nd of <strong>T</strong>e<strong>X</strong>t）</td>
+<td>正文结束</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>4</td>
+<td>04</td>
+<td>EOT （<strong>E</strong>nd <strong>O</strong>f <strong>T</strong>ransmission）</td>
+<td>传输结束</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>5</td>
+<td>05</td>
+<td>ENQ （<strong>Enq</strong>uiry）</td>
+<td>请求</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>6</td>
+<td>06</td>
+<td>ACK （<strong>Ack</strong>nowledge）</td>
+<td>收到通知（告知收悉）</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>7</td>
+<td>07</td>
+<td>BEL （<strong>bel</strong>）</td>
+<td>响铃</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>8</td>
+<td>08</td>
+<td>BS （<strong>b</strong>ack<strong>s</strong>pace）</td>
+<td>退格</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>8</td>
+<td>09</td>
+<td>HT （horizon-tal tab）</td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>10</td>
+<td>LF （NL line feed, new line）</td>
+<td>换行键</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>11</td>
+<td>VT （vertical tab）</td>
+<td>垂直制表符</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>12</td>
+<td>FF （NP form feed, new page）</td>
+<td>换页键</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>13</td>
+<td>CR （carriage return）</td>
+<td>回车键</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>14</td>
+<td>so （shift out）</td>
+<td>不用切换</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>15</td>
+<td>SI （shift in）</td>
+<td>启用切换</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>16</td>
+<td>DLE （data link escape）</td>
+<td>数据链路转义</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>17</td>
+<td>DC1 （device control 1）</td>
+<td>设备控制1</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>18</td>
+<td>DC2 （device control 2）</td>
+<td>设备控制2</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>19</td>
+<td>DC3 （device control 3）</td>
+<td>设备控制3</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>20</td>
+<td>DC4 （device control 4）</td>
+<td>设备控制4</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>21</td>
+<td>NAK （negative acknow ledge）</td>
+<td>拒绝接收</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>22</td>
+<td>SYN （synchr-onous idle）</td>
+<td>传输块结束</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>23</td>
+<td>ETB （end of trans. block）</td>
+<td>正文结束</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>24</td>
+<td>CAN （cancel）</td>
+<td>取消</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>EM （end of m edium）</td>
+<td>介质中断</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>SUB （substit-ute）</td>
+<td>替补</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>ESC （escape）</td>
+<td>溢出</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>FS （tile separat-or）</td>
+<td>文件分割符</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>GS （group separat-or）</td>
+<td>分组符</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>RS （record separat-or）</td>
+<td>记录分离符</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>US （unit separat-or）</td>
+<td>单 元分隔符</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>空格</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>33</td>
+<td>21</td>
+<td>!</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>22</td>
+<td>“</td>
+<td>双引号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>23</td>
+<td>#</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>24</td>
+<td>$</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>25</td>
+<td>%</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>26</td>
+<td>&amp;</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>27</td>
+<td>‘</td>
+<td>单引号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>28</td>
+<td>(</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>29</td>
+<td>)</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>2A</td>
+<td>*</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>2B</td>
+<td>+</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>2C</td>
+<td>,</td>
+<td>（英语）逗号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>2D</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>2E</td>
+<td>.</td>
+<td>（英语）句号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>2F</td>
+<td>/</td>
+<td></td>
+</tr>
+<tr>
+<td>XXXX XXXX</td>
+<td>48-57</td>
+<td>XX</td>
+<td>0-9</td>
+<td><font style="background: yellow">数字</font></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>3A</td>
+<td>:</td>
+<td>冒号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>3B</td>
+<td>;</td>
+<td>分号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>3C</td>
+<td>&lt;</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>3D</td>
+<td>=</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>3E</td>
+<td>&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>1</td>
+<td>3F</td>
+<td>?</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>64</td>
+<td>40</td>
+<td>@</td>
+<td></td>
+</tr>
+<tr>
+<td>XXXX XXXX</td>
+<td>65-90</td>
+<td>XX</td>
+<td>A-Z</td>
+<td><font style="background: yellow">大写字母</font></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>91</td>
+<td>3B</td>
+<td>[</td>
+<td>分号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>92</td>
+<td>3C</td>
+<td>\</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>93</td>
+<td>3D</td>
+<td>]</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>94</td>
+<td>3E</td>
+<td>^</td>
+<td>位运算的那个异或符号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>95</td>
+<td>3F</td>
+<td>_</td>
+<td>下划线</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>96</td>
+<td>3F</td>
+<td>`</td>
+<td>键盘上1左边的那个</td>
+</tr>
+<tr>
+<td>XXXX XXXX</td>
+<td>97-122</td>
+<td>XX</td>
+<td>a-z</td>
+<td><font style="background: yellow">小写字母</font></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>123</td>
+<td>3B</td>
+<td>{</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>124</td>
+<td>3C</td>
+<td>|</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>125</td>
+<td>3D</td>
+<td>}</td>
+<td></td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>126</td>
+<td>3E</td>
+<td>~</td>
+<td>位运算的取反符号</td>
+</tr>
+<tr>
+<td>0000 0001</td>
+<td>127</td>
+<td>3F</td>
+<td>DEL（delete）</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Tips:markdown中远样输出`和*和|需要用转义</p>
+<pre class=" language-txt"><code class="language-txt">\`
+\*
+\|</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -566,7 +1013,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/07/2020_06_07_C_check_array_bounds/">https://github.com/HACV/HACV.github.io/2020/06/07/2020_06_07_C_check_array_bounds/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/30/2020-06-30-ASCII/">https://github.com/HACV/HACV.github.io/2020/06/30/2020-06-30-ASCII/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -604,8 +1051,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/idea/">
-                                    <span class="chip bg-color">idea</span>
+                                <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
+                                    <span class="chip bg-color">编译器底层</span>
                                 </a>
                             
                         </div>
@@ -773,28 +1220,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/08/2020-06-08-Memory-Alignment/">
+                <a href="/2020/06/30/2020-06-30-ASCII/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="内存对齐">
+                        <img src="/photos/2020.6.03_15/2020_06_07_cover.jpg" class="responsive-img" alt="ASCII表格">
                         
-                        <span class="card-title">内存对齐</span>
+                        <span class="card-title">ASCII表格</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言和C++中内存对齐
+                            ASCII控制符和通讯字符
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -807,19 +1255,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
-                    </a>
-                    
                     <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
                         <span class="chip bg-color">编译器底层</span>
-                    </a>
-                    
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -833,30 +1274,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/06/2020-06-06-The-development-of-C-language-standard/">
+                <a href="/2020/06/28/2020-06-28-Catalan/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_06_cover.jpg" class="responsive-img" alt="C语言标准的发展进程">
+                        <img src="/photos/2020.6.03_15/2020_06_06_cover.jpg" class="responsive-img" alt="Catalan（卡特兰数）">
                         
-                        <span class="card-title">C语言标准的发展进程</span>
+                        <span class="card-title">Catalan（卡特兰数）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言标准的发展进程
+                            Catalan（卡特兰数）证明
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
+                                    数学
                                 </a>
                             
                             
@@ -866,8 +1307,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
+                    <a href="/Tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/">
+                        <span class="chip bg-color">组合数学</span>
                     </a>
                     
                 </div>
