@@ -512,10 +512,10 @@ $C_{2n}^{n}-C_{2n}^{n+1}=\frac{1}{n+1}C_{2n}^{n}$</font>
 <li>游乐园的门票50元一张，每人限购一张.现在有10个小朋友排队购票，其中5个小朋友带了1张50元钞票，另外5个小朋友带了1张100元钞票.售票员没有准备零钱.问有多少种排队方法，使售票员总能找的开零钱?</li>
 </ul>
 </blockquote>
-<p><strong>定义状态(a, b)</strong>，表示前n个小朋友中有a个小朋友带了50元，有b个小朋友带了100元，其中n=a+b<strong>（a≥b）</strong><br>显然：<br>1个小朋友的状态只有1种可能性: (1, 0);<br>2个小朋友的状态有2种可能性: (2, 0)或(1，1);<br>3个小朋友的状态有2种可能性: (3,0)或(2，1)<br>etc<br>到此，有人突发奇想，要是这么写比较麻烦，很不直观，所以想要将这个可视化。就想到了，将a和b映射到直角坐标系中去，也就有了下面这样的图形。<br><font style="background: red">写博客到这，发现，要画这些图还需要弄“几何画板”，考完试再优化</font><br><img src="https://github.com/HACV/Blog_Gallery/blob/master/2020/2020_6/2020_06_28_Catalan_01.png?raw=true" width="80%"></p>
-<p>很显然，我们要求的就是从点（0，0）到（5，5）不超出直线方程y=x的这样的排列的个数。<br>我们将，到点（a,b)的方法数是如下图。</p>
-<img src="https://github.com/HACV/Blog_Gallery/blob/master/2020/2020_6/2020_06_28_Catalan_02.png?raw=true" width="80%">
+<p><strong>定义状态(a, b)</strong>，表示前n个小朋友中有a个小朋友带了50元，有b个小朋友带了100元，其中n=a+b<strong>（a≥b）</strong><br>显然：<br>1个小朋友的状态只有1种可能性: (1, 0);<br>2个小朋友的状态有2种可能性: (2, 0)或(1，1);<br>3个小朋友的状态有2种可能性: (3,0)或(2，1)<br>etc<br>到此，有人突发奇想，要是这么写比较麻烦，很不直观，所以想要将这个可视化。就想到了，将a和b映射到直角坐标系中去，也就有了下面这样的图形。<br><font style="background: red">写博客到这，发现，要画这些图还需要弄“几何画板”，考完试再优化</font><br><b>图片</b><code>2020_06_28_Catalan_01.png</code></p>
+<img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_6/2020_06_28_Catalan_01.png" width="80%">
 
+<p>很显然，我们要求的就是从点（0，0）到（5，5）不超出直线方程y=x的这样的排列的个数。<br>我们将，到点（a,b)的方法数是如下图。<br><b>图片</b><code>2020_06_28_Catalan_02.png</code><br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_6/2020_06_28_Catalan_02.png" width="80%"></p>
 <p>这样问题就转换为“格路模型”，由<code>《组合数学》第5版，Richard A.Brualadi</code>中证明，显然是<br><font style="background: yellow"><br><b>卡特兰数的第1个格式：</b><br>$C_{2n}^{n}-C_{2n}^{n+1}=\frac{1}{n+1}C_{2n}^{n}$</font></p>
 <p>启发思路，还有<code>https://www.bilibili.com/video/BV1tE411R7mw?from=search&amp;seid=15340802308492660704</code>这个视频的人的证明方式，用了类似于光的“反射”。</p>
 <h2 id="三、模型3证明"><a href="#三、模型3证明" class="headerlink" title="三、模型3证明"></a>三、模型3证明</h2><p><font style="background: yellow" size="4">思路：计数原理-分类</font></p>
@@ -814,30 +814,30 @@ $f(n)=f(0)*f(n-1)+f(1)*f(n-2)+f(3)*f(n-4)+... f(n-1)*f(0)=\frac{1}{n+1}C_{2n}^{n
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/06/30/2020-06-30-ASCII/">
+                <a href="/2020/06/29/2020-06-29-Hexo-Domain/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_07_cover.jpg" class="responsive-img" alt="ASCII表格">
+                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="Hexo个人使用">
                         
-                        <span class="card-title">ASCII表格</span>
+                        <span class="card-title">Hexo个人使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ASCII控制符和通讯字符
+                            hexo域名解析，图床搭建，文章聚集
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-30
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-29
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
-                                    编译器底层
+                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
+                                    随笔
                                 </a>
                             
                             
@@ -847,8 +847,8 @@ $f(n)=f(0)*f(n-1)+f(1)*f(n-2)+f(3)*f(n-4)+... f(n-1)*f(0)=\frac{1}{n+1}C_{2n}^{n
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
-                        <span class="chip bg-color">编译器底层</span>
+                    <a href="/Tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
@@ -1066,7 +1066,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">45.1k</span>&nbsp;字
+                class="white-color">45.6k</span>&nbsp;字
             
             
             

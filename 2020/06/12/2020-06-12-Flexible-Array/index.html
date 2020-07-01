@@ -590,7 +590,8 @@ D、没有作用</code></pre>
     <span class="token keyword">int</span> age<span class="token punctuation">;</span>
     <span class="token keyword">char</span> pAddress<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>ST_STU_INFO<span class="token punctuation">;</span></code></pre>
-<p><strong>对比：</strong><br>1）柔性数组不占用内存，而指针则不然，柔性数组在使用上是直接访问，形式上更加直观，而指针需要经过声明再进行动态分配内存，在效率上和柔性数组相比也稍微低一些。<br>2）柔性数组能够按需用内存，而固定长度的数组，由于可能用不了那么长就会导致浪费。要是用的超过固定长度，则会导致程序崩溃。比如下面这样:<br><img src="https://github.com/HACV/Blog_Gallery/blob/master/2020/2020_6/2020_06_12_1.gif?raw=true" width="80%"></p>
+<p><strong>对比：</strong><br>1）柔性数组不占用内存，而指针则不然，柔性数组在使用上是直接访问，形式上更加直观，而指针需要经过声明再进行动态分配内存，在效率上和柔性数组相比也稍微低一些。<br>2）柔性数组能够按需用内存，而固定长度的数组，由于可能用不了那么长就会导致浪费。要是用的超过固定长度，则会导致程序崩溃。比如下面这样:</p>
+<p><strong>图片</strong><code>2020_06_12_Flexible Array_01.gif</code><br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_6/2020_06_12_Flexible%20Array_01.gif" width="80%"></p>
 <h2 id="五、设计初衷和用途"><a href="#五、设计初衷和用途" class="headerlink" title="五、设计初衷和用途"></a>五、设计初衷和用途</h2><p>Tips：在<strong>Linux内核代码</strong>中有较多的柔性数组的使用</p>
 <p><strong>设计初衷</strong>：主要用途是为了满足需要变长度的结构体，为了解决使用数组时内存的冗余和数组的越界问题</p>
 <p><strong>用途</strong>：</p>
@@ -1106,7 +1107,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">45.1k</span>&nbsp;字
+                class="white-color">45.6k</span>&nbsp;字
             
             
             
