@@ -283,6 +283,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码（本文章尚未完善）')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -1235,7 +1248,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            常用UML图之类图（★★★★★），对象图，用例图
+                            静态模型图（类图，部署图等）
                         
                     </div>
                     <div class="publish-info">
@@ -1472,7 +1485,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">45.9k</span>&nbsp;字
+                class="white-color">46.3k</span>&nbsp;字
             
             
             

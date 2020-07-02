@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>UML系列文章（二）</title>
+      <link href="/2020/07/02/2020-07-02-UML-02/"/>
+      <url>/2020/07/02/2020-07-02-UML-02/</url>
+      
+        <content type="html"><![CDATA[<h1 id="UML动态模型图"><a href="#UML动态模型图" class="headerlink" title="UML动态模型图"></a>UML动态模型图</h1><h2 id="一、UML图分类"><a href="#一、UML图分类" class="headerlink" title="一、UML图分类"></a>一、UML图分类</h2><blockquote><ul><li>静态模型图<blockquote><ul><li>类图（★★★★★）</li><li>对象图</li><li>包图</li><li>组件图</li><li>部署图（★★☆）</li></ul></blockquote></li><li>动态模型图<blockquote><ul><li>用例图（★★★）</li><li>时序图（★★★★）</li><li>协作图</li><li>状态图</li><li>活动图</li></ul></blockquote></li></ul></blockquote><h2 id="二、用例图（★★★）"><a href="#二、用例图（★★★）" class="headerlink" title="二、用例图（★★★）"></a>二、用例图（★★★）</h2><h3 id="1、用途："><a href="#1、用途：" class="headerlink" title="1、用途："></a>1、用途：</h3><p>用例图(Use Case Diagram): 也称为用户模型图, 是从软件<strong>需求分析</strong>到最终实现的第一步, 它是从客户的角度来描述系统功能。<br>所以是<br>1）站在客户如何使用系统的角度，把整个软件系统描述出来。<br>2）就是把客户的需求给固定下来。<br>3）画的图能进行交流就好了，仁者见仁智者见智的过程，并不要求每个人画的用例图完全一样。</p><h3 id="2、组件"><a href="#2、组件" class="headerlink" title="2、组件"></a>2、组件</h3><p>参与者(Actor)<br>用例(Use Case):<br>代码层面，用例，你就把它想象成是一个简单的功能模块就好了。<br>关系</p><h3 id="3、用例之间关系"><a href="#3、用例之间关系" class="headerlink" title="3、用例之间关系"></a>3、用例之间关系</h3><blockquote><ul><li>1）泛化：<font style="background: yellow">代码层次是用“继承”</font>（C++或Java）</li><li>2）依赖：<font style="background: yellow">代码层面是用，“一个类是另一个类”的<strong>函数参数</strong>或<strong>函数返回值</strong>实现</font><blockquote><ul><li><strong>包含</strong>:一个用例可以包含其他用例具有的行为，也就是说，<strong>这个功能模块要使用另一个功能模块</strong>。<br>eg.教学管理系统，添加学生信息（用例）要使用更新数据库（用例）这个功能模块。</li><li><strong>扩展</strong>：完成某个功能的时候<strong>偶尔</strong>会执行另外一个功能, 则用扩展关系表示。<br>eg.比如，在保存成绩的时候，发现，这个学生没有考试及格，以前的做法，就需要补考，就需要扩展到打印补考通知单。（偶尔）</li></ul></blockquote></li></ul></blockquote><h2 id="三、时序图"><a href="#三、时序图" class="headerlink" title="三、时序图"></a>三、时序图</h2><h2 id="四、活动图"><a href="#四、活动图" class="headerlink" title="四、活动图"></a>四、活动图</h2><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件工程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UML系列文章（一）</title>
       <link href="/2020/07/01/2020-07-01-UML-01/"/>
       <url>/2020/07/01/2020-07-01-UML-01/</url>
