@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="位段__一种特殊的结构体, HACV">
+    <meta name="keywords" content="动态规划系列（一）, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>位段__一种特殊的结构体 | HACV</title>
+    <title>动态规划系列（一） | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -299,12 +299,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_09_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_11_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">位段__一种特殊的结构体</h1>
+                    <h1 class="description center-align post-title">动态规划系列（一）</h1>
                 </div>
             </div>
         </div>
@@ -421,12 +421,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">C语言</span>
-                            </a>
-                        
-                            <a href="/Tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/Tags/DP/">
+                                <span class="chip bg-color">DP</span>
                             </a>
                         
                     </div>
@@ -437,8 +433,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -450,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-09
+                    2020-07-03
                 </div>
                 
 
@@ -459,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    553
+                    2k
                 </div>
                 
 
@@ -471,45 +467,249 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="位段（也叫位域）"><a href="#位段（也叫位域）" class="headerlink" title="位段（也叫位域）"></a>位段（也叫位域）</h1><h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>我们在做单片机的时候。微控制单元（Microcontroller Unit；MCU），又称单片微型计算机（Single Chip Microcomputer ）或者单片机。<br>经常会告诉你第几个比特是什么什么叫停止比特啥的。<br>如何操作呢？后面的数字是说，这个成员占几个比特。<br>其实这种手法在C语言中的实现就可以用我们现在要讲的位段方式。当然，位段并不是这些偏底层的程序实现的唯一应用场景，我们还能将这些用于网络通信等。</p>
-<h2 id="二、语法"><a href="#二、语法" class="headerlink" title="二、语法"></a>二、语法</h2><pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> test
+                <h1 id="动态规划之找规律技巧"><a href="#动态规划之找规律技巧" class="headerlink" title="动态规划之找规律技巧"></a>动态规划之找规律技巧</h1><h2 id="一、借助OJ设计原理技巧，输出编号"><a href="#一、借助OJ设计原理技巧，输出编号" class="headerlink" title="一、借助OJ设计原理技巧，输出编号"></a>一、借助OJ设计原理技巧，输出编号</h2><p>Tips:<code>in.txt</code>和<code>out.txt</code>都和你运行的程序在同一当前目录<br>首先，我创建in.txt作为，我存入输入数据<br>其次，我可以建立out.txt，也可不建立</p>
+<h3 id="1）模板如下"><a href="#1）模板如下" class="headerlink" title="1）模板如下"></a>1）模板如下</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    FILE <span class="token operator">*</span> fp_in<span class="token punctuation">;</span>
+    FILE <span class="token operator">*</span> fp_out<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//输入文件，"r+"用读/写方式，打开一个（已存在）的文件</span>
+    fp_in<span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"in.txt"</span><span class="token punctuation">,</span><span class="token string">"r+"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//输出文件，"w+"表示，用读/写方式，（建立）一个新的文本文件</span>
+    <span class="token comment" spellcheck="true">//PS：其实，要是我原先建好了out.txt也行。</span>
+    fp_out<span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"out.txt"</span><span class="token punctuation">,</span><span class="token string">"w+"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token operator">==</span>fp_in<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> tt<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>demo<span class="token punctuation">;</span></code></pre>
-<p>特点：<br>编译器会安排其中的位的排列，不具有可移植性<br>当所需的位超过一个int时会采用多个int</p>
-<h2 id="三、位段的特点和内存对齐"><a href="#三、位段的特点和内存对齐" class="headerlink" title="三、位段的特点和内存对齐"></a>三、位段的特点和内存对齐</h2><p>对于位域的定义，有以下几点说明：</p>
-<blockquote>
-<ul>
-<li>（1）一个位域必须存储在同一个字节中，不能跨两个字节。如一个字节所剩空间不够存放另一位域时，应从下一单元起存放该位域。也可以有意使某位域从下一单元开始。</li>
-</ul>
-</blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wy
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"NO"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用于编号 </span>
+
+        <span class="token comment" spellcheck="true">//这是对文件中的字符，用格式"%d%d%d"扫描进来。</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">fscanf</span><span class="token punctuation">(</span>fp_in<span class="token punctuation">,</span><span class="token string">"%d%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d %d %d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"n=%d sum=%d\n"</span><span class="token punctuation">,</span>i<span class="token punctuation">,</span>a<span class="token operator">+</span>b<span class="token operator">+</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//编号 </span>
+            <span class="token function">fprintf</span><span class="token punctuation">(</span>fp_out<span class="token punctuation">,</span><span class="token string">"n=%d sum=%d\n"</span><span class="token punctuation">,</span>i<span class="token operator">++</span><span class="token punctuation">,</span>a<span class="token operator">+</span>b<span class="token operator">+</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+
+
+
+    <span class="token function">fclose</span><span class="token punctuation">(</span>fp_in<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//关闭输入文件</span>
+    <span class="token function">fclose</span><span class="token punctuation">(</span>fp_out<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//关闭输出文件</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span> 
+
+</code></pre>
+<p>Tips:测试样例</p>
+<h3 id="2）第一种输入，in-txt（我习惯用这样的）"><a href="#2）第一种输入，in-txt（我习惯用这样的）" class="headerlink" title="2）第一种输入，in.txt（我习惯用这样的）"></a>2）第一种输入，in.txt（我习惯用这样的）</h3><pre class=" language-in.txt"><code class="language-in.txt">1 3 5 
+2 6 10
+4 12 20</code></pre>
+<h3 id="3）第二种输入，in-txt（这样也行）"><a href="#3）第二种输入，in-txt（这样也行）" class="headerlink" title="3）第二种输入，in.txt（这样也行）"></a>3）第二种输入，in.txt（这样也行）</h3><pre class=" language-in.txt"><code class="language-in.txt">1 3 5 2 6 10
+4 12 20</code></pre>
+<h3 id="4）输出的out-txt"><a href="#4）输出的out-txt" class="headerlink" title="4）输出的out.txt"></a>4）输出的out.txt</h3><pre class=" language-out.txt"><code class="language-out.txt">n=1 sum=9
+n=2 sum=18
+n=3 sum=36</code></pre>
+<h2 id="二、技巧的使用案例"><a href="#二、技巧的使用案例" class="headerlink" title="二、技巧的使用案例"></a>二、技巧的使用案例</h2><h3 id="1）例1：（不是动态规划）"><a href="#1）例1：（不是动态规划）" class="headerlink" title="1）例1：（不是动态规划）"></a>1）例1：（不是动态规划）</h3><p>考察知识点：<code>前缀和，位运算</code><br>湖南大学程序设计竞赛新生赛 <code>M题</code> <a href="https://ac.nowcoder.com/acm/contest/3674/M" target="_blank" rel="noopener">XOR sum</a></p>
+<p><code>小范围暴力找规律，规律当结论记住</code></p>
+<pre class=" language-txt"><code class="language-txt">题目描述 
+You are given two positive integers l and r,you shoud answer l⊕(l+1)⊕...⊕r,where ⊕ denotes the bitwise XOR operation. In XOR operation we perform the comparison of two bits, being 1 if the two bits are different, and 0 if they are the same. 
+For example:
+
+输入描述:
+The input contain two integers l ,r (1 ≤ l ≤ r ≤1018) 
+输出描述:
+The only output line should contain a single integer</code></pre>
+<p>示例1<br>输入<br><code>1 2</code><br>输出<br><code>3</code><br>说明<br><code>1⊕2=3</code></p>
+<p>示例2<br>输入<br><code>3 6</code><br>输出<br><code>4</code><br>说明<br><code>3⊕4⊕5⊕6=4</code></p>
+<h4 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h4><p>1）想法1：首先看到能够很明显模拟的，那么首先就会想到暴力，但是会发现<code>TLE</code><br>2）想法2：这样，很有规律但是超时的，那么可能是<strong><code>规律题</code></strong>，或者可能是<strong><code>动态规划</code></strong>，<br>那么问题转换为<strong><code>如何找规律</code></strong>，或者<strong><code>如何找状态转移方程</code></strong></p>
+<h4 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h4><p>1)首先创建测试数据，为了避免手工输入测试数据太慢，也避免测试数据太少，无法找出规律，所以，我写了代码生成<code>in.txt</code></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-   <span class="token keyword">unsigned</span> a<span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">;</span>
-   <span class="token keyword">unsigned</span> <span class="token number">0</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//空域</span>
-   <span class="token keyword">unsigned</span> b<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//从一单元开始存放</span>
-   <span class="token keyword">unsigned</span> c<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//在这个位域定义中，a占第一字节的6位，后2位填0表示不使用，</span>
-<span class="token comment" spellcheck="true">//b从第二字节开始，占用4位，c占用4位。</span></code></pre>
-<blockquote>
-<ul>
-<li>（2）由于位域不允许跨两个字节，因此位域的长度不能大于一个字节的长度，也就是不能超过8位二进位。</li>
-<li>（3）位域可以无位域名，这时它只用来填充或调整位置。无名的位域是不能使用的。</li>
-</ul>
-</blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> wk
-<span class="token punctuation">{</span>
-   <span class="token keyword">int</span> a<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
-   <span class="token keyword">int</span> <span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//不能使用</span>
-   <span class="token keyword">int</span> b<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">;</span>
-   <span class="token keyword">int</span> c<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span>
+    FILE <span class="token operator">*</span> fp_in<span class="token punctuation">;</span>
+    fp_in<span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"in.txt"</span><span class="token punctuation">,</span><span class="token string">"w+"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">101</span><span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span>fp_in<span class="token punctuation">,</span><span class="token string">"1 %d\n"</span><span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">fclose</span><span class="token punctuation">(</span>fp_in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>从以上述分析可以看出，位域可以看做是一种结构类型，其特点是成员均<b>按二进位分配</b>    。</p>
-<script>
+<p>生成的<code>in.txt</code>中，有形如这样的</p>
+<pre class=" language-in.txt"><code class="language-in.txt">1 1
+1 2
+1 3
+1 4
+1 5
+省略-——注意，这不是文件中的
+1 100</code></pre>
+<p>2)准备数据进行小范围的OJ模拟<br>代码</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    FILE <span class="token operator">*</span> fp_in<span class="token punctuation">;</span>
+    FILE <span class="token operator">*</span> fp_out<span class="token punctuation">;</span>
+    fp_in<span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"in.txt"</span><span class="token punctuation">,</span><span class="token string">"r+"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    fp_out<span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"out.txt"</span><span class="token punctuation">,</span><span class="token string">"w+"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> a<span class="token punctuation">,</span>b<span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> n<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">fscanf</span><span class="token punctuation">(</span>fp_in<span class="token punctuation">,</span><span class="token string">"%u%u"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">unsigned</span> sum<span class="token operator">=</span>a<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token punctuation">(</span>a<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>b<span class="token punctuation">;</span><span class="token operator">++</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            sum<span class="token operator">^</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token function">fprintf</span><span class="token punctuation">(</span>fp_out<span class="token punctuation">,</span><span class="token string">"%d-%d ==%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+
+
+    <span class="token function">fclose</span><span class="token punctuation">(</span>fp_in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fclose</span><span class="token punctuation">(</span>fp_out<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>模拟出out.txt</p>
+<pre class=" language-out.txt"><code class="language-out.txt">1-1 ==1
+1-2 ==3
+1-3 ==0
+1-4 ==4
+1-5 ==1
+1-6 ==7
+1-7 ==0
+1-8 ==8
+1-9 ==1
+1-10 ==11
+1-11 ==0
+1-12 ==12
+1-13 ==1
+1-14 ==15
+1-15 ==0
+1-16 ==16
+1-17 ==1
+1-18 ==19
+1-19 ==0
+1-20 ==20
+1-21 ==1
+1-22 ==23
+1-23 ==0
+省略-——注意，这不是文件中的</code></pre>
+<p>显然，有比较明显的规律如下图<br><b>图片</b><code>2020_07_03_DP_Series_One_01.png</code><br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_03/2020_07_03_DP_Series_One_01.png" width="80%"></p>
+<p>至此，我们发现了1-num的规律，由于规律太明显，不经让人大胆的猜测，其他形如2-num，3-num可能都只与<br>区间[left,right]的right有关，但是我们要严谨，毕竟，现在暴力模拟的只是<code>left=1</code>的场景</p>
+<p>至此</p>
+<h4 id="《一》常规方式（虽然技巧性没有那么强，但是比较通用）"><a href="#《一》常规方式（虽然技巧性没有那么强，但是比较通用）" class="headerlink" title="《一》常规方式（虽然技巧性没有那么强，但是比较通用）"></a>《一》常规方式（虽然技巧性没有那么强，但是比较通用）</h4><p>我们可以有两种做法，但是其实都是殊途同归<br>1）直接用这个模拟，然后，我们手算测试2-num，3-num。差不多的话，那就比较肯定是这个规律<br>1）模拟2-num,模拟3-num等，综合几组找规律<br>但是，由示例2的3-6发现，也并不满足这个规律，第1种比较碰运气的不行。<br>但是由于有这么明显的规律，那么我们不妨用第2种做法，我们还是很相信，最后结果和left可能也有关。</p>
+<p>再次暴力模拟</p>
+<pre class=" language-out.txt"><code class="language-out.txt">2-2 ==2
+2-3 ==1
+2-4 ==5
+2-5 ==0
+2-6 ==6
+2-7 ==1
+2-8 ==9
+2-9 ==0
+2-10 ==10
+2-11 ==1
+2-12 ==13
+2-13 ==0
+2-14 ==14
+2-15 ==1
+省略----</code></pre>
+<p>显然，又是4个一组<br>并且又是下面这样的规律，但是却和1-num的编号，对不上。</p>
+<pre class=" language-txt"><code class="language-txt">num
+1
+num+1
+0</code></pre>
+<p>模拟3-num</p>
+<pre class=" language-txt"><code class="language-txt">3-3 ==3
+3-4 ==7
+3-5 ==2
+3-6 ==4
+3-7 ==3
+3-8 ==11
+3-9 ==2
+3-10 ==8
+3-11 ==3
+3-12 ==15
+3-13 ==2
+3-14 ==12
+3-15 ==3
+3-16 ==19
+3-17 ==2
+3-18 ==16
+3-19 ==3</code></pre>
+<p>继续模拟，省略。。。后续，我对照<br>尴尬的。。。我没有找出规律。所以，我后面用的下面技巧性的方法想出来的。</p>
+<h4 id="《二》技巧性的方法"><a href="#《二》技巧性的方法" class="headerlink" title="《二》技巧性的方法"></a>《二》技巧性的方法</h4><p>至此，懒得再次模拟，可以借助我以前写代码，比如说前n项和等开放的思维。<br>我就想，如何将[left,right]和[1,right]联系起来？</p>
+<p>后来，笔者观察到的是这样的规律：<br>我们假设，$f(n)$表示[1,right]的异或和<br>那么，我们观察到<br>$f(3)=1^2^3$<br>$f(5)=1^2^3^4^5$<br>要是，我们想要求[3,5]的异或和<br>也就是求$f=3^4^5$<br>我们的目标就转换为，如何由前面两个式子弄成现在这个式子的样子<br>我首先想到的是，可以类似除法的话<br>那么，我需要的式子应该是<br>$f(2)=1^2$<br>$f(5)=1^2^3^4^5$<br>但是，又不能直接和除法一样除，灵机一转，那我从异或的角度来思考<br>异或规则：</p>
+<pre class=" language-txt"><code class="language-txt">0^1=1
+0^0=0
+1^0=1
+1^1=0
+相同则为0，不同则为1</code></pre>
+<p>如何才能将前面的$1^2$去掉呢，并且还不能影响到后面的呢<br>由异或的规则前两行，我们发现，0和k=0,1或都等于k<br>其实是如何求<br>$f=3^4^5$就可以转换为$f=0^3^4^5$<br>但是，问题又来了，前面的0如何构造。<br>灵机一转，任何两个相同的数字，异或永远是0。<br>那么，求$f=3^4^5$就可以转换为$f（3-1）^f（5）$</p>
+<h4 id="最终代码"><a href="#最终代码" class="headerlink" title="最终代码"></a>最终代码</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token function">solution</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span>  n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">%</span><span class="token number">4</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> n<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">%</span><span class="token number">4</span><span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">%</span><span class="token number">4</span><span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>n<span class="token operator">%</span><span class="token number">4</span><span class="token operator">==</span><span class="token number">3</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span> a<span class="token punctuation">,</span>b<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//注意，是正整数，然后，我先前只考虑的unsigned int，只通过了0.8样例</span>
+    <span class="token comment" spellcheck="true">//后来发现，，，对了，unsigned long long。我怎么先前就假设别人要的unsigned int 呢</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%lld%lld"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld\n"</span><span class="token punctuation">,</span><span class="token function">solution</span><span class="token punctuation">(</span>a<span class="token number">-1</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token function">solution</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> </code></pre>
+<h3 id="2）例2：（可以说是规律题，也可以说是dp题）"><a href="#2）例2：（可以说是规律题，也可以说是dp题）" class="headerlink" title="2）例2：（可以说是规律题，也可以说是dp题）"></a>2）例2：（可以说是规律题，也可以说是dp题）</h3><p>统计累加算式<br>来源：深信服校园招聘c/c软件开发D卷 <a href="https://www.nowcoder.com/questionTerminal/6ec6dbe36bc84e91b0eea012446a44cc" target="_blank" rel="noopener">统计累加算式</a><br>也有来源说是 整数分解为2的幂 清华复试</p>
+<pre class=" language-txt"><code class="language-txt">题干描述：
+一个正整数可以表示为多个正整数相加的表达式，表达式中的各个正整数要求都是2的幂。例如给定正整数7，它有下列六个符合要求的表达式：
+1)1+1+1+1+1+1+1 
+2)1+1+1+1+1+2 
+3)1+1+1+2+2 
+4)1+1+1+4 
+5)1+2+2+2 
+6)1+2+4
+因此，正整数7符合条件的表达式个数是6. 编写一个程序，对于给定的正整数N(1 <= N <= 1,000)，输出符合条件的表达式个数。要求：时间复杂度不高于O(N)。
+
+
+输入描述:
+一个整数（>=1并且<=1000）
+
+
+输出描述:
+表达式个数</code></pre>
+<p>示例1<br>输入<br><code>7</code><br>输出<br><code>6</code></p>
+<h3 id="3）例3："><a href="#3）例3：" class="headerlink" title="3）例3："></a>3）例3：</h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -552,7 +752,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/09/2020-06-09-Bit-Segment/">https://github.com/HACV/HACV.github.io/2020/06/09/2020-06-09-Bit-Segment/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/07/03/2020-07-03-DP-Series-One/">https://github.com/HACV/HACV.github.io/2020/07/03/2020-07-03-DP-Series-One/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -590,12 +790,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">C语言</span>
-                                </a>
-                            
-                                <a href="/Tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/Tags/DP/">
+                                    <span class="chip bg-color">DP</span>
                                 </a>
                             
                         </div>
@@ -763,49 +959,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/10/2020-06-10-Union/">
+                <a href="/2020/07/03/2020-07-03-DP-Series-One/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_10_cover.jpg" class="responsive-img" alt="共用体（联合）">
+                        <img src="/photos/2020.6.03_15/2020_06_11_cover.jpg" class="responsive-img" alt="动态规划系列（一）">
                         
-                        <span class="card-title">共用体（联合）</span>
+                        <span class="card-title">动态规划系列（一）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Union
+                            动态规划之找规律技巧
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
-                    </a>
-                    
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/Tags/DP/">
+                        <span class="chip bg-color">DP</span>
                     </a>
                     
                 </div>
@@ -819,30 +1013,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/08/2020-06-08-Memory-Alignment/">
+                <a href="/2020/07/02/2020-07-02-UML-02/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="内存对齐">
+                        <img src="/photos/2020.6.03_15/2020_06_10_cover.jpg" class="responsive-img" alt="UML系列文章（二）">
                         
-                        <span class="card-title">内存对齐</span>
+                        <span class="card-title">UML系列文章（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言和C++中内存对齐
+                            动态模型图（用例图，时序图等）
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
-                                    编译器底层
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" class="post-category">
+                                    软件工程
                                 </a>
                             
                             
@@ -852,16 +1046,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
-                    </a>
-                    
-                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
-                        <span class="chip bg-color">编译器底层</span>
-                    </a>
-                    
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/Tags/UML/">
+                        <span class="chip bg-color">UML</span>
                     </a>
                     
                 </div>
