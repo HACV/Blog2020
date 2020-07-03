@@ -287,6 +287,31 @@
     
     
     <entry>
+      <title>计算机网络强化（一）</title>
+      <link href="/2020/06/22/2020-06-22-Network-One/"/>
+      <url>/2020/06/22/2020-06-22-Network-One/</url>
+      
+        <content type="html"><![CDATA[<h1 id="TCP三次握手和四次挥手"><a href="#TCP三次握手和四次挥手" class="headerlink" title="TCP三次握手和四次挥手"></a>TCP三次握手和四次挥手</h1><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络协议 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vim命令强化</title>
       <link href="/2020/06/22/2020-06-22-Vim/"/>
       <url>/2020/06/22/2020-06-22-Vim/</url>
