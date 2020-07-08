@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>动态规划系列（二）</title>
+      <link href="/2020/07/03/2020-07-03-DP-Series-Two/"/>
+      <url>/2020/07/03/2020-07-03-DP-Series-Two/</url>
+      
+        <content type="html"><![CDATA[<h1 id="动态规划基础"><a href="#动态规划基础" class="headerlink" title="动态规划基础"></a>动态规划基础</h1><h2 id="一、适用情况"><a href="#一、适用情况" class="headerlink" title="一、适用情况"></a>一、适用情况</h2><p>参考维基百科：</p><blockquote><ul><li>1）<strong>最优子结构性质</strong>。如果问题的最优解所包含的子问题的解也是最优的，我们就称该问题具有最优子结构性质（即满足最优化原理）。最优子结构性质为动态规划算法解决问题提供了重要线索。</li><li>2）<strong>无后效性</strong>。即子问题的解一旦确定，就不再改变，不受在这之后、包含它的更大的问题的求解决策影响。</li><li>3）<strong>子问题重叠性质</strong>。子问题重叠性质是指在用递归算法自顶向下对问题进行求解时，每次产生的子问题并不总是新问题，有些子问题会被重复计算多次。动态规划算法正是利用了这种子问题的重叠性质，对每一个子问题只计算一次，然后将其计算结果保存在一个表格中，当再次需要计算已经计算过的子问题时，只是在表格中简单地查看一下结果，从而获得较高的效率，降低了时间复杂度。</li></ul></blockquote><h2 id="二、常见DP类型"><a href="#二、常见DP类型" class="headerlink" title="二、常见DP类型"></a>二、常见DP类型</h2><p>参考OI进行分类<br>1）记忆化搜索<br>2）背包 DP<br>3）区间 DP<br>4）树形 DP<br>5）DAG 上的 DP<br>6）状压 DP<br>7）数位 DP<br>8）插头 DP<br>9）计数 DP<br>10）动态 DP<br>11）DP 优化 </p><h2 id="三、动态规划解题的一般思路"><a href="#三、动态规划解题的一般思路" class="headerlink" title="三、动态规划解题的一般思路"></a>三、动态规划解题的一般思路</h2><p>可以参考这篇<a href="https://www.zhihu.com/question/23995189" target="_blank" rel="noopener">知乎</a><br>还可以参考北大郭炜的两种递推的写法：“人人为我”和“为为人人”</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>动态规划系列（一）</title>
       <link href="/2020/07/03/2020-07-03-DP-Series-One/"/>
       <url>/2020/07/03/2020-07-03-DP-Series-One/</url>
@@ -777,9 +802,9 @@
             
             <tag> C语言 </tag>
             
-            <tag> 编译器底层 </tag>
-            
             <tag> C++ </tag>
+            
+            <tag> 编译器底层 </tag>
             
         </tags>
       
