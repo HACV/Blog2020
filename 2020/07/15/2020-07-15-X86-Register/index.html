@@ -560,7 +560,9 @@
 <ul>
 <li>4）<font style="background: yellow">标志寄存器</font><blockquote>
 <ul>
-<li>PSW（Program status word register，程序状态字寄存器）<br>（有些机器中将PSW称为标志寄存器FR（Flag Register））<br>常见标志位：</li>
+<li>EFLAGS（eflags）：PSW（Program status word register，程序状态字寄存器）<br>（有些机器中将PSW称为标志寄存器FR（Flag Register））<blockquote>
+<p>常见标志位：</p>
+<ul>
 <li>CF（carry Flag）进位标志， 进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一个进位或借位，那么，其值为1，否则其值为0。使用该标志位的情况有：多字(字节)数的加减运算，无符号数的大小比较运算，移位操作，字(字节)之间移位，专门改变CF值的指令等。</li>
 <li>SF（signed Flag）符号标志</li>
 <li>ZF（zero Flag）零标志//就是你的计算结果是否为0，用他标识？？这是想要像.bss段一样省空间？</li>
@@ -573,6 +575,58 @@
 </li>
 </ul>
 </blockquote>
+</li>
+</ul>
+</blockquote>
+<p>8086处理器的标志寄存器</p>
+<table>
+<thead>
+<tr>
+<th>15</th>
+<th>14</th>
+<th>13</th>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>09</th>
+<th>08</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>OF</td>
+<td>DF</td>
+<td>IF</td>
+<td>TF</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>07</th>
+<th>06</th>
+<th>05</th>
+<th>04</th>
+<th>03</th>
+<th>02</th>
+<th>01</th>
+<th>00</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SF</td>
+<td>ZF</td>
+<td>\</td>
+<td>AF</td>
+<td>\</td>
+<td>PF</td>
+<td>\</td>
+<td>CF</td>
+</tr>
+</tbody></table>
 <p>参考；<br><a href="https://zhidao.baidu.com/question/122898039.html?ivk_sa=1022817r" target="_blank" rel="noopener">百度</a><br><a href="https://blog.csdn.net/yuqian123455/article/details/86894660" target="_blank" rel="noopener">CSDN</a><br><a href="https://recomm.cnblogs.com/blogpost/2331241" target="_blank" rel="noopener">博客园</a></p>
 <h2 id="三、32位，16位，64位处理器寄存器对比"><a href="#三、32位，16位，64位处理器寄存器对比" class="headerlink" title="三、32位，16位，64位处理器寄存器对比"></a>三、32位，16位，64位处理器寄存器对比</h2><p>32位处理器（以IA-32（Intel Architecture，32bit））<br>16位处理器（以8086为例）</p>
 <pre class=" language-txt"><code class="language-txt">注意：
@@ -647,9 +701,9 @@ X86-64是相对于8086点寄存器名字前面有些变化
 <tr>
 <td>3）标志寄存器</td>
 <td>\</td>
-<td>PSW</td>
-<td>PSW</td>
-<td>PSW</td>
+<td>eflags</td>
+<td>flags</td>
+<td>rflags</td>
 </tr>
 <tr>
 <td></td>
@@ -1196,7 +1250,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">59.3k</span>&nbsp;字
+                class="white-color">60.2k</span>&nbsp;字
             
             
             
