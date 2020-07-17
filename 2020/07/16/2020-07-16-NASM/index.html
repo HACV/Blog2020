@@ -286,7 +286,7 @@
 <script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = 'f25297859cf0a70af5c053a5464a5fa647a35ceee1d91397331903846d79ffc1';
+        let pwd = '';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    913
+                    2k
                 </div>
                 
 
@@ -467,7 +467,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="NASM编译器常用指令（32位汇编为例）"><a href="#NASM编译器常用指令（32位汇编为例）" class="headerlink" title="NASM编译器常用指令（32位汇编为例）"></a>NASM编译器常用指令（32位汇编为例）</h1><p><code>NASM用的是intel汇编语法，和Linux反汇编的有区别</code></p>
+                <h1 id="NASM编译器常用指令（32位汇编为例）"><a href="#NASM编译器常用指令（32位汇编为例）" class="headerlink" title="NASM编译器常用指令（32位汇编为例）"></a>NASM编译器常用指令（32位汇编为例）</h1><p><font style="background: yellow" size="5">结合X86寄存器理解</font></p>
+<p><code>NASM用的是intel汇编语法，和Linux反汇编的有区别</code></p>
 <h2 id="一、通用汇编指令"><a href="#一、通用汇编指令" class="headerlink" title="一、通用汇编指令"></a>一、通用汇编指令</h2><h3 id="★0）分类"><a href="#★0）分类" class="headerlink" title="★0）分类"></a>★0）分类</h3><p>汇编指令通常可以分为数据传送指令，算术和逻辑预算指令，控制流指令</p>
 <p><code>PS：我们的操作数是:寄存器，立即数，内存</code></p>
 <h3 id="★1）数据传送指令"><a href="#★1）数据传送指令" class="headerlink" title="★1）数据传送指令"></a>★1）数据传送指令</h3><blockquote>
@@ -491,9 +492,9 @@ mov eax,ebx</code></pre>
 <ul>
 <li>2）push 操作数<blockquote>
 <ul>
-<li>push 寄存器（注意要</li>
-<li>push 立即数</li>
-<li>push 内存</li>
+<li><code>push 寄存器</code>（注意要</li>
+<li><code>push 内存</code></li>
+<li><code>push 立即数</code></li>
 </ul>
 </blockquote>
 </li>
@@ -509,12 +510,12 @@ mov eax,ebx</code></pre>
 <ul>
 <li>1）加、减（add / <strong>sub</strong>tract，v.减去）<blockquote>
 <ul>
-<li>add/sub 目标操作数,被加/减的数字</li>
-<li>add/sub 寄存器,寄存器</li>
-<li>add/sub 寄存器,立即数</li>
-<li>add/sub 寄存器,内存</li>
-<li>add/sub 内存,寄存器</li>
-<li>add/sub 内存,立即数</li>
+<li><code>add/sub 目标操作数,被加/减的数字</code></li>
+<li><code>add/sub 寄存器,寄存器</code></li>
+<li><code>add/sub 寄存器,立即数</code></li>
+<li><code>add/sub 寄存器,内存</code></li>
+<li><code>add/sub 内存,寄存器</code></li>
+<li><code>add/sub 内存,立即数</code></li>
 <li><font style="background: yellow">add/sub 内存,内存是不准的！！！</font></li>
 </ul>
 </blockquote>
@@ -584,7 +585,226 @@ idiv dword ptr [var]</code></pre>
 </li>
 </ul>
 </blockquote>
-<h3 id="★3）控制流指令"><a href="#★3）控制流指令" class="headerlink" title="★3）控制流指令"></a>★3）控制流指令</h3><h3 id="★4）其他指令"><a href="#★4）其他指令" class="headerlink" title="★4）其他指令"></a>★4）其他指令</h3><blockquote>
+<blockquote>
+<ul>
+<li>5）取负（<strong>neg</strong>ative，v.否定，adj.负面的）<blockquote>
+<ul>
+<li>neg 操作数</li>
+<li>neg 寄存器</li>
+<li>neg 内存</li>
+<li><font style="background: yellow">neg  立即数    显然是不准！！！</font></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-asm"><code class="language-asm">neg eax</code></pre>
+<p><font style="background: red" size="5">位运算大类指令</font></p>
+<blockquote>
+<ul>
+<li>6）按位取反（位翻转）指令（not）<blockquote>
+<ul>
+<li>not 操作数</li>
+<li><code>not 寄存器</code></li>
+<li><code>not 内存</code></li>
+<li><font style="background: yellow">not  立即数    显然是不准！！！</font></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-asm"><code class="language-asm">not byte ptr [var]</code></pre>
+<blockquote>
+<ul>
+<li>7）<font style="background: yellow">逻辑</font>移位指令（<strong>sh</strong>ift v.移动，转移）<blockquote>
+<ul>
+<li>shl/shr（left，逻辑左移/right，逻辑右移）</li>
+<li>shl/shr 被操作数,移位的位数的操作数</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-asm"><code class="language-asm">shl eax,1
+shr ebx,2  </code></pre>
+<blockquote>
+<ul>
+<li>8）<font style="background: yellow">算术</font>移位指令（<strong>sh</strong>ift v.移动，转移）<br>（arithmetic，n.算术，算术运算）</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>9）逻辑与，或，异或（and/or/xor）<blockquote>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-asm"><code class="language-asm">and eax,0fH
+or eax,0fH
+xor edx,edx</code></pre>
+<h3 id="★3）控制流指令"><a href="#★3）控制流指令" class="headerlink" title="★3）控制流指令"></a>★3）控制流指令</h3><blockquote>
+<ul>
+<li>1）循环(loop)（可以说是C语言中循环的汇编语言实现）<blockquote>
+<ul>
+<li>loop 地址<blockquote>
+<ul>
+<li>loop指令，在执行的时候，会顺序做两件事：（1）寄存器cx减一  （2）如果cx的内容不为0，则转移到指定的位置去执行，否则顺序执行后面的指令。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-asm"><code class="language-asm">mov cx,5 ;循环次数
+mov si,10 ;除数
+digit:
+     xor dx,dx
+     div si
+     mov [bx],dl ;保存数位
+     inc bx
+     loop digit</code></pre>
+<blockquote>
+<ul>
+<li>2）跳转（jump)（可以说是C语言中goto的汇编语言实现）<blockquote>
+<ul>
+<li>jmp 标签所在地址</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-.asm"><code class="language-.asm">begin: 
+add eax,1
+jmp begin</code></pre>
+<blockquote>
+<ul>
+<li>3）比较和转移（可以说是C语言条件语句的汇编语言实现）<blockquote>
+<ul>
+<li>指令（1）cmp 操作数,操作数<blockquote>
+<ul>
+<li>cmp 寄存器,寄存器</li>
+<li>cmp 寄存器,立即数</li>
+<li>cmp 寄存器,内存</li>
+<li>cmp 内存,寄存器<blockquote>
+<ul>
+<li>比较两个操作数的值，并且根据结果，设置eflags寄存器中的条件码</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>指令（2）j开头的转移指令</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>je 标签</td>
+<td>jump when  <strong>equal</strong></td>
+</tr>
+<tr>
+<td>jne 标签</td>
+<td>jump when <strong>not equal</strong></td>
+</tr>
+<tr>
+<td>jz 标签</td>
+<td>jump when <strong>last reult was zero</strong></td>
+</tr>
+<tr>
+<td>jg 标签</td>
+<td>jump when <strong>greater than</strong></td>
+</tr>
+<tr>
+<td>jge 标签</td>
+<td>jump when <strong>greater than or equal to</strong></td>
+</tr>
+<tr>
+<td>jl 标签</td>
+<td>jump when <strong>less than</strong></td>
+</tr>
+<tr>
+<td>jle 标签</td>
+<td>jump when <strong>less than or equal to</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li>代码样例</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<pre class=" language-.asm"><code class="language-.asm">begin:
+    inc ebx
+    cmp eax,ebx        ;比较
+    jge begin        ;当eax>=ebx的时候，就跳转到begin</code></pre>
+<blockquote>
+<ul>
+<li>4）子程序调用（C语言中函数调用的汇编实现，也解释了为什么我们自己模拟的栈比C语言自身的栈消耗资源更少）</li>
+<li>指令1）函数调用（call）</li>
+<li>指令2）函数返回（ret）<blockquote>
+<ul>
+<li>call指令：(语法: call 标签)<br>首先：将<code>当前执行指令</code>的<code>地址</code>入栈<br>然后：无条件转移到由标签指示的地址的指令<br>Tips：和简单的跳转指令（jmp）不同，call指令保存调用之前的地址信息</li>
+<li>ret指令:(语法:  ret)<br>实现子程序的返回机制<br>ret指令首先：弹出栈中保存的指令地址<br>然后：无条件转移到保存的指令地址处执行</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<blockquote>
+<ul>
+<li>用一个C语言反汇编说明（测试环境VS2012反汇编）</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre class=" language-asm"><code class="language-asm">省略——————
+int test(int a,int b)
+{
+00D41460  push        ebp  
+00D41461  mov         ebp,esp  
+00D41463  sub         esp,0C0h  
+00D41469  push        ebx  
+00D4146A  push        esi  
+00D4146B  push        edi  
+00D4146C  lea         edi,[ebp-0C0h]  
+00D41472  mov         ecx,30h  
+00D41477  mov         eax,0CCCCCCCCh  
+00D4147C  rep stos    dword ptr es:[edi]  
+    return a+b;
+00D4147E  mov         eax,dword ptr [a]  
+00D41481  add         eax,dword ptr [b]  
+}
+00D41484  pop         edi  
+00D41485  pop         esi  
+00D41486  pop         ebx  
+00D41487  mov         esp,ebp  
+00D41489  pop         ebp  
+00D4148A  ret              ;调用返回
+省略------------
+    int a=3;
+00D413EE  mov         dword ptr [a],3  
+    int b=7;
+00D413F5  mov         dword ptr [b],7  
+    int c=test(a,b);
+00D413FC  mov         eax,dword ptr [b]  
+00D413FF  push        eax  
+00D41400  mov         ecx,dword ptr [a]  
+00D41403  push        ecx  
+00D41404  call        _test (0D4114Ah)  ;_test是函数的符号表，编译原理中讲过。此次调用test函数
+00D41409  add         esp,8  
+00D4140C  mov         dword ptr [c],eax  
+省略------------</code></pre>
+<h3 id="★4）其他指令"><a href="#★4）其他指令" class="headerlink" title="★4）其他指令"></a>★4）其他指令</h3><blockquote>
 <ul>
 <li>cld指令（clear Direction Flag）<br>无操作数指令。<br>将标志寄存器（flags）的DF（Direction Flag，方向标志位）置0<br>0表示，movsb或者movsw等指令的传送方向是正向的（从低地址到高地址）</li>
 </ul>
@@ -610,7 +830,29 @@ idiv dword ptr [var]</code></pre>
 </ul>
 </blockquote>
 <pre class=" language-asm"><code class="language-asm">rep mobsw</code></pre>
-<h2 id="二、NASM编译指令"><a href="#二、NASM编译指令" class="headerlink" title="二、NASM编译指令"></a>二、NASM编译指令</h2><h2 id="三、CPU寄存器分类"><a href="#三、CPU寄存器分类" class="headerlink" title="三、CPU寄存器分类"></a>三、CPU寄存器分类</h2><p>CPU中寄存器大致分为两类</p>
+<h2 id="二、NASM编译指令"><a href="#二、NASM编译指令" class="headerlink" title="二、NASM编译指令"></a>二、NASM编译指令</h2><p>也就是我们所说的伪指令，不是CPU的指令<br>1）db/dw声明一些数据<br>用伪指令db声明的数据都只有一个字节的长度<br>用伪指令db声明的数据都只有一个字的长度</p>
+<pre class=" language-.asm"><code class="language-.asm">db -1    ;初始化为0xFF
+dw -1    ;初始化为0xFFFF</code></pre>
+<p>2）times 是一个比较实用伪指令，用来重复定义数据或指令。</p>
+<pre class=" language-asm"><code class="language-asm">times 510-($-$$) db 0
+dw 0xaa55    
+;这段代码经常出现在 boot 磁盘 MBR 引导代码中
+;目的是除了最后 2 个字节和 code 代码外的区域全部写 0 值</code></pre>
+<p>times 还可以使用在重复写某一条指令</p>
+<pre class=" language-asm"><code class="language-asm">times 10 nop</code></pre>
+<pre class=" language-txt"><code class="language-txt">这段代码结果是重复填入了 10 条 nop 指令：
+
+00000000  90                nop
+00000001  90                nop
+00000002  90                nop
+00000003  90                nop
+00000004  90                nop
+00000005  90                nop
+00000006  90                nop
+00000007  90                nop
+00000008  90                nop
+00000009  90                nop</code></pre>
+<h2 id="三、CPU寄存器分类"><a href="#三、CPU寄存器分类" class="headerlink" title="三、CPU寄存器分类"></a>三、CPU寄存器分类</h2><p>CPU中寄存器大致分为两类</p>
 <h3 id="1）用户可见："><a href="#1）用户可见：" class="headerlink" title="1）用户可见："></a>1）用户可见：</h3><p><code>可以对这类寄存器编程</code><br>eg.<br>通用寄存器组<br>程序状态字寄存器</p>
 <h3 id="2）用户不可见："><a href="#2）用户不可见：" class="headerlink" title="2）用户不可见："></a>2）用户不可见：</h3><p><code>不可以对这类寄存器编程</code><br>eg.<br>存储器地址寄存器（MAR）<br>存储器数据寄存器（MDR）<br>指令寄存器（IR）</p>
 <script>
@@ -863,47 +1105,45 @@ idiv dword ptr [var]</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/07/16/2020-07-16-NASM/">
+                <a href="/2020/07/17/2020-07-17-POSIX/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_06_cover.jpg" class="responsive-img" alt="NASM汇编（32位为例）">
+                        <img src="/photos/2020.6.03_15/2020_06_07_cover.jpg" class="responsive-img" alt="POSIX和Linux头文件">
                         
-                        <span class="card-title">NASM汇编（32位为例）</span>
+                        <span class="card-title">POSIX和Linux头文件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            通用汇编指令+NASM编译指令+CPU寄存器分类
+                            POSIX概述和Linux常用头文件
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
-                                    计算机组成原理
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%B1%87%E7%BC%96-Assembly/">
-                        <span class="chip bg-color">汇编( Assembly)</span>
+                    <a href="/Tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
@@ -1117,7 +1357,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">60.2k</span>&nbsp;字
+                class="white-color">63.2k</span>&nbsp;字
             
             
             

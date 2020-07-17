@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言为什么没有数组下标越界检查？, HACV">
+    <meta name="keywords" content="POSIX和Linux头文件, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C语言为什么没有数组下标越界检查？ | HACV</title>
+    <title>POSIX和Linux头文件 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -304,7 +304,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言为什么没有数组下标越界检查？</h1>
+                    <h1 class="description center-align post-title">POSIX和Linux头文件</h1>
                 </div>
             </div>
         </div>
@@ -421,8 +421,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/idea/">
-                                <span class="chip bg-color">idea</span>
+                            <a href="/Tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -433,8 +433,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                操作系统
                             </a>
                         
                     </div>
@@ -446,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-07
+                    2020-07-17
                 </div>
                 
 
@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    1.9k
                 </div>
                 
 
@@ -467,75 +467,106 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C语言为什么没有数组下标越界检查？"><a href="#C语言为什么没有数组下标越界检查？" class="headerlink" title="C语言为什么没有数组下标越界检查？"></a>C语言为什么没有数组下标越界检查？</h1><h2 id="一、综述"><a href="#一、综述" class="headerlink" title="一、综述"></a>一、综述</h2><p>我们常常在VS中看到这样的句子：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//提醒你说，strcpy是不安全的版本，建议使用安全版的strnpy</span>
-<span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>  _Dest<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>  _Source<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strncpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>  _Dest<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>  _Source<span class="token punctuation">,</span> size_t _Count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>原因：</p>
-<blockquote>
+                <h1 id="POSIX和Linux头文件"><a href="#POSIX和Linux头文件" class="headerlink" title="POSIX和Linux头文件"></a>POSIX和Linux头文件</h1><h2 id="一、POSIX来源和解释"><a href="#一、POSIX来源和解释" class="headerlink" title="一、POSIX来源和解释"></a>一、POSIX来源和解释</h2><h3 id="1）维基百科"><a href="#1）维基百科" class="headerlink" title="1）维基百科"></a>1）维基百科</h3><blockquote>
 <ul>
-<li>C对数组的长度范围不会进行检查！当向数组越界写入数据的时候，经常产生“内存被破坏”的问题</li>
-<li>直到，操作系统发现异常并且提示Segmentation fault，或者“强制关闭异常的应用程序”。但是此时相邻变量的值已经被破坏，程序却还在继续运行，那后果就不可想象了。</li>
+<li><strong>可移植操作系统接口</strong>（英语：<strong>Portable Operating System Interface</strong>，缩写为POSIX）是IEEE为要在各种UNIX操作系统上运行软件，而定义API的一系列互相关联的标准的总称，其正式称呼为IEEE Std 1003，而国际标准名称为ISO/IEC 9945。此标准源于一个大约开始于1985年的项目。POSIX这个名称是由理查德·斯托曼（RMS）应IEEE的要求而提议的一个易于记忆的名称。它基本上是Portable Operating System Interface（可移植操作系统接口）的缩写，而X则表明其对Unix API的传承。<br><font style="background: yellow">Linux基本上逐步实现了POSIX兼容，但并没有参加正式的POSIX认证。[1]</font></li>
 </ul>
 </blockquote>
-<h2 id="二、C语言为什么不进行数组下标越界检查？"><a href="#二、C语言为什么不进行数组下标越界检查？" class="headerlink" title="二、C语言为什么不进行数组下标越界检查？"></a>二、C语言为什么不进行数组下标越界检查？</h2><p>补充背景：</p>
-<blockquote>
+<h3 id="2）POSIX历程"><a href="#2）POSIX历程" class="headerlink" title="2）POSIX历程"></a>2）POSIX历程</h3><blockquote>
 <ul>
-<li>我们知道对C来说，当数组名做函数参数时，它会被解读成指针。（退化为指针，一维数组退化为一级指针，二维数组退化为二级指针）</li>
-<li>此外，我们可以利用指针的性质，控制好指针类型，即控制好<b>指针的步长</b>，我们就可以使用其他的指针变量指向数组的任意元素，并且这个指针可以随意进行加减运算。</li>
-<li>比如我们在引用一维数组<code>int a[3];</code>我们在引用数组元素的时候，写成<code>a[i]</code>和<code>*(a+i)</code>，是等效的,因为在a被解读成指针的时候，他就指向该数组的第一个元素的地址。</li>
-</ul>
-</blockquote>
-<p>原因：</p>
-<blockquote>
+<li><strong>背景</strong>：POSIX是Unix的标准。当年最早的Unix，源代码流传出去了，加上早期的Unix不够完善，于是之后出现了好些独立开发的与Unix基本兼容但又不完全兼容的OS，通称Unix-like OS。局面非常混乱，为了提高兼容性和应用程序的可移植性，标准化Unix-like OS，提出了大家都应该遵守的POSIX标准。后来，Unix这个名字成为了商标，只有花钱<strong>进行POSIX标准兼容性测试并通过了的OS，才能称为Unix</strong>，其余的OS，最多称为Unix-like OS或者*nix OS。<br>参考：<code>https://www.zhihu.com/question/21048638/answer/148137115</code></li>
+<li><strong>简单总结</strong>：<blockquote>
 <ul>
-<li>1）当你向一个函数传递数组的时候，实际上你传递的是一个指向初始元素的指针。如果这个函数还存在于其他的代码文件中（<b>另外一个编译单元</b>），那么通过编译器是不可能追踪到数组的。所以，要求C语言在<b>编译时</b>生成检查数组长度的代码，是有些强人所难的意味的.<blockquote>
-<ul>
-<li>比如，你自己在开发一个模块，到时候要是extern进别人的一个数组，而那个模块的负责人还没把那个模块完成，那你又要测试，你到时候也不知道别人用你的模块是干什么的（比如，不知道到底他会传入一个多长的数组），那么你就只能写一个接口给他，说你传入一个地址的吧，到时候我在函数中判断。</li>
-</ul>
-</blockquote>
-</li>
-<li>2）为了提高运行效率，不检查数组下表越界，程序就可以跑得快，毕竟这样我就只需要传进一个地址，并不需要再传进一些额外的描述信息。<blockquote>
-<ul>
-<li>C的数组标识符，<b>里面并没有包含该数组长度的信息，只包含地址信息</b>，所以语言本身无法检查，只能通过编译器检查。</li>
-<li>也因此，C语言才速度快，效率高。几乎所有对性能有苛刻要求的场合都使用C语言。</li>
-</ul>
-</blockquote>
-</li>
-<li>3）不检查下标还给程序员更大的空间，也为指针操作带来更多的方便。如果有这个检查的话指针的功能将会大大被削弱。</li>
-</ul>
-</blockquote>
-<p>实际上，除了某些<b>解释型的编程语言</b>之外，目前几乎没有编译器可以为我们做数组的越界检查。</p>
-<blockquote>
-<ul>
-<li>如果你在项目中需要检查边界这样的功能，你可以像下面这样模拟实现：<blockquote>
-<ul>
-<li>1）我们可以人工的像前面的安全版本的strnpy，进行额外的操作传进长度辅助就好了。</li>
-<li>2）可以考虑将指针封装成结构体那样，运行时让指针自身持有可取值范围的信息。但是这样做对性能的影响很大，同时，也丧失了非调试模式下编译后的库和指针的兼容性。</li>
+<li>（1）完成同一功能，<strong>不同内核提供的系统调用（也就是一个函数）是不同的</strong>，例如<strong>创建进程，linux下是fork函数，windows下是creatprocess函数。</strong>好，我现在在linux下写一个程序，用到fork函数，那么这个程序该怎么往windows上移植？我需要把源代码里的fork通通改成creatprocess，然后重新编译！</li>
+<li>（2）posix标准的出现就是为了解决这个问题。linux和windows都要实现基本的posix标准，linux把fork函数封装成posix_fork（随便说的），windows把creatprocess函数也封装成posix_fork，都声明在unistd.h里。</li>
+<li>（3）这样，程序员编写普通应用时候，只用包含unistd.h，调用posix_fork函数，<font style="background: yellow">程序就在<strong>源代码级别</strong>可移植了</font>。<br>参考自<code>https://www.jianshu.com/p/e9e3f17deb36</code></li>
 </ul>
 </blockquote>
 </li>
 </ul>
 </blockquote>
-<h2 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h2><p>标准C语言是不进行数组下表越界检查的。<br>但目前各种编译器对这些行为的处理不同，<br>使得这样的行为是未定义的，建议不要写这样的代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//下标越界</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h3 id="3）Tips"><a href="#3）Tips" class="headerlink" title="3）Tips"></a>3）Tips</h3><p>unix 硬性要求遵循POSIX, 而目前的windows可能是为了移植性兼容的！<br>比如window NT的<code>Microsoft POSIX subsystem</code><br>详情可以看，这篇<a href="https://en.m.wikipedia.org/wiki/Microsoft_POSIX_subsystem" target="_blank" rel="noopener">wiki</a><br>关于目前操作系统对POSIX标准的<a href="https://en.m.wikipedia.org/wiki/POSIX" target="_blank" rel="noopener">另一篇wiki</a></p>
+<h2 id="二、Linux头文件一览"><a href="#二、Linux头文件一览" class="headerlink" title="二、Linux头文件一览"></a>二、Linux头文件一览</h2><h3 id="1）POSIX标准定义的头文件"><a href="#1）POSIX标准定义的头文件" class="headerlink" title="1）POSIX标准定义的头文件"></a>1）POSIX标准定义的头文件</h3><blockquote>
+<ul>
+<li><code>&lt;dirent.h&gt;</code>        目录项<br><code>&lt;fcntl.h&gt;</code>         文件控制<br><code>&lt;fnmatch.h&gt;</code>    文件名匹配类型<br><code>&lt;glob.h&gt;</code>    路径名模式匹配类型<br><code>&lt;grp.h&gt;</code>       组文件<br><code>&lt;netdb.h&gt;</code>    网络数据库操作<br><code>&lt;pwd.h&gt;</code>        口令文件<br><code>&lt;regex.h&gt;</code>    正则表达式<br><code>&lt;tar.h&gt;</code>        TAR归档值<br><code>&lt;termios.h&gt;</code>    终端I/O<br><code>&lt;unistd.h&gt;</code>    符号常量，文件是Linux的系统调用，好比Windows中的windows.h<br><code>&lt;utime.h&gt;</code>   文件时间<br><code>&lt;wordexp.h&gt;</code>    字符扩展类型</li>
+<li><code>&lt;arpa/inet.h&gt;</code>    INTERNET定义<br><code>&lt;net/if.h&gt;</code>    套接字本地接口<br><code>&lt;netinet/in.h&gt;</code>    INTERNET地址族<br><code>&lt;netinet/tcp.h&gt;</code>    传输控制协议定义</li>
+<li><code>&lt;sys/mman.h&gt;</code>    内存管理声明<br><code>&lt;sys/select.h&gt;</code>    Select函数<br><code>&lt;sys/socket.h&gt;</code>   套接字接口<br><code>&lt;sys/stat.h&gt;</code>    文件状态<br><code>&lt;sys/times.h&gt;</code>    进程时间<br><code>&lt;sys/types.h&gt;</code>    基本系统数据类型（如pid_t,size_t等）<br><code>&lt;sys/un.h&gt;</code>    UNIX域套接字定义<br><code>&lt;sys/utsname.h&gt;</code>    系统名<br><code>&lt;sys/wait.h&gt;</code>    进程控制</li>
+</ul>
+</blockquote>
+<h3 id="2）POSIX定义的XSI扩展头文件"><a href="#2）POSIX定义的XSI扩展头文件" class="headerlink" title="2）POSIX定义的XSI扩展头文件"></a>2）POSIX定义的XSI扩展头文件</h3><p>XSI，代表一种Unix系统的标准。</p>
+<blockquote>
+<ul>
+<li><code>&lt;cpio.h&gt;</code>   cpio归档值<br><code>&lt;dlfcn.h&gt;</code>    动态链接<br><code>&lt;fmtmsg.h&gt;</code>    消息显示结构<br><code>&lt;ftw.h&gt;</code>       文件树漫游<br><code>&lt;iconv.h&gt;</code>    代码集转换使用程序<br><code>&lt;langinfo.h&gt;</code>    语言信息常量<br><code>&lt;libgen.h&gt;</code>    模式匹配函数定义<br><code>&lt;monetary.h&gt;</code>    货币类型<br><code>&lt;ndbm.h&gt;</code>    数据库操作<br><code>&lt;nl_types.h&gt;</code>    消息类别<br><code>&lt;poll.h&gt;</code>    轮询函数<br><code>&lt;search.h&gt;</code>    搜索表<br><code>&lt;strings.h&gt;</code>    字符串操作<br><code>&lt;syslog.h&gt;</code>    系统出错日志记录<br><code>&lt;ucontext.h&gt;</code>    用户上下文<br><code>&lt;ulimit.h&gt;</code>    用户限制<br><code>&lt;utmpx.h&gt;</code>    用户帐户数据库</li>
+<li><code>&lt;sys/ipc.h&gt;</code>    IPC(命名管道)<br><code>&lt;sys/msg.h&gt;</code>    消息队列<br><code>&lt;sys/resource.h&gt;</code>资源操作<br><code>&lt;sys/sem.h&gt;</code>    信号量<br><code>&lt;sys/shm.h&gt;</code>    共享存储<br><code>&lt;sys/statvfs.h&gt;</code>    文件系统信息<br><code>&lt;sys/time.h&gt;</code>    时间类型<br><code>&lt;sys/timeb.h&gt;</code>    附加的日期和时间定义<br><code>&lt;sys/uio.h&gt;</code>    矢量I/O操作</li>
+</ul>
+</blockquote>
+<h3 id="3）POSIX定义的可选头文件"><a href="#3）POSIX定义的可选头文件" class="headerlink" title="3）POSIX定义的可选头文件"></a>3）POSIX定义的可选头文件</h3><p><code>&lt;aio.h&gt;</code>        异步I/O<br><code>&lt;mqueue.h&gt;</code>    消息队列<br><code>&lt;pthread.h&gt;</code>    线程<br><code>&lt;sched.h&gt;</code>    执行调度<br><code>&lt;semaphore.h&gt;</code>    信号量<br><code>&lt;spawn.h&gt;</code>     实时spawn接口<br><code>&lt;stropts.h&gt;</code>    XSI STREAMS接口<br><code>&lt;trace.h&gt;</code>     事件跟踪</p>
+<h3 id="4）socket编程时常要用到："><a href="#4）socket编程时常要用到：" class="headerlink" title="4）socket编程时常要用到："></a>4）socket编程时常要用到：</h3><p><code>sys/types.h</code>：数据类型定义<br><code>sys/socket.h</code>：提供socket函数及数据结构<br><code>netinet/in.h</code>：定义数据结构sockaddr_in<br><code>arpa/inet.h</code>：提供IP地址转换函数<br><code>netdb.h</code>：提供设置及获取域名的函数<br><code>sys/ioctl.h</code>：提供对I/O控制的函数<br><code>sys/poll.h</code>：提供socket等待测试机制的函数</p>
+<h3 id="5）其他在网络程序中常见的头文件"><a href="#5）其他在网络程序中常见的头文件" class="headerlink" title="5）其他在网络程序中常见的头文件"></a>5）其他在网络程序中常见的头文件</h3><p><code>unistd.h</code>：    提供通用的文件、目录、程序及进程操作的函数<br><code>errno.h</code>：提供错误号errno的定义，用于错误处理<br><code>fcntl.h</code>：提供对文件控制的函数<br><code>time.h</code>：提供有关时间的函数<br><code>crypt.h</code>：提供使用DES加密算法的加密函数<br><code>pwd.h</code>：提供对/etc/passwd文件访问的函数<br><code>shadow.h</code>：提供对/etc/shadow文件访问的函数<br><code>pthread.h</code>：提供多线程操作的函数<br><code>signal.h</code>：提供对信号操作的函数<br><code>sys/wait.h、sys/ipc.h、sys/shm.h</code>：提供进程等待、进程间通讯（IPC）及共享内存的函数</p>
+<h2 id="三、Linux下确定头文件技巧"><a href="#三、Linux下确定头文件技巧" class="headerlink" title="三、Linux下确定头文件技巧"></a>三、Linux下确定头文件技巧</h2><h3 id="1）想知道一个函数需要包含哪些头文件，需要连接哪些库"><a href="#1）想知道一个函数需要包含哪些头文件，需要连接哪些库" class="headerlink" title="1）想知道一个函数需要包含哪些头文件，需要连接哪些库"></a>1）想知道一个函数需要包含哪些头文件，需要连接哪些库</h3><p>可以用man看一下<br><code>man  function_name</code></p>
+<p>eg.<br><code>man 2 fork</code></p>
+<pre class=" language-c"><code class="language-c"><span class="token function">FORK</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>        Linux Programmer's Manual
 
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//DevC++5.11编译通过，而且还输出了1</span>
-<span class="token comment" spellcheck="true">//VS2012则表示，下标越界，会报错。缓冲区“a”(大小为 24 字节)将溢出</span></code></pre>
-<blockquote>
-<ul>
-<li>访问数组的本质是访问一段连续内存中的某个单元，只要这个单元的内存是可用的，那么程序就暂时不会崩溃，但是不立即崩溃，并不是是就完事大吉了，有时候可能真的没太大影响，但是有时候会修改到你正好要用到的数据。（所以，这种内存单元可用的，我们也不要这写，特别是在<b>多线程编程</b>的时候）</li>
-<li>更严重的，有时候数组越界正好越界到了操作系统的内存保护区域，会导致内存不可用的原因，由于操作系统的内存保护机制，程序会因此而崩溃。</li>
-</ul>
-</blockquote>
-<h2 id="四、防范"><a href="#四、防范" class="headerlink" title="四、防范"></a>四、防范</h2><p>为了防范这样的可能被用于缓冲区溢出攻击的语法，建议使用更加安全版本的函数。<br>比如，strcpy改用strnpy</p>
+NAME
+    fork <span class="token operator">-</span> create a child process
+SYNOPSIS
+    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+    pid_t <span class="token function">fork</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+DESCRIPTION
+    省略了。。</code></pre>
+<p><code>man 2 exit</code></p>
+<pre class=" language-c"><code class="language-c"><span class="token function">_EXIT</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>    Linux Programmer's Manual    <span class="token function">_EXIT</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+NAME
+    _exit<span class="token punctuation">,</span>_Exit <span class="token operator">-</span> terminate the calling process
+SYNOPSIS
+    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+    <span class="token keyword">void</span> <span class="token function">_exit</span><span class="token punctuation">(</span><span class="token keyword">int</span> status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+    <span class="token keyword">void</span> <span class="token function">_Exit</span><span class="token punctuation">(</span><span class="token keyword">int</span> status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ Feature Test Macro Requirements <span class="token keyword">for</span> <span class="token function">glibc</span> <span class="token punctuation">(</span>see <span class="token function">feature_test_macros</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token function">_Exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    _XOPEN_SOURCE <span class="token operator">>=</span> <span class="token number">600</span> <span class="token operator">||</span> _IOSc99_SOURCE <span class="token operator">||</span>
+    _POSIX_C_SOURCE <span class="token operator">>=</span> <span class="token number">200112L</span><span class="token punctuation">;</span>
+    or cc <span class="token operator">-</span>std<span class="token operator">=</span>c99
+DESCRIPTION
+    省略了。。</code></pre>
+<p>exit和<em>exit的区别和联系可以餐卡<br>[wiki](<a href="https://zh.wikipedia.org/wiki/Exit" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Exit</a></em>(%E5%91%BD%E4%BB%A4))<br><a href="https://blog.csdn.net/drdairen/article/details/51896141" target="_blank" rel="noopener">CSDN</a></p>
+<p><code>man   sin</code><br>注意，这个不需要加2</p>
+<pre class=" language-c"><code class="language-c">
+<span class="token function">SIN</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>                     Linux Programmer's Manual                    <span class="token function">SIN</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+NAME
+       sin<span class="token punctuation">,</span> sinf<span class="token punctuation">,</span> sinl <span class="token operator">-</span> sine function
+
+SYNOPSIS
+       <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;math.h></span></span>
+
+       <span class="token keyword">double</span> <span class="token function">sin</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token keyword">float</span> <span class="token function">sinf</span><span class="token punctuation">(</span><span class="token keyword">float</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token keyword">long</span> <span class="token keyword">double</span> <span class="token function">sinl</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">double</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       Link with <span class="token operator">-</span>lm<span class="token punctuation">.</span>
+
+   Feature Test Macro Requirements <span class="token keyword">for</span> <span class="token function">glibc</span> <span class="token punctuation">(</span>see <span class="token function">feature_test_macros</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+       <span class="token function">sinf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">sinl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+           _BSD_SOURCE <span class="token operator">||</span> _SVID_SOURCE <span class="token operator">||</span> _XOPEN_SOURCE <span class="token operator">>=</span> <span class="token number">600</span> <span class="token operator">||</span>
+           _ISOC99_SOURCE <span class="token operator">||</span> _POSIX_C_SOURCE <span class="token operator">>=</span> <span class="token number">200112L</span><span class="token punctuation">;</span>
+           or cc <span class="token operator">-</span>std<span class="token operator">=</span>c99
+
+DESCRIPTION
+    省略了。。</code></pre>
+<h3 id="2）有几种方法可以定位一个文件"><a href="#2）有几种方法可以定位一个文件" class="headerlink" title="2）有几种方法可以定位一个文件"></a>2）有几种方法可以定位一个文件</h3><pre class=" language-txt"><code class="language-txt">locate   xxxx
+whereis   xxxx
+find   /usr/include   -name   "xxxx "</code></pre>
+<p>不过你的那个文件有可能不是标准的系统带的头文件，可能是书中自己写的头文件</p>
+<p>参考：<code>https://www.cnblogs.com/kimiway/p/4526273.html</code></p>
+<h2 id="四、系统编程常用头文件"><a href="#四、系统编程常用头文件" class="headerlink" title="四、系统编程常用头文件"></a>四、系统编程常用头文件</h2><p>CSAPP</p>
+<pre class=" language-c"><code class="language-c"><span class="token operator">&lt;</span>sys<span class="token operator">/</span>types<span class="token punctuation">.</span>h<span class="token operator">></span>
+<span class="token operator">&lt;</span>unistd<span class="token punctuation">.</span>h<span class="token operator">></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -579,7 +610,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/07/2020_06_07_C_check_array_bounds/">https://github.com/HACV/HACV.github.io/2020/06/07/2020_06_07_C_check_array_bounds/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/07/17/2020-07-17-POSIX/">https://github.com/HACV/HACV.github.io/2020/07/17/2020-07-17-POSIX/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -617,8 +648,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/idea/">
-                                    <span class="chip bg-color">idea</span>
+                                <a href="/Tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -786,53 +817,47 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/08/2020-06-08-Memory-Alignment/">
+                <a href="/2020/07/17/2020-07-17-POSIX/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_08_cover.jpg" class="responsive-img" alt="内存对齐">
+                        <img src="/photos/2020.6.03_15/2020_06_07_cover.jpg" class="responsive-img" alt="POSIX和Linux头文件">
                         
-                        <span class="card-title">内存对齐</span>
+                        <span class="card-title">POSIX和Linux头文件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言和C++中内存对齐
+                            POSIX概述和Linux常用头文件
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
-                                    编译器底层
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
-                    </a>
-                    
-                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
-                        <span class="chip bg-color">编译器底层</span>
-                    </a>
-                    
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/Tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
@@ -846,30 +871,30 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/06/2020-06-06-Discrimination/">
+                <a href="/2020/07/16/2020-07-16-NASM/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_13_cover.jpg" class="responsive-img" alt="辨析两组C语言概念">
+                        <img src="/photos/2020.6.03_15/2020_06_06_cover.jpg" class="responsive-img" alt="NASM汇编（32位为例）">
                         
-                        <span class="card-title">辨析两组C语言概念</span>
+                        <span class="card-title">NASM汇编（32位为例）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            （声明和定义）vs（接口和实现）
+                            通用汇编指令+NASM编译指令+CPU寄存器分类
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
+                                    计算机组成原理
                                 </a>
                             
                             
@@ -879,8 +904,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
+                    <a href="/Tags/%E6%B1%87%E7%BC%96-Assembly/">
+                        <span class="chip bg-color">汇编( Assembly)</span>
                     </a>
                     
                 </div>
@@ -1046,7 +1071,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">60.2k</span>&nbsp;字
+                class="white-color">63.2k</span>&nbsp;字
             
             
             
