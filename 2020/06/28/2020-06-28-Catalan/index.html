@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.7k
+                    2.1k
                 </div>
                 
 
@@ -512,7 +512,7 @@
 </blockquote>
 <pre class=" language-txt"><code class="language-txt">每一个非法排列《通过变换和变换的逆过程可（一一对应）》n+ 1个1和n-1个-1组成的排列</code></pre>
 <p>所以显然，所以<font style="background: yellow">不合法的排列数</font>为<br><code>n+1个1和n-1个-1组成的排列数</code><br>也就是<font style="background: yellow">$C_{2n}^{n+1}$</font></p>
-<h4 id="3）Catalan数（卡特兰数）"><a href="#3）Catalan数（卡特兰数）" class="headerlink" title="3）Catalan数（卡特兰数）"></a>3）Catalan数（卡特兰数）</h4><font style="background: yellow">
+<h4 id="3）Catalan数（卡特兰数）"><a href="#3）Catalan数（卡特兰数）" class="headerlink" title="3）Catalan数（卡特兰数）"></a>3）Catalan数（卡特兰数）</h4><h3 id="卡特兰数的第1个格式"><a href="#卡特兰数的第1个格式" class="headerlink" title="卡特兰数的第1个格式"></a>卡特兰数的第1个格式</h3><font style="background: yellow">
 <b>卡特兰数的第1个格式：</b>
 $C_{2n}^{n}-C_{2n}^{n+1}=\frac{1}{n+1}C_{2n}^{n}$</font>
 
@@ -546,11 +546,61 @@ $C_{2n}^{n}-C_{2n}^{n+1}=\frac{1}{n+1}C_{2n}^{n}$</font>
 </li>
 </ul>
 </blockquote>
-<p><code>f(0)=1,f(1)=1,f(2)=2,f(3)=5时</code></p>
+<h3 id="卡特兰数的第2个格式"><a href="#卡特兰数的第2个格式" class="headerlink" title="卡特兰数的第2个格式"></a>卡特兰数的第2个格式</h3><p><code>f(0)=1,f(1)=1,f(2)=2,f(3)=5时</code></p>
 <font style="background: yellow">
 <b>卡特兰数的第2个格式：</b>
-$f(n)=f(0)*f(n-1)+f(1)*f(n-2)+f(3)*f(n-4)+... f(n-1)*f(0)=\frac{1}{n+1}C_{2n}^{n}$</font>
+$f(n)=f(0)*f(n-1)+f(1)*f(n-2)+f(2)*f(n-3)+... f(n-1)*f(0)=\frac{1}{n+1}C_{2n}^{n}$</font>
 
+<blockquote>
+<ul>
+<li>证明：<br>$ f(n)=f(0)*f(n-1)+f(1)*f(n-2)+… f(n-1)*f(0) $<br>$ =\sum_{i=0}^{n-1} f(i)f(n-1-i) $<br>令$ n=n+1 $<br>$ f(n+1)=f(0)*f(n)+f(1)*f(n-1)+… f(n)*f(0) $<br>$ =\sum_{i=0}^{n} f(i)f(n-i) $<br><font style="background: yellow ">（1）</font></li>
+<li>构造生成函数<br>设<br>$ g(x)=f(0)*x^0+f(1)*x^1+… f(n)*x^n $<br>$ =\sum_{n=0}^{\infty} f(n)*x^n $<br><font style="background: yellow ">（2）</font></li>
+<li>So<br>$ [g(x)]^2=(f(0)*x^0+f(1)*x^1+…)*(f(0)*x^0+f(1)*x^1+…)$<br>$ =\sum_{n=0}^{\infty} $ $ [\sum_{i=0}^{n} f(i)f(n-i)] x^n $<br>由（1）知<br>$ g(x)=\sum_{n=0}^{\infty}f(n+1)x^n $<br><font style="background: yellow ">（3）</font><br>由（2）和（3）知<br>$ x*[g(x)]^2+f(0)x^0=g(x) $<br>至此，应为$n-&gt;{\infty}$极限状态，方程才成立<br>但Catalan需要离散化</li>
+<li>离散化<br>Because<br>$f(0)=1$<br>So<br>$ x*[g(x)]^2-g(x)+1=0 $<br>So<br>$ g(x)=\frac{-b \frac{+}{-} \sqrt(deta)}{2a} $<br>$ g(x)=\frac{1 \frac{+}{-} \sqrt(1-4x)}{2} $<br>Because<br>（2）式易知<br>$ g(0)=0 $<br>So<br>$ g(x)=\frac{1 - \sqrt(1-4x)}{2} $</li>
+<li>令$K(x)=\sqrt(1-4x)$<br>我们将它于x<sub>0</sub>=0处进行泰勒展开<br>可以容易知道</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>系数</th>
+<th>展开项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$$K(x)=(1-4x)^{ \frac{1}{2}} $$</td>
+<td>$\frac{1}{0!}x^0$</td>
+</tr>
+<tr>
+<td>$$K’(x)=(-2)*(1-4x)^{ -\frac{1}{2}} $$</td>
+<td>$\frac{1}{1!}x^1$</td>
+</tr>
+<tr>
+<td>$$K’’(x)= (-2)* \frac{2*1}{1!} (1-4x)^{ -\frac{3}{2} } $$</td>
+<td>$\frac{1}{(1+1)*1!}x^2$</td>
+</tr>
+<tr>
+<td>$$ K’’’(x)= (-2)* \frac{4*3*2*1} {2*1} (1-4x)^{ -\frac{5}{2} } $$</td>
+<td>$\frac{1}{(3+1)*3!}x^4$</td>
+</tr>
+<tr>
+<td>省略</td>
+<td>省略</td>
+</tr>
+<tr>
+<td>$$ K^(more)(x)= (-2)* \frac{(2n-2)!} {(n-1)!} (1-4x)^{ \frac{-2n+1}{2} } $$</td>
+<td>$\frac{1}{((n-1)+1)*(n-1))!}x^n$</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li>将展开式代入知道$g(x)$表达式，比对系数知道<font style="background: yellow">
+  $f(n)=f(0)*f(n-1)+f(1)*f(n-2)+f(2)*f(n-3)+... f(n-1)*f(0)=\frac{1}{n+1}C_{2n}^{n}$
+</font>
+证毕
+</li>
+</ul>
+</blockquote>
 <p>这样，弄出了递推公式，还可以写代码</p>
 <pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1079,7 +1129,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">63.2k</span>&nbsp;字
+                class="white-color">63.6k</span>&nbsp;字
             
             
             
