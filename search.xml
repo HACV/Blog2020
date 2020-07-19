@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Linux系统编程复习（1）</title>
+      <link href="/2020/07/19/2020-07-19-Linux-System-programming-01/"/>
+      <url>/2020/07/19/2020-07-19-Linux-System-programming-01/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux系统编程复习（1）"><a href="#Linux系统编程复习（1）" class="headerlink" title="Linux系统编程复习（1）"></a>Linux系统编程复习（1）</h1><h2 id="一、Linux系统编程复习安排"><a href="#一、Linux系统编程复习安排" class="headerlink" title="一、Linux系统编程复习安排"></a>一、Linux系统编程复习安排</h2><blockquote><ul><li>笔试常考<blockquote><ul><li>进程相关</li><li>多线程</li><li>C++各种锁</li><li>死锁</li><li>fork等系统调用强化</li></ul></blockquote></li></ul></blockquote><h2 id="二、笔试选择题常考知识点"><a href="#二、笔试选择题常考知识点" class="headerlink" title="二、笔试选择题常考知识点"></a>二、笔试选择题常考知识点</h2><h3 id="僵尸进程（僵死进程）"><a href="#僵尸进程（僵死进程）" class="headerlink" title="僵尸进程（僵死进程）"></a>僵尸进程（僵死进程）</h3><blockquote><ul><li>僵尸进程: 进程终止，父进程尚未回收，子进程残留资源（PCB）存放于内核中，变成僵尸（Zombie）进程。<br>注意:僵尸进程是不能使用kill命令清除掉的。因为kill命令只是用来终止进程的，而僵尸进程已经终止。<br>思考！用什么办法可清除掉僵尸进程呢？</li></ul></blockquote><h3 id="孤儿进程"><a href="#孤儿进程" class="headerlink" title="孤儿进程"></a>孤儿进程</h3><blockquote><ul><li>孤儿进程: 父进程先于子进程结束，则子进程成为孤儿进程，子进程的父进程成为init进程，称为init进程领养孤儿进程。</li></ul></blockquote><p>参考<a href="https://zh.wikipedia.org/wiki/%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B" target="_blank" rel="noopener">wiki</a><br><code>https://zh.wikipedia.org/wiki/%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B</code></p><h3 id="init-进程"><a href="#init-进程" class="headerlink" title="init 进程"></a>init 进程</h3><h3 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h3><h2 id="三、常用头文件"><a href="#三、常用头文件" class="headerlink" title="三、常用头文件"></a>三、常用头文件</h2><pre class=" language-c"><code class="language-c"><span class="token number">1</span>）<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;unistd.h></span>        </span><span class="token comment" spellcheck="true">//提供通用的文件、目录、程序及进程操作的函数</span>代表系统调用函数<span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token function">_exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token number">2</span>）<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span>    </span><span class="token comment" spellcheck="true">//数据类型定义</span><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/wait.h></span>    </span><span class="token comment" spellcheck="true">//提供进程等待的函数</span>代表系统调用函数<span class="token function">waitpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机术语收集</title>
       <link href="/2020/07/19/2020-07-19-Computer-Terminology/"/>
       <url>/2020/07/19/2020-07-19-Computer-Terminology/</url>
