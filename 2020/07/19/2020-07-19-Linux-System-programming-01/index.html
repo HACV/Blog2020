@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    359
+                    443
                 </div>
                 
 
@@ -492,16 +492,30 @@
 </ul>
 </blockquote>
 <p>参考<a href="https://zh.wikipedia.org/wiki/%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B" target="_blank" rel="noopener">wiki</a><br><code>https://zh.wikipedia.org/wiki/%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B</code></p>
-<h3 id="init-进程"><a href="#init-进程" class="headerlink" title="init 进程"></a>init 进程</h3><h3 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h3><h2 id="三、常用头文件"><a href="#三、常用头文件" class="headerlink" title="三、常用头文件"></a>三、常用头文件</h2><pre class=" language-c"><code class="language-c"><span class="token number">1</span>）
+<h3 id="init-进程"><a href="#init-进程" class="headerlink" title="init 进程"></a>init 进程</h3><blockquote>
+<ul>
+<li>系统初始化进程，是所有用户进程和非调度进程的祖先</li>
+</ul>
+</blockquote>
+<h3 id="守护进程（daemon进程）"><a href="#守护进程（daemon进程）" class="headerlink" title="守护进程（daemon进程）"></a>守护进程（daemon进程）</h3><blockquote>
+<ul>
+<li><b>“系统进程”</b>与终端无关，不由用户启动，通常也叫做<b>守护进程</b>，是Unix内核专用的特殊进程。</li>
+</ul>
+</blockquote>
+<h2 id="三、常用头文件"><a href="#三、常用头文件" class="headerlink" title="三、常用头文件"></a>三、常用头文件</h2><pre class=" language-c"><code class="language-c"><span class="token number">1</span>）
 <span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;unistd.h></span>        </span><span class="token comment" spellcheck="true">//提供通用的文件、目录、程序及进程操作的函数</span>
 代表系统调用函数
 <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">_exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
+记忆方法：<span class="token operator">&lt;</span>unistd<span class="token punctuation">.</span>h<span class="token operator">></span>表示的是unix和std<span class="token punctuation">.</span>h表示Unix的标准头文件 
+
+
 <span class="token number">2</span>）
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span>    </span><span class="token comment" spellcheck="true">//数据类型定义</span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/wait.h></span>    </span><span class="token comment" spellcheck="true">//提供进程等待的函数</span>
 代表系统调用函数
+<span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">waitpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 <script>
@@ -754,29 +768,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/07/19/2020-07-19-Linux-System-programming-01/">
+                <a href="/2020/07/20/2020-07-20-Linux-System-programming-02/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_09_cover.jpg" class="responsive-img" alt="Linux系统编程复习（1）">
+                        <img src="/photos/2020.6.03_15/2020_06_11_cover.jpg" class="responsive-img" alt="Linux系统编程复习（2）">
                         
-                        <span class="card-title">Linux系统编程复习（1）</span>
+                        <span class="card-title">Linux系统编程复习（2）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            总览
+                            基本进程编程+进程回收机制
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -789,7 +802,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1008,7 +1020,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">65.7k</span>&nbsp;字
+                class="white-color">67.1k</span>&nbsp;字
             
             
             

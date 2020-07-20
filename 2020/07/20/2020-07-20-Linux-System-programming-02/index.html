@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo个人使用, HACV">
+    <meta name="keywords" content="Linux系统编程复习（2）, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo个人使用 | HACV</title>
+    <title>Linux系统编程复习（2） | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,7 +286,7 @@
 <script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = '';
+        let pwd = 'f25297859cf0a70af5c053a5464a5fa647a35ceee1d91397331903846d79ffc1';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -299,12 +299,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_08_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_11_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo个人使用</h1>
+                    <h1 class="description center-align post-title">Linux系统编程复习（2）</h1>
                 </div>
             </div>
         </div>
@@ -421,8 +421,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/hexo/">
-                                <span class="chip bg-color">hexo</span>
+                            <a href="/Tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -433,8 +433,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                随笔
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                操作系统
                             </a>
                         
                     </div>
@@ -446,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-29
+                    2020-07-20
                 </div>
                 
 
@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    390
+                    52
                 </div>
                 
 
@@ -467,24 +467,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Hexo优化"><a href="#Hexo优化" class="headerlink" title="Hexo优化"></a>Hexo优化</h1><h2 id="hexo域名解析"><a href="#hexo域名解析" class="headerlink" title="hexo域名解析"></a>hexo域名解析</h2><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><p>1）域名<br>比如我的<code>hacv.xyz</code><br>2）hexo新建CNAME<br>在<em>blog\source</em>文件夹下新建文件CNAME（在此新建文件，可以保证hexo d的时候不会删除掉），文本打开编辑，添加个人购买的域名，例如hacv.xyz<br>3）</p>
-<p><font style="background: yellow" size="5">还需要继续整理完</font></p>
-<h2 id="二、个人Markdown图片腾讯云做图床"><a href="#二、个人Markdown图片腾讯云做图床" class="headerlink" title="二、个人Markdown图片腾讯云做图床"></a>二、个人Markdown图片腾讯云做图床</h2><p>参考博客<code>https://www.cnblogs.com/asheng2016/p/9572128.html</code></p>
-<p><font style="background: yellow" size="5">此外，为了便于后续扩展，以后博客中插入图片前，要讲图片编号附上</font><br>比如<strong>图片</strong><code>2020_06_12_Flexible Array_01.gif</code><br><font style="background: yellow" size="5">便于后续可能的迁移</font></p>
-<p>以后上传博客图床就去腾讯云了<code>https://cloud.tencent.com/</code><br>用法和百度网盘用法似的，蛮好的</p>
-<h2 id="三、hexo-博客发布时间调整和文章聚集"><a href="#三、hexo-博客发布时间调整和文章聚集" class="headerlink" title="三、hexo 博客发布时间调整和文章聚集"></a>三、hexo 博客发布时间调整和文章聚集</h2><p>本hexo中，文章发布的时间可以修改</p>
-<pre class=" language-txt"><code class="language-txt">title: Hexo优化
-date: 2020-06-29 21:03:09  
-//本来这是07-01的文章，但是修改前面的日期可以调整文章摆放文章，使文章集中化。
-
-categories: 
-- 随笔
-tags: 
-- hexo</code></pre>
-<p>自行应用page写博客比CSDN写就更加注重自己的文章的聚集方式了。</p>
-<h2 id="四、百度URL提交"><a href="#四、百度URL提交" class="headerlink" title="四、百度URL提交"></a>四、百度URL提交</h2><p>百度站长传送门：<code>https://ziyuan.baidu.com</code></p>
-<p>我采用的HTML认证。<br>找到<code>“layout.ejs’”</code>或者<code>“layout.png”</code>这样名称为layout的文件,打开将复制的内容黏贴进去保存。</p>
-<script>
+                <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -527,7 +510,7 @@ tags:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/29/2020-06-29-Hexo-Domain/">https://github.com/HACV/HACV.github.io/2020/06/29/2020-06-29-Hexo-Domain/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/07/20/2020-07-20-Linux-System-programming-02/">https://github.com/HACV/HACV.github.io/2020/07/20/2020-07-20-Linux-System-programming-02/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +548,8 @@ tags:
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/hexo/">
-                                    <span class="chip bg-color">hexo</span>
+                                <a href="/Tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -734,45 +717,47 @@ tags:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/06/30/2020-06-30-ASCII/">
+                <a href="/2020/07/20/2020-07-20-Linux-System-programming-02/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_07_cover.jpg" class="responsive-img" alt="ASCII表格">
+                        <img src="/photos/2020.6.03_15/2020_06_11_cover.jpg" class="responsive-img" alt="Linux系统编程复习（2）">
                         
-                        <span class="card-title">ASCII表格</span>
+                        <span class="card-title">Linux系统编程复习（2）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ASCII控制符和通讯字符
+                            基本进程编程+进程回收机制
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/" class="post-category">
-                                    编译器底层
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E7%BC%96%E8%AF%91%E5%99%A8%E5%BA%95%E5%B1%82/">
-                        <span class="chip bg-color">编译器底层</span>
+                    <a href="/Tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
@@ -786,30 +771,30 @@ tags:
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/29/2020-06-29-Site-bookmarks/">
+                <a href="/2020/07/19/2020-07-19-Linux-System-programming-01/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_15_cover.jpg" class="responsive-img" alt="我的书签">
+                        <img src="/photos/2020.6.03_15/2020_06_09_cover.jpg" class="responsive-img" alt="Linux系统编程复习（1）">
                         
-                        <span class="card-title">我的书签</span>
+                        <span class="card-title">Linux系统编程复习（1）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            网站收集
+                            总览
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                    随笔
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
                                 </a>
                             
                             
@@ -819,8 +804,8 @@ tags:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E4%B9%A6%E7%AD%BE/">
-                        <span class="chip bg-color">书签</span>
+                    <a href="/Tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
