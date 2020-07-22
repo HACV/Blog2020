@@ -924,6 +924,60 @@
     
     
     <entry>
+      <title>Github仓库打造网页群</title>
+      <link href="/2020/06/14/2020-06-14-Hexo-Repository-Pages-01/"/>
+      <url>/2020/06/14/2020-06-14-Hexo-Repository-Pages-01/</url>
+      
+        <content type="html"><![CDATA[<h1 id="本想使用github任何一个仓库，打造一个网站群"><a href="#本想使用github任何一个仓库，打造一个网站群" class="headerlink" title="本想使用github任何一个仓库，打造一个网站群"></a>本想使用github任何一个仓库，打造一个网站群</h1><p>但是，后面发现，我讲本地的.md编译为html静态网站之后</p><p>无论用git还是hexo发布当仓库中去（注意，我特别美使用.io的，毕竟那个每个github只能一个）<br>而我想要的是，能够用来专门表现任何单个仓库的网页</p><p>后来找遍了好多，发现，，，<br><code>https://segmentfault.com/q/1010000002924963</code><br>解决了层叠样式表的那个加载不出的两种方法<br>1）    买域名。Hacv.xyz解析<br>去单个仓库中，改setting为这个，解析能成功<br>缺点：那我多个仓库，岂不是要买很多域名，不经济<br>2）    利用<br>在项目设置CNAME可以解决<br>这个方法，我以前是用来解析hacv.xyz的，后来发现，直接改setting比这个快多了。<br>但是，竟然能用来解决这个，而且真的成功了。<br>比如，我在CNAME中，写上我的那个仓库<code>https://hacv.github.io/Test/</code><br>域名</p><p>然后，我把这个提交到我的那个文档中去，就好了</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo命令</title>
+      <link href="/2020/06/14/2020-06-14-Hexo/"/>
+      <url>/2020/06/14/2020-06-14-Hexo/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h1><blockquote><ul><li>hexo clean  清除缓存文件<code>db.json</code> 和已生成的静态文件<code>public</code><blockquote><ul><li>网站显示异常时可以执行这条命令试试,比如，网站的标签和分类没有及时更新</li></ul></blockquote></li><li>hexo g &amp;&amp; hexo s -p 5555   用本地的555端口，进行本地调试</li><li>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d    上传到github</li></ul></blockquote><blockquote><ul><li>hexo new page “tags”    新建标签</li></ul></blockquote><blockquote><ul><li>hexo new test    新建一篇博客，名字叫test.md</li></ul></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Cmd运行命令</title>
       <link href="/2020/06/14/2020-06-14-Run-command/"/>
       <url>/2020/06/14/2020-06-14-Run-command/</url>
@@ -943,33 +997,6 @@
             <tag> Cmd命令 </tag>
             
             <tag> Windows效率 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hexo命令</title>
-      <link href="/2020/06/14/2020-06-14-Hexo/"/>
-      <url>/2020/06/14/2020-06-14-Hexo/</url>
-      
-        <content type="html"><![CDATA[<h1 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h1><blockquote><ul><li>hexo clean  清除缓存文件<code>db.json</code> 和已生成的静态文件<code>public</code><blockquote><ul><li>网站显示异常时可以执行这条命令试试,比如，网站的标签和分类没有及时更新</li></ul></blockquote></li><li>hexo g &amp;&amp; hexo s -p 5555   用本地的555端口，进行本地调试</li><li>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d    上传到github</li></ul></blockquote><blockquote><ul><li>hexo new page “tags”    新建标签</li></ul></blockquote><blockquote><ul><li>hexo new test    新建一篇博客，名字叫test.md</li></ul></blockquote><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 随笔 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 工具 </tag>
-            
-            <tag> hexo </tag>
             
         </tags>
       
