@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Github仓库打造网页群, HACV">
+    <meta name="keywords" content="Repository_Pages使用, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Github仓库打造网页群 | HACV</title>
+    <title>Repository_Pages使用 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -304,7 +304,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Github仓库打造网页群</h1>
+                    <h1 class="description center-align post-title">Repository_Pages使用</h1>
                 </div>
             </div>
         </div>
@@ -459,7 +459,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    326
+                    1.7k
                 </div>
                 
 
@@ -471,10 +471,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="本想使用github任何一个仓库，打造一个网站群"><a href="#本想使用github任何一个仓库，打造一个网站群" class="headerlink" title="本想使用github任何一个仓库，打造一个网站群"></a>本想使用github任何一个仓库，打造一个网站群</h1><p>但是，后面发现，我讲本地的.md编译为html静态网站之后</p>
-<p>无论用git还是hexo发布当仓库中去（注意，我特别美使用.io的，毕竟那个每个github只能一个）<br>而我想要的是，能够用来专门表现任何单个仓库的网页</p>
-<p>后来找遍了好多，发现，，，<br><code>https://segmentfault.com/q/1010000002924963</code><br>解决了层叠样式表的那个加载不出的两种方法<br>1）    买域名。Hacv.xyz解析<br>去单个仓库中，改setting为这个，解析能成功<br>缺点：那我多个仓库，岂不是要买很多域名，不经济<br>2）    利用<br>在项目设置CNAME可以解决<br>这个方法，我以前是用来解析hacv.xyz的，后来发现，直接改setting比这个快多了。<br>但是，竟然能用来解决这个，而且真的成功了。<br>比如，我在CNAME中，写上我的那个仓库<code>https://hacv.github.io/Test/</code><br>域名</p>
-<p>然后，我把这个提交到我的那个文档中去，就好了</p>
+                <h1 id="Github仓库打造网页群"><a href="#Github仓库打造网页群" class="headerlink" title="Github仓库打造网页群"></a>Github仓库打造网页群</h1><h2 id="一、Github-pages的两种类型"><a href="#一、Github-pages的两种类型" class="headerlink" title="一、Github pages的两种类型"></a>一、Github pages的两种类型</h2><h3 id="1）Project-Pages（Repository-Pages）"><a href="#1）Project-Pages（Repository-Pages）" class="headerlink" title="1）Project Pages（Repository Pages）"></a>1）Project Pages（Repository Pages）</h3><p>比如<code>https://hacv.github.io/Test/</code></p>
+<h3 id="2）User-Pages"><a href="#2）User-Pages" class="headerlink" title="2）User Pages"></a>2）User Pages</h3><p><code>https://hacv.github.io</code></p>
+<p>本想使用github<strong>任何一个仓库</strong>，打造一个网站群<br>但是，后面发现，我将本地的.md编译为html静态网站之后<br>无论用git还是hexo发布当仓库中去（注意，我特别没有使用.io的，毕竟那个每个github只能一个）<br>而我想要的是，能够用来专门表现任何单个仓库的网页</p>
+<h4 id="Github-Pages的限制"><a href="#Github-Pages的限制" class="headerlink" title="Github Pages的限制"></a>Github Pages的限制</h4><p>Github Pages只是静态网站(HTML, CSS, JavaScript)<br>没有服务端，所以不支持服务端的语言(没有ruby, php, python)</p>
+<h4 id="三种静态站点生产机器"><a href="#三种静态站点生产机器" class="headerlink" title="三种静态站点生产机器"></a>三种静态站点生产机器</h4><blockquote>
+<ul>
+<li><code>Jekyll、Hugo、Hexo</code> 是简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 Markdown 以及 Liquid 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。</li>
+<li>Jekyll、Hugo、Hexo 也可以运行在 码云（Gitee.com） Pages 上，也就是说，你可以使用码云的服务来搭建你的仓库页面、博客或者网站，而且是完全免费</li>
+</ul>
+</blockquote>
+<h2 id="二、Hexo部署我的第2个网站"><a href="#二、Hexo部署我的第2个网站" class="headerlink" title="二、Hexo部署我的第2个网站"></a>二、Hexo部署我的第2个网站</h2><h3 id="1）电脑已有环境（重要）"><a href="#1）电脑已有环境（重要）" class="headerlink" title="1）电脑已有环境（重要）"></a>1）电脑已有环境（重要）</h3><blockquote>
+<ul>
+<li>Node.js配置，hexo配置，npm配置<br>等，参见<code>https://www.bilibili.com/video/BV1cW411A7Jx</code></li>
+<li>已经有一个部署到<code>https://hacv.github.io</code>的网站<br>注意：每个Github账户都可以开<strong>一个</strong>自己的静态网站（域名为 username.github.io）</li>
+</ul>
+</blockquote>
+<h3 id="2）部署新的网站到github其他仓库"><a href="#2）部署新的网站到github其他仓库" class="headerlink" title="2）部署新的网站到github其他仓库"></a>2）部署新的网站到github其他仓库</h3><p>使用    域名如下：<br><code>https://hacv.github.io/Test/</code></p>
+<h2 id="三、操作（难点）"><a href="#三、操作（难点）" class="headerlink" title="三、操作（难点）"></a>三、操作（难点）</h2><p><font style="background: yellow" size="5">难点：解决github的层叠样式表（CSS）的那个加载不出的两种方法</font><br>解决方案参考的链接：<code>https://segmentfault.com/q/1010000002924963</code></p>
+<blockquote>
+<ul>
+<li>1）买域名。<blockquote>
+<ul>
+<li>Hacv.xyz解析,去单个仓库中，改setting为这个，解析能成功<br>缺点：那我要是想要为多个仓库分别展示，岂不是要买很多域名，不经济</li>
+<li>此外，绑定这些，还可以用<code>CNAME</code>等解决，(这个方法，我以前是用来解析<code>hacv.xyz</code>的，后来发现，直接改setting比这个快多了。)但是，那个不够直观，我就不用了</li>
+</ul>
+</blockquote>
+</li>
+<li>2）利用在项目设置<code>CNAME</code>可以解决</li>
+<li>在<code>CNAME</code>中，写上我的那个仓库<code>https://hacv.github.io/Test/</code><blockquote>
+<ul>
+<li>然后，我把这个提交到我的那个文档中去，就好了</li>
+</ul>
+</blockquote>
+</li>
+<li>3）似乎改某些源代码可以，但我不主攻前端。</li>
+</ul>
+</blockquote>
+<p>详细操作：<br>一、本地部署<br>1）先创建一个文件夹，然后cd到那里，由于已经装好Hexo了，也就是我以前进行了<code>npm install -g hexo-cli</code><br>2）<code>hexo init Test</code>这样就会按照我设置的博客名进行配置了（初始化）<br>这样会在你当前文件夹下创建一个文件夹，名字为Test，这个文件夹里面有hexo给你下载的最开始默认的版本<br>在themes中，很显然有默认的Next主题（我们到时候去hexo官网下载其他主题，其实就是为了修改这个文件夹的）<br>3）安装依赖（此处可以暂时不弄）<br>cd 进入Test<br>然后<code>npm install</code><br>常见依赖</p>
+<pre class=" language-txt"><code class="language-txt">$git clone git@github.com:yscoder/hexo-theme-indigo.git themes/inidgo
+$npm install hexo-renderer-less --save   #安装less,作为css的预处理工具
+$npm install hexo-generator-feed --save #安装rss的feed生成工具
+$npm install hexo-generator-json-content --save #用于生成静态站点数据，用于站内搜索的数据源
+$npm install hexo-helper-qrcode --save #用于生成微信分享二维码</code></pre>
+<p>4）本地运行测试<br><code>hexo g</code><br><code>hexo s -p 3333</code><br>至此，本地原始博客测试完毕<br>可以在本地<code>localhost:3333</code>中看到我们的网站</p>
+<p>二、修改主题<br>可以参考本文的，修改部分<br><code>https://www.jianshu.com/p/ef07bdcde72e</code><br>PS：<br>1）他使用的git clone下载<br>笔者喜欢自己找hexo官网，选择自己喜欢的，然后去对应的github仓库，自己下载那个zip<br>然后解压，放进主题文件夹中<br>2）注意事项，我的这种解压后文件夹名字叫<br><code>hexo-theme-diaspora-master</code><br>我需要手工将其他的去掉，只剩下<code>diaspora</code>，否则会出错<br>3）一定要修改<strong>Test文件夹（注意，不是主题文件夹）</strong>中的<code>_config.yml</code><br>将<code>theme: next</code>改为你刚刚下载的，重命名好的文件夹的名字<br>比如<code>theme: diaspora</code></p>
+<pre class=" language-txt"><code class="language-txt"># Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: shoka</code></pre>
+<p>修改完之后，你就可以<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s -p 5555</code><br>看最新的主题了。<br>注意，这个时候，原先的next主题那个文件夹，其实是可以删了。</p>
+<p>三、上传到github部署</p>
+<blockquote>
+<ul>
+<li>0）<strong>很重要的一部分</strong>：部署上去之前，还需要配置<strong>Test文件夹（注意：不是主题文件夹）</strong>中<code>_config.yml</code>（deploy，是部署的意思）</li>
+</ul>
+</blockquote>
+<pre class=" language-txt"><code class="language-txt">deploy: 
+  type: git   #这个是指定，我hexo上传是借助的hexo和git
+  repo: https://github.com/HACV/Test.git  #这个是指定你需要上传的仓库的位置（比如，我的HACVgithub下，我创建的Test仓库）
+  branch: master   #这个表示，你将这个上传到你的Test仓库的</code></pre>
+<blockquote>
+<ul>
+<li>2)在Test文件夹下创建一个没有后缀的<code>CNAME</code><br>在这个里面写上，那个文件中写上，到时候你的仓库中设置的setting中的域名<br>比如<code>https://hacv.github.io/Test/</code></li>
+<li>3）在你要上传的</li>
+<li>1）<code>Hexo g</code> <code>hexo generate， 也可以用缩写hexo g生成静态页面</code>//在本地生成静态文件,毕竟hexo是静态站点生产机器，而且，网站是需要生产的HTML才能展示的，所以我们的github上没有.md那些是可以的，但是这个也告诉我们，需要对自己写的.md进行备份</li>
+<li>2）<code>Hexo d</code>和<code>hexo deploy</code>是一样的，根据<code>_config</code>中的<code>deploy</code>区域，进行上传<blockquote>
+<ul>
+<li>上传到github</li>
+<li><font style="background: yellow" size="5">（在进行，hexo d之前，记得安装hexo deploy插件,记得先在这个文件夹<code>npm install --save hexo-deployer-git</code>）</font></li>
+</ul>
+</blockquote>
+</li>
+<li>虽然，我以前装<code>github.io</code>的时候，也有弄过这个，但是似乎，这个是每个文件夹<br>都要这样，才能面向这个文件夹进行这些事情。</li>
+<li>3）记得去</li>
+</ul>
+</blockquote>
+<h2 id="四、其他网站"><a href="#四、其他网站" class="headerlink" title="四、其他网站"></a>四、其他网站</h2><p>hexo官方文档，讲解得很清晰了<br><code>https://hexo.io/zh-cn/docs/configuration.html</code></p>
+<p>hexo部署到国内的gitee<br><code>https://www.cnblogs.com/zhengqing/p/11150687.html</code></p>
+<p>我的第一个博客配置和这个视频的差不多<br><code>https://www.bilibili.com/video/BV1cW411A7Jx?p=1</code></p>
+<h2 id="五、Todo"><a href="#五、Todo" class="headerlink" title="五、Todo"></a>五、Todo</h2><blockquote>
+<ul>
+<li>（唯一user Pages）博客网站——本网站</li>
+<li>（Github Pages）Coding网站——PAT，Leetcode，CSP</li>
+<li>（Github Pages）计算材料学网站</li>
+</ul>
+</blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -818,10 +900,6 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
-                    </a>
-                    
                     <a href="/Tags/hexo/">
                         <span class="chip bg-color">hexo</span>
                     </a>
@@ -989,7 +1067,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">67.6k</span>&nbsp;字
+                class="white-color">68.9k</span>&nbsp;字
             
             
             
