@@ -924,6 +924,33 @@
     
     
     <entry>
+      <title>Hexo讲解2</title>
+      <link href="/2020/06/14/2020-06-14-Hexo-Repository-Pages-02/"/>
+      <url>/2020/06/14/2020-06-14-Hexo-Repository-Pages-02/</url>
+      
+        <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Github仓库打造网页群</title>
       <link href="/2020/06/14/2020-06-14-Hexo-Repository-Pages-01/"/>
       <url>/2020/06/14/2020-06-14-Hexo-Repository-Pages-01/</url>
@@ -997,6 +1024,31 @@
             <tag> Cmd命令 </tag>
             
             <tag> Windows效率 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Gitbook（暂未发布）</title>
+      <link href="/2020/06/14/2020-06-14-Gitbook/"/>
+      <url>/2020/06/14/2020-06-14-Gitbook/</url>
+      
+        <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
             
         </tags>
       

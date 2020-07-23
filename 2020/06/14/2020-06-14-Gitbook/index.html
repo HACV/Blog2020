@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vim命令强化, HACV">
+    <meta name="keywords" content="Gitbook（暂未发布）, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vim命令强化 | HACV</title>
+    <title>Gitbook（暂未发布） | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -299,12 +299,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_12_cover.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_01_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vim命令强化</h1>
+                    <h1 class="description center-align post-title">Gitbook（暂未发布）</h1>
                 </div>
             </div>
         </div>
@@ -421,12 +421,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/Linux%E6%95%88%E7%8E%87/">
-                                <span class="chip bg-color">Linux效率</span>
-                            </a>
-                        
-                            <a href="/Tags/Vim/">
-                                <span class="chip bg-color">Vim</span>
+                            <a href="/Tags/%E5%B7%A5%E5%85%B7/">
+                                <span class="chip bg-color">工具</span>
                             </a>
                         
                     </div>
@@ -437,8 +433,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%88%E7%8E%87/" class="post-category">
-                                效率
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                前端
                             </a>
                         
                     </div>
@@ -450,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-22
+                    2020-06-14
                 </div>
                 
 
@@ -459,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    911
+                    52
                 </div>
                 
 
@@ -471,155 +467,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Vim命令强化"><a href="#Vim命令强化" class="headerlink" title="Vim命令强化"></a>Vim命令强化</h1><p>PS：所有测试在Redhat RHEL7（<strong>R</strong>ed<strong>H</strong>at <strong>E</strong>nterprise <strong>L</strong>inux <strong>7</strong>）通过</p>
-<h2 id="一、Vim三种模式"><a href="#一、Vim三种模式" class="headerlink" title="一、Vim三种模式"></a>一、Vim三种模式</h2><p>Vim编辑器中设置了三种模式一命令模式、末行模式和编辑模式<br><strong>每种模式分别又支持多种不同的命令快捷键</strong></p>
-<p>我们先弄清这三种模式的操作区别以及模式之间的切换方法</p>
-<blockquote>
-<ul>
-<li>命令模式:控制光标移动，可对文本进行复制、粘贴、删除和查找等工作。</li>
-<li>输人模式:正常的文本录入。</li>
-<li>末行模式:保存或退出文档，以及设置编辑环境。</li>
-</ul>
-</blockquote>
-<p><strong>图片</strong><code>2020_06_22_Vim_01.png</code><br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_6/2020_06_22_Vim_01.png" width="80%"></p>
-<p>说明：<br><code>vim 文件名</code> 则进入了vim的命令模式<br>1）在每次运行Vim编辑器时，<strong>默认进入</strong>命令模式，<br>2）此外，每次在编写完文档后需要先返回命令模式，然后再进人末行模式，执行文档.的保存或退出操作。<br><strong>在Vim中，无法直接从输人模式切换到末行模式。</strong></p>
-<p>命令模式进入输入模式：</p>
-<blockquote>
-<ul>
-<li>i取自insert插入，<blockquote>
-<ul>
-<li><code>i</code> 光标处<strong>前一个字符</strong>编辑</li>
-<li><code>I</code> 大写的 i，光标所处<strong>行首</strong>编辑</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li><strong>a取append</strong>追加，（我记得在Python中有用过这个函数，然后似乎C++11中也有？）<blockquote>
-<ul>
-<li><code>a</code> 光标处<strong>后一个字符</strong>编辑</li>
-<li><code>A</code> 光标所处<strong>行尾</strong>编辑</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>暂时没想到<br><code>o</code> 光标处<strong>向下</strong>新建一行编辑<br><code>O</code> 大写的 o，光标处<strong>向上</strong>新建一行编辑</li>
-</ul>
-</blockquote>
-<h2 id="二、命令模式"><a href="#二、命令模式" class="headerlink" title="二、命令模式"></a>二、命令模式</h2><p>命令模式:控制光标移动，可对文本进行复制、粘贴、删除和查找等工作。</p>
-<blockquote>
-<ul>
-<li>剪切类（可以用作删除）（但是<strong>d却是delete删除，首字母</strong>）<blockquote>
-<ul>
-<li><code>dd</code>剪切(删除)<strong>光标所在整行</strong></li>
-<li><code>5dd</code>删除(剪切)从光标处开始的5行</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>复制类（暂时用<strong>copy的末尾y记忆</strong>）<blockquote>
-<ul>
-<li><code>yy</code>复制<strong>光标所在整行</strong></li>
-<li><code>5yy</code>复制从光标处开始的5行</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>粘贴（<strong>p是paste</strong>粘贴，首字符）<blockquote>
-<ul>
-<li><code>p</code>将之前剪切(dd)或复制(yy)过的数据粘贴到光标后面</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>撤销（<strong>u是unsay</strong>收回，撤回，首字母）<blockquote>
-<ul>
-<li><code>u</code>撤销上一步的操作</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>单个字符修改<blockquote>
-<ul>
-<li><code>X</code>删除光标所处的字符：X（和Windows下Ctrl+X有点类似了，但是只是删除）</li>
-<li>按<code>R</code>后输入新的字符替换光标所处的字符</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>字符串匹配后续<blockquote>
-<ul>
-<li><code>n</code>显示搜索命令定位到的下一个字符串</li>
-<li><code>N</code>显示搜索命令定位到的上一个字符串</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h2 id="三、输入模式"><a href="#三、输入模式" class="headerlink" title="三、输入模式"></a>三、输入模式</h2><p>输人模式:正常的文本录入。</p>
-<h2 id="四、末行模式"><a href="#四、末行模式" class="headerlink" title="四、末行模式"></a>四、末行模式</h2><p>末行模式:保存或退出文档，以及设置编辑环境。</p>
-<p>末行模式的命令都写在你用<code>:</code>进去末行模式后面</p>
-<blockquote>
-<p>总的来说格式：<br><code>:命令</code>执行该命令</p>
-</blockquote>
-<p><strong>下面的都省略了<code>:</code></strong><br><code>整数</code>跳转到这个整数的那一行<br><code>w</code> 保存<br><code>q</code> 退出（quit）<br><code>q!</code>强制退出（放弃对文档的修改内容）</p>
-<p><code>wq!</code>强制保存退出</p>
-<blockquote>
-<ul>
-<li>看代码常用<blockquote>
-<ul>
-<li><code>set nu</code>显示行号，nu——num</li>
-<li><code>set nonu</code>显示行号，</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>查找和替换<blockquote>
-<ul>
-<li>查找<blockquote>
-<ul>
-<li><code>/字符串</code> 在文本中<strong>从上至下</strong>搜索该字符串</li>
-<li><code>?字符串</code> 在文本中<strong>从下至上</strong>搜索该字符串</li>
-</ul>
-</blockquote>
-</li>
-<li>替换<blockquote>
-<ul>
-<li><code>:s/one/two</code>将<strong>当前光标所在行</strong>的第一个 one替换成two</li>
-<li><code>:s/one/two/g</code>将当<strong>前光标所在行</strong>的<strong>所有</strong>one替换成two</li>
-<li><code>:%s/one/two/g 8s/one/two/g</code>将<strong>全文</strong>中的<strong>所有</strong>one替换成two</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<script>
+                <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -662,7 +510,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/06/22/2020-06-22-Vim/">https://github.com/HACV/HACV.github.io/2020/06/22/2020-06-22-Vim/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/06/14/2020-06-14-Gitbook/">https://github.com/HACV/HACV.github.io/2020/06/14/2020-06-14-Gitbook/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -700,12 +548,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/Linux%E6%95%88%E7%8E%87/">
-                                    <span class="chip bg-color">Linux效率</span>
-                                </a>
-                            
-                                <a href="/Tags/Vim/">
-                                    <span class="chip bg-color">Vim</span>
+                                <a href="/Tags/%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">工具</span>
                                 </a>
                             
                         </div>
@@ -877,72 +721,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/06/22/2020-06-22-Network-One/">
+                <a href="/2020/06/14/2020-06-14-Run-command/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_03_cover.jpg" class="responsive-img" alt="计算机网络强化（一）">
+                        <img src="/photos/2020.6.03_15/2020_06_02_cover.jpg" class="responsive-img" alt="Cmd运行命令">
                         
-                        <span class="card-title">计算机网络强化（一）</span>
+                        <span class="card-title">Cmd运行命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            TCP三次握手和四次挥手+网络连接
+                            Cmd运行命令
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-14
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/Tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">
-                        <span class="chip bg-color">网络协议</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/06/21/2020-06-21-Other-shortcut/">
-                    <div class="card-image">
-                        
-                        <img src="/photos/2020.6.03_15/2020_06_11_cover.jpg" class="responsive-img" alt="其他快捷键">
-                        
-                        <span class="card-title">其他快捷键</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            其他快捷键
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-21
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -958,8 +754,60 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">
-                        <span class="chip bg-color">快捷键</span>
+                    <a href="/Tags/Cmd%E5%91%BD%E4%BB%A4/">
+                        <span class="chip bg-color">Cmd命令</span>
+                    </a>
+                    
+                    <a href="/Tags/Windows%E6%95%88%E7%8E%87/">
+                        <span class="chip bg-color">Windows效率</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/06/13/2020-06-13-STL/">
+                    <div class="card-image">
+                        
+                        <img src="/photos/2020.6.03_15/2020_06_15_cover.jpg" class="responsive-img" alt="STL强化">
+                        
+                        <span class="card-title">STL强化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            自用STL
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
