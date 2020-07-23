@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="zh-CN">
 
 
 <head>
@@ -84,17 +84,6 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/archives" class="waves-effect waves-light">
-      
-      <i class="fas fa-archive" style="zoom: 0.6;"></i>
-      
-      <span>文章发布时间线</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
     <a href="/about" class="waves-effect waves-light">
       
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
@@ -117,7 +106,7 @@
   
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
     </a>
   </li>
 </ul>
@@ -170,17 +159,6 @@
 			    <i class="fa-fw fas fa-bookmark"></i>
 			
 			文章分类
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/archives" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-archive"></i>
-			
-			文章发布时间线
 		</a>
           
         </li>
@@ -445,7 +423,7 @@
             <div class="post-info">
                 
                 <div class="post-date info-break-policy">
-                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
                     2020-06-14
                 </div>
                 
@@ -454,8 +432,8 @@
 
                 
                 <div class="info-break-policy">
-                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    52
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    364
                 </div>
                 
 
@@ -467,7 +445,32 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <script>
+                <h2 id="一、电脑环境"><a href="#一、电脑环境" class="headerlink" title="一、电脑环境"></a>一、电脑环境</h2><p>环境，我的电脑上已经布置了hexo博客<br>Node已经下载了</p>
+<h2 id="二、操作"><a href="#二、操作" class="headerlink" title="二、操作"></a>二、操作</h2><blockquote>
+<ul>
+<li>1）首先安装node.js（已经安装了</li>
+<li>2）进入cmd，随便哪个目录：通过npm来安装gitbook（这一步有点类似我装hexo，实际上Gitbook也是一个静态文件生成器）<br><code>npm install gitbook-cli -g</code><blockquote>
+<ul>
+<li>此处坑：我碰到了<br><code>rollbackFailedOptional</code><br>解决方案：<br><code>https://www.jianshu.com/p/37b9322d6ceb</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>3.2.3版本似乎是坑<br><code>http://www.yanjuntech.cn/archives/2396</code></p>
+<ul>
+<li>3）<code>gitbokk init</code>（命令，类似于<code>hexo init</code>）<br>注意，这个命令会把文件放到你的当前哪个目录下，<br>我们新建一个文件夹，然后把电子书放到文件夹比较好<blockquote>
+<ul>
+<li>init时候的坑<br><code>https://blog.csdn.net/vincentuva/article/details/84368976</code><br>安装一个低版本的node<br>解决inti创建，少文件（后来，我没有去降低版本，我是直接自己创建一个SUMMary.Md）<br><code>https://blog.csdn.net/withoutBugs/article/details/105869042</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>参考：<br><code>https://www.jianshu.com/p/421cc442f06c</code></p>
+<h2 id="三、部署Gitbook到github的仓库"><a href="#三、部署Gitbook到github的仓库" class="headerlink" title="三、部署Gitbook到github的仓库"></a>三、部署Gitbook到github的仓库</h2><p><font style="background: yellow">没有hexo那样麻烦，需要些deploy给仓库域名解析，所以给个参考链接</font><br><code>https://sphard.com/ebooks/gitbook/github.html</code></p>
+<h3 id="四、重要插件"><a href="#四、重要插件" class="headerlink" title="四、重要插件"></a>四、重要插件</h3><p>Gitbook根据目录生成<code>Summary.md</code><br><code>https://www.jianshu.com/p/2160f1ba68a0?tdsourcetag=s_pctim_aiomsg</code></p>
+<h3 id="五、使用到的git命令"><a href="#五、使用到的git命令" class="headerlink" title="五、使用到的git命令"></a>五、使用到的git命令</h3><p><code>https://www.cnblogs.com/ManSenal/p/6222173.html</code></p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -496,7 +499,7 @@
             <div class="reprint__author">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-user">
-                        Author:
+                        文章作者:
                     </i>
                 </span>
                 <span class="reprint-info">
@@ -506,7 +509,7 @@
             <div class="reprint__type">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-link">
-                        Link:
+                        文章链接:
                     </i>
                 </span>
                 <span class="reprint-info">
@@ -516,13 +519,13 @@
             <div class="reprint__notice">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-copyright">
-                        Reprint policy:
+                        版权声明:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    All articles in this blog are used except for special statements
+                    本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    reprint polocy. If reproduced, please indicate source
+                    许可协议。转载请注明来源
                     <a href="/about" target="_blank">HACV</a>
                     !
                 </span>
@@ -532,7 +535,7 @@
 
     <script async defer>
       document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
         M.toast({html: toastHTML})
       });
 
@@ -719,7 +722,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2020/06/14/2020-06-14-Run-command/">
                     <div class="card-image">
@@ -770,7 +773,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/06/13/2020-06-13-STL/">
@@ -850,7 +853,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
             <div id="toc-content"></div>
         </div>
     </div>
@@ -973,7 +976,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">68.9k</span>&nbsp;字
+                class="white-color">69.2k</span>&nbsp;字
             
             
             
@@ -1031,8 +1034,8 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
-            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
                    class="search-input">
         </div>
         <div id="searchResult"></div>

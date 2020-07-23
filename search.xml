@@ -454,31 +454,6 @@
     
     
     <entry>
-      <title>Hexo个人使用</title>
-      <link href="/2020/06/29/2020-06-29-Hexo-Domain/"/>
-      <url>/2020/06/29/2020-06-29-Hexo-Domain/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Hexo优化"><a href="#Hexo优化" class="headerlink" title="Hexo优化"></a>Hexo优化</h1><h2 id="hexo域名解析"><a href="#hexo域名解析" class="headerlink" title="hexo域名解析"></a>hexo域名解析</h2><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><p>1）域名<br>比如我的<code>hacv.xyz</code><br>2）hexo新建CNAME<br>在<em>blog\source</em>文件夹下新建文件CNAME（在此新建文件，可以保证hexo d的时候不会删除掉），文本打开编辑，添加个人购买的域名，例如hacv.xyz<br>3）</p><p><font style="background: yellow" size="5">还需要继续整理完</font></p><h2 id="二、个人Markdown图片腾讯云做图床"><a href="#二、个人Markdown图片腾讯云做图床" class="headerlink" title="二、个人Markdown图片腾讯云做图床"></a>二、个人Markdown图片腾讯云做图床</h2><p>参考博客<code>https://www.cnblogs.com/asheng2016/p/9572128.html</code></p><p><font style="background: yellow" size="5">此外，为了便于后续扩展，以后博客中插入图片前，要讲图片编号附上</font><br>比如<strong>图片</strong><code>2020_06_12_Flexible Array_01.gif</code><br><font style="background: yellow" size="5">便于后续可能的迁移</font></p><p>以后上传博客图床就去腾讯云了<code>https://cloud.tencent.com/</code><br>用法和百度网盘用法似的，蛮好的</p><h2 id="三、hexo-博客发布时间调整和文章聚集"><a href="#三、hexo-博客发布时间调整和文章聚集" class="headerlink" title="三、hexo 博客发布时间调整和文章聚集"></a>三、hexo 博客发布时间调整和文章聚集</h2><p>本hexo中，文章发布的时间可以修改</p><pre class=" language-txt"><code class="language-txt">title: Hexo优化date: 2020-06-29 21:03:09  //本来这是07-01的文章，但是修改前面的日期可以调整文章摆放文章，使文章集中化。categories: - 随笔tags: - hexo</code></pre><p>自行应用page写博客比CSDN写就更加注重自己的文章的聚集方式了。</p><h2 id="四、百度URL提交"><a href="#四、百度URL提交" class="headerlink" title="四、百度URL提交"></a>四、百度URL提交</h2><p>百度站长传送门：<code>https://ziyuan.baidu.com</code></p><p>我采用的HTML认证。<br>找到<code>“layout.ejs’”</code>或者<code>“layout.png”</code>这样名称为layout的文件,打开将复制的内容黏贴进去保存。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 随笔 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>我的书签</title>
       <link href="/2020/06/29/2020-06-29-Site-bookmarks/"/>
       <url>/2020/06/29/2020-06-29-Site-bookmarks/</url>
@@ -924,7 +899,32 @@
     
     
     <entry>
-      <title>Hexo讲解2</title>
+      <title>Hexo优化</title>
+      <link href="/2020/06/14/2020-06-14-Hexo-Domain/"/>
+      <url>/2020/06/14/2020-06-14-Hexo-Domain/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Hexo优化"><a href="#Hexo优化" class="headerlink" title="Hexo优化"></a>Hexo优化</h1><h2 id="hexo域名解析"><a href="#hexo域名解析" class="headerlink" title="hexo域名解析"></a>hexo域名解析</h2><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><p>1）域名<br>比如我的<code>hacv.xyz</code><br>2）hexo新建CNAME<br>在<em>blog\source</em>文件夹下新建文件CNAME（在此新建文件，可以保证hexo d的时候不会删除掉），文本打开编辑，添加个人购买的域名，例如hacv.xyz<br>3）</p><p><font style="background: yellow" size="5">还需要继续整理完</font></p><h2 id="二、个人Markdown图片腾讯云做图床"><a href="#二、个人Markdown图片腾讯云做图床" class="headerlink" title="二、个人Markdown图片腾讯云做图床"></a>二、个人Markdown图片腾讯云做图床</h2><p>参考博客<code>https://www.cnblogs.com/asheng2016/p/9572128.html</code></p><p><font style="background: yellow" size="5">此外，为了便于后续扩展，以后博客中插入图片前，要讲图片编号附上</font><br>比如<strong>图片</strong><code>2020_06_12_Flexible Array_01.gif</code><br><font style="background: yellow" size="5">便于后续可能的迁移</font></p><p>以后上传博客图床就去腾讯云了<code>https://cloud.tencent.com/</code><br>用法和百度网盘用法似的，蛮好的</p><h2 id="三、hexo-博客发布时间调整和文章聚集"><a href="#三、hexo-博客发布时间调整和文章聚集" class="headerlink" title="三、hexo 博客发布时间调整和文章聚集"></a>三、hexo 博客发布时间调整和文章聚集</h2><p>本hexo中，文章发布的时间可以修改</p><pre class=" language-txt"><code class="language-txt">title: Hexo优化date: 2020-06-29 21:03:09  //本来这是07-01的文章，但是修改前面的日期可以调整文章摆放文章，使文章集中化。categories: - 随笔tags: - hexo</code></pre><p>自行应用page写博客比CSDN写就更加注重自己的文章的聚集方式了。</p><h2 id="四、百度URL提交"><a href="#四、百度URL提交" class="headerlink" title="四、百度URL提交"></a>四、百度URL提交</h2><p>百度站长传送门：<code>https://ziyuan.baidu.com</code></p><p>我采用的HTML认证。<br>找到<code>“layout.ejs’”</code>或者<code>“layout.png”</code>这样名称为layout的文件,打开将复制的内容黏贴进去保存。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo搭建本网站记录</title>
       <link href="/2020/06/14/2020-06-14-Hexo-Repository-Pages-02/"/>
       <url>/2020/06/14/2020-06-14-Hexo-Repository-Pages-02/</url>
       
@@ -1034,7 +1034,7 @@
       <link href="/2020/06/14/2020-06-14-Gitbook/"/>
       <url>/2020/06/14/2020-06-14-Gitbook/</url>
       
-        <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<h2 id="一、电脑环境"><a href="#一、电脑环境" class="headerlink" title="一、电脑环境"></a>一、电脑环境</h2><p>环境，我的电脑上已经布置了hexo博客<br>Node已经下载了</p><h2 id="二、操作"><a href="#二、操作" class="headerlink" title="二、操作"></a>二、操作</h2><blockquote><ul><li>1）首先安装node.js（已经安装了</li><li>2）进入cmd，随便哪个目录：通过npm来安装gitbook（这一步有点类似我装hexo，实际上Gitbook也是一个静态文件生成器）<br><code>npm install gitbook-cli -g</code><blockquote><ul><li>此处坑：我碰到了<br><code>rollbackFailedOptional</code><br>解决方案：<br><code>https://www.jianshu.com/p/37b9322d6ceb</code></li></ul></blockquote></li></ul><p>3.2.3版本似乎是坑<br><code>http://www.yanjuntech.cn/archives/2396</code></p><ul><li>3）<code>gitbokk init</code>（命令，类似于<code>hexo init</code>）<br>注意，这个命令会把文件放到你的当前哪个目录下，<br>我们新建一个文件夹，然后把电子书放到文件夹比较好<blockquote><ul><li>init时候的坑<br><code>https://blog.csdn.net/vincentuva/article/details/84368976</code><br>安装一个低版本的node<br>解决inti创建，少文件（后来，我没有去降低版本，我是直接自己创建一个SUMMary.Md）<br><code>https://blog.csdn.net/withoutBugs/article/details/105869042</code></li></ul></blockquote></li></ul></blockquote><p>参考：<br><code>https://www.jianshu.com/p/421cc442f06c</code></p><h2 id="三、部署Gitbook到github的仓库"><a href="#三、部署Gitbook到github的仓库" class="headerlink" title="三、部署Gitbook到github的仓库"></a>三、部署Gitbook到github的仓库</h2><p><font style="background: yellow">没有hexo那样麻烦，需要些deploy给仓库域名解析，所以给个参考链接</font><br><code>https://sphard.com/ebooks/gitbook/github.html</code></p><h3 id="四、重要插件"><a href="#四、重要插件" class="headerlink" title="四、重要插件"></a>四、重要插件</h3><p>Gitbook根据目录生成<code>Summary.md</code><br><code>https://www.jianshu.com/p/2160f1ba68a0?tdsourcetag=s_pctim_aiomsg</code></p><h3 id="五、使用到的git命令"><a href="#五、使用到的git命令" class="headerlink" title="五、使用到的git命令"></a>五、使用到的git命令</h3><p><code>https://www.cnblogs.com/ManSenal/p/6222173.html</code></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>
