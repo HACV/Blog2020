@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C++的const底层机制, HACV">
+    <meta name="keywords" content="三种函数参数传递原理分析, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C++的const底层机制 | HACV</title>
+    <title>三种函数参数传递原理分析 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -299,12 +299,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.5.30_31/2020_5_31title.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/photos/2020.6.03_15/2020_06_13_cover.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C++的const底层机制</h1>
+                    <h1 class="description center-align post-title">三种函数参数传递原理分析</h1>
                 </div>
             </div>
         </div>
@@ -446,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-31
+                    2020-07-27
                 </div>
                 
 
@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    2k
                 </div>
                 
 
@@ -467,114 +467,224 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-中对C的const关键字增强"><a href="#C-中对C的const关键字增强" class="headerlink" title="C++中对C的const关键字增强"></a>C++中对C的const关键字增强</h1><h2 id="一、问题导入"><a href="#一、问题导入" class="headerlink" title="一、问题导入"></a>一、问题导入</h2><p>背景：<br>我们总说C语言中const修饰的变量看上去似乎是常量，其实是个“冒牌货”，应该叫”常变量”，比如用指针间接赋值，就能改变了。</p>
-<p>代码测试：<br>将指针间接修改变量值的代码放到C语言编译器和C++编译器去测试</p>
-<p>DevC++的C语言编译器</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//demo.c </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/01.png" width="80%"></p>
-<p>DevC++的C++语言编译器</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>结果：<br> <img src="/photos/2020.5.30_31/02.png" width="80%"></p>
-<p>奇特的结果：<br>我们要是写了这样的函数在银行程序中，要是用不同编译器，那么对账就对不上了。<br>总结：<br>C中的const是个常变量，变量的值能够被间接修改。<br>C++中的const是一个真正的常量！</p>
-<p>Tips：</p>
-<table><tbody><tr><td bgcolor="#FFFF" ff="">
-以上两次测试，都没有显示warning和error</td></tr></tbody></table>
-
-<p>那么，我们或许会疑惑：<br>Q：我们说C++中的是一个真正的常量，那为什么，没有C++编译器对我们”用指针间接修改”的行为，没有报warning或者error呢？<br>A：C++要兼容C，所以，它认为这个语法是可以的<br>Q：那么问题又来了，那他既然兼容，那么为什么最后却没改变那个变量的值呢？<br>A：因为C++只是兼容那种语法写法，但是底层的实现却对const关键字进行了加强。</p>
-<h2 id="二、底层原理分析"><a href="#二、底层原理分析" class="headerlink" title="二、底层原理分析"></a>二、底层原理分析</h2><h3 id="1）C-编译器对const做了一些加强，做了一些特殊的处理"><a href="#1）C-编译器对const做了一些加强，做了一些特殊的处理" class="headerlink" title="1）C++编译器对const做了一些加强，做了一些特殊的处理"></a>1）C++编译器对const做了一些加强，做了一些特殊的处理</h3><p>当C++编译器，扫描到常量声明时，它不再像C语言那样，把这个const给它单独分配内存。</p>
-<p>在我们先前的//test.cpp中。<br>C++进行了如下操作：</p>
-<blockquote>
+                <h1 id="三种函数参数传递原理分析"><a href="#三种函数参数传递原理分析" class="headerlink" title="三种函数参数传递原理分析"></a>三种函数参数传递原理分析</h1><blockquote>
 <ul>
-<li>1）扫描到这一行，const int a=98;<br>C++编译器会把这个<b>变量a</b>放在一个<b>符号表（键值-值对）</b>里面<br><b>此时，并没有分配内存！！！</b><br>注意：这样的话，key和value是定了，不能修改的了。<br>符号表具体的实现和我们的内存中的，栈，堆不是同一套实现机制。<br>有很多常量就都放在这个里面了。<br>Tips：<br>当你去<b>使用</b>这个a的时候，它就给你从符号表里面给你把这个98给拿出来，供你<b>使用</b></li>
+<li>前言：为了能够简洁快速说明问题，一路贴代码<blockquote>
+<ul>
+<li>本博文主要想分析：引用传递的底层实现</li>
 </ul>
 </blockquote>
-<table><tbody><tr><td bgcolor="#FFFF" ff="">
-注意"使用"一词</td></tr></tbody></table>
-
-<blockquote>
-<ul>
-<li>2）遇到类似这样的情况，此时才给a变量另外分配一个内存。<br>扫描到这一句p=(int <em>)&amp;a;<br>当你对这个a变量取地址的时候，C++编译器，会为这个a再<b>单独的开辟一块内存空间</b>，然后你把这个内存空间，赋给了p，相当于一个指针P指向了这里。然后你通过</em>p去间接的修改的地址，不再是原来的值（value）,而是我们新开辟的空间的值（注意理解）<br>所以，当你再使用a的时候，你打印的还是98（符号表中的a）<img src="/photos/2020.5.30_31/03.png" width="90%">
 </li>
 </ul>
 </blockquote>
-<h3 id="2）证明"><a href="#2）证明" class="headerlink" title="2）证明"></a>2）证明</h3><p>我们现在来证明这个开辟的内存空间的存在</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//solution.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<h2 id="一、值传递"><a href="#一、值传递" class="headerlink" title="一、值传递"></a>一、值传递</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<span class="token comment" spellcheck="true">//值传递</span>
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> temp<span class="token operator">=</span>x<span class="token punctuation">;</span>
+    x<span class="token operator">=</span>y<span class="token punctuation">;</span>
+    y<span class="token operator">=</span>temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d b=%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
-    p<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>p<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span> 
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"*p=%d"</span><span class="token punctuation">,</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>打印的是:<br> <img src="/photos/2020.5.30_31/04.png" width="80%"></p>
-<p><b>注意：</b></p>
-<table><tbody><tr><td bgcolor="#FFFF" ff="">
-C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其存储空间中的值，除非你用指针操作。</td></tr></tbody></table>
+<p>Output：</p>
+<pre class=" language-txt"><code class="language-txt">a=3 b=5</code></pre>
+<p>值传递分析：<br>进入swap函数之前，新开的x变量将a中的bits全复制过来，也就是a将自己的值传递给了x<br>相当于是这样的</p>
+<pre class=" language-txt"><code class="language-txt">int a=3;
+int x=a;</code></pre>
+<p>这样的对x的修改，那种副作用当然是影响不到a的。</p>
+<h2 id="二、地址传递"><a href="#二、地址传递" class="headerlink" title="二、地址传递"></a>二、地址传递</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<span class="token comment" spellcheck="true">//地址传递 </span>
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>x<span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">*</span>y<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> temp<span class="token operator">=</span><span class="token operator">*</span>x<span class="token punctuation">;</span>
+    <span class="token operator">*</span>x<span class="token operator">=</span><span class="token operator">*</span>y<span class="token punctuation">;</span>
+    <span class="token operator">*</span>y<span class="token operator">=</span>temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d b=%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<h2 id="三、结论和补充"><a href="#三、结论和补充" class="headerlink" title="三、结论和补充"></a>三、结论和补充</h2><p>1）C语言中的const变量<br>C语言中const变量是只读变量，<b>有自己的存储空间</b><br>2）C++中的const常量</p>
-<table><tbody><tr><td bgcolor="#FFFF" ff="">
-注意：可能分配存储空间,也可能不分配存储空间!</td></tr></tbody></table>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> </code></pre>
+<p>Output：</p>
+<pre class=" language-txt"><code class="language-txt">a=5 b=3</code></pre>
+<p>地址传递分析：<br>进入swap函数之前，新开的指针变量x指向变量a，也就是a将自己的地址传递给了指针变量x<br>相当于是这样的</p>
+<pre class=" language-txt"><code class="language-txt">int a=3;
+int *x=&a;</code></pre>
+<p>所以，我们对指针x的赋值，其实就是对变量a在操作，因而能反映到a上去。</p>
+<h2 id="三、引用传递"><a href="#三、引用传递" class="headerlink" title="三、引用传递"></a>三、引用传递</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<span class="token comment" spellcheck="true">//引用传递 </span>
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>y<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> temp<span class="token operator">=</span>x<span class="token punctuation">;</span>
+    x<span class="token operator">=</span>y<span class="token punctuation">;</span>
+    y<span class="token operator">=</span>temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<p>编译过程中若发现<b>使用常量</b>则直接以符号表中的值替换</p>
-<p>Tips：<br>只有下面两种的时候，它才会分配空间</p>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d b=%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> </code></pre>
+<p>Output：</p>
+<pre class=" language-txt"><code class="language-txt">a=5 b=3</code></pre>
+<p>引用传递分析：<br>进入swap函数之前，新开的变量x引用变量a<br>相当于是这样的</p>
+<pre class=" language-txt"><code class="language-txt">int a=3;
+int &x=a;</code></pre>
+<p>所以，我们对x的赋值，其实就是对变量a在操作，因而能反映到a上去。</p>
+<p><strong>PS：其实本质<font style="background: yellow" size="5">有一半</font>是下面这样</strong></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<span class="token comment" spellcheck="true">//引用传递的底层等价方式 </span>
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span> <span class="token keyword">const</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">*</span> <span class="token keyword">const</span> y<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> temp<span class="token operator">=</span><span class="token operator">*</span>x<span class="token punctuation">;</span>
+    <span class="token operator">*</span>x<span class="token operator">=</span><span class="token operator">*</span>y<span class="token punctuation">;</span>
+    <span class="token operator">*</span>y<span class="token operator">=</span>temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token function">swap</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a=%d b=%d"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> </code></pre>
+<h2 id="四、引用的实质"><a href="#四、引用的实质" class="headerlink" title="四、引用的实质"></a>四、引用的实质</h2><h3 id="1）结论"><a href="#1）结论" class="headerlink" title="1）结论"></a>1）结论</h3><p><font style="background: yellow" size="5">引用的底层实现是<strong>常量指针</strong>,指针的指向不可变，指向的对象可变</font></p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> a<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token operator">&amp;</span>x <span class="token operator">=</span> a<span class="token punctuation">;</span></code></pre>
+<p><font style="background: yellow" size="5">有一半</font>等价于</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> a<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token operator">*</span> <span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">;</span></code></pre>
+<h3 id="2）思路分析"><a href="#2）思路分析" class="headerlink" title="2）思路分析"></a>2）思路分析</h3><p>引用概念有三：</p>
 <blockquote>
 <ul>
-<li>当const常量为全局，并且需要在其它文件中使用,即使用了<b>extern</b>操作符</li>
-<li>当使用&amp;操作符取const常量的地址，编译过程中若发现对const使用了<b>&amp;操作符</b>，则给对应的常量分配存储空间（兼容C）</li>
+<li>1）定义引用时一定要将其<strong>初始化</strong>成引用某个变量。</li>
+<li>2）初始化后，它就<strong>一直引用该变量</strong>，不会再引用别的变量了。（从一而终）</li>
+<li>3）引用只能引用<strong>变量</strong>，不能引用常量和表达式。</li>
 </ul>
 </blockquote>
-<h2 id="四、补充疑问"><a href="#四、补充疑问" class="headerlink" title="四、补充疑问"></a>四、补充疑问</h2><p>Q：那么要是分配内存，C++中那个const的分配内存是在什么时候分配的呢？是在编译器<b>编译阶段</b>，还是在<b>执行阶段</b>分配？</p>
-<table><tbody><tr><td bgcolor="#FFFF" ff="">
-Ａ：C++中const分配内存的时机，是在编译期间！（记住！）</td></tr></tbody></table>
+<p>从这3条规定，我联想到的是C语言编译器向<code>C++</code>编译器过渡的时候，如何用C语言来支持这些规定。<br>就像最初<code>C++</code>中的类，底层是用C语言中的struct实现一样。<br>所以联想到了C语言中的const指针。</p>
+<h2 id="五、汇编角度的“引用”底层释疑"><a href="#五、汇编角度的“引用”底层释疑" class="headerlink" title="五、汇编角度的“引用”底层释疑"></a>五、汇编角度的“引用”底层释疑</h2><p>FAQ：</p>
+<blockquote>
+<ul>
+<li>Q：引用占用内存吗？<blockquote>
+<ul>
+<li>A:占用，并且引用本身存放的是引用对象的地址，通俗点理解就是引用就是通过指针来实现的</li>
+</ul>
+</blockquote>
+</li>
+<li>Q：那如何解释下面这段代码的输出？</li>
+</ul>
+</blockquote>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 
-<p>证明的代码：</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//test.cpp </span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token keyword">int</span> b<span class="token operator">=</span><span class="token number">98</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> c<span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;b=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用了取地址 </span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;c=%d\n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>a<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d \n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;x=%d \n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
- <img src="/photos/2020.5.30_31/05.png" width="80%">
+<span class="token punctuation">}</span> </code></pre>
+<p>输出</p>
+<pre class=" language-txt"><code class="language-txt">&a=10485316
+&x=10485316</code></pre>
+<p>A:我们反汇编来观察一下</p>
+<p>VS2012反汇编节选,我用的win32</p>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+0111368E  mov         dword ptr <span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">3</span>  
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>a<span class="token punctuation">;</span>
+<span class="token number">01113695</span>  lea         eax<span class="token punctuation">,</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span>  
+<span class="token number">01113698</span>  mov         dword ptr <span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">,</span>eax  </code></pre>
+<p><code>mov dword ptr [a],3</code>//把3赋值给变量a的地址<br><code>lea  eax,[a</code>]          //将变量a的地址放到eax寄存器中<br><code>mov  dword ptr [x],eax</code> //把寄存器eax里的值赋值给变量x的地址</p>
+<p>其他版本的VS反汇编可能不一样，比如有的反汇编为下面这样<br>用的Win64</p>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token number">-12</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span>
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>a<span class="token punctuation">;</span>
+lea     rax<span class="token punctuation">,</span> <span class="token punctuation">[</span>rbp<span class="token number">-12</span><span class="token punctuation">]</span>
+mov     QWORD PTR <span class="token punctuation">[</span>rbp<span class="token number">-8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rax</code></pre>
+<p>解释：<br>由于写的win64程序，所以反汇编后的寄存器，是64位的寄存器了，比如rax和rbp<br>这种反汇编得到的，可以说，更好的从内存管理的角度解释了一些其他问题<br><code>mov     DWORD PTR [rbp-12], 3</code> //把3赋值给rbp（栈底指针）-12的地址<br><code>lea     rax, [rbp-12]</code>            //把rbp-12的地址赋值给寄存器rax<br><code>mov     QWORD PTR [rbp-8], rax</code>///把寄存器eax里的值赋值给rbp-8的这块地址</p>
+<p>引用的<font style="background: yellow" size="5">另一半解释</font></p>
+<blockquote>
+<ul>
+<li>引用x的地址我们没法通过&amp;x获得，因为<strong>编译器</strong>会将&amp;b解释为：&amp;(*b) =&amp;a ,所以&amp;b将得到&amp;a。<br>也验证了对所有的x的操作，和对a的操作等同</li>
+</ul>
+</blockquote>
+<h2 id="六、尝试利用传统的内存管理获取引用的真正地址"><a href="#六、尝试利用传统的内存管理获取引用的真正地址" class="headerlink" title="六、尝试利用传统的内存管理获取引用的真正地址"></a>六、尝试利用传统的内存管理获取引用的真正地址</h2><h3 id="一、DevC-5-11中测试"><a href="#一、DevC-5-11中测试" class="headerlink" title="一、DevC++5.11中测试"></a>一、DevC++5.11中测试</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
 
-<p>结果表明：<br>const int b的地址在a和c之间，符合我们局部变量申请内存的<b>压栈的顺序</b>，<b>它并没有因为，&amp;b这句话写到int c后面，就先分配a，c最后才b</b>，而是，它扫描完之后，看到这里有&amp;b了，就分配地址了。</p>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> begin<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>a<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> end<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;begin=%d \n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>begin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;a=%d \n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"&amp;end=%d \n"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> </code></pre>
+<p>输出</p>
+<pre class=" language-txt"><code class="language-txt">&begin=10485316
+&a=10485312
+&end=10485308</code></pre>
+<p>分析：<br>变量begin，a，end的地址分布，符合标准的内存管理模型的栈的从上往下生长<br>但是，疑问：那引用x的地址呢？<br>本想利用，类似于数学上的“夹逼准则”的方式，获取引用的地址。。。失败</p>
+<p>继续换平台测试</p>
+<h3 id="二、VS2012测试同样的代码"><a href="#二、VS2012测试同样的代码" class="headerlink" title="二、VS2012测试同样的代码"></a>二、VS2012测试同样的代码</h3><pre class=" language-txt"><code class="language-txt">&begin=1637444
+&a=1637432
+&end=1637408</code></pre>
+<p>分析：<br>这个结果就有意思了，变量begin，a，end的地址分布，符合标准的内存管理模型的栈的从上往下生长<br>并且，我们发现，begin和a之间相隔12个字节？？<br>a和end之间相隔24个字节？？<br>先不说那些个奇奇怪怪的，相邻变量的地址之间为啥相隔12个字节，而不是像DevC++那样的标准4个字节。<br>我们先关注一下a和end之间24个字节</p>
+<p>反汇编一下：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">int</span> begin<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+00D33C7E  mov         dword ptr <span class="token punctuation">[</span>begin<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">1</span>  
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+00D33C85  mov         dword ptr <span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">3</span>  
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>a<span class="token punctuation">;</span>
+00D33C8C  lea         eax<span class="token punctuation">,</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span>  
+00D33C8F  mov         dword ptr <span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">,</span>eax  
+    <span class="token keyword">int</span> end<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+00D33C92  mov         dword ptr <span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">5</span>  </code></pre>
+<p>这就尴尬了，又给我优化了那些地址。。汇编代码可读性是倒是提高了，但是我想看实质。。。<br>那我进行猜想吧，猜测变量x放在变量a和end中</p>
+<h3 id="三、gcc-10-2反汇编"><a href="#三、gcc-10-2反汇编" class="headerlink" title="三、gcc 10.2反汇编"></a>三、gcc 10.2反汇编</h3><p>在线反汇编网站：<code>https://godbolt.org/</code><br><code>x86-64 gcc 10.2</code><br>反汇编：</p>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">int</span> begin<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token number">-12</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span>
+    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token number">-16</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span>
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token operator">=</span>a<span class="token punctuation">;</span>
+lea     rax<span class="token punctuation">,</span> <span class="token punctuation">[</span>rbp<span class="token number">-16</span><span class="token punctuation">]</span>
+mov     QWORD PTR <span class="token punctuation">[</span>rbp<span class="token number">-8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rax
+    <span class="token keyword">int</span> end<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token number">-20</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">5</span></code></pre>
+<p>容易知道，哪个引用变量的地址竟然在栈的高地址去了，而且没在变量a和end之间，有点和传统的内存管理有出入</p>
+<h3 id="四、总结上述3次反汇编"><a href="#四、总结上述3次反汇编" class="headerlink" title="四、总结上述3次反汇编"></a>四、总结上述3次反汇编</h3><blockquote>
+<ul>
+<li>由于在早期的内存管理上，我们的变量与变量之间地址是连续的。这就可以通过很明显的地址映射进行修改，破坏具体的程序。</li>
+<li>后来，为了混淆这些连续的地址，有的编译器进行了修改。这让以前，通过在栈区进行地址+1，-1啥的修改临近变量的方式得到了限制，一定程度上保护了程序的安全性。</li>
+<li>那么，现在这样设计真的很安全吗？A：还是可以修改，只是麻烦点。</li>
+<li>正如VS2012和gcc 10.2反汇编的结果那样，无论各种编译器底层各种方式的进行地址修改，编译器设计者的文档一旦被获取，我们还是能够进行特定编译器编译的代码的修改。只是需要看具体设计文档。</li>
+</ul>
+</blockquote>
+<p>结论：目前，栈中变量地址不一定是连续的，因为这跟地址分配有关。</p>
+<p><font style="background: yellow" size="5">此外，至于C++中引用到底底层是不是用const指针和特殊的编译方式实现的，还是需要看具体编译器的。</font><br>但是笔者喜欢用这种理解方式，就相当于，这是帮助我理解引用的一个脚手架。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -618,7 +728,7 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/05/31/2020-05-31-Cplusplus-const/">https://github.com/HACV/HACV.github.io/2020/05/31/2020-05-31-Cplusplus-const/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/07/27/2020-07-27-Value-Address-Reference/">https://github.com/HACV/HACV.github.io/2020/07/27/2020-07-27-Value-Address-Reference/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -825,53 +935,47 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/06/01/2020-06-01-BF-RK/">
+                <a href="/2020/07/27/2020-07-27-Value-Address-Reference/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.5.30_31/2020_06_01_cover.png" class="responsive-img" alt="字符串匹配之BF&amp;RK">
+                        <img src="/photos/2020.6.03_15/2020_06_13_cover.jpg" class="responsive-img" alt="三种函数参数传递原理分析">
                         
-                        <span class="card-title">字符串匹配之BF&amp;RK</span>
+                        <span class="card-title">三种函数参数传递原理分析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            字符串匹配暴力和hash优化
+                            值传递，地址传递，引用传递。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%9A%B4%E5%8A%9B/">
-                        <span class="chip bg-color">暴力</span>
-                    </a>
-                    
-                    <a href="/Tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
-                        <span class="chip bg-color">字符串匹配</span>
-                    </a>
-                    
-                    <a href="/Tags/hash/">
-                        <span class="chip bg-color">hash</span>
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -885,30 +989,30 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/30/2020-05-30-MySQL-Pre-One/">
+                <a href="/2020/07/23/2020-07-23-Programming-Pearls-01/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_11_cover.jpg" class="responsive-img" alt="MySQL系列文章（一）">
+                        <img src="/photos/2020.6.03_15/2020_06_12_cover.jpg" class="responsive-img" alt="编程珠玑读书笔记（一）">
                         
-                        <span class="card-title">MySQL系列文章（一）</span>
+                        <span class="card-title">编程珠玑读书笔记（一）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MySQL架构和基本概念辨析
+                            编程珠玑
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    数据库
+                            <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    读书笔记
                                 </a>
                             
                             
@@ -918,8 +1022,8 @@ C++编译器虽然可能为const常量分配空间，但不会<b>使用</b>其�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/Tags/%E7%BC%96%E7%A8%8B%E7%8F%A0%E7%8E%91/">
+                        <span class="chip bg-color">编程珠玑</span>
                     </a>
                     
                 </div>
