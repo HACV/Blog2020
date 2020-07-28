@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>环境变量</title>
+      <link href="/2020/07/28/2020-07-28-Environment-variable/"/>
+      <url>/2020/07/28/2020-07-28-Environment-variable/</url>
+      
+        <content type="html"><![CDATA[<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><p>环境变量包括</p><blockquote><ul><li>用户变量（只在当前用户）</li><li>系统变量（本物理机，所有用户）</li></ul></blockquote><h2 id="一、查看环境变量"><a href="#一、查看环境变量" class="headerlink" title="一、查看环境变量"></a>一、查看环境变量</h2><p>使用cmd命令快速查看和添加系统环境变量<br>1、查看<strong>path环境变量（只看path路径的环境变量）</strong>，直接在命令窗口输入path<br>2、还可以在命令窗口输入set，查看<strong>所有（注意是所有）环境变量（自然就包括了上面的path环境变量</strong>）</p><h2 id="二、设置用户变量"><a href="#二、设置用户变量" class="headerlink" title="二、设置用户变量"></a>二、设置用户变量</h2><h3 id="1）方法1"><a href="#1）方法1" class="headerlink" title="1）方法1"></a>1）方法1</h3><p>我在命令行用<br><code>setx hacv D:\____Software\00.Mygithub_web\blog\HACV</code><br>就设置用户变量（注意，和环境变量区别）</p><h3 id="2）方法2"><a href="#2）方法2" class="headerlink" title="2）方法2"></a>2）方法2</h3><p>GUI操作<br>快捷键win+break,然后找到用户变量设置<br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_28/01.png"></p><h3 id="3）效果"><a href="#3）效果" class="headerlink" title="3）效果"></a>3）效果</h3><p>后来，我使用<br><code>D:</code><br>然后，<code>cd %hacv%</code>  注意，此处，前后百分号不能省略<br>就相当于直接<code>cd D:\____Software\00.Mygithub_web\blog\HACV</code></p><p>然后，也可以<code>start %hacv%</code><br>就可以直接打开那个文件夹（便利）</p><h2 id="三、设置系统变量"><a href="#三、设置系统变量" class="headerlink" title="三、设置系统变量"></a>三、设置系统变量</h2><p>（要是想要模拟Linux全命令行操作）<br>说不定喜欢这些<br>比如可以把桌面快捷方式丢到一个文件夹，然后把文件夹路径添加到<code>path</code>，给每个快捷方式取个自己习惯记得住的名字，打开的时候输入<code>win+r</code>，再输入<code>快捷方式名</code>，回车<br>是不是很酷炫？还好吧，术业有专攻。</p><h3 id="1）方法1-1"><a href="#1）方法1-1" class="headerlink" title="1）方法1"></a>1）方法1</h3><p>使用cmd命令添加系统环境变量<br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_28/02.png"></p><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_28/04.png"><p>注：<strong>不建议用cmd命令修改path</strong>，否则破坏其他的变量就会导致其他的软件无法正常运行。若要修改还是到系统属性中进行修改，使用GUI</p><h3 id="2）方法2-1"><a href="#2）方法2-1" class="headerlink" title="2）方法2"></a>2）方法2</h3><p>快捷键win+break组合键直接打开系统属性页面，接着按如下图步骤执行即可<br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_28/03.png"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Windows效率 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>三种函数参数传递原理分析</title>
       <link href="/2020/07/27/2020-07-27-Value-Address-Reference/"/>
       <url>/2020/07/27/2020-07-27-Value-Address-Reference/</url>
@@ -21,6 +46,31 @@
         <tags>
             
             <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Unix相关整理（收集+转载）</title>
+      <link href="/2020/07/26/2020-07-26-Unix-Book/"/>
+      <url>/2020/07/26/2020-07-26-Unix-Book/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Unix服务器编程方向"><a href="#Unix服务器编程方向" class="headerlink" title="Unix服务器编程方向"></a>Unix服务器编程方向</h1><p>记录一下相关书籍，收集一下相关博客</p><h2 id="一、书籍三本"><a href="#一、书籍三本" class="headerlink" title="一、书籍三本"></a>一、书籍三本</h2><p>有一说一，太厚了，当字典。</p><h3 id="1）APUE"><a href="#1）APUE" class="headerlink" title="1）APUE"></a>1）APUE</h3><p>本书是被誉为UNIX编程“圣经”的<code>Advanced Programming in the UNIX Environment</code><br>APUE这种“圣经”，当你读不懂的时候才发现他其实没有那么神，他只是告诉你很多深层的东西，关于怎么用，还是要靠你自己。而这一点就已经不适合初学者了。<br>其实，还是man过很多次系统调用和有操作系统系统编程经验，不然，此书就是劝退。</p><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_26/01.APUE.jpg" width="60%"><h3 id="2）UNP"><a href="#2）UNP" class="headerlink" title="2）UNP"></a>2）UNP</h3><p>指的两本书，Unix网络编程。<br>Unix net<br><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_26/02.UNP.jpg" width="60%"></p><img src="https://blog-1302550131.cos.ap-guangzhou.myqcloud.com/2020/2020_7/07_26/03.UNP.jpg" width="60%"><h2 id="二、C-服务端方向"><a href="#二、C-服务端方向" class="headerlink" title="二、C++服务端方向"></a>二、C++服务端方向</h2><p>摘自：<code>https://blog.csdn.net/boshuzhang/article/details/50717875</code><br>apue和unp两卷-》libevent</p><blockquote><ul><li>Libevent 是一个用C语言编写的、轻量级的开源高性能事件通知库，主要有以下几个亮点：事件驱动（ event-driven），高性能;轻量级，专注于网络，不如 ACE 那么臃肿庞大；源代码相当精炼、易读；跨平台，支持 Windows、 Linux、 *BSD 和 Mac Os；支持多种 I/O 多路复用技术， epoll、 poll、 dev/poll、 select 和 kqueue 等；支持 I/O，定时器和信号等事件；注册事件优先级。</li></ul></blockquote><p>转自：<code>https://blog.csdn.net/qq_33890670/article/details/80353744</code><br>如果主要希望掌握UNIX下的编程技术，尤其是网络编程技术的话，可以有两条路走：</p><blockquote><ul><li>1、以实际需要完善知识架构：<strong>为自己做一个项目，比方说自己写个简单的Web服务器</strong>，因为现在 Web 应用非常丰富，既有成熟的客户端如浏览器可以配合，又有足够全的文档如 RFC文档可供参考，再加上最基本的 socket 编程经验，就可以开始做自己的 Web 服务器。一步一步的为 Web 服务器添加流行的功能，如支持后台 FastCGI 接口，支持 WebDAV，支持流媒体等。在这个过程中不断地学习和掌握相关的理论知识，有时在发觉设计上的不足时甚至需要推翻全盘重新架构。当最终一个完全符合自己心意且足够实用的 Web 服务器做成时，就拥有了可以由自己支配和修改的服务器，同时也掌握了相关的专业理论。这种方式比较适合有一定专业基础的人使用。优点是直观，方向明确所以学习效率高。缺点是需求驱动，形成知识架构不容易完整。</li><li><strong>尝试根据自己的兴趣，选择一个规模适当的开源项目，去阅读它的源代码</strong>。（<strong>例如我选择的就是一个小型的http服务器–Mongoose</strong>）当在某一方面发现自己有很多问题时，很希望去弄清楚时，这时候就可以去翻开手中的APUE，带着问题去阅读。这时候学习的效率必然比盲目地去看书更高，而且遗忘率也会降低。<br>但是，仅仅读完是不够的。</li><li>很多时候，你看书的时候，会感觉自己看懂了，但是没过多久，又会发现自己忘了。或者，有时候你根本没看懂，而只是囫囵吞枣地看过去。所以，看完后，最好的方法就是写博客。尝试按照自己的理解以及逻辑，去将你学到的知识系统地阐述出来。这样，就算你以后忘了，再去<strong>翻翻博文</strong>，也能很快就捡起来。</li></ul></blockquote><h2 id="三、写给那些傻傻想做服务器开发的朋友（转载）"><a href="#三、写给那些傻傻想做服务器开发的朋友（转载）" class="headerlink" title="三、写给那些傻傻想做服务器开发的朋友（转载）"></a>三、写给那些傻傻想做服务器开发的朋友（转载）</h2><p>转载自：<code>https://blog.csdn.net/qq_29996285/article/details/84792810</code></p><h3 id="我的工作经历"><a href="#我的工作经历" class="headerlink" title="我的工作经历"></a>我的工作经历</h3><p>我毕业的时候，一心想做 Windows C/C++客户端开发，当时为了做这个开发放弃了我熟悉的flash编程和web开发，当然薪资也是比较低的。做了几年Windows客户端后，我毅然以一定的代价转到了linux服务器开发。到今天为止，大致做过股票资讯、交易系统、游戏服务器、即时通讯系统和直播类型的服务器，架构的能力也由最初的千人到后来的百万在线。我从不后悔我当初转行服务器开发，甚至很庆幸当初的抉择，然而我可能更喜欢的还是客户端开发。<br>《写给那些傻傻的，想做服务器开发的应届生》一文中的有些观点，根据我的经历，我不敢赞同，或者说我的感受与之大相径庭。</p><h3 id="加班的情况"><a href="#加班的情况" class="headerlink" title="加班的情况"></a>加班的情况</h3><p>首先说下加班的情况，不管是大公司还是小公司，由于现在的各种测试、预警机制、监控策略和公司发布流程的不断完善，一个月内经常为各种服务器bug、和应急的情况加班的现状已经大为改善不少，当然偶尔发版或者赶项目加班还是有的，不过一个月的频率也就那么一两次。如果你们团队频繁地为了修正紧急bug、解决服务器稳定性问题，那么你们真要好好考虑你们的方法是不是有问题了。</p><h3 id="服务器开发与轮子"><a href="#服务器开发与轮子" class="headerlink" title="服务器开发与轮子"></a>服务器开发与轮子</h3><p>其次，服务器开发，不仅仅如文中所说的，利用或者组装各种轮子。一个稳定的服务器架构，必须是建立在设计师良好的基础知识和见多识广的经验基础上，即使是使用现有的轮子，也是对这个轮子足够熟悉的基础上，才能让轮子最大地适用自己的公司的业务。也就是说，服务器核心项目人员虽然不一定要造轮子，但一定要具备造轮子的能力。开源的东西好用是好用，但是要么不出问题，一旦出问题往往很难修改。我们去年做类似“冲顶大会”、“百万英雄”这类直播答题应用，由于这类游戏是从美国HQ刮过来的风，国内各大公司为了迅速抢占市场与用户，都想着要比别人早点做出来上线，所以我们公司当时deadline压得比较紧。我们那个时候，最不想看到的人就是项目经理，天天跟着我们后面催项目的进度。项目进度紧不说，另外还有一个技术挑战，由于节目比较火热，同一个房间里面可能会达到百万人同时在线，而这百万人可能同时都会发弹幕消息。假设某个时刻，房间里面有n个人，某个人发一条消息，其他n-1个人收到，服务器需要推送n-1次。如果n个人同时发消息，那么服务器同一时间就要推送n*n，如果n等于1百万的时候，那么单秒的数据量将非常恐怖，这个是我们需要解决的一个技术难题，解决目标是最少延迟的情况下，弹幕最多的送达率；另外一个难题就是，保证出题和答案不能有太多的延时（小于1秒），并在用户给出答案后，服务器能够迅速统计出答案结果并应答客户端。（没办法，所以此时主持人的作用就发挥了，万一延迟太厉害，主持人可以和观众各种唠嗑，当然这是下下策，如果频繁出现这种情况，领导的脸色肯定也不好看，我们做技术的脸上也没有光彩。）那段时间基本上是周六周日都要加班，甚至连周末都可能要到凌晨才能回去。注意：我把这段经历并没有放在上面的关于服务器开发是否频繁地加班的栏目下，这里我想说明的并不是服务器开发要经常加班，我想说的是，如果你平常只会用轮子，而不注重基础内功的修养，这种场景你是很难应对的，首先是单机服务性能要做到极致，其次是多个服务之间的高效配合。很多人可能觉得这种场景也不难，甚至有的人号称单机服务就能解决，这些都是站着说话不腰疼了。像熊猫tv的“冲顶大会”和西瓜视频的“百万英雄”前几次的答题活动中，也出现了服务中断或者题目延迟厉害，甚至“百万英雄”还出现过一次因技术问题答题活动被迫延期的事故。</p><h3 id="技术与产品思维"><a href="#技术与产品思维" class="headerlink" title="技术与产品思维"></a>技术与产品思维</h3><p>接着说下，技术和产品方面的，服务器开发与客户端开发的思维方式和理念其实是不一样的，如果说客户端产品是一个产品的脸面，那么服务器端就是产品的灵魂。这里可能比喻有点不恰当，与客户端开发相比，优秀的服务器开发应该尽量在单机服务上的性能做到极致，必须尽量利用少的资源给尽可能多的客户端服务（在资源总量有限的情况下，你为单个客户端服务使用的资源越少，你才可能为越多的客户服务）。而服务器开发必须有条不紊地处理与每个客户端的交互，不能纠结或把资源花费在某一个客户端上。但是客户端不一样，客户端只需要管理好自己的一亩三分地就可以了，而且客户端的大多数逻辑和细节在界面（UI）逻辑上。但是我不赞成文中作者所说的客户端代码比服务器代码少很多，相反，我经历过的项目，都是客户度代码比服务器代码多很多。因为客户端代码往往有大量的界面逻辑，如果服务器端没有UI的话，其核心除了网路通信部分，剩下的就是各种业务逻辑（包括存储逻辑，也就是业务逻辑服务器和客户端都有，但是客户端还有界面逻辑）。而从开发团队的人数配比上来说，一般单个端（比如pc、安卓、ios中的一端）的人数要小于服务器开发人员的数量，因为一般一个高级客户端开发，往往可以一个人搞定一个客户端，但是一般很少有一个高级服务器开发可以单独搞定一套服务开发的。（说的是通常情形，请不要走极端）。服务器开发的核心字眼体现在“服务”上，如何为客户端提供稳定的、高效的服务，这是关键的地方。这里“稳定”也包括容灾容错。大凡有一定规模的用户群体的产品，如果服务器不稳定，那后果将是灾难性的，试想QQ或者微信服务器中断一两个小时，后果会怎样？而客户端更侧重的就是产品的细节、用户的体验，当然尽管有些用户体验可能是由服务器端决定的，但是最终还是由客户端反映出来。我不赞同文章中说，客户端更能积累除了技术以外的其他知识，服务器开发也一样的，不管是客户端还是服务器，只有具有产品思维的开发才是好的开发，而功能的设计与规划服务器端的开发在时间点上一般先于客户端开发的。而具体的功能点，也是需要服务器开发人员与产品人员乃至客户沟通的。</p><h3 id="薪资方面"><a href="#薪资方面" class="headerlink" title="薪资方面"></a>薪资方面</h3><p>最后说下，薪资方面。一般大于两年且同样的工作年限的服务器开发人员要比客户端开发人员高至少三分之一左右。当然不排除一些非常优秀的客户端开发人员可能不在这个规则内。</p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>总结起来，选择了哪条路就选择了什么样的生活。做服务器开发的可以在高并发、高可用方向进一步努力，而做客户端开发可以在用户体验、设计细节方面下功夫。不管怎样，都是我们想要的生活，那里倾洒了我们的汗水，也收获了我们自己的成就感。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Unix </tag>
             
         </tags>
       
