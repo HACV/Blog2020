@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.4k
                 </div>
                 
 
@@ -685,6 +685,69 @@ mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token 
 </blockquote>
 <p>结论：目前，栈中变量地址不一定是连续的，因为这跟地址分配有关。</p>
 <p><font style="background: yellow" size="5">此外，至于C++中引用到底底层是不是用const指针和特殊的编译方式实现的，还是需要看具体编译器的。</font><br>但是笔者喜欢用这种理解方式，就相当于，这是帮助我理解引用的一个脚手架。</p>
+<h2 id="七、引用占用空间分析（和指针大小一样）"><a href="#七、引用占用空间分析（和指针大小一样）" class="headerlink" title="七、引用占用空间分析（和指针大小一样）"></a>七、引用占用空间分析（和指针大小一样）</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//测试环境gcc 4.9.2 64位</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">9</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> <span class="token operator">&amp;</span>num<span class="token operator">=</span>a<span class="token punctuation">;</span>
+
+        <span class="token keyword">char</span> c<span class="token operator">=</span><span class="token string">'k'</span><span class="token punctuation">;</span>
+        <span class="token keyword">char</span> <span class="token operator">&amp;</span>ss<span class="token operator">=</span>c<span class="token punctuation">;</span>
+
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sizeof(p)==%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sizeof(num)==%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sizeof(ss)==%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>ss<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>    
+<span class="token punctuation">}</span></code></pre>
+<p>输出</p>
+<pre class=" language-txt"><code class="language-txt">sizeof(p)==8
+sizeof(num)==4
+sizeof(ss)==1</code></pre>
+<p>看到这个，是不是很懵逼？感觉，引用到底是不是指针实现存疑。<br>其实，导致上面这个结果的出现，倒不是因为引用的底层实现不是指针，而是sizeof运算符的实现</p>
+<p>我们现在测试另外一组</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//测试环境gcc 4.9.2 64位</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> bb
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token operator">&amp;</span>b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> aa
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> c<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//设置结构体aa，是为了检测内存对齐 </span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sizeof(aa)==%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>aa<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//设置结构体bb，是为了测试引用的底层实现 </span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"sizeof(bb)==%d\n"</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>bb<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>    
+<span class="token punctuation">}</span></code></pre>
+<p>输出</p>
+<pre class=" language-txt"><code class="language-txt">sizeof(aa)==8
+sizeof(bb)==16</code></pre>
+<p>支撑了，我们的想法，C++中引用的实现真的是指针实现</p>
+<p><font style="background: yellow">结论：C++编译器在编译过程中使用常指针作为引用的内部实现，<strong>引用所占用的空间的大小与指针相同</strong>。</font></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -987,18 +1050,18 @@ mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token 
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/26/2020-07-26-Unix-Book/">
+                <a href="/2020/07/26/2020-07-26-shallow-deep-copy/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_15_cover.jpg" class="responsive-img" alt="Unix相关整理（收集+转载）">
+                        <img src="/photos/2020.6.03_15/2020_06_02_cover.jpg" class="responsive-img" alt="深浅拷贝">
                         
-                        <span class="card-title">Unix相关整理（收集+转载）</span>
+                        <span class="card-title">深浅拷贝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            APUE，UNP，服务器开发
+                            C语言和C++中的浅拷贝与深拷贝实现
                         
                     </div>
                     <div class="publish-info">
@@ -1009,8 +1072,8 @@ mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token 
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    操作系统
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
@@ -1020,8 +1083,12 @@ mov     DWORD PTR <span class="token punctuation">[</span>rbp<span class="token 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/Unix/">
-                        <span class="chip bg-color">Unix</span>
+                    <a href="/Tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
+                    </a>
+                    
+                    <a href="/Tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -1187,7 +1254,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">77.6k</span>&nbsp;字
+                class="white-color">81.7k</span>&nbsp;字
             
             
             
