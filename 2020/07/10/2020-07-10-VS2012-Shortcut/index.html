@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言和汇编混合编程, HACV">
+    <meta name="keywords" content="VS2012快捷键, HACV">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C语言和汇编混合编程 | HACV</title>
+    <title>VS2012快捷键 | HACV</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -304,7 +304,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言和汇编混合编程</h1>
+                    <h1 class="description center-align post-title">VS2012快捷键</h1>
                 </div>
             </div>
         </div>
@@ -421,8 +421,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Tags/%E6%B1%87%E7%BC%96-Assembly/">
-                                <span class="chip bg-color">汇编(Assembly)</span>
+                            <a href="/Tags/%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/">
+                                <span class="chip bg-color">编译环境</span>
                             </a>
                         
                     </div>
@@ -433,8 +433,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
-                                计算机组成原理
+                            <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="post-category">
+                                环境搭建
                             </a>
                         
                     </div>
@@ -446,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-15
+                    2020-07-10
                 </div>
                 
 
@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    116
                 </div>
                 
 
@@ -467,138 +467,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C语言和汇编混合编程"><a href="#C语言和汇编混合编程" class="headerlink" title="C语言和汇编混合编程"></a>C语言和汇编混合编程</h1><h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>系统控制软件采用混合编程的方式，即在C语言中嵌入汇编语句，充分发挥汇编语言和C语言各自的优势，实现整个系统的功能要求，达到系统指标要求</p>
-<p>本段话，<a href="http://blog.163.com/xychenbaihu@yeah/blog/static/1322296552010491031121/" target="_blank" rel="noopener">参考博客</a><br>TIPS：在编译过程汇中，汇编代码块是原封不动地送到汇编语言编译阶段的。<br>一、为什么会用到汇编？<br>1.为了提高速度和效率。不过这种情况很少了，现在C/C++编译器的优化很厉害了。<br>2.为了实现某些C语言中不具备、但为不同的机器所特有的功能。这是主要原因。<br>3.为了利用通用的汇编语言例程。也常会遇到。<br>二、何时使用汇编？<br>第一种情况是，绝对没有其他方法可以使用。<br>第二种情况出现在某个C语言程序的执行时间必须减少的时候。<br>三、如何嵌入汇编？</p>
-<h2 id="二、各种编译器中汇编嵌入方式"><a href="#二、各种编译器中汇编嵌入方式" class="headerlink" title="二、各种编译器中汇编嵌入方式"></a>二、各种编译器中汇编嵌入方式</h2><h3 id="1）GNU-GCC（个人常用）"><a href="#1）GNU-GCC（个人常用）" class="headerlink" title="1）GNU GCC（个人常用）"></a>1）GNU GCC（个人常用）</h3><blockquote>
-<ul>
-<li>用到的关键字<br>“<strong>asm</strong>” 表示后面的代码为内嵌汇编，“asm”是“<strong>asm</strong>”的别名。<br>“<strong>volatile</strong>” 表示编译器不要优化代码，后面的指令保留原样，“volatile”是它的别名。<br>括号里面是汇编指令。</li>
-<li>内嵌汇编语法如下：</li>
-</ul>
-</blockquote>
-<pre class=" language-txt"><code class="language-txt">__asm__(
- 汇编语句模板:
- 输出部分:
- 输入部分:
- 破坏描述部分);</code></pre>
-<p>//Tips:其实，下面的代码中asm前后各两条下划线（_）都省略都是可以的</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//测试环境Dev-C++ 5.11（TDM-GCC 4.9.2）</span>
-
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-
-    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>b<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"汇编处理前b=%d\n"</span><span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-    <span class="token function">__asm__</span><span class="token punctuation">(</span>
-    <span class="token string">"movl %1, %%eax;"</span>
-    <span class="token string">"movl %%eax, %0;"</span>
-    <span class="token punctuation">:</span><span class="token string">"=r"</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>          <span class="token comment" spellcheck="true">/*输出部*/</span>
-    <span class="token punctuation">:</span><span class="token string">"r"</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>           <span class="token comment" spellcheck="true">/*输入部*/</span>
-    <span class="token punctuation">:</span><span class="token string">"%eax"</span>           <span class="token comment" spellcheck="true">/*修正部*/</span>
-       <span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-       <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"汇编处理后b=%d\n"</span><span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span> </code></pre>
-<p>代码解释：<br>1）这些汇编代码表示C语言里的“b=a;”。<br>2）里边r表示使用任意寄存器，%0、%1表示使用两个寄存器，一般只能%0~%9共十个操作数，按输入输出部变<br>量出现顺序进行映射。<br>3）寄存器用两个百分号，是因为使用了%0%1这些数字使百分号有了特殊意义，所以在操作数出现的寄存器必须用双百分表示。<br>4）修正部里边的%eax表示eax寄存器在汇编代码块执行过程中会被改写，在执行前要保护好，这是提交给编<br>译器决定的。</p>
-<h3 id="2）Visual-C-（比如VS212）"><a href="#2）Visual-C-（比如VS212）" class="headerlink" title="2）Visual C++（比如VS212）"></a>2）Visual C++（比如VS212）</h3><blockquote>
-<ul>
-<li>格式:</li>
-<li><font style="background: yellow">asm前面是两条下划线，后面的方括号内容表示分号可有可无。</font></li>
-</ul>
-</blockquote>
-<pre class=" language-txt"><code class="language-txt">格式1：
-一组汇编语句
-__asm { 汇编指令 } [ ; ]
-格式2：
-一条汇编语句
-__asm 汇编指令 [ ; ]</code></pre>
-<h4 id="格式一、一组汇编语句（个人常用）"><a href="#格式一、一组汇编语句（个人常用）" class="headerlink" title="格式一、一组汇编语句（个人常用）"></a>格式一、一组汇编语句（个人常用）</h4><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//测试环境VS2012，文件名test.c</span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-
-    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>b<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"汇编处理前b=%d\n"</span><span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-    __asm<span class="token punctuation">{</span>
-    mov  eax<span class="token punctuation">,</span>a
-    mov  b<span class="token punctuation">,</span>eax
-    mov  ebx<span class="token punctuation">,</span>b
-    mov  a<span class="token punctuation">,</span>ebx
-    <span class="token punctuation">}</span>   
-
-       <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"汇编处理后b=%d\n"</span><span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span> </code></pre>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-
- <span class="token keyword">int</span> <span class="token function">power2</span><span class="token punctuation">(</span> <span class="token keyword">int</span> num<span class="token punctuation">,</span> <span class="token keyword">int</span> power <span class="token punctuation">)</span>
- <span class="token punctuation">{</span>
-     __asm<span class="token punctuation">{</span>
-         mov eax<span class="token punctuation">,</span> num <span class="token punctuation">;</span> Get first argument
-         mov ecx<span class="token punctuation">,</span> power <span class="token punctuation">;</span> Get second argument
-         shl eax<span class="token punctuation">,</span> cl <span class="token punctuation">;</span> EAX <span class="token operator">=</span> EAX <span class="token operator">*</span> <span class="token punctuation">(</span> <span class="token number">2</span> to the power of CL <span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-
- <span class="token comment" spellcheck="true">/* Return with result in EAX */</span>
- <span class="token punctuation">}</span>
-
-
- <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token keyword">void</span> <span class="token punctuation">)</span>
- <span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span> <span class="token string">"3 times 2 to the power of 5 is %d\n"</span><span class="token punctuation">,</span> <span class="token function">power2</span><span class="token punctuation">(</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span></code></pre>
-<h4 id="格式二、单行汇编语句"><a href="#格式二、单行汇编语句" class="headerlink" title="格式二、单行汇编语句"></a>格式二、单行汇编语句</h4><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-
-    <span class="token keyword">int</span> a<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>b<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
-
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"汇编处理前b=%d\n"</span><span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-
-    __asm mov  eax<span class="token punctuation">,</span>a
-    __asm mov  b<span class="token punctuation">,</span>eax
-    __asm mov  ebx<span class="token punctuation">,</span>b
-    __asm mov  a<span class="token punctuation">,</span>ebx
-
-
-       <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"汇编处理后b=%d\n"</span><span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span> </code></pre>
-<h3 id="3）Turbo-C（不学这个，但作为备案）"><a href="#3）Turbo-C（不学这个，但作为备案）" class="headerlink" title="3）Turbo C（不学这个，但作为备案）"></a>3）Turbo C（不学这个，但作为备案）</h3><p>吐槽：<br>这个实在太古老了，但是有时为了遗留代码啥的。。。还是老老实实看吧</p>
-<blockquote>
-<ul>
-<li>使用预处理程序的伪指令<code>#asm</code>和<code>#endasm</code>,<code>#asm</code>用来开始一个汇编程序块，而<code>#endasm</code>指令用于该块的结束。</li>
-</ul>
-</blockquote>
-<h4 id="格式1、一组汇编语句"><a href="#格式1、一组汇编语句" class="headerlink" title="格式1、一组汇编语句"></a>格式1、一组汇编语句</h4><pre class=" language-c"><code class="language-c"><span class="token function">mul</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span>
-<span class="token keyword">int</span> a<span class="token punctuation">,</span>b<span class="token punctuation">;</span>
-<span class="token punctuation">{</span>
-
- <span class="token macro property">#asm</span>
- mov ax<span class="token punctuation">,</span>word ptr <span class="token number">8</span><span class="token punctuation">[</span>bp<span class="token punctuation">]</span>
- imul ax word ptr <span class="token number">10</span><span class="token punctuation">[</span>bp<span class="token punctuation">]</span>
- <span class="token macro property">#endasm</span>
-
-<span class="token punctuation">}</span></code></pre>
-<h4 id="格式2、单行汇编语句"><a href="#格式2、单行汇编语句" class="headerlink" title="格式2、单行汇编语句"></a>格式2、单行汇编语句</h4><pre class=" language-c"><code class="language-c"><span class="token function">mul</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span>
-<span class="token keyword">int</span> a<span class="token punctuation">,</span>b<span class="token punctuation">;</span>
-<span class="token punctuation">{</span>
- <span class="token keyword">asm</span> mov ax<span class="token punctuation">,</span>word ptr <span class="token number">8</span><span class="token punctuation">[</span>bp<span class="token punctuation">]</span>
- <span class="token keyword">asm</span> imul ax word ptr <span class="token number">10</span><span class="token punctuation">[</span>bp<span class="token punctuation">]</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="三、用途"><a href="#三、用途" class="headerlink" title="三、用途"></a>三、用途</h2><p>gcc的汇编，可以用来进行汇编开栈<br>（比如在leetcode中）<br>PS:提升算法能力才是真正的提升，不要太依靠这些技巧。</p>
+                <h1 id="VS2012快捷键"><a href="#VS2012快捷键" class="headerlink" title="VS2012快捷键"></a>VS2012快捷键</h1><h2 id="我的奇怪的记录"><a href="#我的奇怪的记录" class="headerlink" title="我的奇怪的记录"></a>我的奇怪的记录</h2><p>Ctrl+K和Ctrl +D 会自动排版代码—这个<strong>不用全选</strong>    记忆方式：KD树？？（我只记忆这个）<br>Ctrl+K和Ctrl+F 也会—-这个之前，<strong>要全选</strong></p>
+<p>shift+TAB左移  是的，正好和TAB相反</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -642,7 +512,7 @@ __asm 汇编指令 [ ; ]</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/HACV/HACV.github.io/2020/07/15/2020-07-15-Imbeds/">https://github.com/HACV/HACV.github.io/2020/07/15/2020-07-15-Imbeds/</a>
+                    <a href="https://github.com/HACV/HACV.github.io/2020/07/10/2020-07-10-VS2012-Shortcut/">https://github.com/HACV/HACV.github.io/2020/07/10/2020-07-10-VS2012-Shortcut/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -680,8 +550,8 @@ __asm 汇编指令 [ ; ]</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/Tags/%E6%B1%87%E7%BC%96-Assembly/">
-                                    <span class="chip bg-color">汇编(Assembly)</span>
+                                <a href="/Tags/%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/">
+                                    <span class="chip bg-color">编译环境</span>
                                 </a>
                             
                         </div>
@@ -853,30 +723,30 @@ __asm 汇编指令 [ ; ]</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/07/15/2020-07-15-Summary-Assembly/">
+                <a href="/2020/07/11/2020-07-11-Notepad-plus-plus/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_02_cover.jpg" class="responsive-img" alt="AT&amp;T汇编与INTEL汇编">
+                        <img src="/photos/2020.6.03_15/2020_06_12_cover.jpg" class="responsive-img" alt="Notepad++轻量级java环境">
                         
-                        <span class="card-title">AT&amp;T汇编与INTEL汇编</span>
+                        <span class="card-title">Notepad++轻量级java环境</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            两种主流汇编格式
+                            Notepad++搭建轻量级java环境
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-11
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
-                                    计算机组成原理
+                            <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="post-category">
+                                    环境搭建
                                 </a>
                             
                             
@@ -886,8 +756,12 @@ __asm 汇编指令 [ ; ]</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/%E6%B1%87%E7%BC%96-Assembly/">
-                        <span class="chip bg-color">汇编(Assembly)</span>
+                    <a href="/Tags/%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/">
+                        <span class="chip bg-color">编译环境</span>
+                    </a>
+                    
+                    <a href="/Tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -901,30 +775,30 @@ __asm 汇编指令 [ ; ]</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/14/2020-07-14-Cplusplus-Java-OJ/">
+                <a href="/2020/07/08/2020-07-08-Singelton/">
                     <div class="card-image">
                         
-                        <img src="/photos/2020.6.03_15/2020_06_14_cover.jpg" class="responsive-img" alt="C++和java简易语法对比（OJ版）">
+                        <img src="/photos/2020.6.03_15/2020_06_15_cover.jpg" class="responsive-img" alt="设计模式系列（单例模式）">
                         
-                        <span class="card-title">C++和java简易语法对比（OJ版）</span>
+                        <span class="card-title">设计模式系列（单例模式）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C++和java简易语法对比（OJ版）
+                            单例模式（Singelton）
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
+                            <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" class="post-category">
+                                    软件工程
                                 </a>
                             
                             
@@ -934,12 +808,8 @@ __asm 汇编指令 [ ; ]</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Tags/C/">
-                        <span class="chip bg-color">C++</span>
-                    </a>
-                    
-                    <a href="/Tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/Tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
                     </a>
                     
                 </div>

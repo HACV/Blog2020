@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    2.1k
                 </div>
                 
 
@@ -574,6 +574,10 @@
 </li>
 </ul>
 </blockquote>
+<h2 id="三、线程池"><a href="#三、线程池" class="headerlink" title="三、线程池"></a>三、线程池</h2><p>下文参考自：<a href="https://mp.weixin.qq.com/s?__biz=MzI1NTE3OTk4Nw==&amp;mid=2653734974&amp;idx=1&amp;sn=987f9a4cfea1c830036ae20fc04866d5&amp;chksm=f1e18582c6960c941a5e147c198d9cbc3f27e88dbb82fb62f0d23261821070bd43bdfd2fc2b2&amp;mpshare=1&amp;scene=23&amp;srcid=0728Ab0PK8WsIZWsv1UoVm8L&amp;sharer_sharetime=1595948760667&amp;sharer_shareid=7d02bdfe8ee477ab2b773f2df63f3163#rd" target="_blank" rel="noopener">链接</a></p>
+<h3 id="1）什么是线程池？"><a href="#1）什么是线程池？" class="headerlink" title="1）什么是线程池？"></a>1）什么是线程池？</h3><p>实际开发中我们需要让程序执行某个特定任务时，就会开启一个线程，如果并发的线程数量太多，频繁地创建线程就会严重影响系统的运行效率。<br>如何解决上述为呢？有没有一种方式可以让线程得到复用？<br>也就是要求执行一次任务之后不被销毁，可以继续执行其他任务，这就跟“数据库连接池”的思路一样了，数据库连接池的实现逻辑是在缓冲池中预先放置一定数量的连接对象，然后进行复用，那么很显然，在缓冲池中<b>预先放置一定数量的线程对象</b>以实现复用的机制就叫做线程池。</p>
+<h3 id="2）线程池的优点"><a href="#2）线程池的优点" class="headerlink" title="2）线程池的优点"></a>2）线程池的优点</h3><p>1、使用线程池可以减少创建和销毁线程的次数，每个工作线程都可以重复使用。<br>2、可以根据系统的承受能力，调整线程池中工作线程的数量，防止因为消耗过多内存导致服务器崩溃。</p>
+<h3 id="3）工作流程"><a href="#3）工作流程" class="headerlink" title="3）工作流程"></a>3）工作流程</h3><p>1、提交一个任务时，线程池会创建一个新的线程执行任务，直到当前线程数等于<code>corePoolSize</code>。<br>2、如果当前线程数为<code>corePoolSize</code>，继续提交的任务被保存到任务队列中，等待被执行。<br>3、如果<strong>任务队列满了</strong>，那就创建新的线程执行当前任务，直到线程池中的线程数达到 <code>maxPoolSize</code>，这时再有任务来，只能执行<code>reject()</code>拒绝处理该任务。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1084,7 +1088,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.7k</span>&nbsp;字
+                class="white-color">82.2k</span>&nbsp;字
             
             
             
